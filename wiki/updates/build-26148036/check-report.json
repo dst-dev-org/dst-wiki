@@ -1,0 +1,1529 @@
+{
+  "report_version": 3,
+  "mode": "check",
+  "write": false,
+  "scoped": false,
+  "knowledge_root": "D:\\Code\\dst-wiki-develop\\dst-wiki",
+  "source_root": "D:\\Code\\dst-wiki-develop\\dst-wiki\\raw\\current\\scripts",
+  "manifest": "wiki/source-baseline.json",
+  "manifest_state": "ok",
+  "cache": "output/source-baseline-cache.json",
+  "snapshot_version": {
+    "path": "raw\\current\\BUILD.txt",
+    "value": "26148036",
+    "state": "recorded",
+    "installed_current": {
+      "path": "raw/current/BUILD.txt",
+      "value": "26148036",
+      "state": "recorded"
+    }
+  },
+  "counts": {
+    "pages": 361,
+    "pages_with_sources": 345,
+    "pages_without_sources": 16,
+    "archived_pages": 0,
+    "removed_archived": 0,
+    "comparisons": 2506,
+    "unchanged": 1579,
+    "changed": 927,
+    "line_ending_only": 0,
+    "case_mismatch": 0,
+    "sources_changed": 2,
+    "deleted": 0,
+    "unrecorded_pages": 0,
+    "stale_entries": 0,
+    "legacy_frontmatter": 0,
+    "stripped": 0,
+    "already_recorded": 0,
+    "recorded": 0,
+    "refreshed": 0,
+    "affected_pages": 286,
+    "pages_skipped_missing_files": 0,
+    "missing_files": 0,
+    "invalid_pages": 0
+  },
+  "notes": [],
+  "passed": false,
+  "cached": false,
+  "raw_mismatch_rate": 0.3699,
+  "changed": [
+    {
+      "page": "cookbook/equipment/head.md",
+      "source": "prefabs/hats.lua",
+      "recorded": "sha256:eb9d81d11b3fb5fef2fb322a388c57040f49f33cf0b9763d926928a29e41f732",
+      "current": "sha256:ac34e7cdb5daa65093a553737ddfdf29346debba92053249ffa575d2857a8007"
+    },
+    {
+      "page": "cookbook/equipment/head.md",
+      "source": "components/inventoryitem.lua",
+      "recorded": "sha256:6a38df2e0876977f935fa712338b9476c941f7e5ae09a4a0ea9ed29591ad3403",
+      "current": "sha256:1f92787f49f4fdeac53f48e5bbba9002d2050d4585025bb8ad8d1638fc79a6a5"
+    },
+    {
+      "page": "cookbook/equipment/head.md",
+      "source": "tuning.lua",
+      "recorded": "sha256:a10dc5af158f266962caa6daf4b0d6883348729120b0116f79707b0e63d08bd3",
+      "current": "sha256:6c44b813cf809655d2d0072a16d78a74d5f00b674c085027e4b2412e2afd2c7a"
+    },
+    {
+      "page": "cookbook/equipment/head.md",
+      "source": "mods.lua",
+      "recorded": "sha256:5f8b0fc933d379c620c7c89561a2ac8bd6d4e80ffe632c419625a18999174f04",
+      "current": "sha256:4fc1f9760c6aa44bb113e07bbf8931326dbd496f12d8e28276627bbdf3291f17"
+    },
+    {
+      "page": "cookbook/mod-starter.md",
+      "source": "mods.lua",
+      "recorded": "sha256:5f8b0fc933d379c620c7c89561a2ac8bd6d4e80ffe632c419625a18999174f04",
+      "current": "sha256:4fc1f9760c6aa44bb113e07bbf8931326dbd496f12d8e28276627bbdf3291f17"
+    },
+    {
+      "page": "cookbook/mod-starter.md",
+      "source": "modindex.lua",
+      "recorded": "sha256:5b13e5a37daa2b5e89aa8d88f4f43a21d02b7c574b86ab8220376600975a8408",
+      "current": "sha256:346ebffb293381a0b4b5a58be1d544ae329fd9d987e400d6e83fd3c8a6149eff"
+    },
+    {
+      "page": "cookbook/mod-starter.md",
+      "source": "util.lua",
+      "recorded": "sha256:d12a98de4fd1538151a2b4505e8b9dad192021a097c93252e6033f07eaef2d2b",
+      "current": "sha256:5e2d9c75e1c2620c80f694b8c3bf6248ab3b3f2b949e01c5b12f94d68cf14838"
+    },
+    {
+      "page": "cookbook/mod-starter.md",
+      "source": "main.lua",
+      "recorded": "sha256:4bba31a5d2e36dbb95765fee379ec8310d34a9d98fbe7b422968bd9a8876ba46",
+      "current": "sha256:88b10b95ad39943a07e228a8c36c43e7dcf3109ff762e35ee69b5bee5d995713"
+    },
+    {
+      "page": "cookbook/mod-starter.md",
+      "source": "mainfunctions.lua",
+      "recorded": "sha256:ce849b04647c5350f872f943aacc77ef437c83a973b00869ca637b95f9e6d801",
+      "current": "sha256:53831dfadc029a24a36e0e703c9b3f404ee1a733e1b2e0e22b99abd450642a51"
+    },
+    {
+      "page": "cookbook/new-item.md",
+      "source": "mods.lua",
+      "recorded": "sha256:5f8b0fc933d379c620c7c89561a2ac8bd6d4e80ffe632c419625a18999174f04",
+      "current": "sha256:4fc1f9760c6aa44bb113e07bbf8931326dbd496f12d8e28276627bbdf3291f17"
+    },
+    {
+      "page": "cookbook/new-item.md",
+      "source": "mainfunctions.lua",
+      "recorded": "sha256:ce849b04647c5350f872f943aacc77ef437c83a973b00869ca637b95f9e6d801",
+      "current": "sha256:53831dfadc029a24a36e0e703c9b3f404ee1a733e1b2e0e22b99abd450642a51"
+    },
+    {
+      "page": "cookbook/new-item.md",
+      "source": "prefabs/global.lua",
+      "recorded": "sha256:c7e47f87134da99135adcedb5c6bec90e1969f3150594f4e79bc3abbb2b7dd53",
+      "current": "sha256:120df7ddd6507074e6ec75ace825a3e21fb474326f276f113562e8bc5080e43a"
+    },
+    {
+      "page": "cookbook/new-item.md",
+      "source": "entityscript.lua",
+      "recorded": "sha256:df52c6816fce28d22ed6fe5004575044da8fcf84a8a834ec14ef92aca3fe7501",
+      "current": "sha256:752ad3376174a7671849bfd399852d20461874fdc6d0ff36c2dff794e0173774"
+    },
+    {
+      "page": "cookbook/new-item.md",
+      "source": "components/inventoryitem.lua",
+      "recorded": "sha256:6a38df2e0876977f935fa712338b9476c941f7e5ae09a4a0ea9ed29591ad3403",
+      "current": "sha256:1f92787f49f4fdeac53f48e5bbba9002d2050d4585025bb8ad8d1638fc79a6a5"
+    },
+    {
+      "page": "cookbook/new-item.md",
+      "source": "simutil.lua",
+      "recorded": "sha256:635b7d2ef90905a6633d10e6e324a4d90aaa48fd179881a8a9e2758ec4079c7c",
+      "current": "sha256:13815df52c2ba681b88eea0f84c83fecd15934af921c180e7c48a824e8497f7e"
+    },
+    {
+      "page": "cookbook/new-item.md",
+      "source": "util.lua",
+      "recorded": "sha256:d12a98de4fd1538151a2b4505e8b9dad192021a097c93252e6033f07eaef2d2b",
+      "current": "sha256:5e2d9c75e1c2620c80f694b8c3bf6248ab3b3f2b949e01c5b12f94d68cf14838"
+    },
+    {
+      "page": "reference/api/modinfo/configuration.md",
+      "source": "modindex.lua",
+      "recorded": "sha256:5b13e5a37daa2b5e89aa8d88f4f43a21d02b7c574b86ab8220376600975a8408",
+      "current": "sha256:346ebffb293381a0b4b5a58be1d544ae329fd9d987e400d6e83fd3c8a6149eff"
+    },
+    {
+      "page": "reference/api/modinfo/configuration.md",
+      "source": "mods.lua",
+      "recorded": "sha256:5f8b0fc933d379c620c7c89561a2ac8bd6d4e80ffe632c419625a18999174f04",
+      "current": "sha256:4fc1f9760c6aa44bb113e07bbf8931326dbd496f12d8e28276627bbdf3291f17"
+    },
+    {
+      "page": "reference/api/modinfo/configuration.md",
+      "source": "util.lua",
+      "recorded": "sha256:d12a98de4fd1538151a2b4505e8b9dad192021a097c93252e6033f07eaef2d2b",
+      "current": "sha256:5e2d9c75e1c2620c80f694b8c3bf6248ab3b3f2b949e01c5b12f94d68cf14838"
+    },
+    {
+      "page": "reference/api/modinfo/fields.md",
+      "source": "modindex.lua",
+      "recorded": "sha256:5b13e5a37daa2b5e89aa8d88f4f43a21d02b7c574b86ab8220376600975a8408",
+      "current": "sha256:346ebffb293381a0b4b5a58be1d544ae329fd9d987e400d6e83fd3c8a6149eff"
+    },
+    {
+      "page": "reference/api/modinfo/fields.md",
+      "source": "mods.lua",
+      "recorded": "sha256:5f8b0fc933d379c620c7c89561a2ac8bd6d4e80ffe632c419625a18999174f04",
+      "current": "sha256:4fc1f9760c6aa44bb113e07bbf8931326dbd496f12d8e28276627bbdf3291f17"
+    },
+    {
+      "page": "reference/api/modinfo/fields.md",
+      "source": "widgets/redux/modstab.lua",
+      "recorded": "sha256:2dea2a98797e3fb69de42c74876b676bd5ac682732556f3e22a6d6e53d255c2e",
+      "current": "sha256:aa9cd0470370379affb820e99211c92d0c28a2e7b1fe68f2865ce3216b2102db"
+    },
+    {
+      "page": "reference/api/modinfo/game-modes.md",
+      "source": "modindex.lua",
+      "recorded": "sha256:5b13e5a37daa2b5e89aa8d88f4f43a21d02b7c574b86ab8220376600975a8408",
+      "current": "sha256:346ebffb293381a0b4b5a58be1d544ae329fd9d987e400d6e83fd3c8a6149eff"
+    },
+    {
+      "page": "reference/api/modinfo/game-modes.md",
+      "source": "recipes.lua",
+      "recorded": "sha256:613747afca00328f1505a8fb174618e25976558010379d4d24e291d599d9d407",
+      "current": "sha256:d13ffdb2f946d41e28429ad6edaf33041e4bd97feb59d51e0949100b8f67829e"
+    },
+    {
+      "page": "reference/components/activatable.md",
+      "source": "componentactions.lua",
+      "recorded": "sha256:84cad45e6d57ff74015d58593d4e5ca0b4c74fa9ea644e642a99c95aaef8d190",
+      "current": "sha256:caa12a0db2bed7ffa53586986647d12b4876dbba8ad788fe5657341590867464"
+    },
+    {
+      "page": "reference/components/activatable.md",
+      "source": "actions.lua",
+      "recorded": "sha256:012824ef41643c616a1d93a14d4aad0c828de9d27049c42da3a946c7fe3a1096",
+      "current": "sha256:ba2455683ca4468cf41d9ccaade2847c56c6bf935f5807c3ffaf080075bf90b7"
+    },
+    {
+      "page": "reference/components/activatable.md",
+      "source": "stategraphs/SGwilson_client.lua",
+      "recorded": "sha256:0ee8cd91c7e4f29c9bb9bea21381e29f74103c6258ef734e8b4ad0d69337be53",
+      "current": "sha256:79bf58373cfa422249172555d35b82e83aa14fb1243bd902787f12c8f5cecc67"
+    },
+    {
+      "page": "reference/components/aoecharging.md",
+      "source": "components/playercontroller.lua",
+      "recorded": "sha256:b2f2c7688f1617983a19316cc3956fc33430573a36a15b8f68d4492ff5f9f6f1",
+      "current": "sha256:b14e467efcb5aa84b07fd6196b5b84d03c72a148b21561eeb32bdc10a10cd8c2"
+    },
+    {
+      "page": "reference/components/aoecharging.md",
+      "source": "stategraphs/SGwilson.lua",
+      "recorded": "sha256:59e79da363d3eb0310cdfd065c52d4c970fe1ac91b753222250a6000f8118b69",
+      "current": "sha256:ac1b6053c81358c37d5dcffbce9b3dd177f57204e35e0270d1cfb8213ebcff8b"
+    },
+    {
+      "page": "reference/components/aoediminishingreturns.md",
+      "source": "wx78_moduledefs.lua",
+      "recorded": "sha256:39bd6b4b01d14a4b8437e1486f67ed101dffdc661c0e74fe63904378a1b8814f",
+      "current": "sha256:1df6f7f272f11a13b286898b2b9b2fccfcbdf9e254e1a07be6877a9df59d2485"
+    },
+    {
+      "page": "reference/components/aoediminishingreturns.md",
+      "source": "stategraphs/SGwilson.lua",
+      "recorded": "sha256:59e79da363d3eb0310cdfd065c52d4c970fe1ac91b753222250a6000f8118b69",
+      "current": "sha256:ac1b6053c81358c37d5dcffbce9b3dd177f57204e35e0270d1cfb8213ebcff8b"
+    },
+    {
+      "page": "reference/components/aoediminishingreturns.md",
+      "source": "prefabs/wx78.lua",
+      "recorded": "sha256:1e2536696d5042fee43546e50514aa257773f82e3c4d1ff56bdee88368ed59ac",
+      "current": "sha256:9aabd9a762b0893b0b0ca5f9700b454d10a22ef9a41bc1390f8de50fef3d2649"
+    },
+    {
+      "page": "reference/components/aoediminishingreturns.md",
+      "source": "prefabs/shadow_battleaxe.lua",
+      "recorded": "sha256:7ea86eb3a11e72ab17cd21f6c4bdba87a231b7d4b9a74d70f432ab1ff84413dd",
+      "current": "sha256:a8d97b779b9261e7423caf7a7f7e31b05d6c96ebd210e70689940523fe291d15"
+    },
+    {
+      "page": "reference/components/aoediminishingreturns.md",
+      "source": "tuning.lua",
+      "recorded": "sha256:a10dc5af158f266962caa6daf4b0d6883348729120b0116f79707b0e63d08bd3",
+      "current": "sha256:6c44b813cf809655d2d0072a16d78a74d5f00b674c085027e4b2412e2afd2c7a"
+    },
+    {
+      "page": "reference/components/aoespell.md",
+      "source": "actions.lua",
+      "recorded": "sha256:012824ef41643c616a1d93a14d4aad0c828de9d27049c42da3a946c7fe3a1096",
+      "current": "sha256:ba2455683ca4468cf41d9ccaade2847c56c6bf935f5807c3ffaf080075bf90b7"
+    },
+    {
+      "page": "reference/components/aoespell.md",
+      "source": "componentactions.lua",
+      "recorded": "sha256:84cad45e6d57ff74015d58593d4e5ca0b4c74fa9ea644e642a99c95aaef8d190",
+      "current": "sha256:caa12a0db2bed7ffa53586986647d12b4876dbba8ad788fe5657341590867464"
+    },
+    {
+      "page": "reference/components/aoespell.md",
+      "source": "components/map.lua",
+      "recorded": "sha256:f23e1828902b72a1750ee3819e89b4493c059e80f9e83db9968d2351d9cb1f3e",
+      "current": "sha256:1eaee211f03fcd87b48e3b0671cd0aba1a488d62013b4d3d828b557fd43e9919"
+    },
+    {
+      "page": "reference/components/aoetargeting.md",
+      "source": "components/playercontroller.lua",
+      "recorded": "sha256:b2f2c7688f1617983a19316cc3956fc33430573a36a15b8f68d4492ff5f9f6f1",
+      "current": "sha256:b14e467efcb5aa84b07fd6196b5b84d03c72a148b21561eeb32bdc10a10cd8c2"
+    },
+    {
+      "page": "reference/components/aoetargeting.md",
+      "source": "components/map.lua",
+      "recorded": "sha256:f23e1828902b72a1750ee3819e89b4493c059e80f9e83db9968d2351d9cb1f3e",
+      "current": "sha256:1eaee211f03fcd87b48e3b0671cd0aba1a488d62013b4d3d828b557fd43e9919"
+    },
+    {
+      "page": "reference/components/aoeweapon-leap.md",
+      "source": "components/aoeweapon_base.lua",
+      "recorded": "sha256:588814ec50d46d4a4c49581fcb085d9cbab469559b4dcf2af244b08d3b1537dd",
+      "current": "sha256:99101331cbc90a7137c31e9e42525d0c997376a24ed38518977bb36571df2e4a"
+    },
+    {
+      "page": "reference/components/aoeweapon-leap.md",
+      "source": "stategraphs/SGwilson.lua",
+      "recorded": "sha256:59e79da363d3eb0310cdfd065c52d4c970fe1ac91b753222250a6000f8118b69",
+      "current": "sha256:ac1b6053c81358c37d5dcffbce9b3dd177f57204e35e0270d1cfb8213ebcff8b"
+    },
+    {
+      "page": "reference/components/aoeweapon-leap.md",
+      "source": "stategraphs/SGwilson_client.lua",
+      "recorded": "sha256:0ee8cd91c7e4f29c9bb9bea21381e29f74103c6258ef734e8b4ad0d69337be53",
+      "current": "sha256:79bf58373cfa422249172555d35b82e83aa14fb1243bd902787f12c8f5cecc67"
+    },
+    {
+      "page": "reference/components/appraisable.md",
+      "source": "componentactions.lua",
+      "recorded": "sha256:84cad45e6d57ff74015d58593d4e5ca0b4c74fa9ea644e642a99c95aaef8d190",
+      "current": "sha256:caa12a0db2bed7ffa53586986647d12b4876dbba8ad788fe5657341590867464"
+    },
+    {
+      "page": "reference/components/appraisable.md",
+      "source": "actions.lua",
+      "recorded": "sha256:012824ef41643c616a1d93a14d4aad0c828de9d27049c42da3a946c7fe3a1096",
+      "current": "sha256:ba2455683ca4468cf41d9ccaade2847c56c6bf935f5807c3ffaf080075bf90b7"
+    },
+    {
+      "page": "reference/components/appraisable.md",
+      "source": "stategraphs/SGwilson.lua",
+      "recorded": "sha256:59e79da363d3eb0310cdfd065c52d4c970fe1ac91b753222250a6000f8118b69",
+      "current": "sha256:ac1b6053c81358c37d5dcffbce9b3dd177f57204e35e0270d1cfb8213ebcff8b"
+    },
+    {
+      "page": "reference/components/appraisable.md",
+      "source": "stategraphs/SGwilson_client.lua",
+      "recorded": "sha256:0ee8cd91c7e4f29c9bb9bea21381e29f74103c6258ef734e8b4ad0d69337be53",
+      "current": "sha256:79bf58373cfa422249172555d35b82e83aa14fb1243bd902787f12c8f5cecc67"
+    },
+    {
+      "page": "reference/components/attunable.md",
+      "source": "prefabs/player_common.lua",
+      "recorded": "sha256:aae85dd6b305005534bc9a18df55b5a8cb5a1bea7d261c23b04d86b7d5f6c451",
+      "current": "sha256:db5b3aa5c46995d06977e2cc9736d0d397c401e3a12abaed1ad4183117f0b37a"
+    },
+    {
+      "page": "reference/components/attunable.md",
+      "source": "componentactions.lua",
+      "recorded": "sha256:84cad45e6d57ff74015d58593d4e5ca0b4c74fa9ea644e642a99c95aaef8d190",
+      "current": "sha256:caa12a0db2bed7ffa53586986647d12b4876dbba8ad788fe5657341590867464"
+    },
+    {
+      "page": "reference/components/attunable.md",
+      "source": "actions.lua",
+      "recorded": "sha256:012824ef41643c616a1d93a14d4aad0c828de9d27049c42da3a946c7fe3a1096",
+      "current": "sha256:ba2455683ca4468cf41d9ccaade2847c56c6bf935f5807c3ffaf080075bf90b7"
+    },
+    {
+      "page": "reference/components/attunable.md",
+      "source": "constants.lua",
+      "recorded": "sha256:4c7e9be82d569874218c080d5c50215811057128d127ec193b444682c6791fd2",
+      "current": "sha256:ab881da26919ad04c25e307fe38b802ef177d8a4ab0c175d5634711437da3a72"
+    }
+  ],
+  "deleted": [],
+  "line_ending_only": [],
+  "case_mismatch": [],
+  "sources_changed": [
+    {
+      "page": "reference/components/beard.md"
+    },
+    {
+      "page": "reference/components/brushable.md"
+    }
+  ],
+  "unrecorded_pages": [],
+  "stale_entries": [],
+  "skipped_missing_files": [],
+  "invalid": [],
+  "affected_pages": [
+    {
+      "page": "cookbook/equipment/head.md",
+      "changed": 4
+    },
+    {
+      "page": "cookbook/mod-starter.md",
+      "changed": 5
+    },
+    {
+      "page": "cookbook/new-item.md",
+      "changed": 7
+    },
+    {
+      "page": "reference/api/modinfo/configuration.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/api/modinfo/fields.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/api/modinfo/game-modes.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/activatable.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/aoecharging.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/aoediminishingreturns.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/aoespell.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/aoetargeting.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/aoeweapon-leap.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/appraisable.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/attunable.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/attuner.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/autoterraformer.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/bait.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/battery.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/batteryuser.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/beard.md",
+      "sources_changed": 1
+    },
+    {
+      "page": "reference/components/bedazzlement.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/bedazzler.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/beefalometrics.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/birdattractor.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/birdspawner.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/blinkstaff.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/boatdrag.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/boatleak.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/boatmagnet.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/boatmagnetbeacon.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/boatpatch.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/boatphysics.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/boatring.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/boatringdata.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/boatrotator.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/book.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/bottler.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/brush.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/brushable.md",
+      "sources_changed": 1
+    },
+    {
+      "page": "reference/components/builder.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/bundlemaker.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/bundler.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/channelable.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/channelcastable.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/channelcaster.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/childspawner.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/circuitnode.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/closeinspector.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/compostingbin.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/constructionbuilder.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/constructionbuilderuidata.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/constructionplans.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/constructionsite.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/container-proxy.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/container.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/container_transform.md",
+      "changed": 7
+    },
+    {
+      "page": "reference/components/containerinstallableitem.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/cookable.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/cookbookupdater.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/cooker.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/counter.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/craftingstation.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/crittertraits.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/crop.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/cursable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/cyclable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/damagetracker.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/dataanalyzer.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/debuff.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/debuffable.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/decay.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/deployable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/digester.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/dpstracker.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/drawable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/drawingtool.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/drownable.md",
+      "changed": 10
+    },
+    {
+      "page": "reference/components/dryable.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/dryer.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/dryingrack.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/eater.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/edible.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/electricconnector.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/equippable.md",
+      "changed": 7
+    },
+    {
+      "page": "reference/components/erasablepaper.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/fan.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/farming-manager.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/farmplantable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/farmplanttendable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/farmsoildrinker.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/farmtiller.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/feasts.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/fencerotator.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/fertilizable.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/fertilizer.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/fertilizerresearchable.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/fillable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/firebug.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/firedetector.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/fishable.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/fishingnet.md",
+      "changed": 10
+    },
+    {
+      "page": "reference/components/fishingnetvisualizer.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/fishingrod.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/flotationdevice.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/flotsamgenerator.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/follower.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/foodaffinity.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/foodmemory.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/forcecompostable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/freezable.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/frostybreather.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/fueled.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/fueler.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/fuelmaster.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/grabbable.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/gravediggable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/gravedigger.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/grogginess.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/growable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/grower.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/harvestable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/hauntable.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/healer.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/healthbar.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/healthsyncer.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/healthtrigger.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/heater.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/herd.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/herdmember.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/hitchable.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/hitcher.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/homeseeker.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/hull.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/hullhealth.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/hunger.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/incinerator.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/incrementalproducer.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/inkable.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/instrument.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/inventoryitem.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/inventoryitemholder.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/inventoryitemmoisture.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/inventoryitemtemperature.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/itemstore.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/itemweigher.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/key.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/klaussackkey.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/klaussacklock.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/knownlocations.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/leader.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/lighter.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/lightningblocker.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/linkeditemmanager.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/lock.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/locomotor.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/lootdropper.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/luckitem.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/luckuser.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/machine.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/magician.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/magiciantool.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/mapdeliverable.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/maprecorder.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/markable-proxy.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/markable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/mast.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/maxhealer.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/mine.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/moisture.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/moistureabsorbersource.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/moistureabsorberuser.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/moistureimmunity.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/mood.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/murderable.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/nonslipgritpool.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/nonslipgritsource.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/nonslipgrituser.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/nutrients-visual-manager.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/oar.md",
+      "changed": 7
+    },
+    {
+      "page": "reference/components/occupiable.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/occupier.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/oceanfishable.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/oceanfishinghook.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/oceanfishingrod.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/papereraser.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/periodicspawner.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/perishable.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/petleash.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/pickable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/pinnable.md",
+      "changed": 9
+    },
+    {
+      "page": "reference/components/placer.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/plantable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/plantregistryupdater.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/plantregrowth.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/plantresearchable.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/playerprox.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/pocketwatch-dismantler.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/pollinator.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/portablestructure.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/positionalwarp.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/powerload.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/preservative.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/preserver.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/raindome.md",
+      "changed": 7
+    },
+    {
+      "page": "reference/components/raindomewatcher.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/rainimmunity.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/reader.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/rechargeable.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/recipescanner.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/remoteteleporter.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/repairable.md",
+      "changed": 7
+    },
+    {
+      "page": "reference/components/repairer.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/repellent.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/reticule.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/rideable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/rider.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/rooted.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/sanity.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/sanityaura.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/sanityauraadjuster.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/searchable.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/selfstacker.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/setbonus.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/sewing.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/shaveable.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/shaver.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/shelf.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/sheltered.md",
+      "changed": 7
+    },
+    {
+      "page": "reference/components/simplebook.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/sittable.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/skinner-beefalo.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/sleeper.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/sleepingbag.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/sleepingbaguser.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/slipperyfeet.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/smotherer.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/socketable.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/socketholder.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/spawner.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/spell.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/spellbook.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/spellbookcooldowns.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/spellcaster.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/spooked.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/stackable.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/staffsanity.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/steeringwheel.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/stewer.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/stunnable.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/summoningitem.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/tackler.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/tacklesketch.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/talker.md",
+      "changed": 8
+    },
+    {
+      "page": "reference/components/teacher.md",
+      "changed": 6
+    },
+    {
+      "page": "reference/components/teamattacker.md",
+      "changed": 8
+    },
+    {
+      "page": "reference/components/teleportedoverride.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/teleporter.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/temperature.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/terraformer.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/terraformerremoveable.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/timer.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/toggleableitem.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/tool.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/trap.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/treegrowthsolution.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/unsaddler.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/unwrappable.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/upgradeable.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/upgrademodule.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/upgrademoduleowner.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/upgrademoduleremover.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/upgrader.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/useableequippeditem.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/useableitem.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/useabletargeteditem.md",
+      "changed": 2
+    },
+    {
+      "page": "reference/components/walkableplatform.md",
+      "changed": 5
+    },
+    {
+      "page": "reference/components/waterproofer.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/watersource.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/wateryprotection.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/wax.md",
+      "changed": 4
+    },
+    {
+      "page": "reference/components/waxable.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/weighable.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/workable.md",
+      "changed": 1
+    },
+    {
+      "page": "reference/components/worker.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/workmultiplier.md",
+      "changed": 3
+    },
+    {
+      "page": "reference/components/writeable.md",
+      "changed": 2
+    }
+  ],
+  "not_checked": [
+    "claim support / DST semantics",
+    "sources completeness (pages may cite fewer files than they depend on)",
+    "symbol-level change classification (git diff --no-index --ignore-cr-at-eol)",
+    "wiki body links to sources (validate_source_links)",
+    "runtime"
+  ],
+  "parser_limits": [
+    "strict YAML subset; anything else is reported invalid, not guessed",
+    "normalization covers BOM, CRLF/CR endings and trailing newlines only",
+    "source paths must match the snapshot case-exactly; tolerant filesystems report case_mismatch instead of resolving another file",
+    "page frontmatter carries no hashes; the baseline lives in the manifest",
+    "archived pages keep their place and are excluded from drift and manifest",
+    "record without page selection rebuilds the whole manifest",
+    "record skips whole pages when any source file is missing from the snapshot"
+  ]
+}

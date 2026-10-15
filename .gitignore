@@ -1,0 +1,11 @@
+.idea/
+.venv/
+__pycache__/
+*.py[cod]
+raw/*
+!raw/current/
+raw/current/*
+!raw/current/BUILD.txt
+output/
+dst-wiki.local.json
+*.po

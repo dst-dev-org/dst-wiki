@@ -1,0 +1,2 @@
+# Translation catalogs are outside default source-code lookup.
+*.po

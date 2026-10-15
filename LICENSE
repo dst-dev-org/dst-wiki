@@ -1,0 +1,28 @@
+Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+SPDX-License-Identifier: CC-BY-SA-4.0
+
+Copyright (c) 2026 DST Wiki contributors
+
+本仓原创内容（wiki/ 知识页与索引、docs/、references/、维护规则与示例原文）
+按 CC BY-SA 4.0 授权发布。你可以复制、分发、修改并用于任何目的（含商业用途），但必须：
+
+1. 署名（Attribution）——标注 "DST Wiki contributors" 与本仓来源，并说明是否作过修改；
+2. 相同方式共享（ShareAlike）——修改后的作品须以同一许可（或 CC 认定的兼容许可）分发；
+3. 不附加限制——不得对本许可允许的使用施加额外法律或技术限制。
+
+许可摘要（仅供理解，不具法律效力）：
+  https://creativecommons.org/licenses/by-sa/4.0/deed.zh-Hans
+完整法律文本（以此为准）：
+  简体中文译本：https://creativecommons.org/licenses/by-sa/4.0/legalcode.zh-Hans
+  英文原文：    https://creativecommons.org/licenses/by-sa/4.0/legalcode.en
+
+建议署名格式：
+  《DST Wiki》，作者 DST Wiki contributors，
+  <本仓地址>，按 CC BY-SA 4.0 授权。
+
+不属于本许可范围：
+- 《饥荒联机版》游戏源码／资源，以及页面中引用的游戏或第三方片段：保留 Klei 与各权利人的
+  原授权，本仓只对其中的原创表述授权，不转授这些内容；
+- 独立 lsp-dst fork 保留上游 MIT-0，正式 reviews 与类型声明在该 fork 维护；
+- raw/ 下的本地源码快照与 output/ 下的生成物（不入库、不随本仓分发）；
+- 生成知识页时由使用者自行引入的第三方材料。

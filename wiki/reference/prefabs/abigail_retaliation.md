@@ -1,13 +1,13 @@
 ---
 title: "阿比盖尔反击、惊扰与暗影增益特效（abigail_retaliation 等）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "阿比盖尔 prefab 随本体返回的五个外挂子注册：蒸馏复仇触发的反击、惊扰命中反馈与承伤 debuff 两变体、温蒂暗影技能的凶杀增益；按工厂、端、触发、父挂与清理逐项核验。"
 aliases: ["abigail_retaliation", "abigail_vex_hit", "abigail_vex_debuff", "abigail_vex_shadow_debuff", "abigail_murder_buff", "阿比盖尔反击特效", "阿比盖尔惊扰特效", "阿比盖尔暗影增益", "复仇反击特效"]
 tags: [prefab, fx]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/abigail.lua", "prefabs/ghostly_elixirs.lua", "prefabs/wendy.lua", "prefabs/skilltree_wendy.lua", "prefabs/ghostcommand_defs.lua", "prefabs/abigailforcefield.lua", "prefabs/hats.lua", "stategraphs/SGabigail.lua", "components/combat.lua", "components/debuffable.lua", "components/debuff.lua", "components/incinerator.lua", "standardcomponents.lua", "actions.lua", "tuning.lua", "entityscript.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -32,7 +32,7 @@ status: active
 | `abigail_vex_debuff` | `CreateDebuff("abigail_vex_debuff")`：Transform／AnimState／Network → bank／build `abigail_debuff_fx`、`vex_debuff_pre` → `vex_debuff_loop`（循环）＋`SetFinalOffset(3)` → net_event `hitevent`（非专服监听）→ SetPristine；客户端返回；主模拟 `debuff` 组件＋`persists=false` | 联网；attach 父挂目标并按目标缩放、注册承伤 ×1.1 与 `attacked` 监听；基础 2 秒，施加者带 `gestalt` 标签时 ×3（约 6 秒）；detach 移除倍率、推 `vex_debuff_pst` 后 `animqueueover` 自删；换变体先移除旧。[工厂](../../../raw/current/scripts/prefabs/abigail.lua#L1143-L1183)、[attach](../../../raw/current/scripts/prefabs/abigail.lua#L1089-L1121)、[detach](../../../raw/current/scripts/prefabs/abigail.lua#L1123-L1141)、[延长](../../../raw/current/scripts/prefabs/abigail.lua#L1051-L1061)、[包装](../../../raw/current/scripts/entityscript.lua#L2140-L2153)、[透传](../../../raw/current/scripts/components/debuffable.lua#L72-L105) |
 | `abigail_vex_shadow_debuff` | 同一工厂的 `name` 分支：attach 时额外加 `planardamage`（10）、`damagetypebonus`、`attacktriggereddebuff` 标签与 `attacked` 监听；命中反馈染黑 | 联网；由 `ApplyDebuff` 在阿比盖尔带 `super_elixir_buff` 且 prefab 为 `ghostlyelixir_shadow_buff` 时选用；监听挂在被标记目标身上，目标每次被（非阿比盖尔、非重定向、非 `attacktriggereddebuff`）攻击时自身额外承受 0 物理＋10 位面，攻击者记为 debuff 本体。[变体](../../../raw/current/scripts/prefabs/abigail.lua#L380-L403)、[附加](../../../raw/current/scripts/prefabs/abigail.lua#L1063-L1104)、[染色](../../../raw/current/scripts/prefabs/abigail.lua#L1036-L1043) |
 | `abigail_vex_hit` | `abigail_vex_hit_fn`：`CLASSIFIED`、无 Network；Transform／AnimState → bank／build `abigail_debuff_fx`、动画 `vex_hit`＋`SetFinalOffset(3)` → `FX` 标签 → `persists=false` → `animover` Remove | 纯本地；由惊扰实体收到 net event 后在自身世界位置生成（非专服），无 sound；暗影变体由生成方 `SetMultColour(0,0,0,1)`。[工厂](../../../raw/current/scripts/prefabs/abigail.lua#L1189-L1209)、[生成](../../../raw/current/scripts/prefabs/abigail.lua#L1036-L1043)、[事件](../../../raw/current/scripts/prefabs/abigail.lua#L1159-L1163) |
-| `abigail_murder_buff` | `abigail_murder_buff_fn`：Transform／Network → `FX` 标签 → SetPristine；客户端返回；主模拟 `persists=false`＋`debuff` 组件，无 AnimState | 联网但不父挂；attach 改宿主 build、重启 aura、生成 `shadow_puff_large_front`、+5 位面防御并刷新 `UpdateDamage`（+25 位面）；8 秒，可续到 160 秒；detach 全部还原。[工厂](../../../raw/current/scripts/prefabs/abigail.lua#L1268-L1290)、[attach](../../../raw/current/scripts/prefabs/abigail.lua#L1220-L1241)、[detach](../../../raw/current/scripts/prefabs/abigail.lua#L1243-L1266)、[常量](../../../raw/current/scripts/tuning.lua#L7318-L7320) |
+| `abigail_murder_buff` | `abigail_murder_buff_fn`：Transform／Network → `FX` 标签 → SetPristine；客户端返回；主模拟 `persists=false`＋`debuff` 组件，无 AnimState | 联网但不父挂；attach 改宿主 build、重启 aura、生成 `shadow_puff_large_front`、+5 位面防御并刷新 `UpdateDamage`（+25 位面）；8 秒，可续到 160 秒；detach 全部还原。[工厂](../../../raw/current/scripts/prefabs/abigail.lua#L1268-L1290)、[attach](../../../raw/current/scripts/prefabs/abigail.lua#L1220-L1241)、[detach](../../../raw/current/scripts/prefabs/abigail.lua#L1243-L1266)、[常量](../../../raw/current/scripts/tuning.lua#L7319-L7321) |
 
 五个注册名在简中 `.po` 均无 `STRINGS.NAMES.*` 键；标题与别名中文是已核验效果描述，不是官方译名。相关官方名：触发物品 `ghostlyelixir_retaliation`＝“蒸馏复仇”，玩家链的 `ghostflowerhat`＝“幽魂花冠”。[po](../../../raw/current/scripts/languages/chinese_s.po#L343204-L343227)
 
@@ -107,3 +107,4 @@ end
 - [[reference/prefabs/ghostlyelixir_slowregen_fx#生成链与生命周期|幽灵灵药环绕与滴落特效]]（蒸馏复仇的药剂与饮用链）
 
 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

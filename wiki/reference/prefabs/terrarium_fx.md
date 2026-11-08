@@ -1,13 +1,13 @@
 ---
 title: "盒中泰拉召唤光柱（terrarium_fx）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "盒中泰拉夜间召唤眼魔时从本体升起的联网光柱：激活动画接循环、关闭时播退场并定时移除；纯 DECOR 表现，随宿主父挂移动。"
 aliases: ["terrarium_fx", "盒中泰拉光柱", "召唤光柱", "泰拉召唤特效", "眼魔召唤光柱"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/terrarium.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -45,7 +45,7 @@ inst._summoning_fx.AnimState:PushAnimation("activated_idle_fx", true)
 
 - 生成时先把宿主切成不可拾取、不可激活、不可交易；光柱是这套"施法中"状态的一部分。[L207-L215](../../../raw/current/scripts/prefabs/terrarium.lua#L207-L215)
 - 宿主只在 `is_loading` 或"已开启＋夜晚＋没有光柱＋没有 `summon_delay` 计时"时进入 `StartSummoning`；白天激活只置 `is_on`、不立刻起计时；入夜后 `on_night` 才起 5 秒 `summon_delay`，到点再进入 `StartSummoning`。[条件](../../../raw/current/scripts/prefabs/terrarium.lua#L203-L206)
-- 调用方还会把宿主灯光延迟 7 帧打开、播放 `beam_loop` 声、启动 `warning` 10 秒计时；这些是宿主表现，不是光柱工厂的内容。[L222-L241](../../../raw/current/scripts/prefabs/terrarium.lua#L222-L241)、[调值](../../../raw/current/scripts/tuning.lua#L6371-L6372)
+- 调用方还会把宿主灯光延迟 7 帧打开、播放 `beam_loop` 声、启动 `warning` 10 秒计时；这些是宿主表现，不是光柱工厂的内容。[L222-L241](../../../raw/current/scripts/prefabs/terrarium.lua#L222-L241)、[调值](../../../raw/current/scripts/tuning.lua#L6372-L6373)
 
 关闭路径在 `TurnOff`（[实现](../../../raw/current/scripts/prefabs/terrarium.lua#L246-L295)）：
 
@@ -71,7 +71,7 @@ inst._summoning_fx = nil
 |---|---|---|---|
 | `Prefab：terrarium` | 宿主与唯一生成者；父挂、切动画、定时删 | 只有 `StartSummoning` 生成；`TurnOff` 退场 | [注册](../../../raw/current/scripts/prefabs/terrarium.lua#L646-L646)、[生成](../../../raw/current/scripts/prefabs/terrarium.lua#L216-L221) |
 | `组件：activatable` | 激活／关闭宿主，间接触发本 FX | `OnActivate` 调 `TurnOn`／`TurnOff` | [激活](../../../raw/current/scripts/prefabs/terrarium.lua#L415-L421) |
-| `计时器：summon_delay`／`warning` | 5 秒准备后生成光柱，10 秒警告后召 Boss | 只在夜间开启时起 `summon_delay` | [调值](../../../raw/current/scripts/tuning.lua#L6371-L6372)、[TimerDone](../../../raw/current/scripts/prefabs/terrarium.lua#L443-L451) |
+| `计时器：summon_delay`／`warning` | 5 秒准备后生成光柱，10 秒警告后召 Boss | 只在夜间开启时起 `summon_delay` | [调值](../../../raw/current/scripts/tuning.lua#L6372-L6373)、[TimerDone](../../../raw/current/scripts/prefabs/terrarium.lua#L443-L451) |
 | `Prefab：eyeofterror` | 召唤产物；光柱本身不生成它 | 由宿主 `SpawnEyeOfTerror` 生成 | [依赖](../../../raw/current/scripts/prefabs/terrarium.lua#L10-L15) |
 | 关联页面：`terrariumchest_fx` | 同为"泰拉"前缀但不同注册、不同宿主；避免混淆 | 宝箱沙棺，与本页无生成关系 | [[reference/prefabs/terrariumchest_fx|显眼箱子沙棺特效]] |
 
@@ -96,3 +96,4 @@ inst._summoning_fx = nil
 
 - [[reference/prefabs/terrariumchest_fx|显眼箱子沙棺特效]]（同为"泰拉"前缀，不同注册／宿主）
 - 返回 [[reference/prefabs/fx-structure-index|建筑、装置与遗迹演出]]（盒中泰拉）
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处，tuning.lua 常量段 +1 行；CRLF 页按原字节格式宿主编辑），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-01）。

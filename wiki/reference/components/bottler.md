@@ -1,12 +1,12 @@
 ---
 title: "bottler"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "为物品接入装瓶动作，区分目标资格、回调返回与宿主负责的消耗和产物。"
 aliases: ["装瓶工具", "空瓶捕获黏液", "装瓶回调", "bottler"]
 tags: [component, item, callback, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/bottler.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "prefabs/messagebottle.lua", "prefabs/gelblob.lua"]
 reliability: verified
 validation: source-reviewed
@@ -59,3 +59,4 @@ status: active
 - 游戏运行：未运行；自定义目标、产物失败与其他模组组合未实测。
 - 结构检查：页面格式／链接与源码锚点严格检查通过；本页为原版接入说明，无新增完整 Lua 示例。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

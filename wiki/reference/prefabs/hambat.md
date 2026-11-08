@@ -1,12 +1,12 @@
 ---
 title: "火腿棒（hambat）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版手持武器 hambat：单注册 HANDS 槽近战武器，无耐久上限，伤害随新鲜度在 59.5→29.75 生命值线性衰减，0 新鲜度时整体替换为腐坏食物；可借鉴『新鲜度驱动武器伤害』组装。"
 aliases: ["hambat", "火腿棒", "Ham Bat", "火腿武器", "新鲜度武器", "火腿棒伤害"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/hambat.lua", "components/weapon.lua", "components/perishable.lua", "components/equippable.lua", "components/inspectable.lua", "components/inventoryitem.lua", "components/forcecompostable.lua", "components/combat.lua", "components/inventory.lua", "standardcomponents.lua", "mathutil.lua", "tuning.lua", "constants.lua", "recipes.lua", "prefabs/compostingbin.lua", "prefabs/spoiledfood.lua", "containers.lua", "widgets/itemtile.lua", "map/boons.lua", "worldgen_main.lua", "screens/redux/scrapbookdata.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "skin_gifts.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -52,7 +52,7 @@ inst.components.weapon:SetDamage(dmg)
 | 腐坏总时长 | `TUNING.PERISH_MED`=10×`total_day_time`×`perish_warp` | 4800 秒＝10 游戏日（total_day_time=480、perish_warp=1，[L19-L20](../../../raw/current/scripts/tuning.lua#L19-L20)、[L47](../../../raw/current/scripts/tuning.lua#L47)、[L2048](../../../raw/current/scripts/tuning.lua#L2048)） |
 | 耐久 | 不挂 finiteuses；`TUNING.HAMBAT_USES`=100 | 全 scripts 无消费者（[tuning.lua#L179](../../../raw/current/scripts/tuning.lua#L179)，单机版遗留）；每次攻击磨损分支因 finiteuses 判空跳过（[weapon.lua#L111-L120](../../../raw/current/scripts/components/weapon.lua#L111-L120)） |
 
-佐证：图鉴数据条 `hambat` 记 `weapondamage=59.5`、`perishable=4800`，与源码推导一致。[scrapbookdata.lua#L673](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L673)
+佐证：图鉴数据条 `hambat` 记 `weapondamage=59.5`、`perishable=4800`，与源码推导一致。[scrapbookdata.lua#L673](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L677)
 
 更新时机：`UpdateDamage` 只在装备（[onequip](../../../raw/current/scripts/prefabs/hambat.lua#L19-L20)）、卸装（[onunequip](../../../raw/current/scripts/prefabs/hambat.lua#L33-L34)）、每次攻击结算（`SetOnAttack`，[hambat.lua#L76-L78](../../../raw/current/scripts/prefabs/hambat.lua#L76-L78)）与读档（[OnLoad](../../../raw/current/scripts/prefabs/hambat.lua#L15-L17)）触发；`Combat:DoAttack` 先 `CalcDamage` 取 `weapon.damage` 结算伤害、后调 `weapon:OnAttack`（[combat.lua#L1212](../../../raw/current/scripts/components/combat.lua#L1212)、[L1224](../../../raw/current/scripts/components/combat.lua#L1224)），即每次攻击用的是上一次更新点的快照，连续攻击近似实时。
 
@@ -127,3 +127,4 @@ end)
 - 结构检查：validate_page.py 0 error（129 行／17337 字节，standard 档）与 validate_source_links.py --strict（74 条源码引用、25 个源文件，0 error 0 warning）实际执行通过；两个 lua 围栏语法完整。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

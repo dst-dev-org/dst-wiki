@@ -1,12 +1,12 @@
 ---
 title: "powerload"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "向薇诺娜工程电源报告负载与待机标志，供宿主结算耗能；不负责储电或供电。"
 aliases: ["薇诺娜机器功率", "工程设备待机耗电", "修改负载不生效", "powerload"]
 tags: [component, energy, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/powerload.lua", "prefabs/winona_battery_low.lua", "prefabs/winona_battery_high.lua", "prefabs/winona_spotlight.lua", "prefabs/winona_catapult.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -70,3 +70,4 @@ status: active
 - 结构检查：本页格式、大小、来源与本地链接、源码锚点已通过；本页无新增完整 Lua 示例，不执行语法检查。
 - 游戏运行：未运行；多电源分摊、免待机技能、状态重入、存读恢复与断电时序待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

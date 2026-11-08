@@ -1,12 +1,12 @@
 ---
 title: "生物残骸与植物／菌类次级表现（mushtree_tall_webbed_burntfx 等 6 注册）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "牧者残骸、致命亮茄藤蔓节、蛛网蓝蘑菇树焦壳、尖刺灌木侵蚀壳、梦魇城墙地裂与远古守护者大血滴六个外围注册的工厂、生成点、父挂与清理边界。"
 aliases: ["mushtree_tall_webbed_burntfx", "lunar_grazer_debris", "lunarthrall_plant_vine", "burnt_marsh_bush_erode", "nightmaregrowth_crack", "minotaur_blood_big", "牧者残骸", "藤蔓节", "菌树焦壳", "焦灌木侵蚀", "梦魇城墙地裂", "远古守护者大血滴", "生物残骸与植物次级表现"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/lunar_grazer.lua", "prefabs/lunarthrall_plant.lua", "prefabs/mushtree_webbed.lua", "prefabs/marsh_bush.lua", "prefabs/nightmaregrowth.lua", "prefabs/minotaur.lua", "prefabs/bigshadowtentacle.lua", "stategraphs/SGlunar_grazer.lua", "stategraphs/SGlunarthrall_plant_vine.lua", "stategraphs/SGbigshadowtentacle.lua", "components/burnable.lua", "components/colouradder.lua", "components/freezable.lua", "simutil.lua", "standardcomponents.lua", "entityscript.lua", "constants.lua", "tuning.lua", "languages/chinese_s.po"]
 size_class: complex
 reliability: verified
@@ -67,7 +67,7 @@ status: active
 | 组件：freezable | 藤蔓节挂 freezable，但冷量经 `SetRedirectFn` 转给头端；头端冻结时只把带 health 的 weak 节切 `sync_frozen` | 主模拟；普通节不进入冻结态 | [[reference/components/freezable]]；[重定向](../../../raw/current/scripts/stategraphs/SGlunarthrall_plant_vine.lua#L3-L9)、[SetRedirectFn](../../../raw/current/scripts/components/freezable.lua#L133-L140)、[同步](../../../raw/current/scripts/stategraphs/SGlunarthrall_plant_vine.lua#L499-L560) |
 | 组件：burnable | 藤蔓节挂 burnable，燃烧 8×`PLANTMOB_BURNTIME_MULT`；工厂没有 `SetOnBurntFn`，烧完不自删 | 主模拟；清理仍由头端 `removetail` 驱动 | [[reference/components/burnable]]；[挂载](../../../raw/current/scripts/prefabs/lunarthrall_plant.lua#L618-L619)、[完成回调](../../../raw/current/scripts/components/burnable.lua#L291-L312) |
 | 组件：propagator | `MakeMediumBurnableCharacter` 除 burnable 外还调用 `MakeSmallPropagator`，并把 `acceptsheat=false`；藤蔓节因此带传播组件 | 主模拟；随角色燃烧 helper 安装，不单独由工厂挂载 | [[reference/components/propagator]]；[helper](../../../raw/current/scripts/standardcomponents.lua#L258-L268) |
-| 组件：health／combat／planarentity | 仅 weak 形态由 `makeweak` 追加；health 200，伤害经 `health.redirect` 转给头端 | 主模拟；头端带 `weakvine` 时 | [[reference/components/health]]、[[reference/components/combat]]、[[reference/components/planarentity]]；[makeweak](../../../raw/current/scripts/prefabs/lunarthrall_plant.lua#L535-L575)、[血量](../../../raw/current/scripts/tuning.lua#L7653) |
+| 组件：health／combat／planarentity | 仅 weak 形态由 `makeweak` 追加；health 200，伤害经 `health.redirect` 转给头端 | 主模拟；头端带 `weakvine` 时 | [[reference/components/health]]、[[reference/components/combat]]、[[reference/components/planarentity]]；[makeweak](../../../raw/current/scripts/prefabs/lunarthrall_plant.lua#L535-L575)、[血量](../../../raw/current/scripts/tuning.lua#L7654) |
 | SG：SGlunar_grazer | 残骸的显示／散开／抛掷／掉落全部由宿主 SG 的 debris 状态驱动；离开 debris 状态时隐藏 | 主模拟；宿主 SG，客户端不执行这些方法 | Wiki 待建；[消散](../../../raw/current/scripts/stategraphs/SGlunar_grazer.lua#L150-L207)、[生成](../../../raw/current/scripts/stategraphs/SGlunar_grazer.lua#L209-L275)、[抛掷](../../../raw/current/scripts/stategraphs/SGlunar_grazer.lua#L377-L386) |
 | SG：SGlunarthrall_plant_vine | 节进入 `nub_idle`；头端移动时由 `onmovetailtask` 切 `nub_forward`／`nub_reverse`；`nub_spawn`／`nub_retract` 是头端状态 | 主模拟；头端与节共用同一 SG | Wiki 待建；[状态驱动](../../../raw/current/scripts/stategraphs/SGlunarthrall_plant_vine.lua#L12-L15)、[nub_idle](../../../raw/current/scripts/stategraphs/SGlunarthrall_plant_vine.lua#L409-L430) |
 | SG：SGbigshadowtentacle | 血滴生成的触手用 `arrive`／`idle`／`leave`；30 秒 `testremove` 后离场 | 主模拟；独立实体 | Wiki 待建；[leave](../../../raw/current/scripts/stategraphs/SGbigshadowtentacle.lua#L32-L45) |
@@ -122,3 +122,4 @@ end
 - [[reference/mechanisms/generic-fx-factory|通用 FX 工厂]]：本页六个注册均非 `fx.lua` 通用表条目，用于对照工厂协议。
 
 返回 [[reference/prefabs/fx-material-index|采集、制作、碎裂与生成烟]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

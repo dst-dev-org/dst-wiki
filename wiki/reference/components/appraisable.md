@@ -1,12 +1,12 @@
 ---
 title: "appraisable"
 created: "2026-10-22"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "让物品通过 APPRAISE 动作委托目标进行评价，区分动作展示、可用性检查与实际评价。"
 aliases: ["物品评价", "牛玩偶鉴评", "APPRAISE", "appraisable"]
 tags: [component, callback, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/appraisable.lua", "componentactions.lua", "actions.lua", "prefabs/yotb_beefalo_dolls.lua", "prefabs/yotb_stage.lua", "components/yotb_stager.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "stategraphs/SGyotb_stage.lua"]
 reliability: verified
 validation: source-reviewed
@@ -58,3 +58,4 @@ status: active
 - 结构检查：本页元数据、大小、链接与源码行号经定向校验；无新增 Lua 示例。
 - 游戏运行：未运行；客户端展示、忙碌期间失败提示及评价时序待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

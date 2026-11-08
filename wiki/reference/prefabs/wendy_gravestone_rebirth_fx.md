@@ -1,12 +1,12 @@
 ---
 title: "温蒂墓碑重生双幽灵动画（abigail_gravestone_rebirth_fx、wendy_gravestone_rebirth_fx）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "温蒂玩家在多年生植物祭坛复活时同一状态相邻两行生成的联网幽灵动画对：阿比盖尔层（ghost_abigail_build·wendy_resurrect）与温蒂幽灵层（ghost_wendy_build·wendy_ghost_resurrect）；只有温蒂本人触发，非温蒂走无 FX 的 gravestone_rebirth 状态。含墓碑本体一次性退场辨析与未置 persists 的存档窗口语义。"
 aliases: ["abigail_gravestone_rebirth_fx", "wendy_gravestone_rebirth_fx", "温蒂墓碑重生特效", "多年生植物祭坛重生动画", "墓碑重生幽灵", "温蒂复活动画", "阿比盖尔重生动画"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wendy_resurrectiongrave.lua", "stategraphs/SGwilson.lua", "prefabs/player_common_extensions.lua", "prefabs/wendy.lua", "prefabs/abigail.lua", "simutil.lua", "recipes.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -99,3 +99,4 @@ SpawnPrefab("wendy_gravestone_rebirth_fx").Transform:SetPosition(inst.Transform:
 - [[reference/prefabs/ghostflower_spirit1_fx|幽灵花灵体飘光]]（本墓碑配方的材料幽灵花）
 - [[reference/prefabs/ghostlyelixir_slowregen_fx|幽灵灵药环绕与滴落特效]]（阿比盖尔灵药表现）
 - 返回 [[reference/prefabs/fx-transition-index|变身、召唤、传送与退场]]（温蒂/阿比盖尔重生）
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

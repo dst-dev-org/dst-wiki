@@ -1,12 +1,12 @@
 ---
 title: "fumaroletool"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "气孔热工具组件：以物品温度驱动损坏与修复、四档温度档位与热光效，使用时消耗工具热量并轻微暖手，供热工具类武器。"
 aliases: ["气孔工具", "热工具温度", "fumaroletool"]
 tags: [component, item, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: standard
 sources: ["components/fumaroletool.lua", "standardcomponents.lua", "prefabs/axe.lua", "tuning.lua", "prefabs/trap_fumarole.lua"]
 reliability: verified
@@ -75,3 +75,4 @@ end)
 
 相关：[[reference/components/inventoryitemtemperature]]、[[reference/components/heater]]、[[reference/components/aoediminishingreturns]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

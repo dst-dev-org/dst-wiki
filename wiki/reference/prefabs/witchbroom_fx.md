@@ -1,13 +1,13 @@
 ---
 title: "活扫帚轨迹、沃比烘干架与训练哨增益 FX（witchbroom_fx 等 3 注册）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-09"
 type: prefab
 summary: "角色技能与装备外围的 3 个 FX 注册：活扫帚装备期的隐形联网载体（非专服每 5 帧从本地轨迹池投放三变体拖尾）、大沃比烘干架的联网换装层（net_hash 三槽驱动本地 FX 子体、与冲刺隐身层同步染色）与训练哨教练 buff 的联网跟随体（伤害加成在 debuff 宿主）。含幽灵注册 woby_rack 的复核结论。"
-aliases: ["witchbroom_fx", "woby_rack_swap_fx", "wolfgang_coach_buff_fx", "witchbroom", "女巫扫帚", "附魔女巫扫帚", "活扫帚轨迹", "扫帚拖尾", "沃比烘干架", "烘干架换装层", "训练哨增益", "教练buff", "wolfgang 教练"]
+aliases: ["witchbroom_fx", "woby_rack_swap_fx", "wolfgang_coach_buff_fx", "附魔女巫扫帚", "活扫帚轨迹", "扫帚拖尾", "沃比烘干架", "烘干架换装层", "训练哨增益", "教练buff", "wolfgang 教练"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/witchbroom.lua", "prefabs/livingtree_root.lua", "prefabs/madscience_lab.lua", "prefabs/woby_rack.lua", "prefabs/wobybig.lua", "prefabs/wobysmall.lua", "components/wobyrack.lua", "prefabs/wolfgang.lua", "components/coach.lua", "prefabs/wolfgang_whistle.lua", "prefabs/skilltree_wolfgang.lua", "components/mightiness.lua", "stategraphs/SGwilson.lua", "constants.lua", "recipes.lua", "actions.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -21,7 +21,7 @@ status: active
 - 职责与适用：**3 个互不相干的 FX 注册**。①`witchbroom_fx`（[注册](../../../raw/current/scripts/prefabs/witchbroom.lua#L305-L306)）——活扫帚"附魔女巫扫帚"装备期的隐形联网载体，可见拖尾是它按 5 帧节拍从**本地轨迹池**取出的独立小实体；②`woby_rack_swap_fx`（[注册](../../../raw/current/scripts/prefabs/woby_rack.lua#L282-L283)）——大沃比烘干架的联网换装层（一次生成两实例分挂鞍座两侧），3 个烘干槽位走 net_hash，另有与沃比冲刺隐身层的染色同步；③`wolfgang_coach_buff_fx`（[注册](../../../raw/current/scripts/prefabs/wolfgang.lua#L789-L790)）——训练哨教练 buff 的联网跟随体，父挂受buff目标循环播动画。
 - 重要副作用：载体／火层／跟随体自身均零玩法——活扫帚的加速与磨损在扫帚物品上，烘干数据流在 `wobyrack` 组件，教练的伤害 ×2 在 debuff 宿主的 `combat.externaldamagemultipliers`；3 个注册都 `persists=false`，不进存档。
 - 优先使用：查"骑扫帚跑的星尘拖尾"走轨迹池链；查"沃比身上的晾肉架怎么换贴图/跟着隐身"走烘干架链；查"训练哨吹了给队友什么"走教练 buff 链。
-- 修改边界：只覆盖 3 注册的工厂、生成点、端模型与清理；扫帚 sweeper 交互、沃比转形与对齐皮肤、沃尔冈三形态数值不展开。**幽灵注册 `woby_rack` 复核结论见[幽灵注册](#幽灵注册-wobyrack-的复核)小节。**
+- 修改边界：只覆盖 3 注册的工厂、生成点、端模型与清理；扫帚本体 `witchbroom` 的耐久、清扫与附魔入口归 [[reference/prefabs/tools-misc#witchbroom女巫扫帚]]，本页不展开；沃比转形与对齐皮肤、沃尔冈三形态数值不展开。**幽灵注册 `woby_rack` 复核结论见[幽灵注册](#幽灵注册-wobyrack-的复核)小节。**
 - 名称：链上宿主官方名 `WITCHBROOM`＝"女巫扫帚"、`WITCHBROOM_LIVING`＝"附魔女巫扫帚"、`WOBYBIG`／`WOBYSMALL`＝"沃比"、`WOLFGANG_WHISTLE`＝"训练哨"（锚点见[验证记录](#验证记录)）；3 个覆盖注册名在简中 `chinese_s.po` 均无 `STRINGS.NAMES.*` 键，标题中文为已核验效果描述非官方译名。
 
 ## 注册与构造
@@ -65,7 +65,7 @@ status: active
 |---|---|---|
 | 技能门禁 | 技能树节点 `wolfgang_normal_coach` 激活 → 挂 `wolfgang_coach` 标签；训练哨配方要求同技能；`PLAY` 动作双标签门禁（`wolfgang_coach`＋`mightiness_normal`） | [技能节点](../../../raw/current/scripts/prefabs/skilltree_wolfgang.lua#L77-L86)、[哨子配方](../../../raw/current/scripts/recipes.lua#L264)、[动作门禁](../../../raw/current/scripts/actions.lua#L2846-L2855) |
 | 开关教练 | 吹哨 `OnPlayed`：需 coach＋mightiness 组件与标签；**仅沃尔冈 normal 形态**可开/关 `coaching`，wimpy/mighty 播拒绝台词；`mightiness` 任何形态切换都 `coach:Disable()` | [OnPlayed](../../../raw/current/scripts/prefabs/wolfgang_whistle.lua#L13-L30)、[形态禁用](../../../raw/current/scripts/components/mightiness.lua#L313-L315) |
-| 激励结算 | coach 组件 `inspire`：首轮 7 秒后，之后 10＋0–30 秒一轮；25 格内玩家（理智<75% 各 +5 理智）及其跟随者＋教练自身跟随者进 `fightbuff`，逐个延迟 0.2＋0.1·i 秒 `cheer` 并 `AddDebuff("wolfgang_coach_buff")` | [inspire](../../../raw/current/scripts/components/coach.lua#L21-L75)、[调度](../../../raw/current/scripts/components/coach.lua#L85-L90)、[调值](../../../raw/current/scripts/tuning.lua#L7882-L7884) |
+| 激励结算 | coach 组件 `inspire`：首轮 7 秒后，之后 10＋0–30 秒一轮；25 格内玩家（理智<75% 各 +5 理智）及其跟随者＋教练自身跟随者进 `fightbuff`，逐个延迟 0.2＋0.1·i 秒 `cheer` 并 `AddDebuff("wolfgang_coach_buff")` | [inspire](../../../raw/current/scripts/components/coach.lua#L21-L75)、[调度](../../../raw/current/scripts/components/coach.lua#L85-L90)、[调值](../../../raw/current/scripts/tuning.lua#L7883-L7885) |
 | debuff 宿主 | `wolfgang_coach_buff`（master-only、CLASSIFIED、`persists=false`、`keepondespawn=true`）：`OnAttached` 给目标 `combat.externaldamagemultipliers` ×2（`TUNING.WOLFGANG_COACH_BUFF=2`）并生成 FX 父挂；10 秒 `bufftask` 到期自停；续吹走 `OnExtendedBuff` 重置计时；`OnDetached` 移除乘数并 Remove FX | [bufffn](../../../raw/current/scripts/prefabs/wolfgang.lua#L738-L761)、[OnAttached](../../../raw/current/scripts/prefabs/wolfgang.lua#L702-L718)、[OnDetached](../../../raw/current/scripts/prefabs/wolfgang.lua#L720-L728) |
 
 ### 清理路径
@@ -153,3 +153,4 @@ end
 - [[reference/prefabs/wortox_soulecho_buff_fx|沃拓克斯灵魂增益与装备跟随特效族]]（父挂粒子与 FollowSymbol 两种跟随的对照）
 - [[reference/prefabs/fire|火焰、火光与烟雾特效族]]（若给拖尾加燃烧语义的正规接入）
 - 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]（角色技能/装备）
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

@@ -1,12 +1,12 @@
 ---
 title: "mood"
 created: "2026-10-19"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "控制群体发情的天数循环、季节校准与进入／退出回调，区分成员表现、实际繁殖和保存归一化。"
 aliases: ["延长牛群非发情等待", "牛群发情周期", "春季发情", "mood"]
 tags: [component, creature, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/mood.lua", "prefabs/beefaloherd.lua", "prefabs/beefalo.lua", "prefabs/penguinherd.lua", "prefabs/penguin.lua", "tuning.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -84,3 +84,4 @@ end)
 - 结构检查：格式、来源、链接／锚点、大小和唯一登记通过；完整 wait 调整例通过已有 Full Moon Lua 5.1 syntax-only，不证明游戏时序／产仔或外观效果。
 - 游戏运行：未运行；初始春季／换季、普通循环／强制发情、禁用／重启、零等待回调重入、存读归一化／零延迟校准与多模组参数叠加待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

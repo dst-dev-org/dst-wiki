@@ -1,12 +1,12 @@
 ---
 title: "火球（emberlight）"
 created: "2026-11-02"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "薇洛火焰法术生成的火球世界实体：照明、供热、火势传播、烹饪、精神光环及定时熄灭。"
 aliases: ["emberlight", "火球", "薇洛火球", "火球照明", "薇洛火焰法术"]
 tags: [prefab, aura, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/stafflight.lua", "prefabs/willow_ember.lua", "prefabs/skilltree_willow.lua", "prefabs/willow.lua", "prefabs/shadowhand.lua", "prefabs/charlie_boss_trial.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -34,7 +34,7 @@ status: active
 | 对象／路径 | 已核验关系及边界 | 证据 |
 |---|---|---|
 | 余烬法术 `willow_fire_ball` | 玩家需带 `ember_master` 标签（`willow_embers` 技能授予）才能打开余烬法术菜单；具体条目还要对应技能已激活才加入列表。选中时主模拟将 aoespell 绑定 `FireBallSpellFn`。施法先检查库存中余烬达到配置花费，`TryBallFire` 在传入的目标 `pos.x/y/z` 生成 `emberlight`，成功后消耗配置数量；不足返回 `NOT_ENOUGH_EMBERS`。 | [菜单前提](../../../raw/current/scripts/prefabs/willow_ember.lua#L942-L942)、[技能门](../../../raw/current/scripts/prefabs/skilltree_willow.lua#L110-L123)、[菜单筛选](../../../raw/current/scripts/prefabs/willow_ember.lua#L853-L869)、[绑定](../../../raw/current/scripts/prefabs/willow_ember.lua#L695-L714)、[生成](../../../raw/current/scripts/prefabs/willow_ember.lua#L312-L318)、[消耗](../../../raw/current/scripts/prefabs/willow_ember.lua#L421-L429) |
-| 配置与依赖 | 本快照 `WILLOW_EMBER_BALL = 2`，`EMBER_STAR_DURATION = total_day_time = 480` 秒；薇洛的 `prefabs` 表声明 `emberlight`，该声明本身不是生成。 | [余烬检查](../../../raw/current/scripts/prefabs/willow_ember.lua#L109-L111)、[配置](../../../raw/current/scripts/tuning.lua#L8098-L8101)、[一天长度](../../../raw/current/scripts/tuning.lua#L19-L20)、[依赖](../../../raw/current/scripts/prefabs/willow.lua#L18-L20) |
+| 配置与依赖 | 本快照 `WILLOW_EMBER_BALL = 2`，`EMBER_STAR_DURATION = total_day_time = 480` 秒；薇洛的 `prefabs` 表声明 `emberlight`，该声明本身不是生成。 | [余烬检查](../../../raw/current/scripts/prefabs/willow_ember.lua#L109-L111)、[配置](../../../raw/current/scripts/tuning.lua#L8099-L8102)、[一天长度](../../../raw/current/scripts/tuning.lua#L19-L20)、[依赖](../../../raw/current/scripts/prefabs/willow.lua#L18-L20) |
 | 玩法组件 | 主模拟无条件加 `heater`（热星 heat 100）和 `sanityaura`（`TUNING.SANITYAURA_SMALL`）；热星另加 `propagator`（heatoutput 15、spreading 并启动更新）；`cooker` 只在热星且非 `is_fx` 时添加。本注册再加 `inspectable`、`hauntable` 和 `timer`；具体作用范围按组件规则。 | [组件](../../../raw/current/scripts/prefabs/stafflight.lua#L152-L186)、[[reference/components/heater#携带范围与地面热源的分工]]、[[reference/components/propagator#关键接口]]、[[reference/components/cooker#关键接口]]、[[reference/components/sanityaura#关键接口]] |
 | 光照与同步 | 每 0.1 秒计算脉动，光半径 11～12、强度与衰减在 0.8～0.7 间插值；主模拟周期同步存活时间相位，客户端监听 dirty 更新偏移并启用客户端调制。 | [脉动](../../../raw/current/scripts/prefabs/stafflight.lua#L24-L52)、[调度与光色](../../../raw/current/scripts/prefabs/stafflight.lua#L89-L100)、[客户端](../../../raw/current/scripts/prefabs/stafflight.lua#L142-L150) |
 | 熄灭与调用者 | 计时器到期经 `timerdone` 直接进入 `kill_light`；作祟或外部调用 `ForceExtinguish` 时先要求 `extinguish` 计时存在并停止它，再进入同一函数：推 `onstarkilled`、播 post、动画结束停循环声、1 秒后移除，期间设不存档并标 `_killed`。暗影手将 `staffstar` 当目标时可调用该方法，并监听熄灭事件。 | [熄灭](../../../raw/current/scripts/prefabs/stafflight.lua#L5-L22)、[主动与作祟](../../../raw/current/scripts/prefabs/stafflight.lua#L54-L64)、[暗影手](../../../raw/current/scripts/prefabs/shadowhand.lua#L51-L57)、[监听](../../../raw/current/scripts/prefabs/shadowhand.lua#L181-L185) |
@@ -53,3 +53,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-light-index|灯光、火焰与音效代理]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

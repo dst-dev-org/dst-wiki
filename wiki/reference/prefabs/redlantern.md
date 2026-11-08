@@ -1,12 +1,12 @@
 ---
 title: "红灯笼（redlantern）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-09"
 type: prefab
 summary: "原版手持照明装备 redlantern 与蛇年活动变体 yots_redlantern：HANDS 槽 MAGIC 燃料一次性提灯，装备或落地常亮、入袋即熄、不可开关不可补燃料，光照由附属 FX redlanternlight 提供、装备时另有 redlanternbody 跟随外观；耗尽可当火堆燃料，也可被火焰（含点火工具与闪电）点燃烧毁。"
-aliases: ["redlantern", "红灯笼", "yots_redlantern", "redlanternlight", "redlanternbody", "蛇年红灯笼", "手持红灯笼照明"]
+aliases: ["redlantern", "红灯笼", "yots_redlantern", "蛇年红灯笼", "手持红灯笼照明"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/redlantern.lua", "prefabs/worm.lua", "prefabs/yots_worm_lantern.lua", "prefabs/forest.lua", "components/hunter.lua", "components/equippable.lua", "components/fueled.lua", "components/fuel.lua", "components/burnable.lua", "components/floater.lua", "components/inventoryitem.lua", "components/inventory.lua", "components/inspectable.lua", "components/machine.lua", "components/weather.lua", "components/lighter.lua", "standardcomponents.lua", "componentactions.lua", "componentutil.lua", "recipes.lua", "tuning.lua", "constants.lua", "strings.lua", "widgets/redux/craftingmenu_details.lua", "stringutil.lua", "entityscript.lua", "mods.lua", "util/sourcemodifierlist.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -53,7 +53,7 @@ status: active
 | 注册名 | 途径与条件 | 证据 |
 |---|---|---|
 | `redlantern` | 配方：幸运金块 `lucky_goldnugget`×3，科技 `TECH.PERDOFFERING_ONE`＝`{PERDOFFERING=1}`，按钮文案 actionstr="PERDOFFERING"（"Offer"），无科技时提示 NEEDSSHRINE；供品科技由春节神龛 prototyper 提供——perdshrine 给 3 级、其余九座春节神龛各给 1 级，任一神龛旁即可制作 | [配方](../../../raw/current/scripts/recipes.lua#L1186)、[科技](../../../raw/current/scripts/constants.lua#L1272-L1273)、[供品科技表](../../../raw/current/scripts/tuning.lua#L1320-L1364)、[按钮文案](../../../raw/current/scripts/strings.lua#L9552) |
-| `yots_redlantern` | 无配方；仅蛇年活动（YOTS）期间由 `yots_worm` 掉落表 50% 概率掉落；`yots_worm` 由假灯笼 `yots_worm_lantern` 被激活或点燃时 `ReplacePrefab` 转变，假灯笼由 `yots_worm_lantern_spawner` 首帧生成 3 个（`TUNING.YOTS_WORM_COUNT`）；猎踪在蛇年活动开启且蛇年神龛有效（`IsSnakeShrineActive`）时才把 spawner 当猎物返回并 `SpawnPrefab` 生成——这是 scripts 内唯一可核验的生成路径；`forest.lua` 只是 prefab 依赖声明，没有世界布点证据 | [掉落表](../../../raw/current/scripts/prefabs/worm.lua#L45-L53)、[装配](../../../raw/current/scripts/prefabs/worm.lua#L498)、[激活转变](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L23-L45)、[生成](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L124-L144)、[数量](../../../raw/current/scripts/tuning.lua#L8581)、[声明](../../../raw/current/scripts/prefabs/forest.lua#L508-L509)、[猎踪分诊](../../../raw/current/scripts/components/hunter.lua#L369-L378)、[神龛门禁](../../../raw/current/scripts/components/hunter.lua#L573-L575)、[猎踪生成](../../../raw/current/scripts/components/hunter.lua#L418-L431) |
+| `yots_redlantern` | 无配方；仅蛇年活动（YOTS）期间由 `yots_worm` 掉落表 50% 概率掉落；`yots_worm` 由假灯笼 `yots_worm_lantern` 被激活或点燃时 `ReplacePrefab` 转变，假灯笼由 `yots_worm_lantern_spawner` 首帧生成 3 个（`TUNING.YOTS_WORM_COUNT`）；猎踪在蛇年活动开启且蛇年神龛有效（`IsSnakeShrineActive`）时才把 spawner 当猎物返回并 `SpawnPrefab` 生成——这是 scripts 内唯一可核验的生成路径；`forest.lua` 只是 prefab 依赖声明，没有世界布点证据 | [掉落表](../../../raw/current/scripts/prefabs/worm.lua#L45-L53)、[装配](../../../raw/current/scripts/prefabs/worm.lua#L498)、[激活转变](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L23-L45)、[生成](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L124-L144)、[数量](../../../raw/current/scripts/tuning.lua#L8582)、[声明](../../../raw/current/scripts/prefabs/forest.lua#L508-L509)、[猎踪分诊](../../../raw/current/scripts/components/hunter.lua#L369-L378)、[神龛门禁](../../../raw/current/scripts/components/hunter.lua#L573-L575)、[猎踪生成](../../../raw/current/scripts/components/hunter.lua#L418-L431) |
 
 材料侧注：`lucky_goldnugget` 为春节活动货币，产出点如 YOTS 蠕虫掉落（[lootsetfn](../../../raw/current/scripts/prefabs/worm.lua#L260-L264)），完整获取链不在本页范围。
 
@@ -72,7 +72,7 @@ status: active
 | API／事件：`israining` 世界状态 | `WatchWorldState("israining", onisraining)` 接线雨衰，构造时立即同步一次 | 主模拟；停雨恢复 rate 1 并清 updatefn | [监听](../../../raw/current/scripts/prefabs/redlantern.lua#L351-L358) |
 | API／数据：`redlantern` 标签 | yots_worm 的 retarget/keepTarget 检查 HANDS 装备的该标签物品，优先把持灯者当攻击目标 | 仅 YOTS 蠕虫消费（普通 worm 用原 retargetfn） | [retarget](../../../raw/current/scripts/prefabs/worm.lua#L402-L420)、[keepTarget](../../../raw/current/scripts/prefabs/worm.lua#L433-L449) |
 | API／数据：`light`＋`turnedon` 组合 | 影之手寻光按 `light`＋`turnedon` 组合检查；红灯笼有 `light` 无 `turnedon`（无 machine 组件）→不被选中（提灯开灯后会被选中） | 对比消费端，双注册一致 | [影之手](../../../raw/current/scripts/prefabs/charlie_boss_trial.lua#L318-L321)、[turnedon 来源](../../../raw/current/scripts/components/machine.lua#L2) |
-| 关联 Prefab：`redlanternlight`／`redlanternbody` | 两件附属 FX 实体，见下节简述 | turnon/onequip 生成，turnoff/onunequip/OnRemove 清理；均 `persists=false` | [声明](../../../raw/current/scripts/prefabs/redlantern.lua#L18-L22)、[OnRemove 清理](../../../raw/current/scripts/prefabs/redlantern.lua#L108-L115) |
+| 关联 Prefab：`redlanternlight`／`redlanternbody` | 两件附属 FX 实体，光参数与生成／清理总表归 [[reference/prefabs/wormlight#生成父挂与清理|灯具光源族]]，本页只留宿主侧接线 | turnon/onequip 生成，turnoff/onunequip/OnRemove 清理；均 `persists=false` | [声明](../../../raw/current/scripts/prefabs/redlantern.lua#L18-L22)、[OnRemove 清理](../../../raw/current/scripts/prefabs/redlantern.lua#L108-L115) |
 | 关联 Prefab：`yots_worm_lantern` | 蛇年假灯笼：借红灯笼名称与检视语（nameoverride），激活/点燃变 `yots_worm`；非本文件注册，仅名称复用方 | YOTS 期间由 spawner 放置 | [名称借用](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L86)、[检视借用](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L111) |
 | 资源：anim／图标 | redlantern.zip（bank `redlantern`＋`float`/`idle_body_loop`）、swap_redlantern.zip（持握符号 `swap_redlantern`／`_stick`）；yots 另用 yots_redlantern.zip、yots_swap_redlantern.zip；INV_IMAGE `redlantern_lit`/`yots_redlantern_lit`；redlantern_water.zip 声明但脚本内无引用 | 静态声明；zip 内容不可从 scripts 核验 | [本体 assets](../../../raw/current/scripts/prefabs/redlantern.lua#L1-L7)、[yots assets](../../../raw/current/scripts/prefabs/redlantern.lua#L9-L16) |
 
@@ -113,7 +113,7 @@ end)
 - **边界：只在“装备或躺在地上”时耗燃料**：入袋/入容器立即熄灭（OnPutInInventory→turnoff→StopConsuming），落地重新点亮；燃耗只随点亮发生，背包存放不计时。[入袋熄灭](../../../raw/current/scripts/prefabs/redlantern.lua#L330-L332)、[落地重亮](../../../raw/current/scripts/prefabs/redlantern.lua#L117-L120)
 - **边界：雨中烧得更快，遮蔽或雨免可免**：rate＝1＋0.25×降水率（降水率 0.1~1）；`sheltered.sheltered` 或 `rainimmunity` 组件存在即保持 1，判断每秒重算、进出树下即时生效。[雨衰](../../../raw/current/scripts/prefabs/redlantern.lua#L242-L258)、[降水率范围](../../../raw/current/scripts/components/weather.lua#L400-L411)
 - **边界：蛇年活动手持红灯笼吸引蠕虫攻击**：yots_worm 的 retarget/keepTarget 优先把 HANDS 装备红灯笼的玩家当目标（必须装备在 HANDS，放背包无效）；这是 `redlantern` 标签的已核验消费端。[retarget](../../../raw/current/scripts/prefabs/worm.lua#L402-L420)
-- **边界：地上的“红灯笼”可能是假灯笼**：蛇年假灯笼 `yots_worm_lantern` 借红灯笼名称与检视语（nameoverride），拾取/点燃会激活并变成 yots_worm（600 HP，`TUNING.YOTS_WORM_HEALTH`）。[名称借用](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L86)、[转变](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L23-L30)、[生命](../../../raw/current/scripts/tuning.lua#L8580)
+- **边界：地上的“红灯笼”可能是假灯笼**：蛇年假灯笼 `yots_worm_lantern` 借红灯笼名称与检视语（nameoverride），拾取/点燃会激活并变成 yots_worm（600 HP，`TUNING.YOTS_WORM_HEALTH`）。[名称借用](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L86)、[转变](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L23-L30)、[生命](../../../raw/current/scripts/tuning.lua#L8581)
 - **边界：红灯笼可被玩家点火工具与闪电点燃并烧毁**：`canlight` 默认 true 未覆写（见上表 burnable 行）→ lighter 的 LIGHT 动作收集与执行均放行（[lighter.lua:18-21](../../../raw/current/scripts/components/lighter.lua#L18-L21)），闪电因 `_inventoryitem` 在引燃标签集同样可点燃（[componentutil.lua:1080-1081](../../../raw/current/scripts/componentutil.lua#L1080-L1081)）；3 秒烧毁成灰并 `Remove`——火会直接毁掉灯笼；`ignorefuel=true` 保证点燃不启动照明燃料。[helper](../../../raw/current/scripts/standardcomponents.lua#L164-L213)
 - **边界：无物品皮肤**：prefabskin.lua 与 misc_items.lua 无两注册皮肤条目（仅 YOTP 头像挂件同名）；`_swapfile` 机制保留（yots 自定义 swap build），无官方皮肤使用。
 
@@ -124,3 +124,4 @@ end)
 - 结构检查：validate_page.py 0 error（126 行，standard）与 validate_source_links.py --strict 0 error 0 warning（101 引用／27 源文件）通过。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]；同批手持照明对照 [[reference/prefabs/torch|火炬]] 与 [[reference/prefabs/lantern|提灯]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

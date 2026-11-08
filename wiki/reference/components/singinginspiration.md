@@ -1,12 +1,12 @@
 ---
 title: "singinginspiration"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "Wathgrithr 战歌灵感值系统：按造成/受到的伤害与骑乘积累灵感，兑换常驻战歌槽位或瞬时歌，向范围内友军施加 debuff 形式的战歌。"
 aliases: ["singinginspiration", "战歌灵感", "灵感值", "battlesong", "战歌槽位"]
 tags: [component, energy]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/singinginspiration.lua", "prefabs/wathgrithr.lua", "components/singable.lua", "prefabs/battlesongs.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ end
 - [[reference/components/singable]]：歌本物品侧的唱歌入口组件。
 - [[reference/components/battleborn]]：Wathgrithr 击杀回响与灵感并行的另一个战斗系统。
 - [[reference/components/rideable]]：OnRidingTick 的骑乘驱动方。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

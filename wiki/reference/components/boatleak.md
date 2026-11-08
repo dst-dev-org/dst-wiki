@@ -1,12 +1,12 @@
 ---
 title: "boatleak"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "服务端单个船体漏点实体的状态机：小/中漏、被压住、补丁修复与水草补丁到期，供 hullhealth 与补漏动作复用。"
 aliases: ["船体漏点", "船的破洞", "补漏", "boatleak"]
 tags: [component, lifecycle, state-machine]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/boatleak.lua", "prefabs/boat_leak.lua", "components/hullhealth.lua", "components/boatpatch.lua", "components/repairable.lua", "prefabs/boat.lua", "prefabs/boatpatch.lua", "prefabs/sewing_tape.lua", "prefabs/treegrowthsolution.lua", "actions.lua", "componentactions.lua", "tuning.lua", "entityscript.lua"]
 reliability: verified
 validation: source-reviewed
@@ -58,7 +58,7 @@ status: active
 - 前提与选择：改的是漏点实体而不是船；用 `AddPrefabPostInit("boat_leak")` 包住 prefab 已挂的回调，覆盖会丢掉检查与潮湿逻辑。
 - 端与资源：服务端；先判 `TheWorld.ismastersim`；不需要新资源。
 - 生效与撤销：只影响之后生成的漏点；删掉 postinit 并重载即恢复。在场漏点保留已包的回调直到销毁。
-- 单位：`SetRepairedTime` 用秒；水草补丁按漏点大小取 0.75 天（小）／0.5 天（中）。[tuning](../../../raw/current/scripts/tuning.lua#L8255-L8256)
+- 单位：`SetRepairedTime` 用秒；水草补丁按漏点大小取 0.75 天（小）／0.5 天（中）。[tuning](../../../raw/current/scripts/tuning.lua#L8256-L8257)
 
 ```lua
 -- modmain.lua：漏点出现/修好时通知，保留原版回调
@@ -107,3 +107,4 @@ end)
 
 相关：[[reference/components/hullhealth]]、[[reference/components/boatpatch]]、[[reference/components/boatphysics]]、[[reference/prefabs/boat_grass_erode|草／海带船侵蚀与垫料特效]]（水草补丁到期断裂 fx 与垫料屑表现族）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

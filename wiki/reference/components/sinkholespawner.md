@@ -1,12 +1,12 @@
 ---
 title: "sinkholespawner：蚁狮地陷袭击调度"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "蚁狮震怒后在地面玩家附近选目标发起地陷：先警告震动与碎石，再按波次生成 antlion_sinkhole 陷坑，支持跨分片远程同步。"
 aliases: [地陷生成器, 蚁狮地陷, sinkholespawner, 蚁狮袭击]
 tags: [component, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/sinkholespawner.lua", "prefabs/antlion.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -65,3 +65,4 @@ end
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

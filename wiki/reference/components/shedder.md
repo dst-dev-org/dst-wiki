@@ -1,12 +1,12 @@
 ---
 title: "shedder"
 created: "2026-10-26"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "按周期或手动生成指定脱落物，区分绝对出生高度、批量水平散射及熊獾宿主的冬眠和死亡停机。"
 aliases: ["熊獾掉毛", "定时脱落物", "批量散落毛簇", "shedder"]
 tags: [component, loot, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/shedder.lua", "prefabs/bearger.lua", "entityscript.lua", "scheduler.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -57,3 +57,4 @@ commonfn 将 groundpounder.groundpoundFn 设为 OnGroundPound；该回调按 TUN
 
 相关：掉落名单与死亡掉落见 [[reference/components/lootdropper]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

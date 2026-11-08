@@ -1,12 +1,12 @@
 ---
 title: "沃拓克斯灵魂增益与装备跟随特效族（wortox_soulecho_buff_fx 等 6 注册）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "沃拓克斯技能与装备外围的 6 个 FX 注册：灵魂回响增益的粒子跟随层与灵魂过载警告粒子（都由 debuff/掉魂链生成、经引擎父挂跟随玩家）、强抢袋的三层结构（联网 body 载体＋本地机体动画层＋本地灵魂粒子层，尺寸与灵魂档位走净变量）与双尾心施法期间的联网跟随体。含未注册死代码 wortox_panflute_buff_fx_fn 的辨析。"
-aliases: ["wortox_soulecho_buff_fx", "wortox_overloading_fx", "wortox_nabbag_body", "wortox_nabbag_body_fx", "wortox_nabbag_body_soulfx", "wortox_reviver_body", "灵魂回响增益特效", "灵魂过载粒子", "强抢袋机体层", "强抢袋灵魂粒子", "双尾心跟随体", "强抢袋", "双尾心"]
+aliases: ["wortox_soulecho_buff_fx", "wortox_overloading_fx", "wortox_nabbag_body", "wortox_nabbag_body_fx", "wortox_nabbag_body_soulfx", "wortox_reviver_body", "灵魂回响增益特效", "灵魂过载粒子", "强抢袋机体层", "强抢袋灵魂粒子", "双尾心跟随体", "强抢袋"]
 tags: [prefab, fx, item, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wortox.lua", "prefabs/wortox_nabbag.lua", "prefabs/wortox_reviver.lua", "stategraphs/SGwilson.lua", "fx.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -40,8 +40,8 @@ status: active
 
 | 生成链 | 触发与条件 | 证据 |
 |---|---|---|
-| 灵魂回响 | `TryToPortalHop` 免费跳未花完灵魂配额且技能 `wortox_liftedspirits_1` 激活 → `AddDebuff("wortox_soulecho_buff", ..., {duration})` → debuff 实体（同文件注册 [wortox_soulecho_buff](../../../raw/current/scripts/prefabs/wortox.lua#L1601)，master-only 无网络）的 `OnAttached_soulecho` 父挂目标、启动 buffover 计时、加 1.2 倍速并生成 fx | [AddDebuff](../../../raw/current/scripts/prefabs/wortox.lua#L614-L645)、[OnAttached](../../../raw/current/scripts/prefabs/wortox.lua#L821-L835)、[速度调值](../../../raw/current/scripts/tuning.lua#L7414-L7414) |
-| 灵魂过载警告 | `CheckForOverload` 超出容量（基础 20，souljar 扩容另计）且性情为 naughty 且非强制复查 → `CreateOverloadingFX`：生成 fx 父挂宿主、`FollowSymbol(hiteffectsymbol)`、起 10 秒强制复查任务 | [CheckForOverload](../../../raw/current/scripts/prefabs/wortox.lua#L313-L345)、[CreateOverloadingFX](../../../raw/current/scripts/prefabs/wortox.lua#L304-L311)、[停止时限](../../../raw/current/scripts/tuning.lua#L7390-L7390) |
+| 灵魂回响 | `TryToPortalHop` 免费跳未花完灵魂配额且技能 `wortox_liftedspirits_1` 激活 → `AddDebuff("wortox_soulecho_buff", ..., {duration})` → debuff 实体（同文件注册 [wortox_soulecho_buff](../../../raw/current/scripts/prefabs/wortox.lua#L1601)，master-only 无网络）的 `OnAttached_soulecho` 父挂目标、启动 buffover 计时、加 1.2 倍速并生成 fx | [AddDebuff](../../../raw/current/scripts/prefabs/wortox.lua#L614-L645)、[OnAttached](../../../raw/current/scripts/prefabs/wortox.lua#L821-L835)、[速度调值](../../../raw/current/scripts/tuning.lua#L7415-L7415) |
+| 灵魂过载警告 | `CheckForOverload` 超出容量（基础 20，souljar 扩容另计）且性情为 naughty 且非强制复查 → `CreateOverloadingFX`：生成 fx 父挂宿主、`FollowSymbol(hiteffectsymbol)`、起 10 秒强制复查任务 | [CheckForOverload](../../../raw/current/scripts/prefabs/wortox.lua#L313-L345)、[CreateOverloadingFX](../../../raw/current/scripts/prefabs/wortox.lua#L304-L311)、[停止时限](../../../raw/current/scripts/tuning.lua#L7391-L7391) |
 | 过载落魂 | 10 秒后 `ForceCheckOverload` 置 `_forceoverloading` 复查，或非 naughty 直接结算：掉魂＋理智扣减（警告层由 `DestroyOverloadingFX` 移除） | [ForceCheckOverload](../../../raw/current/scripts/prefabs/wortox.lua#L297-L303)、[DestroyOverloadingFX](../../../raw/current/scripts/prefabs/wortox.lua#L285-L293) |
 
 回响 buff 的结束路径汇于 `OnDetached_soulecho`：移除速度乘数、`bufffx:Remove()`、debuff 实体自删（[L837-L846](../../../raw/current/scripts/prefabs/wortox.lua#L837-L846)）；进入路径是 `FinishPortalHop` 的 `RemoveDebuff`（[L580-L594](../../../raw/current/scripts/prefabs/wortox.lua#L580-L594)）或 buffover 计时到点（[L856-L860](../../../raw/current/scripts/prefabs/wortox.lua#L856-L860)）或目标死亡监听（[L827-L829](../../../raw/current/scripts/prefabs/wortox.lua#L821-L835)）。
@@ -50,16 +50,16 @@ status: active
 
 | 层 | 载体角色 | 挂接与数据 | 证据 |
 |---|---|---|---|
-| `wortox_nabbag`（宿主物品，本页不覆盖注册） | 可装备捕网物品；netvar 写入方 | `OnEquip` 移除旧 body 后重建并父挂持有者（[L115-L140](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L115-L140)）；`UpdateStats` 把库存占比折成三桶（`_empty/_medium/_full`）写 `bodysize_netvar`，灵魂数折成 0–3 档写 `bodyvfx_souls`（[L22-L68](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L22-L68)、[伤害调值](../../../raw/current/scripts/tuning.lua#L7432-L7433)） |
+| `wortox_nabbag`（宿主物品，本页不覆盖注册） | 可装备捕网物品；netvar 写入方 | `OnEquip` 移除旧 body 后重建并父挂持有者（[L115-L140](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L115-L140)）；`UpdateStats` 把库存占比折成三桶（`_empty/_medium/_full`）写 `bodysize_netvar`，灵魂数折成 0–3 档写 `bodyvfx_souls`（[L22-L68](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L22-L68)、[伤害调值](../../../raw/current/scripts/tuning.lua#L7433-L7434)） |
 | `wortox_nabbag_body` | 联网载体：同步桶位/灵魂档位 | 父挂持有者；`OnUpdate_body`（仅非专服）首次更新时生成 body_fx 并 `FollowSymbol(owner, "swap_object", 54, -182)`，再在 body_fx 上挂 soulfx（[L269-L321](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L269-L321)，生成 [L273-L281](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L269-L321)） |
 | `wortox_nabbag_body_fx` | 本地机体动画层：走路/攻击/停步拼名动画 | 父挂 body 载体（引擎子级）；每帧按持有者 `moving/nopredict/attacking` 状态切换动画，桶位 dirty 时保帧换尺寸（[OnSizeDirty_body](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L249-L267)） |
-| `wortox_nabbag_body_soulfx` | 本地灵魂粒子层：档位发光 | 父挂 body_fx；发射率查 `bodyvfx_souls` 净变量（0=不发光，[L495](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L484-L504)）；`wortox_souljar_3` 技能下按总灵魂数分 3 档（[L36-L45](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L22-L68)、[上限调值](../../../raw/current/scripts/tuning.lua#L7448-L7448)） |
+| `wortox_nabbag_body_soulfx` | 本地灵魂粒子层：档位发光 | 父挂 body_fx；发射率查 `bodyvfx_souls` 净变量（0=不发光，[L495](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L484-L504)）；`wortox_souljar_3` 技能下按总灵魂数分 3 档（[L36-L45](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L22-L68)、[上限调值](../../../raw/current/scripts/tuning.lua#L7449-L7449)） |
 
 持握符号分工：nodangle/骑乘等状态由 `ToggleOverrideSymbols` 把袋子切到持有者 `swap_object` 覆盖（body 隐藏），否则覆盖成 `swap_wortox_nabbag_rope` 并显示 body 层（[L99-L114](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L99-L114)）——**袋子本体与 body 层不同时可见，绳子符号替代**。
 
 ### wortox_reviver_body 的跟随与显隐
 
-生成/跟随：双尾心的 `OnStartBody` 生成 body、父挂持有者并 `FollowSymbol(owner.GUID, "swap_remote", 25, -42, 0)`（[L183-L193](../../../raw/current/scripts/prefabs/wortox_reviver.lua#L183-L193)）；触发在 SGwilson 的捏心施法状态——`crushitemcast_holding` 帧事件 9（[L16512-L16516](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16512-L16516)）与 `crushitemcast` 帧事件 18（[L16678-L16679](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16678-L16679)）。移除：`OnStopBody` 由中断/收尾分支多处调用（如 [L16555-L16556](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16555-L16556)），传送落点状态 `wortox_teleport_reviver`／`_selfuse` 的收尾也调（[状态名 L16749/L16784](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16749-L16749)）；双尾心本体被移除时经 onremove 反登记清引用（[OnRemove_Body](../../../raw/current/scripts/prefabs/wortox_reviver.lua#L180-L182)）。
+生成/跟随：双尾心（物品页见 [[reference/prefabs/wortox-reviver]]）的 `OnStartBody` 生成 body、父挂持有者并 `FollowSymbol(owner.GUID, "swap_remote", 25, -42, 0)`（[L183-L193](../../../raw/current/scripts/prefabs/wortox_reviver.lua#L183-L193)）。触发：普通 `CASTSPELL` 由 ActionHandler 对带 `crushitemcast` 的物品选 `crushitemcast` 状态（[选态 L1303-L1310](../../../raw/current/scripts/stategraphs/SGwilson.lua#L1303-L1310)），该状态**第 9 帧**调 `OnStartBody` 挂 body（[L16676-L16682](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16676-L16682)），**第 18 帧只播** `crushitemcast_sound`（[L16683-L16689](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16683-L16689)）；`crushitemcast_holding`／`_trigger`（[L16462-L16646](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16462-L16462)）属 `STARTVAULTORBTELEPORT` 链，与本件无关。移除：`OnStopBody` 由 `crushitemcast` 的非 `crushcasting` onexit（[L16705-L16713](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16705-L16713)）、`crushitemcast_fail` 的 onexit（[L16739-L16745](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16739-L16745)）、传送状态 onexit（[L16823-L16824](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16823-L16824)）、自用状态 onenter（[L16758-L16759](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16758-L16759)）调用。反向监听方向：双尾心监听的是 **body 的 `onremove`**，body 被移除时清掉双尾心上的 `wortox_reviver_body` 引用（[OnRemove_Body L180-L182](../../../raw/current/scripts/prefabs/wortox_reviver.lua#L180-L182)），不是双尾心本体移除时触发；引擎父子回收仍单列待核验。
 
 ### wortox_panflute_buff_fx_fn 未注册死代码辨析
 
@@ -73,7 +73,7 @@ status: active
 | `wortox_overloading_fx` | 无自删：`DestroyOverloadingFX` 移除并取消 10 秒复查任务（[L285-L293](../../../raw/current/scripts/prefabs/wortox.lua#L285-L293)） | 复查落魂后警告层同步消失；宿主被移除时是否随引擎父挂回收未核验。 |
 | `wortox_nabbag_body` | `OnUnequip` 显式 Remove（[L148](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L142-L160)）；换装时 `OnEquip` 先删旧再建新；onremove 反登记清宿主引用（[L112-L114](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L112-L114)） | 本体强抢袋用尽 `inst:Remove()`（[L168-L174](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L168-L174)）是否必然经卸装路径触发 OnUnequip 未逐路径核验（见存疑）。 |
 | `wortox_nabbag_body_fx`／`_soulfx` | 无独立 Remove，是否随 body 载体回收未核验（引擎子级）；body 的 `OnUpdate_body` 在引用失效时重建 body_fx（[L273-L281](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L269-L321)） | 两层都是本地实体，`bodyfx` 单槽引用在 body 载体上。 |
-| `wortox_reviver_body` | `OnStopBody` 显式 Remove（多处 SG 分支）；持有者／双尾心移除时是否随引擎父子回收未核验 | 只在施法状态机持有期间存在，`persists=false`。 |
+| `wortox_reviver_body` | `OnStopBody` 显式 Remove（`crushitemcast` 非 crushcasting onexit、`crushitemcast_fail` onexit、传送状态 onexit、自用状态 onenter）；持有者／双尾心移除时是否随引擎父子回收未核验 | 只在施法状态机持有期间存在，`persists=false`；反向监听由 body 的 `onremove` 清双尾心引用，不是双尾心移除触发。 |
 
 ## 典型接入
 
@@ -107,6 +107,7 @@ fx.entity:SetParent(target.entity) -- 引擎父挂跟随；buff 结束时 fx:Rem
 - 未覆盖：`wortox_soulecho_buff`／`wortox_panflute_buff`／`wortox_forget_debuff`／`wortox_decoy` 等同文件其余注册的完整机制、强抢袋捕网（NET 动作）与 nabbag 组件玩法、双尾心传送 SpellFn 全流程、`wortox_soul_spawn_fx`（fx.lua 注册，另页主题）、技能树门禁细节、动画包内容。
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 结果见本页交付记录（0 error 0 warning 后入库）。
 - 游戏运行：未运行；`validation` 保持 `source-reviewed`。
+- 外部检视 R17（2026-11-10）：`wortox_reviver_body` 的触发改为普通 `CASTSPELL` 选 `crushitemcast`（第 9 帧挂 body、第 18 帧只播音），`crushitemcast_holding`／`_trigger` 标为 `STARTVAULTORBTELEPORT` 链；`OnStopBody` 改列 `crushitemcast` 非 crushcasting onexit、`crushitemcast_fail` onexit、传送 onexit、自用 onenter；反向监听方向改为「body 的 `onremove` 清道具引用」，引擎父子回收继续单列待核验。
 
 ## 相关链接
 
@@ -114,3 +115,4 @@ fx.entity:SetParent(target.entity) -- 引擎父挂跟随；buff 结束时 fx:Rem
 - [[reference/prefabs/wortox_soul_heal_fx|灵魂治疗特效]]（`wortox_panflute_buff_fx_fn` 死代码借用的同款动画库）
 - [[reference/prefabs/wortox_portal_fx|灵魂跳跃出入场特效]]（soulecho 免费跳所属的传送链）
 - 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]（角色技能/装备）
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 4 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

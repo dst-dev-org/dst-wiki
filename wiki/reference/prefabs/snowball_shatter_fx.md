@@ -1,12 +1,12 @@
 ---
 title: "雪球碎裂动画（snowball_shatter_fx）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "雪球实体原地消失时共用的碎裂表现：snowball_item 融尽、冬宴雪球管理器清场、雪人被锤碎三条服务端路径落点播放 snowball 资源 fx_place 动画；投掷命中表现是 splash_snow_fx，与本注册无关。"
 aliases: ["snowball_shatter_fx", "雪球碎裂", "雪球碎裂特效", "雪球消失特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["fx.lua", "prefabs/fx.lua", "prefabs/snowball_item.lua", "components/snowballmelting.lua", "components/snowballmanager.lua", "prefabs/snowman.lua", "prefabs/forest.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
@@ -37,7 +37,7 @@ status: active
 |---|---|---|---|
 | 工厂协议 | 通用表条目：网络代理＋一帧延迟本地表现、animover 自删 | 无 update_while_paused／animqueue 分支 | [[reference/mechanisms/generic-fx-factory#关键流程]]；[条目](../../../raw/current/scripts/fx.lua#L3710-L3715) |
 | 生成者：雪球融尽 | snowball_item `OnDoMeltAction`：snowballmelting 温度检查（30±5 秒一拍）处于融化态且环境温度＞0、地表未积雪时触发，落点 (x,y,z) 后实体 `Remove` | 仅主模拟；入包停融、manager 登记期暂停融化、放下恢复；非休眠才有 FX | [[reference/components/snowballmelting]]；[生成](../../../raw/current/scripts/prefabs/snowball_item.lua#L151-L157)、[挂接](../../../raw/current/scripts/prefabs/snowball_item.lua#L265-L267)、[检查](../../../raw/current/scripts/components/snowballmelting.lua#L30-L72) |
-| 生成者：冬宴清场 | snowballmanager `OnUpdate` 停用分支：`issnowcovered` 为假时每 0.5 秒（`SNOWBALLMANAGER_SECONDS_PER_DESPAWN`）移除一只登记雪球，非休眠先落 FX | 仅 forest 世界实体挂载（构造断言 mastersim）；冬宴降雪停止后逐只清 | [[reference/components/snowballmanager]]；[清场](../../../raw/current/scripts/components/snowballmanager.lua#L172-L190)、[挂载](../../../raw/current/scripts/prefabs/forest.lua#L688)、[调谐](../../../raw/current/scripts/tuning.lua#L8573-L8576) |
+| 生成者：冬宴清场 | snowballmanager `OnUpdate` 停用分支：`issnowcovered` 为假时每 0.5 秒（`SNOWBALLMANAGER_SECONDS_PER_DESPAWN`）移除一只登记雪球，非休眠先落 FX | 仅 forest 世界实体挂载（构造断言 mastersim）；冬宴降雪停止后逐只清 | [[reference/components/snowballmanager]]；[清场](../../../raw/current/scripts/components/snowballmanager.lua#L172-L190)、[挂载](../../../raw/current/scripts/prefabs/forest.lua#L688)、[调谐](../../../raw/current/scripts/tuning.lua#L8574-L8577) |
 | 生成者：雪人锤碎 | snowman workable（HAMMER）`OnWork` 的锤碎分支走 `DoBreakApart`：落点后按尺寸掉 `snowball_item` 战利品，实体 `Remove` | 锤到底（isdestroyed=true）与裸球（false）两分支都经 DoBreakApart；非融化态才掉战利品，FX 无条件 | Wiki 待建：[DoBreakApart](../../../raw/current/scripts/prefabs/snowman.lua#L506-L529)、[OnWork](../../../raw/current/scripts/prefabs/snowman.lua#L531-L560)、[workable](../../../raw/current/scripts/prefabs/snowman.lua#L693-L696) |
 | 仅声明 | forest 世界预载、snowball_item／snowman prefabs 数组 | 均非生成点 | [forest](../../../raw/current/scripts/prefabs/forest.lua#L504-L506)、[snowball_item](../../../raw/current/scripts/prefabs/snowball_item.lua#L9)、[snowman](../../../raw/current/scripts/prefabs/snowman.lua#L15) |
 | 资源 | bank/build `snowball`（与 snowball_item 同资源）、anim `fx_place` | 动画内容与时长未核验 | [条目](../../../raw/current/scripts/fx.lua#L3710-L3715) |
@@ -74,3 +74,4 @@ inst:Remove()
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 
 返回 [[reference/prefabs/fx-material-index|采集、制作、碎裂与生成烟]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

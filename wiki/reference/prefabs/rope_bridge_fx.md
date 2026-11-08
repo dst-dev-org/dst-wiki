@@ -1,12 +1,12 @@
 ---
 title: "绳桥与藤桥的桥面表现（rope_bridge_fx、vine_bridge_fx、vine_bridge_decor_fx）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "两条桥面表现链：绳桥（洞穴玩家套件搭建，双绳本地子实体＋netvar 位编码同步，地震可打坏）与藤桥（温妮玫瑰眼镜的临时桥，主桥＋装饰子实体，创建即排定约 18 秒警告与约 20⅓ 秒真正拆除）；可通行面是地图瓦片，FX 实体只是视觉层，均由世界管理器生成与销毁。"
 aliases: ["rope_bridge_fx", "vine_bridge_fx", "vine_bridge_decor_fx", "绳桥", "藤桥", "桥面贴片", "绳桥 FX", "藤桥装饰"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/rope_bridge.lua", "prefabs/vine_bridge.lua", "components/ropebridgemanager.lua", "components/vinebridgemanager.lua", "componentutil.lua", "components/roseinspectableuser.lua", "prefabs/winona.lua", "prefabs/cave.lua", "prefabs/world.lua", "prefabs/dock_damage.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -107,3 +107,4 @@ end
 - [[reference/prefabs/explode_small|小爆裂、换装烟与火药爆裂]]（同为一次性／多注册的贴地表现族）
 - [[reference/components/undertile|undertile]]（桥拆除时瓦片还原的协作组件）
 - 返回 [[reference/prefabs/fx-structure-index|建筑、装置与遗迹演出]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

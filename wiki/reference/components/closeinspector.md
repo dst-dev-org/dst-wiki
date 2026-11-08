@@ -1,12 +1,12 @@
 ---
 title: closeinspector：装备驱动的近距离检查分派
 created: 2026-10-23
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 将玩家的实体／地点近距离检查交给装备回调；以玫瑰眼镜为例核对技能启用、卸装清理和动作返回。
 aliases: [closeinspector, 近距离检查, 玫瑰眼镜检查, 装备检查回调]
 tags: [component, equipment, actions, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/closeinspector.lua, componentutil.lua, actions.lua, prefabs/hats.lua, components/roseinspectableuser.lua, stategraphs/SGwilson.lua, stategraphs/SGwilson_client.lua]
 reliability: verified
 validation: source-reviewed
@@ -65,3 +65,4 @@ status: active
 - 结构检查：本页格式、链接、源码锚点检查通过；无新增完整 Lua 示例。
 - 游戏运行：未运行；技能切换、卸装、不同检查目标／地点、多人同步和多个检查装备冲突待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

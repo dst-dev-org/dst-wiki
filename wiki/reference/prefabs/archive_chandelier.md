@@ -1,12 +1,12 @@
 ---
 title: "远古吊灯与石像鬼石化特效（archive_chandelier／gargoyle_*_fx）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "档案馆与宝库三盏吊灯＋石像鬼石化五特效的工厂、灯光相位、端与清理；vault_crawler_chandelier 兼作 vault_crawler 生成点。"
 aliases: ["archive_chandelier", "vault_chandelier", "vault_crawler_chandelier", "gargoyle_houndatk_fx", "gargoyle_hounddeath_fx", "gargoyle_werepigatk_fx", "gargoyle_werepigdeath_fx", "gargoyle_werepighowl_fx", "远古吊灯", "宝库吊灯", "蠕虫吊灯", "石像鬼石化特效"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/archive_chandelier.lua", "prefabs/gargoyles.lua", "prefabs/vault_key_trial.lua", "prefabs/vaultroom_defs.lua", "prefabs/archive_props.lua", "prefabs/cave.lua", "prefabs/hound.lua", "prefabs/pigman.lua", "prefablist.lua", "components/archivemanager.lua", "components/playerprox.lua", "map/static_layouts/rooms/archive_end/archive_end.lua", "stategraphs/SGvault_crawler.lua", "languages/chinese_s.po"]
 size_class: complex
 reliability: verified
@@ -58,7 +58,7 @@ status: active
 | 关联 Prefab：`vault_crawler` | 掉落链里 `SpawnPrefab` 到吊灯 x／z（y 固定 0）并 `sg:GoToState("spawn")`；`prefabs` 数组让它随吊灯加载 | 主模拟生成；`spawn` 状态带 `vault_crawler_dropping`／`temp_invincible`／`nofreeze` 等标签 | [生成](../../../raw/current/scripts/prefabs/archive_chandelier.lua#L486-L490)、[状态标签](../../../raw/current/scripts/stategraphs/SGvault_crawler.lua#L231-L232)、[依赖](../../../raw/current/scripts/prefabs/archive_chandelier.lua#L17-L20) |
 | 生成点：档案馆房间静态布局 | 布局对象以 `type = "archive_chandelier"` 声明，由静态布局生成器落成实体 | 世界生成期；`cave.lua` 与 `prefablist.lua` 另有加载声明，声明不等于生成 | [布局条目](../../../raw/current/scripts/map/static_layouts/rooms/archive_end/archive_end.lua#L124-L127)、[洞穴依赖](../../../raw/current/scripts/prefabs/cave.lua#L94)、[模块注册](../../../raw/current/scripts/prefablist.lua#L42) |
 | 生成点：金库房间布局 `vaultroom_defs` | puzzle1 出口灯、hall 的 `lightvar` 变体、lore1 等 `CreateRoomEntities` 里 `SpawnPrefab("vault_chandelier"):SetVariation(...)` | 房间生成期；变体调用只在主模拟暴露、Lua 字段无专用 netvar；AnimState 跨端表现未运行核验 | [puzzle1](../../../raw/current/scripts/prefabs/vaultroom_defs.lua#L222-L223)、[hall](../../../raw/current/scripts/prefabs/vaultroom_defs.lua#L378-L386)、[lore1](../../../raw/current/scripts/prefabs/vaultroom_defs.lua#L459-L465) |
-| 触发链：石像月岩化 | hound／pigman 监听 `moonpetrify` 时随机 `SpawnPrefab` 本体并调 `Petrify()`；本体在 `OnPetrified` 里才 Spawn 对应 `_fx` 并换成月岩 build | 主模拟；本体不忙或休眠时才石化，`_fx` 只在石化完成那一刻出现 | [hound](../../../raw/current/scripts/prefabs/hound.lua#L713-L723)、[pigman](../../../raw/current/scripts/prefabs/pigman.lua#L974-L987)、[fx 生成](../../../raw/current/scripts/prefabs/gargoyles.lua#L68-L76) |
+| 触发链：石像月岩化 | hound／pigman 监听 `moonpetrify` 时随机 `SpawnPrefab` 本体并调 `Petrify()`；本体在 `OnPetrified` 里才 Spawn 对应 `_fx` 并换成月岩 build | 主模拟；本体不忙或休眠时才石化，`_fx` 只在石化完成那一刻出现 | [hound](../../../raw/current/scripts/prefabs/hound.lua#L713-L723)、[pigman](../../../raw/current/scripts/prefabs/pigman.lua#L986-L999)、[fx 生成](../../../raw/current/scripts/prefabs/gargoyles.lua#L68-L76) |
 | 关联 Prefab：`gargoyle_*` 本体五注册 | 本体的 `prefabs` 数组声明 `_fx`；本体自带 workable／loot／named／Reanimate，属玩法，Wiki 待建 | 本体不属本页；改玩法不要改 `makefx` | [依赖声明](../../../raw/current/scripts/prefabs/gargoyles.lua#L27-L32)、[本体工厂](../../../raw/current/scripts/prefabs/gargoyles.lua#L192-L202) |
 | 对比：[[reference/prefabs/petrified_trunk_break_fx]] | 树木石化是独立工厂，用 `petrified_tree_fx` 同名 bank／build；石像鬼 `_fx` 只借 `petrified_tree_fx` 当 build、bank 为 `sculpture_fx` | 两族生成点互不复用：树木走 evergreens 石化链 | [石像资源](../../../raw/current/scripts/prefabs/gargoyles.lua#L219-L224)、[树石化页](petrified_trunk_break_fx.md) |
 | 资源与同步：chandelier 三 build、`chandelier_fire`、`sculpture_fx`、`petrified_tree_fx`；netvar `_lightphase`／`_lightlerp`／`clawsfx` | 火焰、环境音循环 `grotto/common/chandelier_LP`、爪音 `rifts7/vault_claw/open`／`withdraw`、石像 `petrified/post`；`_lightphase` 用 tinybyte 传相位，`_lightlerp` 只在客户端构造时读 | 专服无火苗／爪音／本地石像动画；资源声明不等于资源出现在快照 | [资源头](../../../raw/current/scripts/prefabs/archive_chandelier.lua#L1-L15)、[sfxprop](../../../raw/current/scripts/prefabs/archive_chandelier.lua#L147-L167)、[相位 netvar](../../../raw/current/scripts/prefabs/archive_chandelier.lua#L361-L366)、[爪音](../../../raw/current/scripts/prefabs/archive_chandelier.lua#L452-L466) |
@@ -129,3 +129,4 @@ end
 - 结构检查：`validate_page.py`、`validate_source_links.py --strict`、`parser_probe.exe --syntax-only`（两段 Lua 示例）通过，结果见交付报告。
 
 返回 [[reference/prefabs/fx-structure-index|建筑、装置与遗迹演出]]、[[reference/prefabs/index|Prefab 索引]]；石像鬼等生物表现见 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

@@ -1,13 +1,13 @@
 ---
 title: "光源实体（cavelight_small、cavelightmoon、chesterlight、booklight、spawnlight_multiplayer、atrium_light）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "六个工厂、十三个注册的光源实体：洞穴相位光、月光与鼹鼠蝠巢、切斯特变身光柱、读书光、出生光与中庭供电灯的参数、生成点和清理边界。"
 aliases: ["cavelight", "cavelight_small", "cavelight_tiny", "cavelight_atrium", "cavelightmoon", "cavelightmoon_small", "cavelightmoon_tiny", "chesterlight", "booklight", "spawnlight_multiplayer", "atrium_light", "atrium_light_back", "atrium_light_light", "远古灯柱", "洞穴光源", "洞穴出口光", "中庭灯"]
 tags: [prefab, fx, worldgen, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/cavelight.lua", "prefabs/cavelightmoon.lua", "prefabs/chesterlight.lua", "prefabs/booklight.lua", "prefabs/spawnlight_multiplayer.lua", "prefabs/atrium_light.lua", "components/hideout.lua", "components/playerspawner.lua", "components/temperature.lua", "components/worldstate.lua", "prefabs/books.lua", "prefabs/chester.lua", "stategraphs/SGchester.lua", "prefabs/atrium_gate.lua", "map/static_layouts/rooms/atrium_end/atrium_end.lua", "map/static_layouts/cave_start.lua", "map/rooms/cave/rabbits.lua", "map/rooms/cave/bluemush.lua", "map/layouts.lua", "map/object_layout.lua", "prefablist.lua", "prefabs/cave.lua", "prefabs/world.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -89,3 +89,4 @@ status: active
 - 未覆盖：未解包动画资源，未运行游戏验证光色、客户端插值与中庭灯客户端可见性；满月档不可达、读档初值、读书光客户端淡出均为源码推导，未运行复现。无 Lua 片段。
 
 返回 [[reference/prefabs/fx-light-index|灯光、火焰与音效代理]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

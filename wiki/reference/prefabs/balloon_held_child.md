@@ -1,12 +1,12 @@
 ---
 title: "手持气球双层代理与彩带庆典（balloon_held_child 等 4 注册）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "Wes 气球家族的表现注册：手持气球的联网代理＋本地动画两层架构（代理只同步颜色/换装/放气 netvar，真实动画在非联网的 balloon_held_child_client 上跑 SGballoonheld 并跟随持握符号），以及派对气球爆开时的彩带云（网络化混合载体，每 1 秒给附近玩家挂回智 debuff）与四只非联网物理彩带气球。"
 aliases: ["balloon_held_child", "balloon_held_child_client", "balloonparty_confetti_cloud", "balloonparty_confetti_balloon", "手持气球", "气球派对彩带", "彩带云", "彩带气球", "wes 气球表现", "气球回智"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/balloon_held_child.lua", "prefabs/balloons_common.lua", "prefabs/balloonparty.lua", "prefabs/balloon.lua", "prefabs/balloonspeed.lua", "stategraphs/SGballoonheld.lua", "entityscript.lua", "components/debuffable.lua", "components/debuff.lua", "tuning.lua", "recipes.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -111,3 +111,4 @@ end
 
 - [[reference/components/poppable|poppable 组件]]（手持气球"受击掉落"门控与爆开玩法的宿主组件页）
 - 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

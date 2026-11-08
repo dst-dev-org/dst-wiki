@@ -1,13 +1,13 @@
 ---
 title: "灯具与生物光源的附属光／FX 实体（lanternlight、slurperlight、squideyelight 等）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "10 类宿主上的 16 个光／FX 注册：11 个带 Light 的光实体、2 个非联网 spell 代理与 3 个不设 Light 的附着表现，含生成点、父挂、端与清理边界。"
 aliases: ["wormlight", "wormlight_lesser", "wormlight_light", "wormlight_light_lesser", "wormlight_light_greater", "wormlight_light_fx", "wormlight_light_fx_lesser", "wormlight_light_fx_greater", "lanternlight", "miniboatlanternlight", "redlanternlight", "redlanternbody", "queen_torch_fx", "queen_torchlight", "yotc_carrat_race_finish_light", "yots_worm_lantern_light", "slurperlight", "squideyelight", "hutch_music_light_fx", "灯具光源", "生物光源"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wormlight.lua", "prefabs/mininglantern.lua", "prefabs/miniboatlantern.lua", "prefabs/redlantern.lua", "prefabs/queen_torch.lua", "prefabs/yotc_carrat_race_finish.lua", "prefabs/yots_worm_lantern.lua", "prefabs/slurper.lua", "prefabs/squid.lua", "prefabs/hutch.lua", "components/spell.lua", "components/hunter.lua", "components/hallucinations.lua", "prefabs/player_common.lua", "prefabs/critters.lua", "preparedfoods_warly.lua", "stategraphs/SGsquid.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -67,7 +67,7 @@ status: active
 | `queen_torch_fx`（女王火炬持握） | `onequip`，带皮肤参数生成。[L92-L96](../../../raw/current/scripts/prefabs/queen_torch.lua#L92-L96) | `AttachToOwner`：`SetParent(owner)`＋`FollowSymbol(owner.GUID,"swap_object")`＋高亮／染色子级。[L315-L322](../../../raw/current/scripts/prefabs/queen_torch.lua#L315-L322) | 换装前先删旧 fx；卸下时 Remove。[L92-L94](../../../raw/current/scripts/prefabs/queen_torch.lua#L92-L94)、[L118-L121](../../../raw/current/scripts/prefabs/queen_torch.lua#L118-L121) |
 | `queen_torchlight`（女王火炬） | `onequip`（装备）与 `IgniteTossed`（投掷／放下）。[L98-L101](../../../raw/current/scripts/prefabs/queen_torch.lua#L98-L101)、[L135-L141](../../../raw/current/scripts/prefabs/queen_torch.lua#L135-L141) | owner／火炬本体。[L101](../../../raw/current/scripts/prefabs/queen_torch.lua#L101)、[L141](../../../raw/current/scripts/prefabs/queen_torch.lua#L141) | `onunequip`／`OnPutInInventory` Remove；`OnRemoveEntity` 从 `TORCHES` 注销。[L113-L116](../../../raw/current/scripts/prefabs/queen_torch.lua#L113-L116)、[L193-L203](../../../raw/current/scripts/prefabs/queen_torch.lua#L193-L203)、[L363-L368](../../../raw/current/scripts/prefabs/queen_torch.lua#L363-L368) |
 | `yotc_carrat_race_finish_light`（终点线） | `OnFinishRace`→`MakeLight`。[L52-L57](../../../raw/current/scripts/prefabs/yotc_carrat_race_finish.lua#L52-L57)、[L87-L91](../../../raw/current/scripts/prefabs/yotc_carrat_race_finish.lua#L87-L91) | 终点线结构。[L54-L56](../../../raw/current/scripts/prefabs/yotc_carrat_race_finish.lua#L54-L56) | `RemoveLight`：`OnInactive`（赛后 3.5 秒）与 `onburnt`；`onhammered` 未调用。[L67-L74](../../../raw/current/scripts/prefabs/yotc_carrat_race_finish.lua#L67-L74)、[L123-L125](../../../raw/current/scripts/prefabs/yotc_carrat_race_finish.lua#L123-L125)、[L143-L152](../../../raw/current/scripts/prefabs/yotc_carrat_race_finish.lua#L143-L152) |
-| `yots_worm_lantern_light`（蛇年蠕虫灯笼） | 虫灯工厂在主模拟生成并挂父；上游由猎手在蛇神龛激活时选 `yots_worm_lantern_spawner`，一次生成 3 只虫灯。[L93-L96](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L93-L96)、[猎手](../../../raw/current/scripts/components/hunter.lua#L368-L378)、[生成器](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L124-L144)、[数量](../../../raw/current/scripts/tuning.lua#L8581) | 灯本体；宿主保留 `_lantern` 反引。[L94-L96](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L94-L96) | 无显式删除；`on_remove_light` 只清反引；激活时 `ReplacePrefab` 换成 `yots_worm`。[L23-L30](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L23-L30)、[L54-L56](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L54-L56) |
+| `yots_worm_lantern_light`（蛇年蠕虫灯笼） | 虫灯工厂在主模拟生成并挂父；上游由猎手在蛇神龛激活时选 `yots_worm_lantern_spawner`，一次生成 3 只虫灯。[L93-L96](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L93-L96)、[猎手](../../../raw/current/scripts/components/hunter.lua#L368-L378)、[生成器](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L124-L144)、[数量](../../../raw/current/scripts/tuning.lua#L8582) | 灯本体；宿主保留 `_lantern` 反引。[L94-L96](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L94-L96) | 无显式删除；`on_remove_light` 只清反引；激活时 `ReplacePrefab` 换成 `yots_worm`。[L23-L30](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L23-L30)、[L54-L56](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L54-L56) |
 | `slurperlight`（啜食者） | 啜食者工厂生成并挂父。[L286-L287](../../../raw/current/scripts/prefabs/slurper.lua#L286-L287) | 平时啜食者；装备到头上→owner，卸下→啜食者。[L355-L373](../../../raw/current/scripts/prefabs/slurper.lua#L355-L373) | `OnRemoveEntity` 删灯。[L250-L252](../../../raw/current/scripts/prefabs/slurper.lua#L250-L252) |
 | `squideyelight`（鱿鱼） | 鱿鱼工厂生成、挂父并跟随 `glow` 符号。[L291-L294](../../../raw/current/scripts/prefabs/squid.lua#L291-L294) | 鱿鱼实体＋`Follower`。 | 无自身 Remove，也未设 `persists=false`；宿主移除时的回收未显式挂钩。 |
 | `hutch_music_light_fx`（哈奇音乐电池） | 装入音乐电池时在 `CreateGroundGlow` 生成 3 只（随机缩放／旋转／透明度）。[L173-L189](../../../raw/current/scripts/prefabs/hutch.lua#L173-L189)、[L233-L245](../../../raw/current/scripts/prefabs/hutch.lua#L233-L245) | `Follower:FollowSymbol(hutch.GUID,"base_point",0,0,0)`；**不** `SetParent`。[L177](../../../raw/current/scripts/prefabs/hutch.lua#L177) | 音乐电池被移除时逐个 Remove；宿主自身移除路径未发现显式清理。[L249-L255](../../../raw/current/scripts/prefabs/hutch.lua#L249-L255) |
@@ -98,7 +98,7 @@ status: active
 - **光莓 FX 的半径是倒计时**：激活后从 3 开始，随 `_lightframe` 增大线性缩到 0；`setdead` 只让它在目标死亡后加速收尾，并不会立刻删除实体。[L342-L374](../../../raw/current/scripts/prefabs/wormlight.lua#L342-L374)
 - **单独生成 `lanternlight` 不会得到提灯的亮度**：工厂只设颜色，半径／强度／衰减由提灯 `fuelupdate` 写；没有 netvar，代码中也没有第二条写入路径。[L206-L230](../../../raw/current/scripts/prefabs/mininglantern.lua#L206-L230)、[L34-L41](../../../raw/current/scripts/prefabs/mininglantern.lua#L34-L41)
 - **`yotc_carrat_race_finish_light` 的颜色依赖开赛**：工厂不设色，颜色在 `OnFinishRace` 里按赛手颜色写；开赛后没有赛手色时用默认绿色。`onhammered` 直接删除结构，未调用 `RemoveLight`，拆除时的子光回收未核验。[L87-L121](../../../raw/current/scripts/prefabs/yotc_carrat_race_finish.lua#L87-L121)、[L127-L134](../../../raw/current/scripts/prefabs/yotc_carrat_race_finish.lua#L127-L134)
-- **女王火炬的实际半径不是 6**：装备时技能亮度会把半径改成 `5×mod`，装备后无技能也只有 5；`TORCHES` 的检索半径固定 16，和视觉半径不是同一个数。[L45-L65](../../../raw/current/scripts/prefabs/queen_torch.lua#L45-L65)、[检索半径](../../../raw/current/scripts/tuning.lua#L9776-L9777)
+- **女王火炬的实际半径不是 6**：装备时技能亮度会把半径改成 `5×mod`，装备后无技能也只有 5；`TORCHES` 的检索半径固定 16，和视觉半径不是同一个数。[L45-L65](../../../raw/current/scripts/prefabs/queen_torch.lua#L45-L65)、[检索半径](../../../raw/current/scripts/tuning.lua#L9777-L9778)
 - **`redlanternbody` 不是光源**：它只是持握外观，红灯笼的 `Light` 在 `redlanternlight`；卸下／收起时 body 被删除，不要把光源参数写到 body 上。[L385-L408](../../../raw/current/scripts/prefabs/redlantern.lua#L385-L408)、[灯光工厂](../../../raw/current/scripts/prefabs/redlantern.lua#L271-L297)
 - **`squideyelight` 没有自己的删除与持久化设置**：工厂未设 `persists=false`，也没有 `OnRemoveEntity`；它随鱿鱼挂父存在，宿主移除时的回收未显式处理。[L291-L324](../../../raw/current/scripts/prefabs/squid.lua#L291-L324)
 - **`yots_worm_lantern_light` 在变身时依赖父实体回收**：虫灯被 `ReplacePrefab` 换成 `yots_worm` 时没有显式删灯，代码只清了 `_lantern` 反引；实际是否残留需运行核验。[L23-L30](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L23-L30)、[L54-L56](../../../raw/current/scripts/prefabs/yots_worm_lantern.lua#L54-L56)
@@ -121,3 +121,4 @@ status: active
 - [[reference/prefabs/fence_gate_anim]]（宿主挂接的附属表现实体）
 
 返回 [[reference/prefabs/fx-light-index|灯光、火焰与音效代理]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

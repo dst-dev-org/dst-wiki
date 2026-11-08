@@ -6,7 +6,7 @@ type: prefab
 summary: 四种由采集材料精炼得到的基础建造材料（木板、石砖、绳子、莎草纸）：注册与构造、配方产出（含 Woodie／Walter 专属替代）、堆叠／燃料／修补参数与进贡／使用方向的实际接线。
 aliases: ["boards", "cutstone", "rope", "papyrus", "木板", "石砖", "绳子", "莎草纸", "精炼材料", "精制材料"]
 tags: [prefab, item]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/boards.lua", "prefabs/cutstone.lua", "prefabs/rope.lua", "prefabs/papyrus.lua", "recipes.lua", "prefabs/woodie.lua", "prefabs/antlion.lua", "prefabs/pigking.lua", "prefabs/vault_lobby_exit.lua", "actions.lua", "tuning.lua", "constants.lua", "components/stackable.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -117,3 +117,4 @@ end)
 - 外部复检修订：2026-11-08，按外部复检报告（docs/reports/w05/prefab-inventory-review-b01-20261108.md R13，主代理回源码验证成立）修订三处：①rope 使用链口径改准——"TIE_ONTO"是 `GetUseItemOnVerb` 返回的界面动词文案键（rope.lua#L29-L31）而非动作，实际动作是 `ACTIONS.USEITEMON.fn` → `useabletargeteditem:StartUsingItem`（actions.lua#L3351-L3363）→ `OnUsedRope`，重要副作用与借鉴段两处同步；②rope 燃烧时长与燃料值方向改正——`LARGE_BURNTIME`=30 秒**小于** `MED_FUEL`=45 秒（tuning.lua#L1675／L1683），保留"两条数值独立"解释；③补记 actions.lua 入 sources。
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

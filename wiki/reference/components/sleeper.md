@@ -1,12 +1,12 @@
 ---
 title: "sleeper"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "控制生物的日常睡眠测试、催眠累积与醒来，协同 Brain 和状态图；区别离屏休眠和玩家床具睡眠。"
 aliases: ["生物睡眠","催眠生物","夜行生物","睡眠抗性","sleeper"]
 tags: [component, creature, lifecycle, callback, ai]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/sleeper.lua","prefabs/rabbit.lua","prefabs/pigman.lua","stategraphs/SGrabbit.lua","stategraphs/SGpig.lua","stategraphs/commonstates.lua","entityscript.lua","scheduler.lua","mainfunctions.lua","modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -61,7 +61,7 @@ AddPrefabPostInit("rabbit", function(inst)
 end)
 ```
 
-配置影响初始化后的兔子，由周期测试决定转换，不是马上强睡；战斗、火、冻结等仍由所选测试判断。停用后新实例恢复原版；运行中撤销可用 SetNocturnal(false) 后 StartTesting，不能保证恢复其他模组之前的自定义测试。猪人不宜直接套用：普通／守卫／变身会重设自己的测试。[sleeper.lua:113](../../../raw/current/scripts/components/sleeper.lua#L113)、[:201](../../../raw/current/scripts/components/sleeper.lua#L201)、[pigman.lua:257](../../../raw/current/scripts/prefabs/pigman.lua#L275)、[:324](../../../raw/current/scripts/prefabs/pigman.lua#L351)、[:840](../../../raw/current/scripts/prefabs/pigman.lua#L1015)
+配置影响初始化后的兔子，由周期测试决定转换，不是马上强睡；战斗、火、冻结等仍由所选测试判断。停用后新实例恢复原版；运行中撤销可用 SetNocturnal(false) 后 StartTesting，不能保证恢复其他模组之前的自定义测试。猪人不宜直接套用：普通／守卫／变身会重设自己的测试。[sleeper.lua:113](../../../raw/current/scripts/components/sleeper.lua#L113)、[:201](../../../raw/current/scripts/components/sleeper.lua#L201)、[pigman.lua:257](../../../raw/current/scripts/prefabs/pigman.lua#L275)、[:324](../../../raw/current/scripts/prefabs/pigman.lua#L354)、[:840](../../../raw/current/scripts/prefabs/pigman.lua#L1027)
 
 ## 常见陷阱与限制
 
@@ -84,3 +84,4 @@ end)
 - 2026-10-28 build 26230496：commonstates onsleep 守卫改写（SB-1）——electrocute/knockback 期间不可入睡（除非 caninterrupt）；路由行为本身未变。
 相关：[[reference/components/grogginess]]；[[reference/components/locomotor]]；[[reference/components/combat]]；[[reference/components/follower]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

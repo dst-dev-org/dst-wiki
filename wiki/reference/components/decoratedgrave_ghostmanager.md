@@ -1,12 +1,12 @@
 ---
 title: "decoratedgrave_ghostmanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "Meta 5 装饰墓碑的守墓幽灵世界管理器：登记装饰墓碑，在有 wendy_gravestone_1 技能的玩家 15 距离内限量放 graveguard_ghost，玩家远离或墓碑消失时排队消散。"
 aliases: ["decoratedgrave_ghostmanager", "装饰墓碑幽灵管理器", "守墓幽灵", "graveguard_ghost 调度"]
 tags: [component, lifecycle, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/decoratedgrave_ghostmanager.lua", "prefabs/forest.lua", "prefabs/cave.lua", "prefabs/gravestone.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -30,7 +30,7 @@ size_class: simple
 | `RegisterDecoratedGrave(grave)` | 墓碑实体 | 幂等登记为 `false`（"已知但无幽灵"），首条登记时启动更新；监听墓碑 `onremove` 自动注销并清最后一条时停更。([decoratedgrave_ghostmanager.lua:131-143](../../../raw/current/scripts/components/decoratedgrave_ghostmanager.lua#L131-L143) [墓碑调用](../../../raw/current/scripts/prefabs/gravestone.lua#L121 |
 | `UnregisterDecoratedGrave(grave)` | 墓碑实体 | 转发到移除处理：幽灵标暗、注销监听、空表停更；未登记早退。([decoratedgrave_ghostmanager.lua:145-149](../../../raw/current/scripts/components/decoratedgrave_ghostmanager.lua#L145-L149) |
 | `OnUpdate(dt)` | 组件更新（内部 1 秒节流） | 对每个 `ghostlyfriend` 玩家：技能 `wendy_gravestone_1` 已点亮才参与；附近有幽灵墓碑数 < 4 时为遍历命中的第一块无幽灵墓碑生成 `graveguard_ghost`、`LinkToHome(grave)` 并登记实体引用。([decoratedgrave_ghostmanager.lua:151-198](../../../raw/current/scripts/components/decoratedgrave_ghostmanager.lua#L151-L198) |
-| 幽灵生命周期 | 内部状态 `false → 幽灵实体 → 定时重置` | 幽灵 `onremove` 后按 `health:IsDead()` 选 `WENDYSKILL_GRAVEGHOST_DEADTIME`（一天）或 5 秒重置墓碑条目；重复触发会取消旧任务避免竞态。([decoratedgrave_ghostmanager.lua:181-193](../../../raw/current/scripts/components/decoratedgrave_ghostmanager.lua#L181-L193) [调谐](../../../raw/current/scripts/tuning.lua#L8606-L8608) |
+| 幽灵生命周期 | 内部状态 `false → 幽灵实体 → 定时重置` | 幽灵 `onremove` 后按 `health:IsDead()` 选 `WENDYSKILL_GRAVEGHOST_DEADTIME`（一天）或 5 秒重置墓碑条目；重复触发会取消旧任务避免竞态。([decoratedgrave_ghostmanager.lua:181-193](../../../raw/current/scripts/components/decoratedgrave_ghostmanager.lua#L181-L193) [调谐](../../../raw/current/scripts/tuning.lua#L8607-L8609) |
 | 距离常数 | 私有常量 | `SPAWN_DISTANCE = 15.0001`（生成）、`DESPAWN_DISTANCE = 20.0001`（无玩家在旁即消散）、`UPDATE_RATE = 1` 秒。([decoratedgrave_ghostmanager.lua:13-15](../../../raw/current/scripts/components/decoratedgrave_ghostmanager.lua#L13-L15) |
 
 ## 典型接入
@@ -64,3 +64,4 @@ end
 - 游戏运行：未运行。
 - 结构检查：未执行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

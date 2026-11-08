@@ -1,12 +1,12 @@
 ---
 title: "铥矿皇冠护盾特效（forcefieldfx）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "铥矿皇冠（ruinshat）proc 触发时包裹佩戴者的护盾层：联网动画＋声音循环＋客户端本地插值的灯光渐亮渐暗（net_tinybyte 帧值驱动），由帽子的 proc/unproc 链生成与 kill_fx 收尾；与幽灵灵药玩家护盾（通用表注册）的辨析互链。"
 aliases: ["forcefieldfx", "铥矿皇冠护盾特效", "图勒皇冠护盾特效", "铥矿皇冠护盾", "forcefield 护盾", "护盾帽特效"]
 tags: [prefab, fx, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/forcefieldfx.lua", "prefabs/hats.lua", "fx.lua", "componentutil.lua", "tuning.lua", "mainfunctions.lua", "prefabs/ghostly_elixirs.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -104,3 +104,4 @@ end
 - [[reference/prefabs/tophat_shadow_fx|魔术师高礼帽影子特效]]（同为帽子驱动的跟随层家族）
 - [[reference/prefabs/armor_lunarplant_glow_fx|装备与帽饰跟随光效]]（装备佩戴态 FX 族索引页）
 - 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]（装备／防御）
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

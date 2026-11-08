@@ -1,13 +1,13 @@
 ---
 title: "月亮石充能光束与光柱（positronbeam_back、positronbeam_front、positronpulse）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "月亮石满月充能期间的贴地光环前后层与中央光柱：createbeam/createpulse 双工厂、三 FX 随充能时机整组生成、pulse 两档等级与 FinishFX 收束、king_cane 换动画库。"
 aliases: ["positronbeam_back", "positronbeam_front", "positronpulse", "positronbeam", "月亮石光束", "月亮石充能特效", "月亮石光柱"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/positronbeam.lua", "prefabs/moonbase.lua", "tuning.lua", "prefablist.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -133,3 +133,4 @@ fx.pulse:FinishFX()
 - [[reference/prefabs/moon_device_pillar|月装置支柱、顶盖与裂纹层]]（同属月亮设施的阶段表现族）
 - [[reference/prefabs/cavelight_small|光源实体（洞穴、切斯特、读书、出生与中庭）]]（同为联网光效实体的构造对照）
 - 返回 [[reference/prefabs/fx-structure-index|建筑、装置与遗迹演出]]（月亮石）
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

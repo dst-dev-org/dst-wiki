@@ -1,12 +1,12 @@
 ---
 title: "灵魂治疗特效（wortox_soul_heal_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "灵魂释放范围治疗时挂在每个被治疗者身上的跟随特效：heal 动画两倍速播放，主模拟按动画帧用 colouradder 给目标推红色调并播治疗音；治疗量本身由 DoHeal 结算。"
 aliases: ["wortox_soul_heal_fx", "灵魂治疗特效", "灵魂回血特效", "soul heal fx"]
 tags: [prefab, fx, network-sync]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wortox_soul_heal_fx.lua", "components/colouradder.lua", "prefabs/wortox_soul_common.lua", "prefabs/wortox_soul.lua", "prefabs/wortox_soul_spawn.lua", "prefabs/wortox.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -75,3 +75,4 @@ fx:Setup(target)
 
 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

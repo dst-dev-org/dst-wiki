@@ -1,13 +1,13 @@
 ---
 title: "特斯拉线圈提灯电光特效（lantern_tesla_fx_held）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "特斯拉线圈提灯皮肤的电光动画特效：MakeFX 闭包按后缀注册 held 与 ground 两个 Prefab，带 bloom 渲染与 POPULATING 随机空白帧。"
 aliases: ["lantern_tesla_fx_held", "lantern_tesla_fx_ground", "lantern_tesla_fx_", "特斯拉线圈提灯特效", "提灯电光特效"]
 tags: [prefab, fx, lifecycle, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/lantern_tesla_fx.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "prefabs/mininglantern.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -62,3 +62,4 @@ status: active
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

@@ -1,12 +1,12 @@
 ---
 title: "通用圆烟、滑行烟与木屑（round_puff 族）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "命中冲撞圆烟 round_puff_fx 三档、滑行闪避尘烟 slide_puff 与饼干切割者钻船木屑 wood_splinter 双名：标签选名、代理绑定符号特例与无生成点缺口。"
 aliases: ["round_puff_fx_sm", "round_puff_fx_lg", "round_puff_fx_hi", "slide_puff", "wood_splinter_jump", "wood_splinter_drill", "圆烟", "命中烟", "滑行烟", "木屑特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "prefabs/woodie.lua", "prefabs/yoth_lance.lua", "prefabs/dumbbells.lua", "prefabs/spider_web_spit.lua", "prefabs/crabking.lua", "stategraphs/SGwilson.lua", "stategraphs/SGmerm.lua", "stategraphs/SGpigelite.lua", "stategraphs/SGeyeofterror.lua", "stategraphs/SGcookiecutter.lua", "prefabs/cookiecutter.lua", "prefabs/pigelite.lua", "prefabs/merm.lua", "prefabs/mermking.lua", "prefabs/powdermonkey.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -43,7 +43,7 @@ status: active
 | 圆烟标签选名 | `(HasTag("largecreature") or HasTag("epic")) and lg or sm`：伍迪（驼鹿形态）冲撞踩踏与骑枪命中同判据 | 服务端回调；无 mid 档 | [OnTackleTrample](../../../raw/current/scripts/prefabs/woodie.lua#L1568-L1570)、[yoth_lance](../../../raw/current/scripts/prefabs/yoth_lance.lua#L26-L29) |
 | round_puff 生成点 | 冲撞落点取连线上目标边缘＋调用方播 bounce／震屏 [woodie](../../../raw/current/scripts/prefabs/woodie.lua#L1552-L1566)；哑铃落地 [dumbbells](../../../raw/current/scripts/prefabs/dumbbells.lua#L175-L175)；酸液弹爆裂 [spider_web_spit](../../../raw/current/scripts/prefabs/spider_web_spit.lua#L22-L27)；骑乘疾驰碰撞 [TryGallopCollideUpdate](../../../raw/current/scripts/stategraphs/SGwilson.lua#L829-L829)（[run_gallop](../../../raw/current/scripts/stategraphs/SGwilson.lua#L12145-L12145) 内调用 [L12208](../../../raw/current/scripts/stategraphs/SGwilson.lua#L12208-L12208)） | 全部落点式；gallop 为 sm 固定档 | 各锚点 |
 | 特例：crabking | 损伤换装时给 lg 代理父挂蟹王并用 `AddFollower`／`FollowSymbol(GUID, "damage"..art)` 绑定损伤符号 | 本地动画继承代理父实体、创建时取代理变换；工厂未给本地动画设置 Follower，不能据此保证持续跟随符号 | [SetDamagedArt](../../../raw/current/scripts/prefabs/crabking.lua#L1404-L1420)、[本地动画](../../../raw/current/scripts/prefabs/fx.lua#L18-L37) |
-| slide_puff 状态图生成点 | 玩家 divegrab 第 5 帧 scale 1.3 落身前 [SGwilson](../../../raw/current/scripts/stategraphs/SGwilson.lua#L26996-L26998)；鱼人／鱼人守卫 `dodge_attack` 第 6 帧 [SGmerm](../../../raw/current/scripts/stategraphs/SGmerm.lua#L798-L804)（状态 [L777-L794](../../../raw/current/scripts/stategraphs/SGmerm.lua#L777-L794)；SGmerm 由 [鱼人守卫](../../../raw/current/scripts/prefabs/merm.lua#L1303-L1303)、[鱼人](../../../raw/current/scripts/prefabs/merm.lua#L1467-L1467) 安装，鱼人王用 [SGmermking](../../../raw/current/scripts/prefabs/mermking.lua#L624-L626)）；猪卫 dive 第 5 帧、摔地声在调用方 [SGpigelite](../../../raw/current/scripts/stategraphs/SGpigelite.lua#L404-L407)；恐怖之眼有地面才落（否则换 boss_ripple_fx）[spawn_ground_fx](../../../raw/current/scripts/stategraphs/SGeyeofterror.lua#L121-L127) | 除玩家外均生物服务端状态；scale 1.3 出现在 divegrab 与恐怖之眼 | 各锚点 |
+| slide_puff 状态图生成点 | 玩家 divegrab 第 5 帧 scale 1.3 落身前 [SGwilson](../../../raw/current/scripts/stategraphs/SGwilson.lua#L26996-L26998)；鱼人／鱼人守卫 `dodge_attack` 第 6 帧 [SGmerm](../../../raw/current/scripts/stategraphs/SGmerm.lua#L798-L804)（状态 [L777-L794](../../../raw/current/scripts/stategraphs/SGmerm.lua#L777-L794)；SGmerm 由 [鱼人守卫](../../../raw/current/scripts/prefabs/merm.lua#L1310-L1310)、[鱼人](../../../raw/current/scripts/prefabs/merm.lua#L1476-L1476) 安装，鱼人王用 [SGmermking](../../../raw/current/scripts/prefabs/mermking.lua#L624-L626)）；猪卫 dive 第 5 帧、摔地声在调用方 [SGpigelite](../../../raw/current/scripts/stategraphs/SGpigelite.lua#L404-L407)；恐怖之眼有地面才落（否则换 boss_ripple_fx）[spawn_ground_fx](../../../raw/current/scripts/stategraphs/SGeyeofterror.lua#L121-L127) | 除玩家外均生物服务端状态；scale 1.3 出现在 divegrab 与恐怖之眼 | 各锚点 |
 | slide_puff 符号复用（非生成） | 猪卫 `AddOverrideBuild("slide_puff")`、猴子投手 `OverrideSymbol("fx_slidepuff01", ...)`：借 build 补角色动画符号 | 资源复用路径，不产生 FX 实体 | [pigelite](../../../raw/current/scripts/prefabs/pigelite.lua#L178-L178)、[powdermonkey](../../../raw/current/scripts/prefabs/powdermonkey.lua#L232-L232) |
 | wood_splinter_drill | SGcookiecutter `drill` 状态（对船钻探）`DoPeriodicTask(动画长, 0)` 周期落点于切割者自身位置 | 服务端；进入条件为 target_wood 有 boat 标签 | [状态](../../../raw/current/scripts/stategraphs/SGcookiecutter.lua#L548-L582)、进度组件 [[reference/components/cookiecutterdrill]] |
 | wood_splinter_jump | 仅 cookiecutter 的 prefabs 依赖声明与 fx.lua 注册，无生成点 | 缺口见陷阱 | [声明](../../../raw/current/scripts/prefabs/cookiecutter.lua#L10-L16) |
@@ -79,3 +79,4 @@ fx.Transform:SetPosition(target.Transform:GetWorldPosition())
 - 游戏运行：未运行；烟团视觉、音效与符号跟随表现未实测。
 
 返回 [[reference/prefabs/fx-material-index|采集、制作、碎裂与生成烟]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

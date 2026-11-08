@@ -1,12 +1,12 @@
 ---
 title: "roseinspectableuser"
 created: 2026-10-26
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "由使用者执行玫瑰眼镜对象／地点检查，管理私人残影、激活效果和冷却任务，说明装备门槛与存读清理分工。"
 aliases: ["roseinspectableuser", "玫瑰眼镜残影", "玫瑰检查冷却", "SetRoseInpection", "地点藤蔓桥检查"]
 tags: [component, lifecycle, callback, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/roseinspectableuser.lua", "components/roseinspectable.lua", "prefabs/winona.lua", "prefabs/hats.lua", "prefabs/charlieresidue.lua", "componentutil.lua", "prefabs/player_classified.lua", "tuning.lua", "actions.lua"]
 reliability: verified
 validation: source-reviewed
@@ -83,3 +83,4 @@ OnSave仅保存正的任务剩余秒数cooldown，不保存target、point、resi
 - 游戏运行：未运行；未复现可选cooldownfn缺口、重复Apply任务或nil配置网络残留，未测多人视觉、目标移除竞态、读档／LongUpdate及桥梁完整生成效果。
 - 结构检查：`validate_page.py`通过；两页合并执行`validate_source_links.py --strict`，78个行号引用、0错误／0警告。本页无新增Lua示例；机械检查不代替游戏测试。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

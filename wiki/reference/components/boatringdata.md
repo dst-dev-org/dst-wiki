@@ -1,12 +1,12 @@
 ---
 title: "boatringdata"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "每条船的旋转与半径数据：客户端可读的 _isrotating 网络布尔，以及双端构造时写入的半径与分段数。"
 aliases: ["船旋转数据", "船半径与分段", "客户端读取船是否在转", "boatringdata"]
 tags: [component, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/boatringdata.lua", "components/boatring.lua", "components/walkableplatform.lua", "components/walkableplatformmanager.lua", "prefabs/boat.lua", "prefabs/yotd_boats.lua", "componentactions.lua", "components/locomotor.lua", "util.lua", "prefabs/boat_bumpers.lua", "entityscript.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -26,7 +26,7 @@ status: active
 
 | 接口／字段 | 已核验类型／单位 | 条件、作用与证据 |
 |---|---|---|
-| `radius` | 世界单位，默认 `4` | 船缘吸附、bumper 分段与拾取距离都用它；木船／海盗／远古 4、水獭巢 3.75、草船 3、冰船 1.6、龙舟 3。[字段](../../../raw/current/scripts/components/boatringdata.lua#L4)、[船数据](../../../raw/current/scripts/prefabs/boat.lua#L758-L963)、[冰船](../../../raw/current/scripts/tuning.lua#L8136)、[bumper](../../../raw/current/scripts/prefabs/boat_bumpers.lua#L104-L106) |
+| `radius` | 世界单位，默认 `4` | 船缘吸附、bumper 分段与拾取距离都用它；木船／海盗／远古 4、水獭巢 3.75、草船 3、冰船 1.6、龙舟 3。[字段](../../../raw/current/scripts/components/boatringdata.lua#L4)、[船数据](../../../raw/current/scripts/prefabs/boat.lua#L758-L963)、[冰船](../../../raw/current/scripts/tuning.lua#L8137)、[bumper](../../../raw/current/scripts/prefabs/boat_bumpers.lua#L104-L106) |
 | `segments` | 整数，默认 `8` | 船缘圆周分段数；原版船 8 段，龙舟 4 段，影响 bumper 吸附角与 `boatring:GetBumperAtPoint` 的分段。[字段](../../../raw/current/scripts/components/boatringdata.lua#L5)、[龙舟数据](../../../raw/current/scripts/prefabs/yotd_boats.lua#L198-L200) |
 | `GetRadius()`／`SetRadius(radius)` | 数值 → 数值／void | getter 双端可读；setter 只写本端字段，不广播、不触发更新。[L14-L20](../../../raw/current/scripts/components/boatringdata.lua#L14-L20) |
 | `GetNumSegments()`／`SetNumSegments(segments)` | 整数 → 整数／void | 同上；`boatring:GetNumSegments` 直接转调。[L22-L28](../../../raw/current/scripts/components/boatringdata.lua#L22-L28) |
@@ -88,3 +88,4 @@ AddPlayerPostInit(CheckBoatRotation)
 
 相关：[[reference/components/boatring]]、[[reference/components/boatrotator]]、[[reference/components/hull]]、[[reference/components/walkableplatform]]、[[reference/components/boatphysics]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

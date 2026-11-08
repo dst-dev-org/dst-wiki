@@ -1,12 +1,12 @@
 ---
 title: "stewer"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "管理厨锅材料结算、料理计时、锅内腐败与收获，区别食谱注册和直接烤制。"
 aliases: ["厨锅时间减半", "锅内料理", "烹饪配方", "stewer"]
 tags: [component, food, recipe, building, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/stewer.lua", "cooking.lua", "containers.lua", "prefabs/cookpot.lua", "prefabs/portablecookpot.lua", "actions.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -66,3 +66,4 @@ end)
 - 结构／示例检查：本批格式、来源文件、链接／行锚点、导航登记及完整 Lua 5.1 示例语法检查通过。
 - 游戏运行：未运行；菜单与多人占用、计时／读档、锅内变质、收获与跨模组倍率需验证。
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

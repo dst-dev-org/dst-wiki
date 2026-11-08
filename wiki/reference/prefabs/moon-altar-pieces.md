@@ -1,13 +1,13 @@
 ---
 title: "天体祭坛部件与吸引人的结构（moon_altar_pieces）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 size_class: standard
 summary: "moon_altar_pieces.lua 的 9 个注册：6 件 BODY heavy 天体部件（idol/glass/seed/crown/ward/icon）与 3 种“吸引人的结构”（Inviting Formation；「岩石包裹」为旧检索词）。部件可装备、可在裂隙入槽或作为祭坛分阶段补件、沉水后由 archive_resonator 检索；岩石用 MINE 20 下挖出部件。入槽三件 socket_product 分别为 moon_altar／cosmic／astral，另三件按 stage 当补件材料。"
 aliases: ["moon_altar_idol", "moon_altar_glass", "moon_altar_seed", "moon_altar_crown", "moon_altar_ward", "moon_altar_icon", "moon_altar_rock_idol", "moon_altar_rock_glass", "moon_altar_rock_seed", "天体祭坛雕像", "天体祭坛底座", "天体祭坛宝球", "未激活天体贡品", "天体圣殿卫戍", "天体圣殿象征", "祭坛部件", "月坛部件", "月坛岩石", "岩石包裹", "吸引人的结构", "Inviting Formation"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/moon_altar_pieces.lua", "prefabs/moon_fissure.lua", "prefabs/moon_altar.lua", "prefabs/archive_resonator.lua", "components/equippable.lua", "components/inventoryitem.lua", "components/heavyobstaclephysics.lua", "components/repairer.lua", "components/submersible.lua", "components/symbolswapdata.lua", "components/workable.lua", "components/lootdropper.lua", "standardcomponents.lua", "constants.lua", "tuning.lua", "strings.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ status: active
 - 结构检查：`validate_page.py`（含 `--check-indexes`）通过；standard 档上限 240 行／32768 字节；`validate_source_links.py --strict` 0 error 0 warning。
 
 返回 [[reference/prefabs/storage-heavy-index|背包收纳与重物搬运]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

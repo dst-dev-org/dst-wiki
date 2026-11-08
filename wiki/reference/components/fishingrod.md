@@ -1,12 +1,12 @@
 ---
 title: fishingrod
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "池塘钓竿的服务端钓鱼状态机：取目标、咬钩计时、上钩与收杆、捕获及中断清理。"
 aliases: ["钓竿", "鱼竿", "池塘钓鱼", "钓鱼", "上钩", "收杆"]
 tags: [component, item, equipment, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/fishingrod.lua", "components/fishingrod_replica.lua", "components/fishable.lua", "prefabs/fishingrod.lua", "prefabs/pond.lua", "prefabs/oasislake.lua", "actions.lua", "componentactions.lua", "components/playercontroller.lua", "stategraphs/SGwilson.lua", "tuning.lua", "entityscript.lua", "entityreplica.lua", "class.lua"]
 reliability: verified
 validation: source-reviewed
@@ -108,3 +108,4 @@ end)
 
 相关：[[reference/components/finiteuses|耐久消耗]]；[[reference/components/equippable|装备回调]]；[[reference/components/oceanfishingrod|海钓竿]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

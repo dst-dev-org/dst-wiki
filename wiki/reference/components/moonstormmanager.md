@@ -1,13 +1,13 @@
 ---
 title: "moonstormmanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级月风暴剧情组件：锁月相开启风暴区，按节点传播风暴并周期投放瓦斯塔夫猎寻/实验与闪电火花；击败天境守护者后转入无 NPC 实验变体。"
 aliases: ["月风暴管理", "瓦斯塔夫猎寻", "moonstormmanager"]
 tags: [component, lifecycle]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/moonstormmanager.lua", "prefabs/moon_altar_link.lua", "prefabs/wagstaff_npc.lua", "components/moonaltarlinktarget.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -21,7 +21,7 @@ status: active
 - 职责与适用：世界级组件（仅主端），装配于地表世界（[forest](../../../raw/current/scripts/prefabs/forest.lua#L701)）；实际风暴范围由 `world.net` 上的 [[reference/components/moonstorms]] 网络组件承载，本组件负责"何时何地开风暴、刷什么剧情"。三座月坛连成三角触发 `ms_startthemoonstorms`，击败天境守护者触发 `ms_stopthemoonstorms`（[moon_altar_link](../../../raw/current/scripts/prefabs/moon_altar_link.lua#L28)、[alterguardian_phase3dead](../../../raw/current/scripts/prefabs/alterguardian_phase3dead.lua#L93)）。
 - 优先使用：模组挂接点以组件回调为主——`AddMetplayer(userid)` 记录已会面、`foundTool()`/`AdvanceWagstaff()` 由 wagstaff_npc 回调（[wagstaff_npc 消费](../../../raw/current/scripts/prefabs/wagstaff_npc.lua#L110)、[L196](../../../raw/current/scripts/prefabs/wagstaff_npc.lua#L196)）。
 - 重要副作用：开/停风暴会直接改写昼夜与月相——`ms_setclocksegs {0,0,16}`、`ms_setmoonphase`、锁月相并推 `ms_setmoonphasestyle`（[L195-L213](../../../raw/current/scripts/components/moonstormmanager.lua#L195-L213)）。
-- 修改边界：仅主端（构造断言）；无 `OnUpdate`，全部用周期任务与 timer（`moonstorm_experiment_complete` 90s，[TUNING](../../../raw/current/scripts/tuning.lua#L6219)）。
+- 修改边界：仅主端（构造断言）；无 `OnUpdate`，全部用周期任务与 timer（`moonstorm_experiment_complete` 90s，[TUNING](../../../raw/current/scripts/tuning.lua#L6220)）。
 
 ## 关键接口
 
@@ -35,7 +35,7 @@ status: active
 | `beginWagstaffDefence()` / `spawnGestaltWave()` | — | NPC 到达实验点后开 90s 计时：周期投 5 件 wagstaff_tool（被拾走回流池）、每隔 7~15s 刷 3~5 只 `bird_mutant`＋1~3 只 `bird_mutant_spitter`（场内 <16 只才刷）（[L653-L786](../../../raw/current/scripts/components/moonstormmanager.lua#L653-L786)、[计时](../../../raw/current/scripts/components/moonstormmanager.lua#L720-L726)）。 |
 | `beginNoWagstaffExperiment(player)` / `CapturedRoamer` | — | 无 NPC 变体：风暴内放 `moonstorm_static_roamer`，玩家捕捉（`ms_moonstormstatic_roamer_captured`）后变静态装置再走同套工具/守卫/计时逻辑（[L528-L566](../../../raw/current/scripts/components/moonstormmanager.lua#L528-L566)、[事件源](../../../raw/current/scripts/prefabs/moonstorm_static.lua#L469)）。 |
 | `EndExperiment()` / `FailExperiment()` | timer 回调与装置移除 | 成功：NPC 告别语、装置 finished、重新开风暴；装置被移除/死亡即失败清场（[L439-L506](../../../raw/current/scripts/components/moonstormmanager.lua#L439-L506)）。 |
-| `DoTestForSparks()` / `DoTestForLightning()` | — | 给风暴内玩家周围补 `moonstorm_spark`（30 距离少于 3 个）、随机落 `moonstorm_lightning`（[L846-L889](../../../raw/current/scripts/components/moonstormmanager.lua#L846-L889)）。 |
+| `DoTestForSparks()` / `DoTestForLightning()` | — | 给风暴内玩家周围补 `moonstorm_spark`（30 距离少于 3 个；物品侧见 [[reference/prefabs/moonstorm-spark]]）、随机落 `moonstorm_lightning`（[L846-L889](../../../raw/current/scripts/components/moonstormmanager.lua#L846-L889)）。 |
 | `TestAltarTriangleValid(altars..., center_pt)` / `TestMoonAltarLinkPositionValid(pt)` | → bool | 月坛三角几何校验：两两距离 ≥2.5、夹角点积 ≤0.975、中心点可通行且无防占位物（moon_altar_link 建链与读档都用它，[L891-L942](../../../raw/current/scripts/components/moonstormmanager.lua#L891-L942)、[消费](../../../raw/current/scripts/prefabs/moon_altar_link.lua#L120)）。 |
 | `metplayers` / `AddMetplayer(id)` / `GetCelestialChampionsKilled()` | userid → true | 已见过 NPC 的玩家不再当猎寻起点；击败计数决定月相皮肤（[L594-L651](../../../raw/current/scripts/components/moonstormmanager.lua#L594-L651)、[L314-L316](../../../raw/current/scripts/components/moonstormmanager.lua#L314-L316)）。 |
 | OnSave/OnLoad | stormdays、节点、metplayers、击败数、moonstyle_altar | 读档 1 秒后按存档节点重启风暴并恢复月相样式（[L950-L1015](../../../raw/current/scripts/components/moonstormmanager.lua#L950-L1015)）。 |
@@ -45,7 +45,7 @@ status: active
 ### 风暴的启停与搬迁
 
 1. 开启（祭坛链建成）：锁满月 + 全夜时钟 → `StartMoonstorm` 选节点传播并喂给 moonstorms 网络组件 → 挂三个周期任务（[L195-L201](../../../raw/current/scripts/components/moonstormmanager.lua#L195-L201)）。
-2. 搬迁：每过一天 `stormdays+1`，达 `MOONSTORM_MOVE_TIME`(4) 天后按 0.1→1 递增概率（上限 `MOONSTORM_MOVE_MAX`(6) 天必搬）停旧开新；NPC 若在场会播拒绝台词并消散（[L215-L252](../../../raw/current/scripts/components/moonstormmanager.lua#L215-L252)、[TUNING](../../../raw/current/scripts/tuning.lua#L6221-L6222)）。
+2. 搬迁：每过一天 `stormdays+1`，达 `MOONSTORM_MOVE_TIME`(4) 天后按 0.1→1 递增概率（上限 `MOONSTORM_MOVE_MAX`(6) 天必搬）停旧开新；NPC 若在场会播拒绝台词并消散（[L215-L252](../../../raw/current/scripts/components/moonstormmanager.lua#L215-L252)、[TUNING](../../../raw/current/scripts/tuning.lua#L6222-L6223)）。
 3. 关闭（守护者被击败）：击败计数 +1、月相设新月 waxing、解锁月相、停当前风暴；下一次开启的月相样式变为 `glassed_alter_active`（[L203-L213](../../../raw/current/scripts/components/moonstormmanager.lua#L203-L213)、[L190-L193](../../../raw/current/scripts/components/moonstormmanager.lua#L190-L193)）。
 
 ### 剧情会话（hunt 与 experiment）
@@ -67,3 +67,4 @@ hunt：NPC 刷新 → 玩家靠近进 `beginWagstaffDefence`（90s 实验：工�
 
 相关：[[reference/components/moonstorms]]、[[reference/components/moonstormwatcher]]、[[reference/components/moonstormlightningmanager]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

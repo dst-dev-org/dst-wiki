@@ -1,12 +1,12 @@
 ---
 title: "blinkstaff"
 created: "2026-10-20"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "懒人魔杖短距瞬移的资格、延迟落地与特效／消费回调；区分动作接受、实际移动和 SG 恢复。"
 aliases: ["懒人魔杖关闭瞬移音效", "橙色法杖瞬移", "blinkstaff"]
 tags: [component, item, callback, actions, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/blinkstaff.lua", "prefabs/staff.lua", "prefabs/staff_common.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -64,3 +64,4 @@ end)
 - 结构检查：本批格式、来源、源码引用／行号、大小和登记通过；完整声音配置例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；主机／远端、骑乘／中断、落点失效、耗尽、声音边界和其他模组覆盖待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

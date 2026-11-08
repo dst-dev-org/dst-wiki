@@ -1,12 +1,12 @@
 ---
 title: "battleborn"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "攻击积攒型回复（Wathgrithr 战吼）：按伤害占比积攒 battleborn 点数，超过阈值一次性回血/修甲/回 san，可经回调自定义触发效果。"
 aliases: ["战吼积攒", "battleborn", "女武神回血"]
 tags: [component, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/battleborn.lua", "prefabs/wathgrithr.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -63,3 +63,4 @@ inst.components.battleborn.allow_zero = false
 - 源码审阅：2026-10-28，Steam buildid 26230496；组件全文、wathgrithr 配置点、tuning.lua 相关常量（tuning.lua:4981-4987）。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

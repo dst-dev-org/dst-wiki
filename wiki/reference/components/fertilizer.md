@@ -1,12 +1,12 @@
 ---
 title: "fertilizer"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "配置肥料的三类养分与使用消耗，区分现代农田部署、植物复壮和沃姆伍德自肥。"
 aliases: ["肥料养分", "便便施肥加倍", "肥料消耗", "fertilizer"]
 tags: [component, item, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/fertilizer.lua", "prefabs/poop.lua", "prefabs/fertilizer.lua", "standardcomponents.lua", "components/farming_manager.lua", "components/pickable.lua", "components/crop.lua", "components/grower.lua", "actions.lua", "tuning.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -73,3 +73,4 @@ end)
 - 结构检查：页面格式、来源文件、链接／行号、大小与叶级登记通过；完整示例经已有 Full Moon Lua 5.1 syntax-only 检查，未验证类型或 API 绑定。
 - 游戏运行：未运行；养分叠加上限、耗尽回调、多人部署／存档及人物自肥收益仍待实测，植物研究图鉴与其他肥料变体未覆盖。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

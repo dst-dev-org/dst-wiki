@@ -1,12 +1,12 @@
 ---
 title: "探测杖距离环与 WX-78 特效（dr_warm_loop_1 等）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "探测杖按距离选用四种着色环，以及 WX-78 音乐电路音符、旧蒸汽特效的注册与生成边界。"
 aliases: ["dr_warm_loop_1", "dr_warm_loop_2", "dr_warmer_loop", "dr_hot_loop", "wx78_heat_steam", "wx78_musicbox_fx", "探测杖距离环", "WX78音乐特效", "WX78蒸汽"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/diviningrod.lua", "tuning.lua", "wx78_moduledefs.lua", "prefabs/wx78_modules.lua"]
 reliability: verified
 validation: source-reviewed
@@ -55,3 +55,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

@@ -1,7 +1,7 @@
 ---
 title: "树木石化特效（petrified_trunk_break_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-10"
 type: prefab
 summary: "树木石化与石化树桩碎裂的五注册特效族：petrified_trunk_break_fx 桩碎裂，petrified_tree_fx_short/normal/tall/old 四段石化落尘；代理＋本地动画，经 _darken netvar 继承树木染色。"
 aliases: ["petrified_trunk_break_fx", "petrified_tree_fx_short", "petrified_tree_fx_normal", "petrified_tree_fx_tall", "petrified_tree_fx_old", "petrify_fx", "石化特效", "石化树碎裂", "petrified tree fx"]
@@ -35,7 +35,7 @@ status: active
 
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
-| 生成者：evergreens dopetrify | 树播完石化预动画后替换为岩石，非 instant 时于原位 Spawn 对应阶段 `petrified_tree_fx_*` 并 `InheritColour(r,g,b)` 继承染色 | worldgen 填充（POPULATING）走 instant 不出特效 | [dopetrify](../../../raw/current/scripts/prefabs/evergreens.lua#L737-L754)、[fx 生成](../../../raw/current/scripts/prefabs/evergreens.lua#L749-L752) |
+| 生成者：evergreens dopetrify（[[reference/prefabs/evergreen-trees]]） | 树播完石化预动画后替换为岩石，非 instant 时于原位 Spawn 对应阶段 `petrified_tree_fx_*` 并 `InheritColour(r,g,b)` 继承染色 | worldgen 填充（POPULATING）走 instant 不出特效 | [dopetrify](../../../raw/current/scripts/prefabs/evergreens.lua#L737-L754)、[fx 生成](../../../raw/current/scripts/prefabs/evergreens.lua#L749-L752) |
 | 生成者：evergreens onpetrifiedfn_evergreen | 树是树桩或无石化动画的阶段时，直接 Spawn `petrified_trunk_break_fx`：按 stump_short／stump_tall 缩放 0.75／1.2 并继承染色 | 由 petrifiable 组件回调触发；非 POPULATING 才出特效 | [树桩分支](../../../raw/current/scripts/prefabs/evergreens.lua#L763-L788)、[组件装配](../../../raw/current/scripts/prefabs/evergreens.lua#L918-L919) |
 | [[reference/components/petrifiable#关键接口]] | 触发源头：Petrify 链式传导（半径 8、延迟 0.6-1.8 秒）后执行 onPetrifiedFn | 仅 evergreens 系树木装配；链式传导让石化成片发生 | [链式传导](../../../raw/current/scripts/components/petrifiable.lua#L1-L51) |
 | [[reference/components/forestpetrification#关键接口]] | 世界组件批量把注册树木推向石化（剩余树量低于阈值时），最终落到 dopetrify／树桩分支 | 仅主模拟世界组件 | [Petrify 调用](../../../raw/current/scripts/components/forestpetrification.lua#L154-L162)、[阈值](../../../raw/current/scripts/components/forestpetrification.lua#L17-L23) |

@@ -1,12 +1,12 @@
 ---
 title: "golfclub_reticule"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "高尔夫球杆的网络同步瞄准组件：目标锁定与蓄力进度走 netvar，客户端据此增删 reticule 显示与范围圈，挥杆按蓄力读数加速。"
 aliases: ["golfclub_reticule", "高尔夫瞄准环", "蓄力瞄准组件"]
 tags: [component, network-sync, ui]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/golfclub_reticule.lua", "prefabs/carnival_golfclub.lua", "components/golfclub.lua", "actions.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -28,14 +28,14 @@ status: active
 |---|---|
 | `SetTarget(target)` | 服务端：变更 netvar target 并对持有者立即 OnTargetDirty；target=nil 结束瞄准。[实现](../../../raw/current/scripts/components/golfclub_reticule.lua#L366-L375) [golfclub 调用](../../../raw/current/scripts/components/golfclub.lua#L38-L40) |
 | `StartCharging(owner,pt)` | 服务端或有 HUD 的客户端：切 reticule prefab 为 `golfclub_reticulecharging`、记预测落点，chargeticks 置 0 启动更新；仅 target 存在时生效。[实现](../../../raw/current/scripts/components/golfclub_reticule.lua#L257-L296) |
-| `OnUpdate(dt)` | 主模拟逐 tick 自增 chargeticks（每 15 tick 强制 netvar 同步一次），到 `GOLF_MAX_CHARGE_TICKS`(45≈1.5 秒) 停止；客户端只做 set_local 预测、等同步校准。[实现](../../../raw/current/scripts/components/golfclub_reticule.lua#L315-L347) [上限](../../../raw/current/scripts/tuning.lua#L9565-L9566) |
+| `OnUpdate(dt)` | 主模拟逐 tick 自增 chargeticks（每 15 tick 强制 netvar 同步一次），到 `GOLF_MAX_CHARGE_TICKS`(45≈1.5 秒) 停止；客户端只做 set_local 预测、等同步校准。[实现](../../../raw/current/scripts/components/golfclub_reticule.lua#L315-L347) [上限](../../../raw/current/scripts/tuning.lua#L9566-L9567) |
 | `CalculateChargingScale()` / `IsMaxCharge()` | 蓄力读数 0～1 与满蓄判断；挥杆时 golfclub 用它作速度倍率（[消费](../../../raw/current/scripts/components/golfclub.lua#L70-L76)），SGwilson 以 IsMaxCharge 决定挥杆动画（[消费](../../../raw/current/scripts/stategraphs/SGwilson.lua#L28636-L28641)）。[实现](../../../raw/current/scripts/components/golfclub_reticule.lua#L302-L313) |
 | `GetTarget()` | 当前瞄准目标（服务端动作筛选与控件提示都用它；[动作筛选](../../../raw/current/scripts/components/playeractionpicker.lua#L191)）。[实现](../../../raw/current/scripts/components/golfclub_reticule.lua#L298-L300) |
 | `CancelTarget_Client()` | 客户端本地清目标（set_local + 本地 OnTargetDirty），用于动作被打断时的即时反馈，不等服务器。[实现](../../../raw/current/scripts/components/golfclub_reticule.lua#L349-L357) [调用](../../../raw/current/scripts/stategraphs/SGwilson_client.lua#L8674-L8675) |
 
 ### 瞄准环的客户端重建
 
-target 变脏时客户端 `OnTargetDirty`：有目标→放范围圈（0.4 缩放、跟随目标平台）+ 给球杆加 reticule 组件（`golfclub_reticule_fx` 预制件，鼠标/手柄双定位函数，位置限死在玩家朝向 ±45° 扇形内，鼠标超出 4.4 距离后带摆动）；无目标→若正处蓄力（`golf_charging` 标签且 ticks≠63）先放命中 ping，再删 reticule 组件（[实现](../../../raw/current/scripts/components/golfclub_reticule.lua#L178-L234)，[扇形钳制](../../../raw/current/scripts/components/golfclub_reticule.lua#L47-L75)、[鼠标摆动](../../../raw/current/scripts/components/golfclub_reticule.lua#L76-L122)、[弧度调参](../../../raw/current/scripts/tuning.lua#L9565)）。哨兵值 `CHARGETICKS_OFF=63` 表示“未在蓄力”（[哨兵](../../../raw/current/scripts/components/golfclub_reticule.lua#L10)）。
+target 变脏时客户端 `OnTargetDirty`：有目标→放范围圈（0.4 缩放、跟随目标平台）+ 给球杆加 reticule 组件（`golfclub_reticule_fx` 预制件，鼠标/手柄双定位函数，位置限死在玩家朝向 ±45° 扇形内，鼠标超出 4.4 距离后带摆动）；无目标→若正处蓄力（`golf_charging` 标签且 ticks≠63）先放命中 ping，再删 reticule 组件（[实现](../../../raw/current/scripts/components/golfclub_reticule.lua#L178-L234)，[扇形钳制](../../../raw/current/scripts/components/golfclub_reticule.lua#L47-L75)、[鼠标摆动](../../../raw/current/scripts/components/golfclub_reticule.lua#L76-L122)、[弧度调参](../../../raw/current/scripts/tuning.lua#L9566)）。哨兵值 `CHARGETICKS_OFF=63` 表示“未在蓄力”（[哨兵](../../../raw/current/scripts/components/golfclub_reticule.lua#L10)）。
 
 ## 典型接入
 
@@ -69,3 +69,4 @@ end
 
 相关：[[reference/components/golfclub]]、[[reference/components/golfable]]、[[reference/components/golfballspinner]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

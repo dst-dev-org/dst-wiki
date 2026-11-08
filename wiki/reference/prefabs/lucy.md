@@ -1,12 +1,12 @@
 ---
 title: 露西斧（lucy）
 created: 2026-11-06
-updated: 2026-11-07
+updated: 2026-11-08
 type: prefab
 summary: 伍迪专属会说话的有灵斧 lucy：无限耐久、砍树效率 2、伤害 13.6；由伍迪出生自带、砍树时替换普通斧产生，非 woodcutter 持有即被丢出，主人实体移除 90 秒后还原为替换前的斧。
 aliases: ["lucy", "露西斧", "Lucy the Axe", "露西", "露西的斧头", "会说话的斧子", "伍迪的斧头"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/lucy.lua", "prefabs/lucy_classified.lua", "prefabs/lavaarena_lucy.lua", "prefabs/woodie.lua", "prefabs/player_common.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "recipes.lua", "components/possessedaxe.lua", "components/sentientaxe.lua", "components/equippable.lua", "components/tool.lua", "components/weapon.lua", "components/talker.lua", "components/inventoryitem.lua", "standardcomponents.lua", "stategraphs/SGwilson.lua", "stategraphs/SGhermitcrab.lua", "fx.lua", "strings.lua", "tuning.lua", "play_commonfn.lua", "components/workable.lua", "components/inventory.lua", "screens/redux/scrapbookdata.lua", "prefabs/evergreens.lua", "prefabs/deciduoustrees.lua", "components/spooked.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -37,12 +37,12 @@ status: active
 
 | 项 | 键／来源 | 实际值 |
 |---|---|---|
-| 武器伤害 | `TUNING.AXE_DAMAGE`×0.5 | 27.2×0.5＝13.6 生命值（源码推导，图鉴同值 [scrapbookdata.lua#L796](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L796)） |
+| 武器伤害 | `TUNING.AXE_DAMAGE`×0.5 | 27.2×0.5＝13.6 生命值（源码推导，图鉴同值 [scrapbookdata.lua#L796](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L800)） |
 | 砍树效率 | `tool:SetAction(ACTIONS.CHOP, 2)` | 2 工作量/动作，对一切 CHOP 目标无差别，工厂无对松树／月树的特殊效率分支（[tool 挂载](../../../raw/current/scripts/prefabs/lucy.lua#L212-L213)） |
 | 耐久 | 工厂不挂 finiteuses | 无限：无 CHOP 消耗；weapon 磨损结算有 finiteuses 判空，本实体不扣耐久（[weapon OnAttack](../../../raw/current/scripts/components/weapon.lua#L105-L121)） |
 | 装备槽 | equippable 默认 | HANDS（[equippable.lua#L29](../../../raw/current/scripts/components/equippable.lua#L29)） |
 | 还原等待时长 | `TUNING.LUCY_REVERT_TIME` | 90 秒（[tuning.lua#L2040](../../../raw/current/scripts/tuning.lua#L2040)） |
-| 雕刻台词限频 | `TUNING.LUCY_CARVING_TALK_COOLDOWN` | 15 秒（[tuning.lua#L7827](../../../raw/current/scripts/tuning.lua#L7827)） |
+| 雕刻台词限频 | `TUNING.LUCY_CARVING_TALK_COOLDOWN` | 15 秒（[tuning.lua#L7827](../../../raw/current/scripts/tuning.lua#L7828)） |
 | 非伍迪装备伤害 | `TUNING.LUCY_BITE_DAMAGE` | 5（[tuning.lua#L2041](../../../raw/current/scripts/tuning.lua#L2041)）；**本 build 全库无脚本消费者**，见[陷阱](#常见陷阱与限制) |
 
 名称与台词：官方名 `STRINGS.NAMES.LUCY`＝Lucy the Axe／简中"露西斧"，经 .po `msgctxt` 核验（[.po 名称](../../../raw/current/scripts/languages/chinese_s.po#L344849-L344852)）；检视语 `DESCRIBE.LUCY`（[.po](../../../raw/current/scripts/languages/chinese_s.po#L14849-L14852)）。台词表 `STRINGS.LUCY` 定义于 strings.lua（equipped／on_ground／on_haunt／in_container／other_owner／on_pickedup／on_chopped／beaver_down_*／transform_*／carve_* 等，[strings.lua#L16522](../../../raw/current/scripts/strings.lua#L16522)）。
@@ -153,3 +153,4 @@ end)
 - 结构检查：validate_page.py 与 strict 均通过。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

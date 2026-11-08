@@ -1,12 +1,12 @@
 ---
 title: "trapfumaroleburning"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "熔岩trap点燃状态：站在活陷阱上的实体持续吃火伤害、积累点燃直至被烤熟或引燃，由陷阱动态装卸。"
 aliases: ["熔岩陷阱点燃", "trapfumaroleburning", "地热灼烧"]
 tags: [component, energy]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/trapfumaroleburning.lua", "prefabs/trap_fumarole.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -38,7 +38,7 @@ status: active
 
 - 前提与选择：组件由陷阱自动装卸，模组能做的是命中豁免条件——任一豁免标签/状态即不累积不伤害。
 - 生效与撤销：`notarget` 一类标签随时可加可摘，摘除后下一个更新周期恢复灼烧。
-- 原版依据：陷阱侧扫描与加组件的门控（[扫描](../../../raw/current/scripts/prefabs/trap_fumarole.lua#L55-L69)）；伤害、点燃倍率等数值全走 tuning（[调参](../../../raw/current/scripts/tuning.lua#L9501-L9511)）。
+- 原版依据：陷阱侧扫描与加组件的门控（[扫描](../../../raw/current/scripts/prefabs/trap_fumarole.lua#L55-L69)）；伤害、点燃倍率等数值全走 tuning（[调参](../../../raw/current/scripts/tuning.lua#L9502-L9512)）。
 
 ```lua
 -- 服务器：给自定义生物挂豁免标签（选其一即可长期免疫）
@@ -58,3 +58,4 @@ inst:AddTag("notarget") -- 或飞行类 "flying"；sg 状态标签 flight/invisi
 - 源码审阅：2026-10-28，steam-buildid:26230496，覆盖组件全文、trap_fumarole 装卸链与相关 tuning；未运行游戏。
 - 结构检查：validate_page.py、validate_source_links.py 与 Lua 语法探针通过。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

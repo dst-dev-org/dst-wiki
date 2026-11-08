@@ -1,12 +1,12 @@
 ---
 title: "oceanwhirlportalphysics"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "海洋漩涡门户的涡流物理：按快慢双节拍扫描并卷动范围内船与漂浮物，中心触发宿主回调做传送或沉没。"
 aliases: ["漩涡涡流物理", "漩涡卷船", "oceanwhirlportalphysics"]
 tags: [component, state-machine]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/oceanwhirlportalphysics.lua", "prefabs/oceanwhirlbigportal.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -39,7 +39,7 @@ status: active
 2. 质量分派：`bird` 标签直接驱离（`flyaway`）；`Physics:GetMass()==0` 的静态物走 `TryToBreakStaticObject`（有 health 按 `OCEANWHIRLBIGPORTAL_BOAT_PERCENT_DAMAGE_PER_TICK=0.1` 扣血，否则 workable 销毁）；`winchtarget` 特例按角度挪到环带或打捞上岸（[L143-L165](../../../raw/current/scripts/components/oceanwhirlportalphysics.lua#L143-L165)、[L185-L211](../../../raw/current/scripts/components/oceanwhirlportalphysics.lua#L185-L211)）。
 3. 施力：速度向心＋顺时针切向，`forcemodifier = (focalradius/距离)^forceexponent`，指数由"半径处衰减到 0.1 倍"反解（[L222-L245](../../../raw/current/scripts/components/oceanwhirlportalphysics.lua#L222-L245)、[L16](../../../raw/current/scripts/components/oceanwhirlportalphysics.lua#L16)、[L34-L36](../../../raw/current/scripts/components/oceanwhirlportalphysics.lua#L34-L36)）。
 4. 中心效果（宿主装配）：触水保护＋尝试 `worldmigrator:Activate` 传送去洞穴；不可迁移者按船扣血或直接沉没，成功传送的实体有 3s 冷却（[L227-L253](../../../raw/current/scripts/prefabs/oceanwhirlbigportal.lua#L227-L253)）。
-5. 原版参数：focal 4／radius 14／pull 10／radial 20（[tuning](../../../raw/current/scripts/tuning.lua#L8966-L8970)）。
+5. 原版参数：focal 4／radius 14／pull 10／radial 20（[tuning](../../../raw/current/scripts/tuning.lua#L8967-L8971)）。
 
 ## 常见陷阱与限制
 
@@ -55,3 +55,4 @@ status: active
 
 相关：[[reference/components/worldmigrator]]（中心传送目标）、[[reference/components/wateryprotection]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

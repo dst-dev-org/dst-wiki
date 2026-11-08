@@ -1,12 +1,12 @@
 ---
 title: 新增头部装备
 created: 2026-10-11
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: cookbook
 summary: 注册 HEAD 槽帽子，复用草帽资源，配对帽子与头发显示及卸装恢复，按需扩展头盔防御、防雨、隔热和护目镜能力，可省略穿戴外观
 aliases: [新增帽子, 头部装备, 帽子骨架, 头盔骨架, 护目镜骨架, 无穿戴外观帽子, equipment/head, dstwiki_hat]
 tags: [cookbook, item, equipment, prefab, modding, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [prefabs/hats.lua, components/equippable.lua, components/sanity.lua, components/inventory.lua, components/inventoryitem.lua, tuning.lua, mods.lua, consolecommands.lua]
 reliability: verified
 validation: source-reviewed
@@ -171,3 +171,4 @@ c_spawn("dstwiki_hat")
 
 四个 Lua 块与可选省图工厂经 Full Moon 3.0.0／Lua 5.1 语法及原字节往返、显式工厂结构检查；页面／来源／链接／唯一登记、大小及实际检索／章节读取通过。**未启动 DST**：生成、穿脱／换帽／省图、精神变化、存档／死亡、多人显示、骑乘／假人／皮肤、自定义角色、多装备栏及扩展能力未实测；引擎动画／网络内部仅按原版调用模式使用。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

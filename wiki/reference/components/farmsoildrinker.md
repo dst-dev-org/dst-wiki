@@ -1,12 +1,12 @@
 ---
 title: "farmsoildrinker"
 created: "2026-10-18"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "调整作物土壤耗水率并统计阶段湿润时间，区分土壤含水、饮水回调与人物潮湿。"
 aliases: ["作物耗水减半", "土壤饮水", "湿润时间比例", "farmsoildrinker"]
 tags: [component, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/farmsoildrinker.lua", "components/farming_manager.lua", "prefabs/farm_plants.lua", "prefabs/farm_plant_defs.lua", "tuning.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -70,3 +70,4 @@ end)
 - 结构检查：格式、来源、链接／行号、大小与登记通过；完整 modmain 示例通过已有 Full Moon Lua 5.1 syntax-only，不证明水量刷新时机或暂停效果。
 - 游戏运行：未运行；干湿切换、降雨、离屏／存读、成长暂停、魔法催生、实体替换及其他模组倍率叠加待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

@@ -1,12 +1,12 @@
 ---
 title: "mine"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "地雷式陷阱的搜索、阵营过滤、重置与触发状态；伤害、消耗和表现由宿主回调负责。"
 aliases: ["犬牙陷阱触发范围改为二", "地雷式触发", "犬牙陷阱重置", "mine"]
 tags: [component, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/mine.lua", "prefabs/trap_teeth.lua", "componentactions.lua", "actions.lua"]
 reliability: verified
 validation: source-reviewed
@@ -32,7 +32,7 @@ status: active
 | `SetTestTimeFn(fn)` | fn(inst) 返回周期秒数，StartTesting 时取一次，默认 1～2 秒随机；首次延迟仍约 0.9～1 秒，离屏已有任务改十秒周期，醒来重新采样。[调度](../../../raw/current/scripts/components/mine.lua#L150-L177) |
 | `Reset()`／`Deactivate()` | 前者清 target、启用并调 onreset 后搜索；后者停搜索、未触发／停用并调 ondeactivate，**不清 target**。仅 StopTesting 不改变标签／工作状态。[重置](../../../raw/current/scripts/components/mine.lua#L139-L147) [停用](../../../raw/current/scripts/components/mine.lua#L181-L187) |
 | `Spring()`／`Explode(target)`／`GetTarget()` | Spring 只置触发状态并调 onsetsprung；Explode 保存目标并调 onexplode(inst,target)。两者不互相调用，也不自动扣耐久。[方法](../../../raw/current/scripts/components/mine.lua#L190-L211) |
-| `SetOnExplodeFn`／`SetOnResetFn`／`SetOnSprungFn`／`SetOnDeactivateFn` | 保存宿主回调；前者带 target，其余 fn(inst)。回调返回不决定状态成功。[设置](../../../raw/current/scripts/components/mine.lua#L98-L112) [原配置](../../../raw/current/scripts/prefabs/trap_teeth.lua#L154-L165) |
+| `SetOnExplodeFn`／`SetOnResetFn`／`SetOnSprungFn`／`SetOnDeactivateFn` | 保存宿主回调；前者带 target，其余 fn(inst)。回调返回不决定状态成功。[设置](../../../raw/current/scripts/components/mine.lua#L98-L112) [原配置](../../../raw/current/scripts/prefabs/trap_teeth.lua#L155-L166) |
 | `OnSave()`／`OnLoad(data)` | 只保存 sprung 或 inactive；加载分派 Spring／Deactivate／Reset，不存目标和测试周期。已触发加载不执行伤害回调。[存读](../../../raw/current/scripts/components/mine.lua#L214-L228) |
 
 组件监听 onputininventory／onpickup／teleported 后停用；移除组件停任务、解绑监听并清 mine 标签。原犬牙陷阱掉落停用、部署重置；拾取／放置与攻击不是同一个回调。[组件清理](../../../raw/current/scripts/components/mine.lua#L74-L91) [宿主](../../../raw/current/scripts/prefabs/trap_teeth.lua#L90-L97)
@@ -41,7 +41,7 @@ status: active
 
 ### 普通犬牙陷阱搜索触发半径改为二
 
-目标模组 `modmain.lua`，沿用原 trap_teeth 资源、阵营、伤害和次数回调；不改麦斯威尔变体，也不将搜索半径变成范围攻击。[安装](../../../raw/current/scripts/prefabs/trap_teeth.lua#L154-L165) [原攻击](../../../raw/current/scripts/prefabs/trap_teeth.lua#L37-L45)
+目标模组 `modmain.lua`，沿用原 trap_teeth 资源、阵营、伤害和次数回调；不改麦斯威尔变体，也不将搜索半径变成范围攻击。[安装](../../../raw/current/scripts/prefabs/trap_teeth.lua#L155-L166) [原攻击](../../../raw/current/scripts/prefabs/trap_teeth.lua#L37-L45)
 
 ```lua
 AddPrefabPostInit("trap_teeth", function(inst)
@@ -70,3 +70,4 @@ end)
 - 结构检查：本批格式、来源、链接／源码锚点、大小与登记；完整半径例经已有 Full Moon Lua 5.1 syntax-only，结果见本轮报告。
 - 游戏运行：未运行；半径边界、阵营／飞行／死亡、重置、入栏／传送、离屏及次数耗尽待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

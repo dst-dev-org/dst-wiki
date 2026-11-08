@@ -1,13 +1,13 @@
 ---
 title: "WX-78 电击蓄能爆发（wx78_taser_projectile_fx）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "WX-78 电击模块的常驻电壳与蓄满爆发：电壳父挂玩家、按蓄能百分比切三档动画并闪白；爆发时脱父挂定爆点，以玩家（或对友军时以 FX）为 attacker 直接结算电击范围伤害。"
 aliases: ["wx78_taser_projectile_fx", "WX-78 电击爆发", "电击蓄能特效", "WX78 电壳", "电击模块爆发"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wx78_taser_projectile.lua", "components/wx78_taserbuildup.lua", "wx78_moduledefs.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -88,7 +88,7 @@ inst.Transform:SetPosition(x, y, z)
 | `组件：wx78_taserbuildup` | 生成／父挂／闪白／爆发／重生的驱动者 | 由 `wx78_moduledefs` 的 taser 技能按模块挂载 | [组件](../../../raw/current/scripts/components/wx78_taserbuildup.lua#L2-L31)、[挂载](../../../raw/current/scripts/wx78_moduledefs.lua#L690-L696) |
 | `组件：colouradder`（owner） | 闪白颜色叠加 | `DoFlash` 时按需添加 | [闪白](../../../raw/current/scripts/prefabs/wx78_taser_projectile.lua#L239-L250) |
 | `组件：combat`（FX） | `CanTarget`／`IsAlly` 与默认伤害字段；实际伤害由 `Explode` 参数直接传入 | 只在主模拟挂 | [挂载](../../../raw/current/scripts/prefabs/wx78_taser_projectile.lua#L293-L296) |
-| `TUNING.SKILLS.WX78.TASER_*` | 基础伤害 50、基础半径 2、单模块 +1 半径、上限 100 等 | 模块激活后按 `n×50` 与 `2+n` 覆盖；满蓄能才取满值，低蓄能再乘百分比 | [调值](../../../raw/current/scripts/tuning.lua#L7503-L7516)、[模块覆盖](../../../raw/current/scripts/wx78_moduledefs.lua#L667-L674) |
+| `TUNING.SKILLS.WX78.TASER_*` | 基础伤害 50、基础半径 2、单模块 +1 半径、上限 100 等 | 模块激活后按 `n×50` 与 `2+n` 覆盖；满蓄能才取满值，低蓄能再乘百分比 | [调值](../../../raw/current/scripts/tuning.lua#L7504-L7517)、[模块覆盖](../../../raw/current/scripts/wx78_moduledefs.lua#L667-L674) |
 | `Prefab：wx78` | 名称覆写目标（死亡通告） | `SetPrefabNameOverride("wx78")` 只改显示名 | [覆写](../../../raw/current/scripts/prefabs/wx78_taser_projectile.lua#L275-L275) |
 
 ## 典型接入
@@ -130,3 +130,4 @@ fx:Explode(50, 2)             -- 手动绝对参数：50 伤害、2 半径；原
 
 - [[reference/prefabs/shadow_despawn|暗影消散、舞台影手与暗影憎恶光束]]（同为"混合 FX 直接结算伤害"的对照）
 - 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]（WX-78 电击模块）
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处，tuning.lua 常量段 +1 行；CRLF 页按原字节格式宿主编辑），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-01）。

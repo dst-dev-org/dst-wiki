@@ -1,12 +1,12 @@
 ---
 title: "rockybossspawner"
 created: "2026-10-26"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: "component"
 summary: "洞穴世界宿主组件：按 worldsettingstimer 计时把满体型睡眠的 rocky 升级为 rocky_boss（ReplacePrefab 换体并保持群籍），登记 rocky 群、跟踪当前 Boss 的死亡/移除并在无群时补生 rocky。"
 aliases: ["岩石Boss生成器", "岩石龙虾Boss升级", "rockybossspawner"]
 tags: ["component", "lifecycle"]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/rockybossspawner.lua", "prefabs/cave.lua", "prefabs/rockyherd.lua", "prefabs/rocky.lua", "tuning.lua"]
 reliability: "verified"
 validation: "source-reviewed"
@@ -89,3 +89,4 @@ end
 
 相关：[[reference/components/herdmember]]、[[reference/components/herd]]、[[reference/components/timer]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

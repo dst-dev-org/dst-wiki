@@ -1,12 +1,12 @@
 ---
 title: "墨荒弹幕投射物（shadowthrall_projectile_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "墨荒（暗影憎恶召唤的影魔翼怪）的抛物线弹幕：complexprojectile 落地后 AOE 结算 25＋30 位面伤害、共享 targets 防重复、留灼痕贴片，同批弹幕共享一次命中音。"
 aliases: ["shadowthrall_projectile_fx", "墨荒弹幕", "影魔弹幕", "暗影弹投射物", "shadow thrall projectile"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/shadowthrall_projectile_fx.lua", "stategraphs/SGshadowthrall_wings.lua", "prefabs/shadowthrall_wings.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -19,7 +19,7 @@ status: active
 
 - 职责与适用：Prefab 页语义下的"会结算伤害的 FX"：影魔翼怪 shadowthrall_wings（官方译名"墨荒"，[NAMES](../../../raw/current/scripts/languages/chinese_s.po#L348605-L348607)）施法抛出的弹幕，complexprojectile 抛物线飞行，落地 AOE 直接 `GetAttacked`；**不是纯视觉**。[OnHit 结算](../../../raw/current/scripts/prefabs/shadowthrall_projectile_fx.lua#L18-L56)
 - 优先使用：查"抛物线 AOE 弹幕／落地范围伤害"选本页；两个生成状态见关联机制导航。
-- 重要副作用：粗查半径 1＋3，实际命中距离严格小于 1＋目标物理半径（padding 3 不计入判伤），伤害 25＋位面 30（shrouden 召唤路径额外 +5）；同批弹幕共享 `targets` 表防多段结算、共享 `sfx` 表只播一次命中音；落点留 `fused_shadeling_bomb_scorch` 灼痕（缩放 0.9）。[伤害数值](../../../raw/current/scripts/tuning.lua#L7710-L7711)
+- 重要副作用：粗查半径 1＋3，实际命中距离严格小于 1＋目标物理半径（padding 3 不计入判伤），伤害 25＋位面 30（shrouden 召唤路径额外 +5）；同批弹幕共享 `targets` 表防多段结算、共享 `sfx` 表只播一次命中音；落点留 `fused_shadeling_bomb_scorch` 灼痕（缩放 0.9）。[伤害数值](../../../raw/current/scripts/tuning.lua#L7711-L7712)
 - 修改边界：组件（complexprojectile／planardamage）仅主模拟挂载；客户端只有动画与影子；实体 `persists=false` 不入存档。[构造分界](../../../raw/current/scripts/prefabs/shadowthrall_projectile_fx.lua#L96-L117)
 
 ## 注册与构造
@@ -39,7 +39,7 @@ status: active
 | 生成者：SGshadowthrall_wings cast | 23 帧施法点生成 6 发：1 发直射目标当前位置＋5 发环绕落点（半径 2 均分圆周）；全部共享同一 `targets`／`sfx` 表后 `complexprojectile:Launch(pos, inst)` | 6 发同帧齐射，落点分散；目标丢失时朝面向方向 8 距离处兜底 | [cast 状态](../../../raw/current/scripts/stategraphs/SGshadowthrall_wings.lua#L275-L357)、[齐射](../../../raw/current/scripts/stategraphs/SGshadowthrall_wings.lua#L326-L344) |
 | 生成者：SGshadowthrall_wings shrouden_flyby | 被暗影憎恶召唤的墨荒飞行缠斗时发射：偏移 (1.5,4.3,0) 高位起跳；若宿主 shrouden 存在，监听 resetboss 自删并给 planardamage 加 +5 位面 bonus（来源 shrouden） | 仅召唤体路径加 bonus；野生墨荒无 | [发射](../../../raw/current/scripts/stategraphs/SGshadowthrall_wings.lua#L458-L465)、[偏移常量](../../../raw/current/scripts/stategraphs/SGshadowthrall_wings.lua#L91)、[召唤建立](../../../raw/current/scripts/prefabs/shadowthrall_wings.lua#L131-L152) |
 | [[reference/components/complexprojectile#关键接口]] | 飞行由组件按水平速度＋重力解算，落点触发 OnHit；命中后组件被移除、播放 impact 动画等待 animover 删除 | 仅主模拟；客户端只见网络复制动画 | [组件挂载](../../../raw/current/scripts/prefabs/shadowthrall_projectile_fx.lua#L105-L110)、[OnHit 移除](../../../raw/current/scripts/prefabs/shadowthrall_projectile_fx.lua#L19-L22) |
-| [[reference/components/planardamage#关键接口]] | 弹幕自身位面伤害源，OnHit 时 CollectSpDamage 打包进 GetAttacked | shrouden 路径 AddBonus(5)；数值 [tuning](../../../raw/current/scripts/tuning.lua#L7710-L7711)、[bonus](../../../raw/current/scripts/tuning.lua#L9727) | [挂载](../../../raw/current/scripts/prefabs/shadowthrall_projectile_fx.lua#L112-L113) |
+| [[reference/components/planardamage#关键接口]] | 弹幕自身位面伤害源，OnHit 时 CollectSpDamage 打包进 GetAttacked | shrouden 路径 AddBonus(5)；数值 [tuning](../../../raw/current/scripts/tuning.lua#L7711-L7712)、[bonus](../../../raw/current/scripts/tuning.lua#L9728) | [挂载](../../../raw/current/scripts/prefabs/shadowthrall_projectile_fx.lua#L112-L113) |
 | 关联 Prefab：fused_shadeling_bomb_scorch | 命中点生成的灼痕贴片（同文件 prefabs 依赖声明），缩放 0.9 | 无伤害逻辑；生成于 (x,0,z) 贴地 | [生成](../../../raw/current/scripts/prefabs/shadowthrall_projectile_fx.lua#L53-L55)、[依赖](../../../raw/current/scripts/prefabs/shadowthrall_projectile_fx.lua#L8-L11) |
 | 宿主：shadowthrall_wings（墨荒） | 独立影魔或暗影憎恶（shrouden）召唤的飞行召唤体；召唤体不可点击、无敌、随宿主 resetboss 移除 | OnShroudenSummon 把 wings 置为召唤形态后进 shrouden_flyby | [召唤回调](../../../raw/current/scripts/prefabs/shadowthrall_wings.lua#L131-L152) |
 
@@ -55,7 +55,7 @@ proj.targets, proj.sfx = targets, sfx
 proj.components.complexprojectile:Launch(Vector3(tx, 0, tz), attacker)
 ```
 
-- 调整与验证：伤害／位面走 tuning 键（[25／30](../../../raw/current/scripts/tuning.lua#L7710-L7711)）；AOE 排除表在文件头（[L13-L16](../../../raw/current/scripts/prefabs/shadowthrall_projectile_fx.lua#L13-L16)），复制此工厂时注意 `shadow_aligned` 既是自身标签也是排除项。
+- 调整与验证：伤害／位面走 tuning 键（[25／30](../../../raw/current/scripts/tuning.lua#L7711-L7712)）；AOE 排除表在文件头（[L13-L16](../../../raw/current/scripts/prefabs/shadowthrall_projectile_fx.lua#L13-L16)），复制此工厂时注意 `shadow_aligned` 既是自身标签也是排除项。
 
 ## 常见陷阱与限制
 
@@ -73,3 +73,4 @@ proj.components.complexprojectile:Launch(Vector3(tx, 0, tz), attacker)
 
 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 4 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

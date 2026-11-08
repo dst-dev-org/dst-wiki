@@ -1,13 +1,13 @@
 ---
 title: "幽灵灵药环绕与滴落特效（ghostlyelixir_slowregen_fx）"
 created: "2026-11-01"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "36 个通用表注册承载温蒂幽灵灵药的 buff 表现：9 种药效 × 阿比盖尔／玩家（幽魂花冠饮用）两套资源 × 环绕主体与地面滴落两形态，由灵药 buff 实体在服务端生成；特效本身不承载任何药效。"
 aliases: ["ghostlyelixir_slowregen_fx", "ghostlyelixir_fastregen_fx", "ghostlyelixir_shield_fx", "ghostlyelixir_attack_fx", "ghostlyelixir_speed_fx", "ghostlyelixir_retaliation_fx", "ghostlyelixir_revive_fx", "ghostlyelixir_shadow_fx", "ghostlyelixir_lunar_fx", "ghostlyelixir_slowregen_dripfx", "ghostlyelixir_fastregen_dripfx", "ghostlyelixir_shield_dripfx", "ghostlyelixir_attack_dripfx", "ghostlyelixir_speed_dripfx", "ghostlyelixir_retaliation_dripfx", "ghostlyelixir_revive_dripfx", "ghostlyelixir_shadow_dripfx", "ghostlyelixir_lunar_dripfx", "ghostlyelixir_player_slowregen_fx", "ghostlyelixir_player_fastregen_fx", "ghostlyelixir_player_shield_fx", "ghostlyelixir_player_attack_fx", "ghostlyelixir_player_speed_fx", "ghostlyelixir_player_retaliation_fx", "ghostlyelixir_player_revive_fx", "ghostlyelixir_player_shadow_fx", "ghostlyelixir_player_lunar_fx", "ghostlyelixir_player_slowregen_dripfx", "ghostlyelixir_player_fastregen_dripfx", "ghostlyelixir_player_shield_dripfx", "ghostlyelixir_player_attack_dripfx", "ghostlyelixir_player_speed_dripfx", "ghostlyelixir_player_retaliation_dripfx", "ghostlyelixir_player_revive_dripfx", "ghostlyelixir_player_shadow_dripfx", "ghostlyelixir_player_lunar_dripfx", "幽灵灵药特效", "阿比盖尔灵药特效", "灵药环绕特效", "灵药滴落特效", "幽魂花冠饮用特效"]
 tags: [prefab, fx]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/fx.lua", "fx.lua", "prefabs/ghostly_elixirs.lua", "entityscript.lua", "components/debuffable.lua", "components/debuff.lua", "components/ghostlyelixir.lua", "components/locomotor.lua", "components/equippable.lua", "tuning.lua", "prefabs/abigail.lua", "prefabs/player_common.lua", "prefabs/hats.lua", "stategraphs/SGwilson.lua", "actions.lua", "componentactions.lua", "prefabs/abigail_flower.lua", "componentutil.lua", "widgets/healthbadge.lua", "components/pethealthbar.lua", "recipes.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -75,7 +75,7 @@ ghostlyelixir_player_<药效>_dripfx 玩家侧地面滴落（9 名）
 | 组件：ghostlyelixir | 药水侧 `Apply` → `doapplyelixerfn`=`DoApplyElixir`；elixir_drinker 转给持有者 | 服务端；GIVE／APPLYELIXIR 双路由按标签过滤 | [[reference/components/ghostlyelixir]]；[APPLYELIXIR 候选](../../../raw/current/scripts/componentactions.lua#L1328-L1331) |
 | 组件：ghostlyelixirable | 目标解析；花侧覆写转投幽灵、玩家与阿比盖尔默认本体 | 服务端 | [[reference/components/ghostlyelixirable]]；[玩家挂载](../../../raw/current/scripts/prefabs/player_common.lua#L2527-L2527) |
 | 组件：debuff／debuffable | 槽位占用走 `Extend`、`Stop` → `RemoveDebuff` → `OnDetach`；`keepondespawn` 使 buff 不随宿主 despawn 清除 | 服务端 | [[reference/components/debuffable#关键接口]]、[[reference/components/debuff#关键接口]] |
-| 数据：`potion_tunings`／TUNING | 四字段 `fx`／`dripfx`／`fx_player`／`dripfx_player` 承载本族全部选名；玩家侧时长／疗效另有 `*_PLAYER` 段 | 服务端读取；shadow／lunar 无 player 字段 | [tunings](../../../raw/current/scripts/prefabs/ghostly_elixirs.lua#L87-L346)、[常量](../../../raw/current/scripts/tuning.lua#L4834-L4855)、[玩家段](../../../raw/current/scripts/tuning.lua#L8614-L8634) |
+| 数据：`potion_tunings`／TUNING | 四字段 `fx`／`dripfx`／`fx_player`／`dripfx_player` 承载本族全部选名；玩家侧时长／疗效另有 `*_PLAYER` 段 | 服务端读取；shadow／lunar 无 player 字段 | [tunings](../../../raw/current/scripts/prefabs/ghostly_elixirs.lua#L87-L346)、[常量](../../../raw/current/scripts/tuning.lua#L4834-L4855)、[玩家段](../../../raw/current/scripts/tuning.lua#L8615-L8635) |
 | 关联 Prefab：`abigailforcefieldbuffed`／`abigailforcefieldretaliation`／`abigail_retaliation` | 护盾与反击相关实体，由 ONAPPLY 与受击回调生成；与本族 fx 是同药效的另一路 | 仅 shield／retaliation 药效；服务端 | [abigail.lua](../../../raw/current/scripts/prefabs/abigail.lua#L180-L214)、[受击反击](../../../raw/current/scripts/prefabs/ghostly_elixirs.lua#L6-L85)；[[reference/prefabs/abigail_retaliation|阿比盖尔反击特效]] |
 | 关联 Prefab：`elixir_player_forcefield` | 玩家受击时附带的表现；减伤与触发由灵药 buff 和宿主回调负责 | 条目本身为通用表 FX | [受击生成](../../../raw/current/scripts/prefabs/ghostly_elixirs.lua#L6-L18)；[[reference/prefabs/wagdrone_rolling_collide_small_fx#关联机制导航]] |
 | 关联 Prefab：`ghostflower`（哀悼荣耀） | 九种灵药的配方材料；其落地灵体表现与本族无生成关系 | 材料关系在配方层 | [[reference/prefabs/ghostflower_spirit1_fx|幽灵花灵体飘光]]；[recipes](../../../raw/current/scripts/recipes.lua#L151-L159) |
@@ -124,3 +124,4 @@ fx.entity:SetParent(inst.entity)
 - 结构检查：2026-11-01 validate_page.py 与 validate_source_links.py --strict 通过（见本页文件）；Lua 示例经 parser_probe --syntax-only 解析通过。
 
 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

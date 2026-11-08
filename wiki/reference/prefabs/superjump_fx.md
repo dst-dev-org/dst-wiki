@@ -1,12 +1,12 @@
 ---
 title: "超级跳落点特效（superjump_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "熔炉武器超级跳（combat_superjump 三态跳劈）落点的表现层：玩家剪影落地动画＋落点碎屑＋破地音效，同文件注册 superjump_debris；脚本树内无生成调用，SpawnPrefab 在 lavaarena 事件数据包。"
 aliases: ["superjump_fx", "superjump_debris", "超级跳", "熔炉长矛超级跳", "player_superjump", "superjump"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/superjump_fx.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "components/aoeweapon_leap.lua", "prefabs/spear_lance.lua", "prefabs/lavaarena_heavyblade.lua", "prefabs/player_common.lua", "prefabs/player_common_extensions.lua", "entityscript.lua", "prefablist.lua"]
 reliability: verified
 validation: source-reviewed
@@ -72,3 +72,4 @@ fx:SetTarget(target_ent)  -- 摆到目标位置/朝向并生成同朝向碎屑
 
 返回 [[reference/prefabs/fx-transition-index|变身、召唤、传送与退场]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

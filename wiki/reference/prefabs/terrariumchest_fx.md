@@ -1,12 +1,12 @@
 ---
 title: "显眼箱子微光与传送塔沙柱（terrariumchest_fx、townportalsandcoffin_fx）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "两个由玩法宿主管理生命期的联网表现层：显眼箱子在恐怖之眼世界选项开启且带 scenariorunner 时的背／前双层微光（开箱或烧毁即撤，宿主的 fx 引用同时是 SHIMMER 状态标记），以及懒人传送塔传送时包裹玩家的沙柱（进出两侧玩家状态机生成、KillFX 二段收尾）；附 treasurechest.lua 六种组合宝箱的宿主辨析。"
 aliases: ["terrariumchest_fx", "townportalsandcoffin_fx", "显眼箱子微光特效", "宝箱闪烁层", "传送沙柱", "沙棺特效", "显眼箱子", "懒人传送塔"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/treasurechest.lua", "prefabs/townportal.lua", "stategraphs/SGwilson.lua", "actions.lua", "componentactions.lua", "components/teleporter.lua", "scenarios/chest_terrarium.lua", "map/static_layouts/terrarium_forest_spiders.lua", "components/retrofitforestmap_anr.lua", "mainfunctions.lua", "worldsettings_overrides.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -36,7 +36,7 @@ status: active
 
 | 生成点 | 涉及注册 | 端、条件与调用 | 证据 |
 |---|---|---|---|
-| `terrarium_master_postinit` 的 `DoTaskInTime(0)` | `terrariumchest_fx` | 主模拟；**双重门禁**：`TUNING.SPAWN_EYEOFTERROR`（"Eye For An Eye"世界选项，默认 true，[tuning](../../../raw/current/scripts/tuning.lua#L6368)；世界设置 `eyeofterror=never` 时置 false，[overrides](../../../raw/current/scripts/worldsettings_overrides.lua#L451-L455)）且宝箱带 `scenariorunner` 组件；生成后 `SetParent(宝箱.entity)`、宿主监听 `onburnt`／`onopen`、播 `shimmer_chest_lp` 循环 | [生成](../../../raw/current/scripts/prefabs/treasurechest.lua#L602-L614) |
+| `terrarium_master_postinit` 的 `DoTaskInTime(0)` | `terrariumchest_fx` | 主模拟；**双重门禁**：`TUNING.SPAWN_EYEOFTERROR`（"Eye For An Eye"世界选项，默认 true，[tuning](../../../raw/current/scripts/tuning.lua#L6369)；世界设置 `eyeofterror=never` 时置 false，[overrides](../../../raw/current/scripts/worldsettings_overrides.lua#L451-L455)）且宝箱带 `scenariorunner` 组件；生成后 `SetParent(宝箱.entity)`、宿主监听 `onburnt`／`onopen`、播 `shimmer_chest_lp` 循环 | [生成](../../../raw/current/scripts/prefabs/treasurechest.lua#L602-L614) |
 | 宝箱的 `scenariorunner` 从哪来 | — | 世界生成静态布局自带 `scenario = "chest_terrarium"` 属性（pigs／fire 变体同理）；`SpawnSaveRecord` 按存档 `scenario` 键挂组件并 `SetScript`；ANR 改造路径直接 `SetScript("chest_terrarium")`；该场景 `OnLoad` 留一个 dummy 陷阱函数，防止组件被立刻移除——这正是微光条件检查所依赖的状态 | [布局属性](../../../raw/current/scripts/map/static_layouts/terrarium_forest_spiders.lua#L88)、[scenario 挂载](../../../raw/current/scripts/mainfunctions.lua#L494-L502)、[retrofit](../../../raw/current/scripts/components/retrofitforestmap_anr.lua#L602-L603)、[dummy 保留](../../../raw/current/scripts/scenarios/chest_terrarium.lua#L55-L57) |
 | `SGwilson` `entertownportal` `onenter` | `townportalsandcoffin_fx` | 主模拟（玩家状态机）；生成在玩家当前位置；入口是 `ACTIONS.TELEPORT.fn` 的 `GoToState("entertownportal")`，动作由 componentactions 对 `townportal` 标签实体的右键与 `teleporter` 场景节点提供 | [生成](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16040-L16043)、[动作入口](../../../raw/current/scripts/actions.lua#L3070-L3086)、[动作提供](../../../raw/current/scripts/componentactions.lua#L884-L885)、[场景节点](../../../raw/current/scripts/componentactions.lua#L3011) |
 | `SGwilson` `exittownportal_pre` `onenter` | `townportalsandcoffin_fx` | 主模拟；到达侧传送塔处生成（玩家此时 Hide＋无敌）；转入方式是 `teleporter` 组件读 `statemem.teleportarrivestate`（进侧状态里写为 `exittownportal_pre`） | [生成](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16097-L16098)、[到达状态选择](../../../raw/current/scripts/components/teleporter.lua#L316-L319)、[进侧写入](../../../raw/current/scripts/stategraphs/SGwilson.lua#L16037-L16038) |
@@ -116,3 +116,4 @@ end
 - [[reference/prefabs/fx_book_mount|书页覆盖与骑乘挂载特效族]]（同为双层前后覆盖结构；对照 front/back 分层写法）
 - [[reference/prefabs/pocketwatch_warp_marker|怀表与传送门附属表现 FX 族]]（同为传送主题的进出两侧 FX 分工）
 - 返回 [[reference/prefabs/fx-structure-index|建筑、装置与遗迹演出]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

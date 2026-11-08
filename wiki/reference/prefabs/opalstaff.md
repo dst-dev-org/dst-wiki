@@ -1,12 +1,12 @@
 ---
 title: "唤月者魔杖（opalstaff）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "唤月／冷星／极光法杖这一施法物品的 50 次地点召唤、月台转换来源，以及与极光实体和皮肤 build 的区分。"
 aliases: ["opalstaff", "唤月者魔杖", "唤月", "冷星", "极光", "唤月法杖", "Moon Caller's Staff", "召唤极光"]
 tags: [prefab, item, equipment, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/staff.lua", "prefabs/staff_common.lua", "prefabs/stafflight.lua", "prefabs/moonbase.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "standardcomponents.lua", "tuning.lua", "entityscript.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -71,3 +71,4 @@ opalstaff_init_fn／clear 是 caststaff_init_fn／clear 的别名；moonstaff_po
 
 返回 [[reference/prefabs/staffs-character-index|法杖与角色道具]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

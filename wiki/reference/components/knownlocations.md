@@ -1,12 +1,12 @@
 ---
 title: "knownlocations"
 created: "2026-10-19"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "按名称保存位置快照并随实体存读，区分坐标记录、动态实体关联与真正回家行动。"
 aliases: ["记录初始位置", "保存巡逻点", "生物记住坐标", "knownlocations"]
 tags: [component, creature, ai, data, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/knownlocations.lua", "components/spawner.lua", "prefabs/pigman.lua", "brains/beebrain.lua", "mainfunctions.lua", "entityscript.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -38,7 +38,7 @@ status: active
 
 ### 为普通猪人记录首次延迟初始化时的位置，读档后保留
 
-放目标模组 `modmain.lua`，复用 pigman 原有组件，无新资源。使用自定义键 `my_mod_origin`，在零延迟任务中取 GetPosition；工厂 PostInit 运行时最终放置／存读可能尚未完成，不能把同步读取坐标称为出生点。原恢复流程先 SpawnPrefab，再放置、SetPersistData；本例延后记录并以第三参 true 保留已恢复的键。[猪人安装](../../../raw/current/scripts/prefabs/pigman.lua#L861) [PostInit 调用](../../../raw/current/scripts/mainfunctions.lua#L387-L417) [恢复顺序](../../../raw/current/scripts/mainfunctions.lua#L464-L503) [注册](../../../raw/current/scripts/modutil.lua#L593-L599)
+放目标模组 `modmain.lua`，复用 pigman 原有组件，无新资源。使用自定义键 `my_mod_origin`，在零延迟任务中取 GetPosition；工厂 PostInit 运行时最终放置／存读可能尚未完成，不能把同步读取坐标称为出生点。原恢复流程先 SpawnPrefab，再放置、SetPersistData；本例延后记录并以第三参 true 保留已恢复的键。[猪人安装](../../../raw/current/scripts/prefabs/pigman.lua#L872) [PostInit 调用](../../../raw/current/scripts/mainfunctions.lua#L387-L417) [恢复顺序](../../../raw/current/scripts/mainfunctions.lua#L464-L503) [注册](../../../raw/current/scripts/modutil.lua#L593-L599)
 
 ```lua
 AddPrefabPostInit("pigman", function(inst)
@@ -70,3 +70,4 @@ end)
 - 结构检查：格式、来源、链接／锚点、大小与唯一登记通过；完整延迟记录示例通过已有 Full Moon Lua 5.1 syntax-only，不证明实际保存／游戏行为。
 - 游戏运行：未运行；新建／读档、进屋／出屋、提前移除、延迟放置、停用后数据清理及多模组改键待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

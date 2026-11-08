@@ -1,12 +1,12 @@
 ---
 title: "sandstorms"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "沙尘暴世界状态：按季节与湿度开关沙尘暴，结合区域拓扑与绿洲算出实体的沙尘暴强度。"
 aliases: ["沙尘暴管理", "sandstorms", "沙暴等级"]
 tags: [component, data]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/sandstorms.lua", "prefabs/forest.lua", "components/stormwatcher.lua", "components/sandstormwatcher.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -68,3 +68,4 @@ end)
 - 源码审阅：2026-10-28，steam-buildid:26230496，覆盖组件全文、forest 安装点与 stormwatcher/sandstormwatcher 消费链、相关 tuning；未运行游戏。
 - 结构检查：validate_page.py、validate_source_links.py 与 Lua 语法探针通过。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

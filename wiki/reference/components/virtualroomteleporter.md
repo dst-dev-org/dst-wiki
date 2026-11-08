@@ -1,12 +1,12 @@
 ---
 title: "virtualroomteleporter"
 created: "2026-10-24"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "虚拟房间传送点组件：保存方向/洗牌方向/房间集名等协议字段，管理投票者集合并转发房间集投票，向宿主提供 OnDepart/OnArrive/OnForceRegisterEntity 回调与传送落点覆盖。"
 aliases: ["虚拟房间传送器", "virtualroomteleporter"]
 tags: [component, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/virtualroomteleporter.lua", "components/virtualroomset.lua", "constants.lua", "prefabs/vault_teleporter.lua", "prefabs/charliearena_teleporter.lua", "stategraphs/SGwilson.lua", "map/static_layouts/vault_lobby.lua", "map/static_layout.lua", "componentactions.lua"]
 reliability: verified
 validation: source-reviewed
@@ -81,3 +81,4 @@ local myteleporter = {
 
 相关：[[reference/components/virtualroomset]]、[[reference/components/virtualroommanager]]、[[reference/components/teleporter]]（虫洞配对传送，另一套体系）、[[reference/mechanisms/vault-virtualroom-migration]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

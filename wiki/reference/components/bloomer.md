@@ -1,12 +1,12 @@
 ---
 title: "bloomer"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "泛光效果堆叠：按优先级管理多个 bloom 特效来源，栈顶生效并自动联动子实体，来源移除自动弹出。"
 aliases: ["泛光堆叠", "bloomer", "bloom 特效"]
 tags: [component, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/bloomer.lua", "prefabs/backpack.lua", "prefabs/amulet.lua", "prefabs/alterguardian_laser.lua", "prefabs/player_common.lua"]
 reliability: verified
 validation: source-reviewed
@@ -59,3 +59,4 @@ inst.components.bloomer:PopBloom("mymod_buff")
 - 源码审阅：2026-10-28，steam-buildid:26230496，覆盖组件全文与 backpack、amulet、alterguardian_laser、player_common 消费链；未运行游戏。
 - 结构检查：validate_page.py、validate_source_links.py 与 Lua 语法探针通过。
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

@@ -1,13 +1,13 @@
 ---
 title: "复活的骨架骨盾格挡（stalker_shield1～4 与随机基名）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "远古织影者受击时展开的大骨盾：4 个定号变体＋1 个随机基名共用 MakeShield 工厂；有真实玩法作用——2 帧后对半径 3 内生物结算 10 点伤害并减速击退，玩家走 repelled 事件由各自 SG 击退。"
 aliases: ["stalker_shield", "stalker_shield1", "stalker_shield2", "stalker_shield3", "stalker_shield4", "骨盾格挡", "骨架盾牌特效", "复活的骨架护盾"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/stalker_shield.lua", "stategraphs/SGstalker.lua", "prefabs/stalker.lua", "components/health.lua", "components/combat.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwx78_possessedbody.lua", "prefabs/armor_skeleton.lua", "prefablist.lua", "fx.lua", "entityscript.lua", "mainfunctions.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -113,3 +113,4 @@ end
 
 - [[reference/prefabs/fossilspike_base|化石骨刺地面基座层]]（同为 Stalker 两代的地面附属表现）
 - 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]（复活的骨架）
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

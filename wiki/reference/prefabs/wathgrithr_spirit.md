@@ -1,12 +1,12 @@
 ---
 title: "薇格弗德之魂与战歌特效（wathgrithr_spirit）"
 created: "2026-11-01"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "通用表 14 注册的薇格弗德战歌表现族：击杀升灵、常驻战歌 attach/detach 与目标侧谱号循环、歌手侧七首歌曲音符、瞬时歌引述；全部一次性动画自删，战歌玩法数值不在本族。"
 aliases: ["wathgrithr_spirit", "battlesong_attach", "battlesong_loop", "battlesong_detach", "battlesong_durability_fx", "battlesong_healthgain_fx", "battlesong_sanitygain_fx", "battlesong_sanityaura_fx", "battlesong_fireresistance_fx", "battlesong_shadowaligned_fx", "battlesong_lunaraligned_fx", "battlesong_instant_electric_fx", "battlesong_instant_taunt_fx", "battlesong_instant_panic_fx", "薇格弗德之魂", "薇格弗德英灵", "武神之魂", "武神英灵", "战歌特效", "战歌buff特效", "战歌音符", "瞬时战歌特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "prefabs/battlesongdefs.lua", "prefabs/battlesongs.lua", "components/singinginspiration.lua", "entityscript.lua", "prefabs/wathgrithr.lua", "prefabs/spawnprotectionbuff.lua", "prefabs/abigail.lua", "stategraphs/SGabigail.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -104,3 +104,4 @@ end
 相关：[[reference/mechanisms/generic-fx-factory|通用 FX 工厂]]、[[reference/prefabs/fx-table-index|通用表 FX 索引]]、[[reference/components/singinginspiration|战歌灵感]]。
 
 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

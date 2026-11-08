@@ -1,12 +1,12 @@
 ---
 title: "远古档案机关声画实体（archive_ambient_sfx 等 5 注册）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "远古档案设施与星象探测仪的 5 个声画注册：档案环境音发射器（世界生成 50% 铺设、电源事件驱动循环声）、华丽基座的双层贴图地面（大底座＋小踏板）、警戒光球环绕飞行音（Lua 子实体每帧绕圈）、星象探测仪地面标记（持久实体，1 天 timer 到期自删）。"
 aliases: ["archive_ambient_sfx", "archive_switch_pad", "archive_switch_base", "archive_security_pulse_sfx", "archive_resonator_base", "远古档案环境音", "华丽基座地面", "档案电源贴图", "警戒光球环绕音", "星象探测仪标记", "archive 电源声效"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/archive_props.lua", "prefabs/archive_resonator.lua", "components/archivemanager.lua", "components/timer.lua", "components/grottowarmanager.lua", "prefabs/archive_lockbox.lua", "prefabs/atrium_gate_pulsesfx.lua", "prefabs/cave.lua", "prefabs/vault_teleporter.lua", "map/maze_layouts.lua", "map/layouts.lua", "map/static_layouts/rooms/archive_end/archive_end.lua", "prefabs/archive_chandelier.lua", "entityscript.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -114,3 +114,4 @@ end, TheWorld)
 - [[reference/prefabs/archive_chandelier|远古吊灯与石像鬼石化特效]]（同为档案电源事件监听方；checkforgems 逐盏调用吊灯 updatelight）
 - [[reference/prefabs/atrium_gate_activatedfx|远古大门充能光层与警示声]]（`grotto_war_sfx` 注册在其 makesfx 工厂，由地穴战线铺设生成）
 - 返回 [[reference/prefabs/fx-light-index|灯光、火焰与音效代理]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

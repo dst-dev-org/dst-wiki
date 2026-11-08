@@ -1,12 +1,12 @@
 ---
 title: "embarker"
 created: 2026-10-26
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "执行朝平台登乘点或固定离船点的水平运动，发出运动结束通知，并配合 locomotor／状态图完成或取消跳跃。"
 aliases: ["embarker", "登船运动", "离船落点", "done_embark_movement", "跳船运动收尾"]
 tags: [component, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/embarker.lua", "components/locomotor.lua", "components/walkableplatform.lua", "prefabs/player_common.lua", "stategraphs/commonstates.lua", "stategraphs/SGwilson.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -81,3 +81,4 @@ SGwilson调用公共 AddHopStates，并让pre第4帧开始运动。公共状态�
 
 相关：[[reference/components/locomotor]] · [[reference/components/walkableplatform]] · [[reference/components/amphibiouscreature]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

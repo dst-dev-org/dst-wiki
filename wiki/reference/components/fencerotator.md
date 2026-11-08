@@ -1,12 +1,12 @@
 ---
 title: fencerotator：工具旋转围栏与可转向目标
 created: 2026-10-23
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 为工具接入围栏旋转动作，优先沿用目标的 SetOrientation，并通过事件交给工具处理消耗。
 aliases: [fencerotator, 旋转围栏, 围栏旋转工具, 修改旋转角度]
 tags: [component, item, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/fencerotator.lua, componentactions.lua, actions.lua, tuning.lua, prefabs/fence_rotator.lua, prefabs/fence.lua, prefabs/yoth_lance.lua, stategraphs/SGwilson.lua, stategraphs/SGwilson_client.lua, modutil.lua]
 reliability: verified
 validation: source-reviewed
@@ -28,7 +28,7 @@ status: active
 |---|---|
 | `Rotate(target, delta)` | `target == nil` 立即返回；否则读取当前角度，加上 `delta or TUNING.FENCE_DEFAULT_ROTATION`。没有成功返回值。[实现](../../../raw/current/scripts/components/fencerotator.lua#L5-L19) |
 | `target.SetOrientation(target, angle)` | 存在时优先调用；否则直接 `Transform:SetRotation(angle)`。围栏实现还处理宽／窄动画库与门偏移，不应机械替换为裸 Transform。[分派](../../../raw/current/scripts/components/fencerotator.lua#L10-L15) [围栏实现](../../../raw/current/scripts/prefabs/fence.lua#L164-L194) |
-| `TUNING.FENCE_DEFAULT_ROTATION` | 当前默认 45 度；原版动作显式传入此值，不仅是组件省略参数时的默认值。[常量](../../../raw/current/scripts/tuning.lua#L6845) [调用](../../../raw/current/scripts/actions.lua#L5882-L5885) |
+| `TUNING.FENCE_DEFAULT_ROTATION` | 当前默认 45 度；原版动作显式传入此值，不仅是组件省略参数时的默认值。[常量](../../../raw/current/scripts/tuning.lua#L6846) [调用](../../../raw/current/scripts/actions.lua#L5882-L5885) |
 | `fencerotated` | 事件发在工具，未携带目标数据。`fence_rotator` 宿主监听后 `finiteuses:Use(1)`，而组件不自带消耗配置。[事件](../../../raw/current/scripts/components/fencerotator.lua#L17-L19) [宿主监听与消耗](../../../raw/current/scripts/prefabs/fence_rotator.lua#L23-L27) [注册监听](../../../raw/current/scripts/prefabs/fence_rotator.lua#L65-L69) |
 
 动作收集要求右键、目标带 `rotatableobject`，工具不带 `fire`／`burnt`；`faced_chair` 目标还须有 `cansit`。这里检查燃烧标签的是**工具**，不是目标。原版围栏在工厂添加 `rotatableobject`。[收集](../../../raw/current/scripts/componentactions.lua#L2318-L2321) [围栏标签](../../../raw/current/scripts/prefabs/fence.lua#L614-L622)
@@ -71,3 +71,4 @@ end)
 - 结构检查：本页格式、链接、源码锚点与完整 modmain 示例 Lua 5.1 语法检查通过。
 - 游戏运行：未运行；90 度旋转、门偏移、不同围栏样式、耐久耗尽与多人预测待实测；不声称支持任意自定义目标或 SG。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

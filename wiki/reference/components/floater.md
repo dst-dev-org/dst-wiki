@@ -1,12 +1,12 @@
 ---
 title: "floater"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "物品/物件水面漂浮表现：落水时切换漂浮动画、生成前后水面特效、推漂浮事件，服务端另附湿度和降温。"
 aliases: ["漂浮", "floater", "物品漂浮", "水面特效"]
 tags: [component]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/floater.lua", "standardcomponents.lua", "simutil.lua", "prefabskin.lua"]
 reliability: verified
 validation: source-reviewed
@@ -60,3 +60,4 @@ inst.components.floater:SetBankSwapOnFloat(true, -11, {sym_name = "axe01", sym_b
 - 源码审阅：2026-10-28，steam-buildid:26230496，覆盖组件全文、standardcomponents 包装、simutil 腐蚀链、prefabskin/componentactions 消费点；未运行游戏。
 - 结构检查：validate_page.py、validate_source_links.py 与 Lua 语法探针通过。
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

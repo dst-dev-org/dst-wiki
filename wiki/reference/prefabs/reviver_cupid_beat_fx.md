@@ -1,12 +1,12 @@
 ---
 title: "告密的心丘比特皮肤心跳特效（reviver_cupid_beat_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "reviver 告密的心 cupid 系皮肤的两个伴随特效：beat 心形粒子爆发（与宿主心跳重播同步、仅落地时有）与 glow 发光覆盖动画（挂 highlightchildren 随高亮），同文件两注册。"
 aliases: ["reviver_cupid_beat_fx", "reviver_cupid_glow_fx", "告密的心特效", "丘比特皮肤特效", "天使之心", "Cherub's Heart", "心跳粒子"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/reviver_cupid_beat_fx.lua", "prefabs/reviver.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "components/highlight.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -74,3 +74,4 @@ fx.entity:SetParent(host.entity) -- host 需有 AnimState 且周期重播 idle
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

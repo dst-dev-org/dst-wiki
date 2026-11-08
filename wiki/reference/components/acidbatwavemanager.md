@@ -1,12 +1,12 @@
 ---
 title: "acidbatwavemanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "酸雨蝙蝠潮世界管理器：酸雨期间跟踪玩家背包硝石数量按几率预警并生成蝙蝠潮，数量达标时额外召回蝙蝠 boss。"
 aliases: ["蝙蝠潮", "酸雨蝙蝠", "acidbatwavemanager 组件"]
 tags: [component, ai]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: standard
 sources: ["components/acidbatwavemanager.lua", "prefabs/cave.lua", "prefabs/bat_boss.lua", "tuning.lua"]
 reliability: verified
@@ -70,3 +70,4 @@ TheWorld:PushEvent("unpausehounded", { source = inst, reason = "myevent" })
 - 源码审阅：2026-10-28，steam-buildid:26230496，通读组件全部 510 行；挂载 cave.lua:525、TUNING tuning.lua:7760-7766/:9660、消费方 bat_boss.lua:382/:436/:442、bat_bossbrain.lua:16、运气公式 componentutil.lua:2129/:2237 逐行核对。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

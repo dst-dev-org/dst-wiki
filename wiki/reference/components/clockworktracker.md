@@ -1,12 +1,12 @@
 ---
 title: "clockworktracker"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "发条随从上限组件：按车／马／象三类统计跟随的发条棋子，支持加成槽扩容与超限解除，供棋子好友玩家与 WX-78 电路模块。"
 aliases: ["发条随从计数", "棋子好友上限", "clockworktracker"]
 tags: [component, ai, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: standard
 sources: ["components/clockworktracker.lua", "prefabs/clockwork_common.lua", "wx78_moduledefs.lua", "tuning.lua"]
 reliability: verified
@@ -70,3 +70,4 @@ inst.components.clockworktracker:AddClockwork(some_clockwork_ent)
 
 相关：[[reference/components/follower]]、[[reference/components/followermemory]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

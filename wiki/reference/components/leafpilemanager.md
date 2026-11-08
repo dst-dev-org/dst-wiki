@@ -1,12 +1,12 @@
 ---
 title: "leafpilemanager：叶堆世界管理器"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "万圣夜活动期秋季在落叶林瓦片限量生成 leafpile、其余时间逐只衰减的世界宿主组件；提供分区限密登记、生成调度与存档恢复。"
 aliases: [叶堆世界管理器, leafpilemanager, leafpile 生成门控, 万圣夜叶堆生成]
 tags: [component, lifecycle, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/leafpilemanager.lua", "tuning.lua", "components/map.lua", "constants.lua", "prefabs/world.lua", "prefabs/forest.lua", "prefabs/leafpile.lua"]
 reliability: verified
 validation: source-reviewed
@@ -51,7 +51,7 @@ size_class: standard
 | `LEAFPILEMANAGER_SECONDS_PER_SPAWN` | 10 | 启用期生成节奏（秒），[tuning.lua:9790](../../../raw/current/scripts/tuning.lua#L9790 |
 | `LEAFPILEMANAGER_SECONDS_PER_DESPAWN` | 0.5 | 禁用期衰减节奏（秒/只），[tuning.lua:9791](../../../raw/current/scripts/tuning.lua#L9791 |
 
-同段 `LEAFPILE_*` 键为叶堆自身生长与战利品调谐（([tuning.lua:9792-9798](../../../raw/current/scripts/tuning.lua#L9792-L9798)），由叶堆 prefab 消费，如生长计时 ([leafpile.lua:400-404](../../../raw/current/scripts/prefabs/leafpile.lua#L422-L426)。
+同段 `LEAFPILE_*` 键为叶堆自身生长与战利品调谐（([tuning.lua:9792-9798](../../../raw/current/scripts/tuning.lua#L9793-L9799)），由叶堆 prefab 消费，如生长计时 ([leafpile.lua:400-404](../../../raw/current/scripts/prefabs/leafpile.lua#L422-L426)。
 
 ## 典型接入
 
@@ -67,7 +67,7 @@ TUNING.LEAFPILEMANAGER_SECONDS_PER_SPAWN = 5    -- 启用期生成间隔（秒�
 TUNING.LEAFPILEMANAGER_SECONDS_PER_DESPAWN = 1  -- 禁用期衰减间隔（秒/只）
 ```
 
-生效与撤销：世界加载创建组件时读取新值；删去覆盖即恢复默认。边长单位为瓦，间隔单位为秒。原版依据：([tuning.lua:9788-9791](../../../raw/current/scripts/tuning.lua#L9788-L9791)、[构造捕获](../../../raw/current/scripts/components/leafpilemanager.lua#L9-L12)。
+生效与撤销：世界加载创建组件时读取新值；删去覆盖即恢复默认。边长单位为瓦，间隔单位为秒。原版依据：([tuning.lua:9788-9791](../../../raw/current/scripts/tuning.lua#L9789-L9792)、[构造捕获](../../../raw/current/scripts/components/leafpilemanager.lua#L9-L12)。
 
 ### 服务端生成或登记叶堆（复用门禁、限密与衰减）
 
@@ -100,6 +100,7 @@ end
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；两段 lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行；活动期实际生成节奏、分区密度表现与冬季保留待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。
 
 ## 相关链接
 

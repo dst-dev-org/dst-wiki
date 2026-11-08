@@ -1,12 +1,12 @@
 ---
 title: "亮茄剑（sword_lunarplant）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版亮茄族纯武器参照：基础＋位面双伤害与暗影目标增伤、亮茄头盔手工套装监听、破损保留实体可修理、双刃发光 FX 跟随与幸运触手协战。"
 aliases: ["sword_lunarplant", "亮茄剑", "Brightshade Sword", "亮茄武器"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/sword_lunarplant.lua", "prefabs/hitsparks_fx.lua", "prefabs/charlie_boss.lua", "prefabs/staff_lunarplant.lua", "components/weapon.lua", "components/equippable.lua", "components/finiteuses.lua", "components/planardamage.lua", "components/damagetypebonus.lua", "components/lunarplant_tentacle_weapon.lua", "components/combat.lua", "components/fumaroletool.lua", "components/setbonus.lua", "standardcomponents.lua", "constants.lua", "tuning.lua", "recipes.lua", "componentutil.lua", "mods.lua", "screens/redux/scrapbookdata.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -38,7 +38,7 @@ status: active
 - `SWORD_LUNARPLANT_USES = 200`（[tuning](../../../raw/current/scripts/tuning.lua#L185)）；无动作消耗（不调 `SetConsumption`），唯一耐久路径是每次武器结算默认扣 1；`attackwear` 乘区、`efficientuser` 与 `IgnoresCombatDurabilityLoss` 会改变实际扣减。
 - `SWORD_LUNARPLANT_DAMAGE = wilson_attack * 2 - 30`＝38、`SWORD_LUNARPLANT_PLANAR_DAMAGE = 30`（[tuning](../../../raw/current/scripts/tuning.lua#L388-L389)；基数 wilson_attack=34，[tuning](../../../raw/current/scripts/tuning.lua#L34)）。
 - 套装三键同工具族：`WEAPONS_LUNARPLANT_SETBONUS_DAMAGE_MULT = 1.1`、`..._SETBONUS_PLANAR_DAMAGE = 5`、`WEAPONS_LUNARPLANT_VS_SHADOW_BONUS = 1.1`（[tuning](../../../raw/current/scripts/tuning.lua#L394-L396)）。套装激活时基础 38×1.1＝41.8、位面 30＋5＝35；对 shadow_aligned 目标再双乘 1.1。
-- 交叉印证：`scrapbookdata` 的 `sword_lunarplant` 条目 weapondamage=38、planardamage=30、finiteuses=200、forgerepairable={"lunarplant_kit"}（[条目](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1482)）。
+- 交叉印证：`scrapbookdata` 的 `sword_lunarplant` 条目 weapondamage=38、planardamage=30、finiteuses=200、forgerepairable={"lunarplant_kit"}（[条目](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1486)）。
 
 ## 关联机制导航
 
@@ -105,3 +105,4 @@ end)
 相关：[[reference/prefabs/index|Prefab 索引]]；[[reference/prefabs/lunarplant-tools|亮茄工具族（共用机制主维护页）]]；[[reference/components/weapon|武器组件]]；[[reference/components/forgerepairable|锻造修理目标侧]]。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

@@ -1,12 +1,12 @@
 ---
 title: "化石骨刺地面基座层（fossilspike_base、fossilspike2_base）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "Stalker 两代化石尖刺攻击的地面基座动画实体：由尖刺本体在起刺/砸地回调里生成并引擎父挂，自身零玩法组件、无自删，生命期挂在宿主上（引擎回收未核验）；本体 fossilspike/fossilspike2 为带 combat 的混合结构，页内辨析不计 FX 覆盖。"
 aliases: ["fossilspike_base", "fossilspike2_base", "fossilspike", "fossilspike2", "化石骨刺", "化石笼子", "骨刺地面基座", "Stalker 尖刺 FX"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/fossil_spike.lua", "prefabs/fossil_spike2.lua", "prefabs/stalker.lua", "stategraphs/SGstalker.lua", "brains/stalkerbrain.lua", "simutil.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -107,3 +107,4 @@ end
 - [[reference/prefabs/fossilized_break_fx|化石碎裂与化石化特效]]（同属 Stalker／化石主题的一次性 FX；对照本地代理＋联网壳结构）
 - [[reference/prefabs/groundpoundring_fx|冲击环、爆点与碎块表现特效]]（同族砸地环形背景层）
 - 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

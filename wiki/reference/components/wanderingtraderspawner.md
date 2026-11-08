@@ -1,12 +1,12 @@
 ---
 title: "wanderingtraderspawner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "流浪商人生成调度世界组件：登记玩家出生点作生成点，世界初始化时按世界设置开关生成或移除唯一的 wanderingtrader，并跨存档维护其引用。"
 aliases: ["流浪商人生成器", "流浪商人调度", "wanderingtraderspawner"]
 tags: [component, creature, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["components/wanderingtraderspawner.lua", "prefabs/forest.lua", "prefabs/spawnpoint_multiplayer.lua", "tuning.lua", "worldsettings_overrides.lua"]
 reliability: verified
@@ -64,3 +64,4 @@ end)
 - 源码审阅：2026-10-28，steam-buildid:26230496，通读组件全部 108 行，核验挂载（forest.lua:737）、生成点事件源（spawnpoint_multiplayer.lua:13）与开关取值（tuning.lua:8744、worldsettings_overrides.lua:3081-3085）；全库无其他 TryToSpawn 调用者。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

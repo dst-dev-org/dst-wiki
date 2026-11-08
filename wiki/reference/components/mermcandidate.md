@@ -1,12 +1,12 @@
 ---
 title: "mermcandidate"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "记录鱼人吃下的卡路里，达到阈值时允许 mermkingmanager 把它变身为鱼人王。"
 aliases: ["鱼人王候选", "鱼人卡路里", "mermcandidate"]
 tags: [component, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["components/mermcandidate.lua", "prefabs/merm.lua", "components/mermkingmanager.lua"]
 reliability: verified
@@ -19,7 +19,7 @@ status: active
 ## 快速判断
 
 - 职责与适用：鱼人（`merm`）的服务端组件：累计喂食的饥饿值（卡路里），`ShouldTransform()` 报告是否达到变身阈值。是否真的变身由 `mermkingmanager` 结合王座位置等条件决定。
-- 优先使用：喂食路径由原版接好——鱼人 `OnEat` 时若是候选就 `AddCalories(data.food)`（[merm.lua#L1162-L1168](../../../raw/current/scripts/prefabs/merm.lua#L1192-L1198)）；管理器在清理候选名单时 `ResetCalories()`（[mermkingmanager.lua#L142-L147](../../../raw/current/scripts/components/mermkingmanager.lua#L142-L147)）。
+- 优先使用：喂食路径由原版接好——鱼人 `OnEat` 时若是候选就 `AddCalories(data.food)`（[merm.lua#L1162-L1168](../../../raw/current/scripts/prefabs/merm.lua#L1199-L1205)）；管理器在清理候选名单时 `ResetCalories()`（[mermkingmanager.lua#L142-L147](../../../raw/current/scripts/components/mermkingmanager.lua#L142-L147)）。
 - 重要副作用：`calories` 与 `transformation_calories` 都入存档（[存](../../../raw/current/scripts/components/mermcandidate.lua#L22-L27)、[读](../../../raw/current/scripts/components/mermcandidate.lua#L29-L37)），读档后进度不丢。
 - 修改边界：组件只算数，不触发变身、不移除自身；阈值默认 50，可改。
 
@@ -36,7 +36,7 @@ status: active
 
 ### 原版候选变身链
 
-- 组件在 merm prefab 的 master 分支添加（[merm.lua#L1099](../../../raw/current/scripts/prefabs/merm.lua#L1129)）；`mermkingmanager:IsCandidate` 决定吃食是否计入（[merm.lua#L1162-L1168](../../../raw/current/scripts/prefabs/merm.lua#L1192-L1198)）。
+- 组件在 merm prefab 的 master 分支添加（[merm.lua#L1099](../../../raw/current/scripts/prefabs/merm.lua#L1136)）；`mermkingmanager:IsCandidate` 决定吃食是否计入（[merm.lua#L1162-L1168](../../../raw/current/scripts/prefabs/merm.lua#L1199-L1205)）。
 - 管理器侧变身条件：候选站在王座上且 `ShouldTransform()` 为真、且当前没有别的候选正在变身（[mermkingmanager.lua#L199-L210](../../../raw/current/scripts/components/mermkingmanager.lua#L199-L210)）；换王／清名单时对所有候选 `ResetCalories()`（[mermkingmanager.lua#L142-L147](../../../raw/current/scripts/components/mermkingmanager.lua#L142-L147)）。
 
 ## 常见陷阱与限制
@@ -50,3 +50,4 @@ status: active
 - 游戏运行：未运行。
 - 结构检查：validate_page.py 通过（0 issue；51 行、4063 字节，simple 档内）；validate_source_links.py --strict 通过（13 处源码引用，0 error／0 warning）；本页无完整 Lua 代码块。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

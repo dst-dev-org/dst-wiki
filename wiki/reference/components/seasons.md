@@ -1,12 +1,12 @@
 ---
 title: "seasons"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "四季组件：按周期/无尽/恒定三模式推进季节天数，随季节进度平滑改写时钟昼夜段配比，并同步副 shard。"
 aliases: ["季节", "四季循环", "seasons 组件"]
 tags: [component, network-sync, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: standard
 sources: ["components/seasons.lua", "prefabs/world_network.lua", "worldsettings_overrides.lua"]
 reliability: verified
@@ -75,3 +75,4 @@ end
 
 - [[reference/components/clock]]
 - [[reference/components/shard_seasons]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

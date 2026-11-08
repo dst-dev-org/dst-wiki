@@ -1,13 +1,13 @@
 ---
 title: "暗影槌（shadow_battleaxe）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版裂隙暗影武器 shadow_battleaxe：HANDS 槽近战＋CHOP 双用，位面伤害/汲命/砍伐效率随 epic 巨兽击杀升 4 级，二级起持续饥饿（卸装不暂停）、耗尽残破可修复，会说话；同文件注册持握跟随 FX。"
 aliases: ["shadow_battleaxe", "暗影槌", "Shadow Maul", "暗影战斧", "会说话的武器"]
 tags: [prefab, item, equipment]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/shadow_battleaxe.lua", "prefabs/shadow_battleaxe_classified.lua", "prefabs/forge_repair_kits.lua", "prefabs/gestalt_guard.lua", "components/weapon.lua", "components/equippable.lua", "components/finiteuses.lua", "components/planardamage.lua", "components/damagetypebonus.lua", "components/hunger.lua", "components/talker.lua", "components/sanity.lua", "components/shadowlevel.lua", "components/tool.lua", "components/forgerepairable.lua", "components/forgerepair.lua", "components/aoediminishingreturns.lua", "components/spdamageutil.lua", "componentutil.lua", "standardcomponents.lua", "tuning.lua", "constants.lua", "recipes.lua", "recipes_filter.lua", "strings.lua", "screens/redux/scrapbookdata.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -41,16 +41,16 @@ status: active
 
 | 项 | 键 | 实际值 |
 |---|---|---|
-| 武器伤害 | `SHADOW_BATTLEAXE.DAMAGE`＝`wilson_attack`×2−30 | 38 生命值（源码推导；图鉴 weapondamage=38 交叉印证，[scrapbookdata](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1311)） |
+| 武器伤害 | `SHADOW_BATTLEAXE.DAMAGE`＝`wilson_attack`×2−30 | 38 生命值（源码推导；图鉴 weapondamage=38 交叉印证，[scrapbookdata](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1315)） |
 | 耐久上限 | `SHADOW_BATTLEAXE.USES` | 200；攻击 1/次＋CHOP 1/次＋二级起饥饿 1/秒（不随卸装暂停） |
 | 饥饿上限 | `SHADOW_BATTLEAXE.MAX_HUNGER` | 500；击杀回 `HUNGER_GAIN_ONKILL`＝50 |
-| 套装增益 | `WEAPONS_VOIDCLOTH_SETBONUS_DAMAGE_MULT`＝1.1、`..._PLANAR_DAMAGE`＝5 | 伤害 41.8、位面 +5（[tuning.lua#L7818-L7819](../../../raw/current/scripts/tuning.lua#L7818-L7819)） |
-| 对月相加成 | `WEAPONS_NIGHTMARE_VS_LUNAR_BONUS` | 目标带 `lunar_aligned` 时 ×1.1（[tuning.lua#L8455](../../../raw/current/scripts/tuning.lua#L8455)） |
+| 套装增益 | `WEAPONS_VOIDCLOTH_SETBONUS_DAMAGE_MULT`＝1.1、`..._PLANAR_DAMAGE`＝5 | 伤害 41.8、位面 +5（[tuning.lua#L7818-L7819](../../../raw/current/scripts/tuning.lua#L7819-L7820)） |
+| 对月相加成 | `WEAPONS_NIGHTMARE_VS_LUNAR_BONUS` | 目标带 `lunar_aligned` 时 ×1.1（[tuning.lua#L8455](../../../raw/current/scripts/tuning.lua#L8456)） |
 | 装备理智 | `dapperness`＝−`DAPPERNESS_MED`（[tuning.lua#L2215](../../../raw/current/scripts/tuning.lua#L2215)） | ≈−0.056/秒（约 −26.7/游戏天）；`is_magic_dapperness`＝true（Walter 也受影响） |
 | 影子等级 | `SHADOW_BATTLEAXE_SHADOW_LEVEL` | 3（[tuning.lua#L2883](../../../raw/current/scripts/tuning.lua#L2883)） |
 | 语音冷却 | `TALK_INTERVAL`：OVERTIME 30／CHOPPING 10／CHOPPING_WOODIE 10／STARVING 5／CREATURE_KILLED 5 | 秒（GetTime 计时） |
 
-分级表 `TUNING.SHADOW_BATTLEAXE.LEVEL[1..4]`（[tuning.lua#L8392-L8438](../../../raw/current/scripts/tuning.lua#L8392-L8438)）：
+分级表 `TUNING.SHADOW_BATTLEAXE.LEVEL[1..4]`（[tuning.lua#L8392-L8438](../../../raw/current/scripts/tuning.lua#L8393-L8439)）：
 
 | 级 | PLANAR_DAMAGE | CHOPPING_EFFICIENCY | LIFE_STEAL（汲命） | HUNGER_RATE（饥饿/秒） |
 |---|---|---|---|---|
@@ -152,3 +152,4 @@ B.LEVEL_THRESHOLDS = { 0, 2, 4, 6 }
 - 结构检查：validate_page.py（0 error，159 行／26234 字节，complex 档）与 validate_source_links.py --strict（103 条源码引用、29 个源文件，0 error 0 warning）实际执行通过；lua 围栏为完整可解析片段。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 4 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

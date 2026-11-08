@@ -1,12 +1,12 @@
 ---
 title: "moistureabsorberuser"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "挂在持有者上汇总吸湿源，每帧选出最优速率并让 moisture 扣除，最后一个源离开时自删。"
 aliases: ["吸湿者", "持有吸湿源", "吸湿汇总", "moistureabsorberuser"]
 tags: [component, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/moistureabsorberuser.lua", "components/moistureabsorbersource.lua", "components/moisture.lua", "components/inventory.lua", "components/container.lua", "components/inventoryitem.lua", "util/sourcemodifierlist.lua", "prefabs/desiccant.lua", "tuning.lua"]
 reliability: "verified"
 validation: "source-reviewed"
@@ -75,3 +75,4 @@ status: "active"
 - 游戏运行：未运行。
 - 结构检查：`validate_page.py` 0 error／0 warning；`validate_source_links.py --strict` 0 error／0 warning（24 条源码引用，24 条行锚点）；本页无完整 Lua，未做语法检查。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

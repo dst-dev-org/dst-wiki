@@ -1,12 +1,12 @@
 ---
 title: "船件沉没与受击特效（boat_mast_sink_fx 族）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "船件损坏表现八注册：桅杆沉没动画三名随宿主 mast 组件 sink_fx 字段选名、防撞条受击四名由 SGboatbumper 按 bumper 类型动态拼名、小龙舟灯燃料耗尽或烧毁时气球离场一名；全部为通用表落点式纯表现。"
 aliases: ["boat_mast_sink_fx", "boat_malbatross_mast_sink_fx", "mast_yotd_sink_fx", "boat_bumper_hit_kelp", "boat_bumper_hit_shell", "boat_bumper_hit_crabking", "boat_bumper_hit_yotd", "miniboatlantern_loseballoon", "桅杆沉没特效", "防撞条受击特效", "气球丢失特效", "船件损坏特效族"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "entityscript.lua", "physics.lua", "gamelogic.lua", "tuning.lua", "prefabs/mast.lua", "components/mast.lua", "prefabs/mast_broken.lua", "prefabs/boat_bumpers.lua", "stategraphs/SGboatbumper.lua", "components/hullhealth.lua", "components/walkableplatform.lua", "components/workable.lua", "stategraphs/SGboat.lua", "prefabs/boat.lua", "prefabs/oceanwhirlbigportal.lua", "prefabs/miniboatlantern.lua", "map/layouts.lua", "map/static_layouts/abandonedboat.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -100,3 +100,4 @@ inst.components.mast.sink_fx = "boat_mast_sink_fx" -- 或指向自有通用表�
 - 结构检查：validate_page 与 validate_source_links --strict 通过；Lua 示例经 parser_probe 语法检查。
 
 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

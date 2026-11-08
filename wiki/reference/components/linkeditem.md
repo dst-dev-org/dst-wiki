@@ -1,12 +1,12 @@
 ---
 title: linkeditem
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "按 userid 持久关联物品与玩家，随玩家重连恢复实体，并可限制其他玩家装备。"
 aliases: [linkeditem, 物品绑定玩家, 记录物品制造者, 绑定物品主人, 专属装备, 重连恢复主人]
 tags: [component, item, network-sync, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/linkeditem.lua, components/linkeditemmanager.lua, components/equippable.lua, components/equippable_replica.lua, components/inventoryitem.lua, components/slingshotmods.lua, prefabs/slingshot.lua, prefabs/wortox_reviver.lua, modutil.lua]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 - 职责与适用：按玩家 `userid` 记录物品归属，配合 [[reference/components/linkeditemmanager]] 找回当前玩家实体；适合物品离身后仍保留的身份关联，不是 [[reference/components/inventoryitem]] 的当前持有者。[管理器用途](../../../raw/current/scripts/components/linkeditemmanager.lua#L1-L10)
 - 优先使用：服务端 `LinkToOwnerUserID(userid)` 绑定、传 `nil` 解绑；双端通过 `GetOwnerUserID()`／`GetOwnerName()` 读取。仅跟踪存档内普通实体时比较 [[reference/components/entitytracker]]。[绑定](../../../raw/current/scripts/components/linkeditem.lua#L61-L76)、[读取](../../../raw/current/scripts/components/linkeditem.lua#L26-L52)
 - 重要副作用：解绑旧身份、登记新身份均向世界发事件；管理器同步触发主人移除／创建回调。限制装备需另外启用 flag，由 equippable 消费。[事件](../../../raw/current/scripts/components/linkeditem.lua#L67-L75)、[装备判断](../../../raw/current/scripts/components/equippable.lua#L147-L162)
-- 修改边界：组件构造含 netvar，原版在双端 `SetPristine()` 前添加；不能用服务端 PostInit 给普通物品临时补装，也不支持动态移除组件。[构造与移除注释](../../../raw/current/scripts/components/linkeditem.lua#L2-L20)、[弹弓工厂](../../../raw/current/scripts/prefabs/slingshot.lua#L482-L529)
+- 修改边界：组件构造含 netvar，原版在双端 `SetPristine()` 前添加；不能用服务端 PostInit 给普通物品临时补装，也不支持动态移除组件。[构造与移除注释](../../../raw/current/scripts/components/linkeditem.lua#L2-L20)、[弹弓工厂](../../../raw/current/scripts/prefabs/slingshot.lua#L482-L530)
 
 ## 关键接口
 
@@ -41,7 +41,7 @@ status: active
 
 ### 允许其他合资格玩家装备基础弹弓，保留原主人关联
 
-完整代码放目标模组 `modmain.lua`，无需新资源或 GLOBAL 代理；只修改已经正确创建网络组件的原版基础 `slingshot`。工厂默认启用主人限制，另设 `slingshot_sharpshooter` 标签限制；下面只解除前者，不会让所有角色都能使用。[工厂设置](../../../raw/current/scripts/prefabs/slingshot.lua#L534-L544)、[Hook](../../../raw/current/scripts/modutil.lua#L593-L599)
+完整代码放目标模组 `modmain.lua`，无需新资源或 GLOBAL 代理；只修改已经正确创建网络组件的原版基础 `slingshot`。工厂默认启用主人限制，另设 `slingshot_sharpshooter` 标签限制；下面只解除前者，不会让所有角色都能使用。[工厂设置](../../../raw/current/scripts/prefabs/slingshot.lua#L535-L545)、[Hook](../../../raw/current/scripts/modutil.lua#L593-L599)
 
 ```lua
 AddPrefabPostInit("slingshot", function(inst)
@@ -55,7 +55,7 @@ AddPrefabPostInit("slingshot", function(inst)
 end)
 ```
 
-每次该 Prefab 生成／读档重建时覆盖 flag；移除这段并重新加载后恢复工厂默认。未改其他弹弓变体、归属 userid 或原回调；如要推广到变体，先核对对应工厂注册，不用宽泛所有物品 Hook。[注册名](../../../raw/current/scripts/prefabs/slingshot.lua#L911-L915)
+每次该 Prefab 生成／读档重建时覆盖 flag；移除这段并重新加载后恢复工厂默认。未改其他弹弓变体、归属 userid 或原回调；如要推广到变体，先核对对应工厂注册，不用宽泛所有物品 Hook。[注册名](../../../raw/current/scripts/prefabs/slingshot.lua#L912-L916)
 
 此例不立即卸下现有装备。客户端 equippable replica 也读取本组件的网络 flag；检查时区分“其他合资格玩家可装备”和“无角色标签仍被拒绝”。物品显示名仍可带原主人，弹弓 inspectable 的 `NOT_MINE` 判断也不会因解除装备 flag 自动消失。[双端限制](../../../raw/current/scripts/components/equippable_replica.lua#L32-L48)、[检查文案](../../../raw/current/scripts/prefabs/slingshot.lua#L467-L478)
 
@@ -63,9 +63,9 @@ end)
 
 以 `wortox_reviver` 为参照：`AddNetwork` 后、`SetPristine` 前双端添加 linkeditem；服务端才装 inventoryitem、回调与技能逻辑。其建造／入袋／读档初始化尝试为尚未绑定的物品关联合资格玩家；离线失去实体时禁用消耗，技能初始化后再按主人技能开放。不要整段复制成普通物品的服务端 AddComponent。[工厂与回调](../../../raw/current/scripts/prefabs/wortox_reviver.lua#L200-L266)、[首次绑定入口](../../../raw/current/scripts/prefabs/wortox_reviver.lua#L33-L62)、[技能协作](../../../raw/current/scripts/prefabs/wortox_reviver.lua#L64-L78)
 
-弹弓采用另一种策略：安装部件变化后，按当前 `GetGrandOwner()` 更新绑定；没有部件时解绑。**自动绑定谁、何时换绑由宿主决定**，linkeditem 本身不监听入袋事件。[UpdateLinkedItemOwner](../../../raw/current/scripts/prefabs/slingshot.lua#L415-L426)、[宿主事件](../../../raw/current/scripts/prefabs/slingshot.lua#L561-L563)
+弹弓采用另一种策略：安装部件变化后，按当前 `GetGrandOwner()` 更新绑定；没有部件时解绑。**自动绑定谁、何时换绑由宿主决定**，linkeditem 本身不监听入袋事件。[UpdateLinkedItemOwner](../../../raw/current/scripts/prefabs/slingshot.lua#L415-L426)、[宿主事件](../../../raw/current/scripts/prefabs/slingshot.lua#L562-L564)
 
-换绑条件与输入的边缘情况（26148036 核验）：换绑由部件安装／卸载／替换事件（`containerinstalleditem`、`containeruninstalleditem`、`installreplacedslingshot`）驱动，加载期（`IsLoading()`）跳过；`HasAnyParts()` 只要求**至少安装一个部件**，不要求装齐，一件不剩时才走无条件解绑。[监听](../../../raw/current/scripts/prefabs/slingshot.lua#L561-L563)、[加载门控](../../../raw/current/scripts/components/slingshotmods.lua#L28-L33)、[部件判断](../../../raw/current/scripts/components/slingshotmods.lua#L45-L49)。同轮 `GetGrandOwner()` 由严格递归改为"递归无主时回退返回中间持有者"（[实现](../../../raw/current/scripts/components/inventoryitem.lua#L501-L506)）：弹弓被玩家持有／装备时新旧等价（玩家实体无 inventoryitem 组件，两版都返回玩家）；至少装有一个部件且弹弓位于无人持有的容器（如落地背包）内触发换绑时，旧版拿到 nil 不动作、维持原绑定，新版拿到容器实体并以 `userid=nil` 解绑。依赖旧行为"容器内维持原绑定"的模组需要调整，或自行补挂宿主事件控制换绑时机。
+换绑条件与输入的边缘情况（26148036 核验）：换绑由部件安装／卸载／替换事件（`containerinstalleditem`、`containeruninstalleditem`、`installreplacedslingshot`）驱动，加载期（`IsLoading()`）跳过；`HasAnyParts()` 只要求**至少安装一个部件**，不要求装齐，一件不剩时才走无条件解绑。[监听](../../../raw/current/scripts/prefabs/slingshot.lua#L562-L564)、[加载门控](../../../raw/current/scripts/components/slingshotmods.lua#L28-L33)、[部件判断](../../../raw/current/scripts/components/slingshotmods.lua#L45-L49)。同轮 `GetGrandOwner()` 由严格递归改为"递归无主时回退返回中间持有者"（[实现](../../../raw/current/scripts/components/inventoryitem.lua#L501-L506)）：弹弓被玩家持有／装备时新旧等价（玩家实体无 inventoryitem 组件，两版都返回玩家）；至少装有一个部件且弹弓位于无人持有的容器（如落地背包）内触发换绑时，旧版拿到 nil 不动作、维持原绑定，新版拿到容器实体并以 `userid=nil` 解绑。依赖旧行为"容器内维持原绑定"的模组需要调整，或自行补挂宿主事件控制换绑时机。
 
 ## 常见陷阱与限制
 
@@ -84,3 +84,4 @@ end)
 - 版本沿用：2026-10-28 原始哈希等价批量沿用-70（26148036→26230496，本页 sources 所列文件原始字节全部未变），页内未决项零标记、符号反查无命中、严格链接通过；批次依据见 [[updates/build-26230496/index#wiki-沿用记录]]。
 相关：[[reference/components/linkeditemmanager]]、[[reference/components/equippable]]、[[reference/components/inventoryitem]]、[[reference/components/entitytracker]]。
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 5 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

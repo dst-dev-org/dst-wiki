@@ -1,12 +1,12 @@
 ---
 title: "carefulwalker"
 created: 2026-10-26
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "响应不平地面通知，追踪目标范围与有效期，在满足移动能力条件时施加谨慎行走减速并通知玩家表现层。"
 aliases: ["carefulwalker", "不平地面减速", "谨慎行走", "carefulwalking", "地形范围限时减速"]
 tags: [component, lifecycle, event, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/carefulwalker.lua", "components/unevenground.lua", "components/locomotor.lua", "prefabs/player_common.lua", "prefabs/player_classified.lua", "stategraphs/SGwilson.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ SGwilson 的 ConfigureRunState 在骑乘、重物、吟唱、变身、风暴、t
 - 2026-11-01 build 26335394：组件新增 `enabled` 字段与 `Enable(enable)` 开关（false 清目标、停更新、撤 careful）、`TrackTarget` 增加 enabled 门、`OnRemoveFromEntity` 裸 `inst` 缺陷修复（改 `self.inst`）；SGwilson ConfigureRunState 谨慎分支加 flyingbroom 豁免、ConfigureWitchBroomFlying 开关时同步 Enable 本组件并挂 nonslipgrituser 源。本页全文按新版重对锚点；见 updates/build-26335394 C-3、SB-8。
 相关：[[reference/components/locomotor]] · [[reference/components/slipperyfeet]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 0 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

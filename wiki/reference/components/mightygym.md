@@ -1,12 +1,12 @@
 ---
 title: "mightygym"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "沃尔夫冈健身器（mighty_gym）的器械逻辑：双槽配重装载与换片、入/出健身房的状态交换与动画同步，把配重换算成体格收益。"
 aliases: ["mightygym", "健身器", "mighty gym", "举重台", "健身房"]
 tags: [component, building, state-machine]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/mightygym.lua", "prefabs/mighty_gym.lua", "components/mightiness.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -79,3 +79,4 @@ end
 
 - [[reference/components/mightiness]]：体格值与三态皮肤，器械收益的落点。
 - [[reference/components/strongman]]：健身会话的状态机持有者。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

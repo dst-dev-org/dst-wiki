@@ -1,12 +1,12 @@
 ---
 title: "园艺锄（farm_hoe、golden_farm_hoe）"
 created: "2026-11-06"
-updated: "2026-11-06"
+updated: "2026-11-08"
 type: prefab
 summary: "MakeFarmHoe 工厂两注册的手持园艺锄族：右键锄地生成 farm_soil、耐久消耗与黄金锄 1/4 折算、HANDS 装备持握与皮肤事件、耗尽即移除并广播 toolbroke 的组装入口。"
 aliases: ["farm_hoe", "golden_farm_hoe", "园艺锄", "黄金园艺锄", "Garden Hoe", "Splendid Garden Hoe", "金锄", "锄头", "锄地工具", "翻耕土壤", "园艺锄耐久"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/farm_hoe.lua", "components/farmtiller.lua", "components/equippable.lua", "components/weapon.lua", "components/finiteuses.lua", "components/map.lua", "components/fumaroletool.lua", "actions.lua", "componentactions.lua", "components/playeractionpicker.lua", "components/playercontroller.lua", "bufferedaction.lua", "entityscript.lua", "standardcomponents.lua", "stategraphs/SGwilson.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "recipes.lua", "tuning.lua", "modutil.lua", "mainfunctions.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -110,3 +110,4 @@ end)
 - 结构检查：validate_page.py 与 validate_source_links.py 实际运行通过（详见交付说明）。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

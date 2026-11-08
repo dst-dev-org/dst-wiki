@@ -1,12 +1,12 @@
 ---
 title: "aoecharging"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "双端按住蓄力的 tick、指示器和松手事件；人物状态机决定何时执行攻击。"
 aliases: ["aoecharging","按住蓄力","蓄力tick","松手攻击"]
 tags: ["component","network","state-machine","callback"]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/aoecharging.lua","prefabs/slingshot.lua","components/playercontroller.lua","stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -18,7 +18,7 @@ status: active
 ## 快速判断
 
 - 职责与适用：装备持有者的持续蓄力与方向／指示器；松手通知 SG，攻击效果经 ReleaseChargedAttack 调工厂，不是地点施法或普通冷却。[components/aoecharging.lua:124](../../../raw/current/scripts/components/aoecharging.lua#L124)、[components/aoecharging.lua:226](../../../raw/current/scripts/components/aoecharging.lua#L226
-- 优先使用：保留原版 SG 的启动／退出与攻击时点；共同工厂配 reticuleprefab／刷新函数，服务端配 SetOnChargedAttackFn。[prefabs/slingshot.lua:645](../../../raw/current/scripts/prefabs/slingshot.lua#L645)、[prefabs/slingshot.lua:714](../../../raw/current/scripts/prefabs/slingshot.lua#L714
+- 优先使用：保留原版 SG 的启动／退出与攻击时点；共同工厂配 reticuleprefab／刷新函数，服务端配 SetOnChargedAttackFn。[prefabs/slingshot.lua:645](../../../raw/current/scripts/prefabs/slingshot.lua#L646)、[prefabs/slingshot.lua:714](../../../raw/current/scripts/prefabs/slingshot.lua#L714
 - 重要副作用：tick 每次 OnUpdate 加一，不按 dt 累加秒；计数是 net_byte，不能无限累积。组件松手只发 chargingreticulereleased，不直接攻击。[components/aoecharging.lua:48](../../../raw/current/scripts/components/aoecharging.lua#L48)、[components/aoecharging.lua:124](../../../raw/current/scripts/components/aoecharging.lua#L124
 - 修改边界：双端、SetPristine 前构造网络变量；SetEnabled／SetChargeTicks／攻击函数仅服务端有效。新物品还需预测／服务端 SG，不能只挂此组件。[components/aoecharging.lua:199](../../../raw/current/scripts/components/aoecharging.lua#L199)、[stategraphs/SGwilson.lua:18745](../../../raw/current/scripts/stategraphs/SGwilson.lua#L18745
 
@@ -42,7 +42,7 @@ OnUpdate 检查 GrandOwner／装备／SG 蓄力或同步状态，失效则清 ow
 
 ### 蓄力弹弓禁止骑乘发动但保留蓄力伤害
 
-目标模组 `modmain.lua`；注册名 slingshotex，复用其资源、SG、弹药与技能树检查；双端改普通 allowriding，不替换攻击函数或强制 SetEnabled(true)。[prefabs/slingshot.lua:650](../../../raw/current/scripts/prefabs/slingshot.lua#L650)、[prefabs/slingshot.lua:674](../../../raw/current/scripts/prefabs/slingshot.lua#L674)、[prefabs/slingshot.lua:912](../../../raw/current/scripts/prefabs/slingshot.lua#L912
+目标模组 `modmain.lua`；注册名 slingshotex，复用其资源、SG、弹药与技能树检查；双端改普通 allowriding，不替换攻击函数或强制 SetEnabled(true)。[prefabs/slingshot.lua:650](../../../raw/current/scripts/prefabs/slingshot.lua#L651)、[prefabs/slingshot.lua:674](../../../raw/current/scripts/prefabs/slingshot.lua#L675)、[prefabs/slingshot.lua:912](../../../raw/current/scripts/prefabs/slingshot.lua#L912
 
 ```lua
 AddPrefabPostInit("slingshotex", function(inst)
@@ -71,3 +71,4 @@ end)
 
 相关：[[reference/components/aoetargeting]]；[[reference/components/projectile]]；[[reference/components/weapon]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

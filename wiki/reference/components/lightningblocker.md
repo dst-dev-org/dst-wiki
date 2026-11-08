@@ -1,12 +1,12 @@
 ---
 title: "lightningblocker"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "给实体登记圆形避雷范围与落雷回调，让世界天气把落雷改为无伤害的雷声并通知宿主。"
 aliases: ["避雷", "落雷阻挡", "避雷柱", "雷击回调", "lightningblocker"]
 tags: [component, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/lightningblocker.lua", "components/weather.lua", "componentutil.lua", "prefabs/lightning.lua", "prefabs/oceantree_pillar.lua", "prefabs/watertree_pillar.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -48,7 +48,7 @@ status: active
 ### 原版宿主：两棵海洋巨树柱
 
 - 目标与位置：两者都在 `entity:SetPristine()` 与服务端守卫之后装配，客户端不会执行。[小柱守卫](../../../raw/current/scripts/prefabs/oceantree_pillar.lua#L566-L570) [大柱守卫](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L445-L449)
-- 数值与单位：小柱 `TUNING.SHADE_CANOPY_RANGE_SMALL`＝22，大柱 `TUNING.SHADE_CANOPY_RANGE`＝28，均为世界单位；内部存平方值。[小柱](../../../raw/current/scripts/prefabs/oceantree_pillar.lua#L600-L602) [大柱](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L495-L497) [常量](../../../raw/current/scripts/tuning.lua#L6334-L6335)
+- 数值与单位：小柱 `TUNING.SHADE_CANOPY_RANGE_SMALL`＝22，大柱 `TUNING.SHADE_CANOPY_RANGE`＝28，均为世界单位；内部存平方值。[小柱](../../../raw/current/scripts/prefabs/oceantree_pillar.lua#L600-L602) [大柱](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L495-L497) [常量](../../../raw/current/scripts/tuning.lua#L6335-L6336)
 - 回调写法：两者都只声明 `OnLightningStrike(inst)`，忽略第二个参数；用 `_lightning_drop_task` 做 20 帧延迟掉落，并在任务未完成时直接返回，形成天然冷却。[小柱回调](../../../raw/current/scripts/prefabs/oceantree_pillar.lua#L481-L494) [大柱回调](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L307-L320)
 - 生效与撤销：无存档、无网络变量；读档由 prefab 工厂重新设置范围与回调，实体移除即摘标签失效。
 
@@ -117,3 +117,4 @@ return Prefab("my_lightning_rod", fn)
 
 相关：[[reference/components/sheltered]]；[[reference/components/rainimmunity]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

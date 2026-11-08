@@ -1,12 +1,12 @@
 ---
 title: "草／海带船侵蚀与垫料特效（boat_grass_erode 族）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "草船与海獭窝船的沉没侵蚀残影、垫料受击碎屑与水草补丁到期断裂：通用表 7 注册的生成点、触发窗口与端边界。"
 aliases: ["boat_grass_erode", "boat_grass_erode_water", "boat_otterden_erode", "boat_otterden_erode_water", "fx_grass_boat_fluff", "fx_kelp_boat_fluff", "repaired_kelp_timeout_fx", "船体侵蚀特效", "垫料碎屑", "草船沉没特效", "海獭窝船沉没", "水草补丁到期"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/boat.lua", "prefabs/cookiecutter.lua", "prefabs/boatpatch.lua", "prefabs/anchor.lua", "prefabs/alterguardian_laser.lua", "prefabs/cannonballs.lua", "prefabs/mortarball.lua", "prefabs/crabking.lua", "prefabs/gnarwail.lua", "prefabs/trident.lua", "prefabs/waterplant_seed.lua", "prefabs/waterpump.lua", "prefabs/winch.lua", "prefabs/fish_box.lua", "stategraphs/SGboat.lua", "stategraphs/SGcookiecutter.lua", "stategraphs/SGcrabking_cannontower.lua", "stategraphs/SGeyeofterror.lua", "stategraphs/SGalterguardian_phase2.lua", "components/boatleak.lua", "components/hullhealth.lua", "components/cookiecutterdrill.lua", "scheduler.lua", "tuning.lua", "debugkeys.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -55,7 +55,7 @@ status: active
 ### 水草补丁到期（repaired_kelp_timeout_fx）
 
 - **动态拼名**：boatleak 按 `SpawnPrefab(current_state.."_timeout_fx")` 生成（[boatleak.lua L38](../../../raw/current/scripts/components/boatleak.lua#L38)）；`SetRepairedTime` 由 `repaired_kelp` 分支、动态 leak 存档恢复（boatleak OnLoad）、碰撞 leak 读档（`HullHealth:LoadPostPass`）与 `LongUpdate` 重排调用（[L251-L257](../../../raw/current/scripts/components/boatleak.lua#L251-L257)、[L306-L319](../../../raw/current/scripts/components/boatleak.lua#L306-L319)、[hullhealth L272-L288](../../../raw/current/scripts/components/hullhealth.lua#L272-L288)、[LongUpdate L323-L337](../../../raw/current/scripts/components/boatleak.lua#L323-L337)），快照内实际拼出的只有本名。
-- **链条（正常定时到期）**：REPAIR_LEAK 动作用水草补丁（`boatpatch_kelp` 设 `patch_type = "kelp"`，[boatpatch.lua L109](../../../raw/current/scripts/prefabs/boatpatch.lua#L109)）→ `BoatLeak:Repair` → `SetState("repaired_kelp")` 挂到期任务（中漏 0.5 天／小漏 0.75 天，[tuning](../../../raw/current/scripts/tuning.lua#L8255-L8256)）→ 到期漏点播 `pre_timeout`，动画长 +2 帧后在漏点位置落本 fx，漏点回 `med_leak`。**LongUpdate 补算到期**是另一条直接路径：剩余时间大于零时重排任务，否则跳过 `pre_timeout` 与延迟，直接 `set_repair_timeout_state` 落 fx 并回 `med_leak`。[LongUpdate 实现](../../../raw/current/scripts/components/boatleak.lua#L323-L337) 之外的状态机与动作条件正文见 [[reference/components/boatleak]]。
+- **链条（正常定时到期）**：REPAIR_LEAK 动作用水草补丁（`boatpatch_kelp` 设 `patch_type = "kelp"`，[boatpatch.lua L109](../../../raw/current/scripts/prefabs/boatpatch.lua#L109)）→ `BoatLeak:Repair` → `SetState("repaired_kelp")` 挂到期任务（中漏 0.5 天／小漏 0.75 天，[tuning](../../../raw/current/scripts/tuning.lua#L8256-L8257)）→ 到期漏点播 `pre_timeout`，动画长 +2 帧后在漏点位置落本 fx，漏点回 `med_leak`。**LongUpdate 补算到期**是另一条直接路径：剩余时间大于零时重排任务，否则跳过 `pre_timeout` 与延迟，直接 `set_repair_timeout_state` 落 fx 并回 `med_leak`。[LongUpdate 实现](../../../raw/current/scripts/components/boatleak.lua#L323-L337) 之外的状态机与动作条件正文见 [[reference/components/boatleak]]。
 - **检索范围**：字面名全域无 SpawnPrefab（仅注册与 boatpatch.lua 依赖声明），生成完全经动态拼名；`.."_timeout_fx"` 拼接模式仅此一处。
 
 ## 关联机制导航
@@ -110,3 +110,4 @@ end)
 - 结构检查：validate_page 通过（0 issue；112 行、13955 字节，standard 档内）；validate_source_links --strict 通过（34 处引用、0 error／0 warning）；Lua 示例另存临时文件经 parser_probe --syntax-only 通过（只查语法，未执行，临时文件已删）。
 
 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

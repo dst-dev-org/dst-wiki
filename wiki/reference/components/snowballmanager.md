@@ -1,12 +1,12 @@
 ---
 title: "snowballmanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "冬宴（Winter's Feast）雪球世界宿主组件：降雪且地表积雪时按 DataGrid 分区限密生成 snowball_item，降雪停止或积雪消融时逐只移除，登记表随世界存档恢复。"
 aliases: ["snowballmanager", "雪球管理器", "冬宴雪球生成", "snowball_item 调度"]
 tags: [component, lifecycle, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/snowballmanager.lua", "prefabs/forest.lua", "tuning.lua", "prefabs/world_network.lua"]
 reliability: verified
 validation: source-reviewed
@@ -42,7 +42,7 @@ status: active
 
 - 前提与选择：与 [[reference/components/leafpilemanager]] 同构（DataGrid 分区限密、活动门控、随玩家撒点）；季节雪球场景直接参照该页与本页，世界类型须为 forest。
 - 生效与撤销：启用期间每 `SNOWBALLMANAGER_SECONDS_PER_SPAWN`(5) 秒一轮"全图 1 只＋每玩家 1 只"；停用后每 0.5 秒移除一只未积雪覆盖的登记雪球直至清空自停更新。
-- 原版依据：调谐键 ([tuning.lua:8573-8576](../../../raw/current/scripts/tuning.lua#L8573-L8576)；`OnPostInit` 首判机制见上表。
+- 原版依据：调谐键 ([tuning.lua:8573-8576](../../../raw/current/scripts/tuning.lua#L8574-L8577)；`OnPostInit` 首判机制见上表。
 
 ```lua
 -- 服务端：把一个自定义雪球实体纳入管理（限密计数＋暂停融化）
@@ -70,3 +70,4 @@ end
 
 相关链接：[[reference/components/leafpilemanager]]、[[reference/components/snowballmelting]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

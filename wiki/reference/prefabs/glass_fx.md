@@ -1,12 +1,12 @@
 ---
 title: 玻璃化、灰烬消散与睡眠炸弹爆裂（glass_fx 等三族）
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-08
 type: prefab
 summary: "三条互不相关的单注册表现 FX：glass_fx 沙晶点燃后的玻璃化转场起爆、erode_ash 化石尖刺到期消散的灰烬团、sleepbomb_burst 睡眠炸弹命中爆裂；同页仅为本批零散 FX 归档，无共享资源或机制。"
 aliases: ["glass_fx", "erode_ash", "sleepbomb_burst", "玻璃化特效", "灰烬消散", "睡眠炸弹爆裂"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/sand_spike.lua", "stategraphs/SGantlion_angry.lua", "prefabs/fossil_spike.lua", "prefabs/fossil_spike2.lua", "prefabs/moonspider_spike.lua", "prefabs/stalker.lua", "prefabs/sleepbomb.lua", "prefabs/sleepcloud.lua", "recipes.lua", "simutil.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -65,3 +65,4 @@ status: active
 - 结构检查：validate_page.py（--format --check-indexes）与 validate_source_links.py --strict 已执行，结果见交付报告。
 
 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

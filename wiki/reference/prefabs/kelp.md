@@ -1,12 +1,12 @@
 ---
 title: "海带叶三态（kelp、kelp_cooked、kelp_dried）"
 created: "2026-11-08"
-updated: "2026-11-08"
+updated: "2026-11-09"
 type: prefab
 summary: "veggies.lua 的 SEEDLESS 条目 kelp 只导出「生／熟／干」三件：生熟都带负理智、干制后转正的数值差，dryable 的 120 秒晾晒与产物字段，海带丛与冲岸株的采集，以及 KELP 材质修补、厨锅与盐槽等消费链。"
 aliases: ["kelp", "kelp_cooked", "kelp_dried", "海带叶", "熟海带叶", "干海带叶", "海带", "Kelp Fronds", "Cooked Kelp Fronds", "Dried Kelp Fronds"]
 tags: [prefab, item, food]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/veggies.lua", "prefabs/bullkelp_plant.lua", "prefabs/bullkelp_beached.lua", "prefabs/meatrack2.lua", "prefabs/oceanfishableflotsam.lua", "prefabs/otterden.lua", "prefabs/crabking_cannontower.lua", "prefabs/boat_bumpers.lua", "prefabs/boat.lua", "recipes.lua", "components/dryable.lua", "components/dryingrack.lua", "components/dryer.lua", "components/perishable.lua", "components/edible.lua", "components/stackable.lua", "components/repairable.lua", "components/driedsalticon.lua", "components/dryingracksaltcollector.lua", "components/pickable.lua", "components/eater.lua", "standardcomponents.lua", "tuning.lua", "constants.lua", "cooking.lua", "preparedfoods.lua", "containers.lua", "entityscript.lua", "prefabs/wurt.lua", "prefabs/merm.lua", "screens/redux/scrapbookdata.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 - 职责与适用：`prefabs/veggies.lua` 的 `MakeVeggie` 为 `VEGGIES.kelp` 生成 3 个可拾取食物：生 `kelp`、烤 `kelp_cooked`、干 `kelp_dried`。`kelp` 在 `SEEDLESS` 中，不注册种子与巨型变体（见 [[reference/prefabs/giant-crops#快速判断]]）；20 项 `VEGGIES` 里也只有它带 `dryable`，干制态因此唯一。[条目](../../../raw/current/scripts/prefabs/veggies.lua#L118-L121)、[SEEDLESS](../../../raw/current/scripts/prefabs/veggies.lua#L160-L168)、[导出](../../../raw/current/scripts/prefabs/veggies.lua#L1084-L1099)
 - 优先使用：改三维／保质看[三态数值](#三态数值)；晾晒与 `dryable` 字段看[干制链](#干制链)；世界来源看[获得与入栏](#获得与入栏)。共用工厂、`MakeVegStats` 位序与生熟两态通则见 [[reference/prefabs/farm-crops-staple#共用工厂与生熟两态]]，本页只写海带差异。
 - 重要副作用：生叶 −1 生命／−10 理智，熟叶只去掉生命惩罚（−5 理智），干叶 +1 生命／+10 理智；生熟都因负值带上 `badfood`，干制才转正。[生熟数值](../../../raw/current/scripts/prefabs/veggies.lua#L118-L121)、[badfood](../../../raw/current/scripts/components/edible.lua#L1-L7)
-- 修改边界：本页覆盖三件物品的构造、数值、获得与消费；海带丛 `bullkelp_plant` 本体（Wiki 待建）、海带根见 [[reference/prefabs/bullkelp_root]]、海带补丁见 [[reference/prefabs/boat-patches]]，只作关联入口。
+- 修改边界：本页覆盖三件物品的构造、数值、获得与消费；海带丛 `bullkelp_plant` 本体见 [[reference/prefabs/bullkelp-plant]]、海带根见 [[reference/prefabs/bullkelp_root]]、海带补丁见 [[reference/prefabs/boat-patches]]，只作关联入口。
 
 ## 注册与构造
 
@@ -52,15 +52,15 @@ status: active
 
 堆叠三态都在构造里显式赋值 `TUNING.STACK_SIZE_SMALLITEM`＝40，`stackable` 组件默认的 `STACK_SIZE_MEDITEM`（20）不生效。[默认](../../../raw/current/scripts/components/stackable.lua#L23-L34)、[档位](../../../raw/current/scripts/tuning.lua#L83-L83)、[生](../../../raw/current/scripts/prefabs/veggies.lua#L613-L619)、[熟](../../../raw/current/scripts/prefabs/veggies.lua#L752-L753)、[干](../../../raw/current/scripts/prefabs/veggies.lua#L817-L818)
 
-图鉴数据与工厂同值（9.375／−1、0、+1；−10、−5、+10；4800、4800、9600），可作交叉核对。[图鉴](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L737-L739)
+图鉴数据与工厂同值（9.375／−1、0、+1；−10、−5、+10；4800、4800、9600），可作交叉核对。[图鉴](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L741-L743)
 
 ### 获得与入栏
 
 只有生 `kelp` 有世界来源；`kelp_cooked` 与 `kelp_dried` 分别由 `cookable` 与晾晒架按产物名动态生成（全 scripts 检索 `SpawnPrefab("kelp_cooked")`／`("kelp_dried")` 均零命中）。
 
 - **海带丛（主来源）**：海面 `bullkelp_plant` 的 `pickable:SetUp("kelp", TUNING.BULLKELP_REGROW_TIME)`，每次 1 件、不毁株；基础再生 3×480＝1440 秒，春季再乘 `SPRING_GROWTH_MODIFIER`＝0.75。植株官方名是「公牛海带」（`bullkelp_plant`）。[采集](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L104-L109)、[再生常量](../../../raw/current/scripts/tuning.lua#L3798-L3798)、[SetUp](../../../raw/current/scripts/components/pickable.lua#L222-L228)
-- **冲岸**：植物漂上陆地／船时先试 `pickable:Pick(TheWorld)`——只有通过采摘门禁（`canbepicked`）才掉 1 kelp——随后无条件在原位生成 `bullkelp_root`。[CheckBeached](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L42-L54)
-- **拾取冲岸株**：`bullkelp_beachedroot` 被拾取／入包时替换为 kelp＋`bullkelp_root` 各 1，并继承湿度。[替换](../../../raw/current/scripts/prefabs/bullkelp_beached.lua#L15-L35)、[注册名](../../../raw/current/scripts/prefabs/bullkelp_beached.lua#L88-L88)
+- **冲岸**：植物漂上陆地／船时先试 `pickable:Pick(TheWorld)`——只有 `canbepicked`、`caninteractwith`、未 `stuck` 三门禁同时成立才掉 1 kelp——随后无条件在原位生成 `bullkelp_root`。[CheckBeached](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L42-L54)
+- **拾取冲岸株**：`bullkelp_beachedroot` 被拾取／入包时，拿到接收容器才替换为 kelp＋`bullkelp_root` 各 1（继承湿度）；没有容器则原件已移除、两件都不生成。[替换](../../../raw/current/scripts/prefabs/bullkelp_beached.lua#L15-L35)、[注册名](../../../raw/current/scripts/prefabs/bullkelp_beached.lua#L88-L88)
 - **掉落池**：海洋漂流物 `oceanfishableflotsam` 权重 35；水獭掠夺者窝点 `otterden` 池 1.00／1.00／0.75；帝王蟹炮塔 `ck_cannontower` 池 0.75；海带防撞条被锤下时按剩余生命掉 1–2 个 kelp（`loot="kelp"`、`maxloots=2`）。[漂流物](../../../raw/current/scripts/prefabs/oceanfishableflotsam.lua#L18-L21)、[海獭窝](../../../raw/current/scripts/prefabs/otterden.lua#L32-L41)、[炮塔](../../../raw/current/scripts/prefabs/crabking_cannontower.lua#L29-L38)、[回收规则](../../../raw/current/scripts/prefabs/boat_bumpers.lua#L181-L187)、[kelp 条目](../../../raw/current/scripts/prefabs/boat_bumpers.lua#L342-L353)
 
 入栏走 `pickable:SpawnProductLoot` 的单产物分支：继承世界湿度后交给 `inventory:GiveItem`，无库存时直接落在植株处；`Pick` 随后置 `canbepicked=false` 并起再生任务，海带丛未设 `remove_when_picked`，所以是原地再生而非换株。[单产物](../../../raw/current/scripts/components/pickable.lua#L493-L513)、[再生](../../../raw/current/scripts/components/pickable.lua#L559-L573)
@@ -98,8 +98,8 @@ status: active
 | 组件：burnable／propagator／hauntable／bait／tradable | 三态同套标准工厂：`MakeSmallBurnable`＋`MakeSmallPropagator`、`MakeHauntableLaunchAndPerish`、`bait`、`tradable` | 主模拟；可燃可蔓延、作祟弹飞 | [[reference/components/burnable#关键接口]]、[[reference/components/hauntable#关键接口]]；[生](../../../raw/current/scripts/prefabs/veggies.lua#L653-L660)、[干](../../../raw/current/scripts/prefabs/veggies.lua#L823-L830) |
 | API／数据：厨锅食材 | `AddIngredientValues({"kelp"},{veggie=.5},true,true)` 同时登记 `kelp_cooked`（`precook=1`）与 `kelp_dried`（`dried=1`）；`unagi`／`californiaroll` 的 test 都把三名当同类原料 | 食谱判定时读 | [登记](../../../raw/current/scripts/cooking.lua#L46-L72)、[海带行](../../../raw/current/scripts/cooking.lua#L125-L125)、[用法一](../../../raw/current/scripts/preparedfoods.lua#L339-L341)、[用法二](../../../raw/current/scripts/preparedfoods.lua#L631-L644) |
 | API／数据：鱼人供奉锅 | 容器过滤只收 `item.prefab == "kelp"`（熟／干都进不去） | 服务端容器 | [过滤](../../../raw/current/scripts/containers.lua#L865-L867) |
-| 关联 Prefab：`bullkelp_plant`（Wiki 待建） | `pickable:SetUp("kelp", …)` 的产品与再生宿主；被毁／冲岸时生成茎，满足各路径的采摘条件才额外掉叶 | 海面；基础再生 3 天 | [采集](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L104-L109)、[冲岸](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L42-L54)、[注册](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L150-L151) |
-| 关联 Prefab：`bullkelp_beachedroot` | 拾取／入包时替换为 kelp＋`bullkelp_root` 各 1，继承湿度 | 冲岸 | [替换](../../../raw/current/scripts/prefabs/bullkelp_beached.lua#L15-L35)、[注册名](../../../raw/current/scripts/prefabs/bullkelp_beached.lua#L88-L88) |
+| 关联 Prefab：`bullkelp_plant`（见 [[reference/prefabs/bullkelp-plant]]） | `pickable:SetUp("kelp", …)` 的产品与再生宿主；被毁／冲岸时生成茎，满足各路径的采摘条件才额外掉叶 | 海面；基础再生 3 天 | [采集](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L104-L109)、[冲岸](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L42-L54)、[注册](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L150-L151) |
+| 关联 Prefab：`bullkelp_beachedroot` | 拾取／入包时替换为 kelp＋`bullkelp_root` 各 1（有接收容器才给），继承湿度 | 冲岸 | [替换](../../../raw/current/scripts/prefabs/bullkelp_beached.lua#L15-L35)、[注册名](../../../raw/current/scripts/prefabs/bullkelp_beached.lua#L88-L88) |
 | 关联 Prefab：`meatrack`／`meatrack_hermit_multi` | 干制宿主（官方名「晾肉架」／「晾肉巨架」）：container＋`dryingrack`，三格／九格；后者带盐槽 | 结构；细节见 [[reference/components/dryingrack]] | [装配](../../../raw/current/scripts/prefabs/meatrack2.lua#L322-L334)、[注册](../../../raw/current/scripts/prefabs/meatrack2.lua#L584-L592) |
 | 关联 Prefab：`boatpatch_kelp` | 配方原料 kelp×3；自身是 KELP 材质的临时补漏 | 玩家合成 | [[reference/prefabs/boat-patches]]；[配方](../../../raw/current/scripts/recipes.lua#L612-L612) |
 | 资源：anim | `anim/kelp.zip`（`idle`／`cooked`）、`anim/meat_rack_food_tot.zip`（`dried_kelp`） | 静态声明 | [生熟资源](../../../raw/current/scripts/prefabs/veggies.lua#L392-L411)、[干态资源](../../../raw/current/scripts/prefabs/veggies.lua#L433-L437) |
@@ -149,7 +149,7 @@ end)
 - **误区：干海带叶能再上架**：`fn_dried` 不挂 `dryable`，成品没有标签，容器过滤直接拒绝；熟叶同理。[过滤](../../../raw/current/scripts/containers.lua#L234-L244)
 - **误区：晾晒架就是 `components/dryer.lua`**：当前 `meatrack` 家族装的是 container＋`dryingrack`；`dryer` 是旧单件路径，本快照 scripts 全量检索 `AddComponent("dryer")` 零命中，`meatrack2` 只在读档时接管旧 `data.dryer` 字段，燃烧时还会移除该旧组件。[旧档](../../../raw/current/scripts/prefabs/meatrack2.lua#L176-L205)、[移除](../../../raw/current/scripts/standardcomponents.lua#L85-L87)、[旧组件](../../../raw/current/scripts/components/dryer.lua#L176-L218)、[[reference/components/dryer#关键接口]]
 - **边界：雨天不计时**：无雨免疫时 `dryingrack` 会暂停，120 秒只是可推进的游戏秒数；暂停期间不再给零腐败倍率，酸雨还会加速腐坏；同一件离架再入架按剩余秒数续计（仅当原料仍保有 `dryingrack_drytime`）。[暂停](../../../raw/current/scripts/components/dryingrack.lua#L78-L84)、[续计](../../../raw/current/scripts/components/dryingrack.lua#L236-L261)
-- **边界：沃特／鱼人吃生熟海带不扣负收益**：`kelp`／`kelp_cooked` 的 prefab 偏好让 `Eater:DoFoodEffects` 返回 false，负生命／理智整段跳过；沃特另有 1.33 倍饥饿，`badfood` 标签仍留在物品上。偏好机制见 [[reference/components/foodaffinity#原版数值为-1-的偏好有什么用途]]，[数值](../../../raw/current/scripts/prefabs/wurt.lua#L647-L651)、[鱼人](../../../raw/current/scripts/prefabs/merm.lua#L1104-L1110)、[结算](../../../raw/current/scripts/components/eater.lua#L166-L170)
+- **边界：沃特／鱼人吃生熟海带不扣负收益**：`kelp`／`kelp_cooked` 的 prefab 偏好让 `Eater:DoFoodEffects` 返回 false，负生命／理智整段跳过；沃特另有 1.33 倍饥饿，`badfood` 标签仍留在物品上。偏好机制见 [[reference/components/foodaffinity#原版数值为-1-的偏好有什么用途]]，[数值](../../../raw/current/scripts/prefabs/wurt.lua#L647-L651)、[鱼人](../../../raw/current/scripts/prefabs/merm.lua#L1111-L1117)、[结算](../../../raw/current/scripts/components/eater.lua#L166-L170)
 - **未核验**：quagmire 模式对所有蔬菜调 `event_server_data("quagmire", "prefabs/veggies").master_postinit(inst)`，该节日数据不在本快照 scripts 根内，海带是否有额外行为未核验。[钩子](../../../raw/current/scripts/prefabs/veggies.lua#L683-L685)
 
 ## 验证记录
@@ -159,3 +159,4 @@ end)
 - 未覆盖：海带丛被炮弹／三叉戟／投石机击毁的逐个伤害源只引用 [[reference/prefabs/bullkelp_root#获取途径]]，未逐文件复核；其它干制物的对照未展开；quagmire 节日数据不在快照内。
 - 游戏运行：未运行。三态数值、120 秒干制与雨天暂停均为源码推导，非实测。
 - 结构检查：`validate_page.py` 通过（standard 档内）；`validate_source_links.py --strict` 0 错 0 警；页内 Lua 示例经 `parser_probe.exe --syntax-only` 通过。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

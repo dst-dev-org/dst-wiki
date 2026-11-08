@@ -1,12 +1,12 @@
 ---
 title: "miasmamanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "洞穴世界按米玛斯瓦片网格管理雾气（miasma）的生成、扩散、增强与消退排程，并提供查询、显式创建与消退标记接口。"
 aliases: ["miasmamanager", "世界雾气", "米玛斯管理器", "阴影裂隙雾气", "CreateMiasmaAtPoint"]
 tags: [component, lifecycle, data]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/miasmamanager.lua", "prefabs/cave.lua", "prefabs/cave_vents.lua", "prefabs/shadowrift_portal.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -26,10 +26,10 @@ status: active
 
 | 接口／配置 | 条件、作用与证据 |
 |---|---|
-| `GetMiasmaTileCoords(tx,ty)` | 把世界瓦片坐标向下取整对齐到雾气网格（间隔 `MIASMA_SPACING=1` 瓦），制造瓦片间空隙。[换算](../../../raw/current/scripts/components/miasmamanager.lua#L151-L155) [常量](../../../raw/current/scripts/tuning.lua#L7731-L7732) |
+| `GetMiasmaTileCoords(tx,ty)` | 把世界瓦片坐标向下取整对齐到雾气网格（间隔 `MIASMA_SPACING=1` 瓦），制造瓦片间空隙。[换算](../../../raw/current/scripts/components/miasmamanager.lua#L151-L155) [常量](../../../raw/current/scripts/tuning.lua#L7732-L7733) |
 | `GetMiasmaAtPoint(x,y,z)`／`GetMiasmaAtTile(tx,ty)` | 返回该网格的雾气数据表（`strength`，可能带 `diminishing`）或 nil；云实体与玩家侧检查都用它做权威查询。[查询](../../../raw/current/scripts/components/miasmamanager.lua#L156-L163) [云消费者](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L427-L429) |
 | `CreateMiasmaAtPoint(x,y,z)`／`CreateMiasmaAtTile(tx,ty)` | 校验瓦片存在、是陆地且有 tileinfo，网格已有数据则直接返回；成功则写入 strength=1、生成 `miasma_cloud` 并 `SetMiasmaActive(true)`。不校验裂隙／气孔距离（那是 Roll 的 Create 动作做的事）。[创建](../../../raw/current/scripts/components/miasmamanager.lua#L196-L224) [资格校验另在](../../../raw/current/scripts/components/miasmamanager.lua#L253-L271) |
-| `IsValidForMiasmaCreationAt(mtx,mty)` | 返回该瓦片中心是否在阴影裂隙的 `[MIASMA_MIN_DISTSQ_FROM_RIFT, MIASMA_MAX_DISTSQ_FROM_RIFT]` 距离带内（1～12 瓦），或 3 瓦内有 `miasma_venter`。[校验](../../../raw/current/scripts/components/miasmamanager.lua#L226-L249) [常量](../../../raw/current/scripts/tuning.lua#L7738-L7740) |
+| `IsValidForMiasmaCreationAt(mtx,mty)` | 返回该瓦片中心是否在阴影裂隙的 `[MIASMA_MIN_DISTSQ_FROM_RIFT, MIASMA_MAX_DISTSQ_FROM_RIFT]` 距离带内（1～12 瓦），或 3 瓦内有 `miasma_venter`。[校验](../../../raw/current/scripts/components/miasmamanager.lua#L226-L249) [常量](../../../raw/current/scripts/tuning.lua#L7739-L7741) |
 | `SetMiasmaActive(active)` | 切换组件更新并在状态变化时向世界推 `miasma_setactive`；`IsMiasmaActive()` 读同源布尔。OnUpdate 里无云时自动置 false。[切换](../../../raw/current/scripts/components/miasmamanager.lua#L169-L179) [自动停止](../../../raw/current/scripts/components/miasmamanager.lua#L349-L354) |
 | `SetMiasmaDiminishingAtPoint/AtTile` | 标记某雾气格为消退中；消退中的格子会在 Spread 轮里被额外削减，进入 `_diminishing_datas` 每秒结算。[标记](../../../raw/current/scripts/components/miasmamanager.lua#L93-L107) [结算](../../../raw/current/scripts/components/miasmamanager.lua#L333-L337) |
 | `RollForMiasmaActionAt(mtx,mty,allowspread)` | 单格动作判定：世界无活跃阴影裂隙时只对已有云 Diminish；否则按概率 Create（`MIASMA_ODDS_CREATE=0.8`）、扩散（`MIASMA_ODDS_SPREAD=0.5`，向四邻递归 Roll）或 Enhance（strength 上限 `MIASMA_MAXSTRENGTH=2`）。[判定](../../../raw/current/scripts/components/miasmamanager.lua#L291-L329) |
@@ -73,7 +73,7 @@ end)
 - **把 `CreateMiasmaAtTile` 当完整资格检查：** 它只查陆地与占用，不查裂隙距离带与 venter；从随机点位造雾想走"合法来源"需先 `IsValidForMiasmaCreationAt`（其内部用瓦片中心点距离）。[两种校验](../../../raw/current/scripts/components/miasmamanager.lua#L226-L249)
 - **移除云实体不影响网格数据：** `_Diminish` 是唯一同时清数据并移除实体的路径；外部 `ent:Remove()` 云后，网格仍在，轮次还会 Enhance 该格（云实体会被重新生成吗——不会，Enhance 只加强度；但数据残留会阻止该格再 Create）。[消退路径](../../../raw/current/scripts/components/miasmamanager.lua#L75-L91)
 - **组件无 OnRemoveFromEntity：** 世界监听（worldmapsetsize）与更新状态不随移除组件清理；只有 `SetMiasmaActive(false)` 会停更新。[监听](../../../raw/current/scripts/components/miasmamanager.lua#L44
-- **雾气数值只有 1～2 档：** 当前 `MIASMA_MAXSTRENGTH=2`，Enhance 到顶后 Roll 只返回 "Enhance" 而无实际变化；不要按连续强度场建模。[增强](../../../raw/current/scripts/components/miasmamanager.lua#L66-L71) [常量](../../../raw/current/scripts/tuning.lua#L7731-L7740)
+- **雾气数值只有 1～2 档：** 当前 `MIASMA_MAXSTRENGTH=2`，Enhance 到顶后 Roll 只返回 "Enhance" 而无实际变化；不要按连续强度场建模。[增强](../../../raw/current/scripts/components/miasmamanager.lua#L66-L71) [常量](../../../raw/current/scripts/tuning.lua#L7732-L7741)
 
 ## 验证记录
 
@@ -88,3 +88,4 @@ end)
 
 - [[reference/components/riftspawner]]：阴影裂隙生命周期，决定雾气创建与衰减分支。
 - [[reference/components/miasmawatcher]]：玩家侧雾气计数与受影响逻辑。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

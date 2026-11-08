@@ -1,13 +1,13 @@
 ---
 title: "枕头大战坑与兔人火炬（yotr_fightring 族）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "兔人年枕头大战的四种注册＋放置预览：坑本体是擂台控制器，套装部署成坑，钟负责开局／锤毁回收，八支兔人火炬是事件驱动的非持久 FX 壳。"
 aliases: ["yotr_fightring", "yotr_fightring_kit", "yotr_fightring_torch", "yotr_fightring_bell", "yotr_fightring_kit_placer", "枕头大战坑", "枕头大战钟", "枕头大战坑套装", "兔人火炬"]
 tags: [prefab, fx, building]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/yotr_fightring.lua", "prefabs/torchfire_yotrpillowfight.lua", "prefabs/torchfire.lua", "prefabs/cozy_bunnyman.lua", "recipes.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -131,3 +131,4 @@ torch:PushEvent("turnon")   -- 挂 torchfire_yotrpillowfight
 
 - [[reference/prefabs/collapse_big|坍塌特效]]（钟锤毁时的 `collapse_big`）
 - 返回 [[reference/prefabs/fx-event-index|节庆、小游戏与事件模式]]（枕头大战坑）
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

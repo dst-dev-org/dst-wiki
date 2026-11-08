@@ -1,12 +1,12 @@
 ---
 title: "incrementalproducer"
 created: "2026-10-24"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "按当前数量和时间条件建立待生产预算，再由宿主行为逐次消费；参考蜘蛛女王的产仔调用链。"
 aliases: ["incrementalproducer", "分批产仔预算", "蜘蛛女王产仔", "CanProduce有副作用", "toproduce"]
 tags: [component, creature, callback, ai, state-machine, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/incrementalproducer.lua", "prefabs/spiderqueen.lua", "brains/spiderqueenbrain.lua", "stategraphs/SGspiderqueen.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -70,3 +70,4 @@ CanProduce 每次先重算动态配置和当前数量。若时间已过且数量
 - 结构检查：本页格式、来源、本地链接及源码引用严格检查通过；无完整 Lua 示例，导航由本批统一登记后检查。
 - 游戏运行：未运行；多人批次数量、跨存读、生成失败、动画中断与动态换组件未实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

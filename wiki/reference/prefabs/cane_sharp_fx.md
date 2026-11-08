@@ -1,13 +1,13 @@
 ---
 title: "腐败手杖紫烟特效（cane_sharp_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "腐败手杖的紫色烟雾跟随效果：烟雾包络、固定基准发射、FollowEmitter 与实体清理边界。"
 aliases: ["cane_sharp_fx", "腐败手杖紫色烟雾", "手杖紫烟特效", "手杖烟雾特效", "cane_sharp", "腐败手杖紫烟特效"]
 tags: [prefab, fx, lifecycle, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/cane_sharp_fx.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "emitters.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -62,3 +62,4 @@ GLOW_MAX_LIFETIME=2.1，单粒子寿命为 2.1×(0.9+random×0.1)，约 1.89～2
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

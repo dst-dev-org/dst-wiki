@@ -1,12 +1,12 @@
 ---
 title: "repairable"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "被修目标的材料匹配、生命／工作量／保鲜／次数修复顺序，以及动作标签和成功消费边界。"
 aliases: ["材料修复装备", "修复目标", "石头修斧头", "建筑修复", "repairable"]
 tags: [component, item, building, equipment, callback, actions]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/repairable.lua", "components/repairer.lua", "components/health.lua", "components/finiteuses.lua", "components/workable.lua", "components/perishable.lua", "entityscript.lua", "actions.lua", "componentactions.lua", "constants.lua", "prefabs/axe.lua", "prefabs/inv_rocks.lua", "prefabs/walls.lua", "prefabs/amulet.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -103,3 +103,4 @@ end)
 
 相关：[[reference/components/repairer]]；[[reference/components/finiteuses]]；[[reference/components/workable]]；[[reference/components/perishable]]；[[reference/components/trader]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 0 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09）。

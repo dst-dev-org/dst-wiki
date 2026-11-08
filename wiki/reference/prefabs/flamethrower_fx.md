@@ -1,13 +1,13 @@
 ---
 title: "薇洛暗焰喷射布焰代理（flamethrower_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "以太余烬施放 lunar_fire 技能时的引导布焰代理：无视觉的 CLASSIFIED 实体携带 weapon／planardamage／shadow_aligned 加成，四条周期流把会结算伤害的地面火焰（warg_mutated_breath_fx）铺成扇面。"
 aliases: ["flamethrower_fx", "暗焰喷射", "薇洛喷火", "lunar_fire", "月焰喷射", "willow lunar fire"]
 tags: [prefab, fx, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/flamethrower_fx.lua", "prefabs/willow_ember.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -35,11 +35,11 @@ status: active
 
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
-| 生成者：willow_ember TryLunarFire | 施放时生成本代理并 `SetParent(玩家)`＋`SetFlamethrowerAttacker(玩家)`；5 秒 `EndLunarFire` → channelcaster:StopChanneling；监听玩家 `stopchannelcast` 立即 KillFX；冷却 `lunar_fire` 13 秒 | 前置：背包有 `lunarfire` 栈、未在引导中、未骑乘（CANT_SPELL_MOUNTED） | [施法函数](../../../raw/current/scripts/prefabs/willow_ember.lua#L431-L441)、[TryLunarFire](../../../raw/current/scripts/prefabs/willow_ember.lua#L327-L358)、[冷却](../../../raw/current/scripts/tuning.lua#L8131) |
+| 生成者：willow_ember TryLunarFire | 施放时生成本代理并 `SetParent(玩家)`＋`SetFlamethrowerAttacker(玩家)`；5 秒 `EndLunarFire` → channelcaster:StopChanneling；监听玩家 `stopchannelcast` 立即 KillFX；冷却 `lunar_fire` 13 秒 | 前置：背包有 `lunarfire` 栈、未在引导中、未骑乘（CANT_SPELL_MOUNTED） | [施法函数](../../../raw/current/scripts/prefabs/willow_ember.lua#L431-L441)、[TryLunarFire](../../../raw/current/scripts/prefabs/willow_ember.lua#L327-L358)、[冷却](../../../raw/current/scripts/tuning.lua#L8132) |
 | 布焰参数 | scale 1.4+rand×0.25（dist<6 再 ×1.2，dist>7 按 (dist-7)/6 放大）；fadeoption dist<6 `nofade`、≤7 `latefade`、否则 nil；落点＝母实体朝向 × dist＋随机散布 dist/20 | 四档距离共用一个 `targets` 表，同轮攻击共享多段判定 | [SpawnBreathFX](../../../raw/current/scripts/prefabs/flamethrower_fx.lua#L23-L42)、[targets 共享](../../../raw/current/scripts/prefabs/flamethrower_fx.lua#L101-L109) |
 | 音效 | 首次布焰播 `fireAddFuel`＋`rifts3/mutated_varg/blast_lp`（"loop" 通道循环）；KillFX 播 `blast_pst`，6 帧后 KillSound | 声音在代理自身（非专服才可听） | [起音](../../../raw/current/scripts/prefabs/flamethrower_fx.lua#L9-L15)、[收音](../../../raw/current/scripts/prefabs/flamethrower_fx.lua#L77-L78) |
 | 对象池 | flame_pool 供 SpawnBreathFX 复用焰实体；ember_pool 供焰实体的 SpawnEmbers 复用灼烬；KillFX／OnRemoveEntity 清池 | 仅主模拟 | [取池](../../../raw/current/scripts/prefabs/flamethrower_fx.lua#L17-L21)、[清池](../../../raw/current/scripts/prefabs/flamethrower_fx.lua#L49-L62) |
-| 数值：tuning | 伤害 20／位面 30／shadow_aligned 加成 1.1／引导 5 秒／冷却 13 秒 | 单位为每击伤害／秒 | [数值](../../../raw/current/scripts/tuning.lua#L8106-L8114) |
+| 数值：tuning | 伤害 20／位面 30／shadow_aligned 加成 1.1／引导 5 秒／冷却 13 秒 | 单位为每击伤害／秒 | [数值](../../../raw/current/scripts/tuning.lua#L8107-L8115) |
 
 ## 典型接入
 
@@ -73,3 +73,4 @@ fx:KillFX()                        -- 不要直接 fx:Remove()
 - 结构检查：validate_page、validate_source_links --strict、label-check 通过（结果见本批交付报告）；本批依据见[[updates/build-26335394/index#wiki-沿用记录]]（批次-2）。
 
 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

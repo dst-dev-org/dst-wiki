@@ -1,12 +1,12 @@
 ---
 title: "附身座狼喷焰与灼烬（warg_mutated_breath_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "会结算伤害的地面火焰：主模拟 combat／planardamage 逐帧 AOE、超冷降温，灼烬可结冰打滑；同文件另有 warg_mutated_ember_fx，薇洛暗焰喷射与突变秃鹫火墙复用同一工厂。"
 aliases: ["warg_mutated_breath_fx", "warg_mutated_ember_fx", "附身座狼喷焰", "座狼喷火特效", "突变座狼火墙", "冰烬", "warg flame fx"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/warg_mutated_fx.lua", "stategraphs/SGwarg.lua", "stategraphs/SGbuzzard.lua", "prefabs/flamethrower_fx.lua", "prefabs/willow_ember.lua", "prefabs/warg.lua", "prefabs/buzzard.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -55,7 +55,7 @@ status: active
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
 | 对象池 | animqueueover 时回 `owner.flame_pool`／淡出后回 `ember_pool`，无池则 Remove；宿主在变更体初始化池 | 座狼 [warg.lua](../../../raw/current/scripts/prefabs/warg.lua#L1003-L1005)、秃鹫 [buzzard.lua](../../../raw/current/scripts/prefabs/buzzard.lua#L490-L492)、代理 [flamethrower_fx.lua](../../../raw/current/scripts/prefabs/flamethrower_fx.lua#L97-L98) | 仅主模拟；[回池](../../../raw/current/scripts/prefabs/warg_mutated_fx.lua#L147-L159) |
-| 数值：tuning | 焰伤害 20／位面 30（座狼默认）、秃鹫 15／10、超冷 -2、高焰寿命 2.5+rand×0.5、iced 烬 11+rand×1、打滑率 20、薇洛武器 20／位面 30 | [座狼](../../../raw/current/scripts/tuning.lua#L7944-L7947)、[秃鹫](../../../raw/current/scripts/tuning.lua#L9062-L9063)、[寿命与烬](../../../raw/current/scripts/tuning.lua#L9077-L9082)、[薇洛](../../../raw/current/scripts/tuning.lua#L8113-L8114) | 单位为每击伤害／温度值／秒 |
+| 数值：tuning | 焰伤害 20／位面 30（座狼默认）、秃鹫 15／10、超冷 -2、高焰寿命 2.5+rand×0.5、iced 烬 11+rand×1、打滑率 20、薇洛武器 20／位面 30 | [座狼](../../../raw/current/scripts/tuning.lua#L7945-L7948)、[秃鹫](../../../raw/current/scripts/tuning.lua#L9063-L9064)、[寿命与烬](../../../raw/current/scripts/tuning.lua#L9078-L9083)、[薇洛](../../../raw/current/scripts/tuning.lua#L8114-L8115) | 单位为每击伤害／温度值／秒 |
 
 ## 典型接入
 
@@ -95,3 +95,4 @@ fx:RestartFX(1.0, "nofade", {}, false, false)  -- 缩放/淡出/共享targets/�
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 4 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

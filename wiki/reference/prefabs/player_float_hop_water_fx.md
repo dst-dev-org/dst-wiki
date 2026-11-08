@@ -1,13 +1,13 @@
 ---
 title: "玩家出水水环（player_float_hop_water_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "玩家从水里跳上船与从温泉池跳出时的贴身水环动画：SG 状态生成联网 FX 挂在玩家身上、按玩家动画对帧，数帧后解绑留在原地，播完自删。"
 aliases: ["player_float_hop_water_fx", "player_hotspring_water_fx", "player_float_fx", "出水水环", "跳船水花", "温泉出水"]
 tags: [prefab, fx, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/player_float_fx.lua", "stategraphs/SGwilson.lua", "stategraphs/SGhermitcrab.lua", "stategraphs/SGwx78_possessedbody.lua"]
 reliability: verified
 validation: source-reviewed
@@ -78,3 +78,4 @@ fx.Transform:SetRotation(inst.Transform:GetRotation())
 
 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

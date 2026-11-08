@@ -1,12 +1,12 @@
 ---
 title: "旺达怀表攻击与治疗特效（wanda_attack_pocketwatch_old_fx）"
 created: "2026-11-01"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "fx.lua 通用表 7 注册承载旺达怀表族三段表现：攻击命中爆发按年龄档与暗影武器种类选名、不老表治疗环绕带骑乘变体、第二次机会表复活倒流地面圈；纯表现无结算。"
 aliases: ["wanda_attack_pocketwatch_old_fx", "wanda_attack_pocketwatch_normal_fx", "wanda_attack_shadowweapon_old_fx", "wanda_attack_shadowweapon_normal_fx", "pocketwatch_heal_fx", "pocketwatch_heal_fx_mount", "pocketwatch_ground_fx", "旺达攻击特效", "警钟攻击特效", "怀表治疗特效", "暗影武器攻击特效", "复活倒流地面特效"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "prefabs/wanda.lua", "prefabs/pocketwatch.lua", "prefabs/player_common_extensions.lua", "prefabs/pocketwatch_weapon.lua", "prefabs/pocketwatch_common.lua", "prefabs/staffcastfx.lua", "components/combat.lua", "components/pocketwatch.lua", "actions.lua", "stategraphs/SGwilson.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -108,3 +108,4 @@ end
 - 结构检查：validate_page 与 validate_source_links --strict 执行结果见本批交付报告。
 
 返回 [[reference/prefabs/fx-transition-index|变身、召唤、传送与退场]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

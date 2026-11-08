@@ -1,12 +1,12 @@
 ---
 title: "蟹王伴随表现特效族（crab_king_bubble1）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "fx.lua 通用表 7 注册：蟹王气泡三变体（施法喷泉与炮击海堆冒泡）、水面喷泉（阶段收尾与四种投射物落水共用）、镶嵌宝石闪光、施法结束地面圆环与已停用冰晶；喷泉的伤害与击飞归生成者结算，本族纯表现。"
 aliases: ["crab_king_bubble1", "crab_king_bubble2", "crab_king_bubble3", "crab_king_waterspout", "crab_king_shine", "crab_king_icefx", "crabking_ring_fx", "蟹王气泡", "蟹王水柱", "水面喷泉特效", "镶嵌宝石闪光", "施法圆环"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "prefabs/crabking.lua", "stategraphs/SGcrabking.lua", "prefabs/cannonballs.lua", "prefabs/mortarball.lua", "prefabs/trident.lua", "prefabs/winona_catapult_projectile.lua", "prefabs/deer_fx.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -85,3 +85,4 @@ end
 相关：[[reference/mechanisms/generic-fx-factory|通用 FX 工厂]]、[[reference/prefabs/fx-table-index|通用表 FX 索引]]、[[reference/prefabs/cannonball_used|船炮与迫击炮弹命中表现]]、[[reference/prefabs/deer_ice_circle|无眼鹿冰火法阵]]。
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

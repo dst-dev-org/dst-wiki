@@ -1,12 +1,12 @@
 ---
 title: "沃拓克斯传送、灵魂与分身特效（wortox_soul_spawn_fx 等）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "沃拓克斯复活传送上下动画、灵魂生成、分身爆裂／消退与抵抗表现的七种通用表注册。"
 aliases: ["wortox_teleport_reviver_top", "wortox_teleport_reviver_bottom", "wortox_soul_spawn_fx", "wortox_decoy_explode_fx", "wortox_decoy_fizzle_fx", "wortox_decoy_expire_fx", "wortox_resist_fx", "沃拓克斯灵魂特效", "灵魂分身特效", "沃拓克斯抵抗特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwortox_decoy.lua", "prefabs/wortox_reviver.lua", "prefabs/wortox.lua", "prefabs/panflute.lua", "prefabs/skilltree_wortox.lua", "prefabs/hats.lua", "prefabs/armor_lunarplant.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -55,3 +55,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

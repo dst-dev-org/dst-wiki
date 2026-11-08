@@ -1,12 +1,12 @@
 ---
 title: "ambientsound"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界环境音混音器：按玩家周围 11x11 地块统计混合至多 3 路环境声，随季节/降雨/昼夜调参，并叠加海浪与理智/启发循环声。"
 aliases: ["环境音", "环境声混合", "ambientsound 组件"]
 tags: [component, ui]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: standard
 sources: ["components/ambientsound.lua", "prefabs/forest.lua", "prefabs/cave.lua", "worldsettings_overrides.lua"]
 reliability: verified
@@ -78,3 +78,4 @@ end)
 
 - [[reference/components/ambientlighting]]
 - [[reference/components/dsp]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

@@ -1,12 +1,12 @@
 ---
 title: walkableplatform
 created: 2026-10-21
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "把实体注册为可行走平台：按半径维护成员与玩家集合、同步满载和摄像机标记、用 UID 保存，并在移除时推送沉没与清理。"
 aliases: ["可行走平台", "平台组件", "船上平台", "平台成员", "IsFull", "平台摄像机", "walkableplatform", "walkableplatformmanager"]
 tags: [component, server-client, network-sync]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/walkableplatform.lua", "components/walkableplatformmanager.lua", "components/walkableplatformplayer.lua", "entityscript.lua", "prefabs/boat.lua", "prefabs/yotd_boats.lua", "prefabs/abysspillar.lua", "components/locomotor.lua", "components/map.lua", "components/boatphysics.lua", "components/boatdrifter.lua", "mainfunctions.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -124,3 +124,4 @@ return Prefab("my_platform", fn, assets)
 ## 相关链接
 
 - [[reference/components/walkableplatformmanager]]：平台 UID 注册表与成员更新驱动。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

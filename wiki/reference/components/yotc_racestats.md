@@ -1,13 +1,13 @@
 ---
 title: "yotc_racestats"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "卡拉特鼠四维赛跑属性：速度／方向／反应／耐力的加点、退化与基线快照，驱动鼠跑速、耐力上限与健忘行为。"
 aliases: ["卡拉特属性", "赛跑鼠属性", "yotc_racestats"]
 tags: [component]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/yotc_racestats.lua", "prefabs/carrat.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -70,3 +70,4 @@ end)
 
 相关：[[reference/components/yotc_racestart]]（赛跑起点）、[[reference/components/yotc_raceprizemanager]]（赛程与奖品）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

@@ -1,12 +1,12 @@
 ---
 title: "冲击环、爆点与碎块表现特效（groundpoundring_fx 等）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "六个手写工厂的冲击／爆点／碎块表现：震地中心环（可缩放＋net_bool 跳帧）、蜻蜓龙火环、地刺爆裂、炸弹爆炸、震地碎块与眼睛炮塔命中音；全为纯表现，端与清理各不相同。"
 aliases: ["groundpoundring_fx", "firering_fx", "charliearena_spike_explode_fx", "ground_chunks_breaking", "fused_shadeling_bomb_death_fx", "eye_charge_hit", "震地中心环", "冲击环", "火环", "爆点特效", "碎块特效", "命中音特效"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/charliearena_spike.lua", "prefabs/fireringfx.lua", "prefabs/groundpoundringfx.lua", "prefabs/ground_chunks_breaking.lua", "prefabs/fused_shadeling_bomb.lua", "prefabs/eye_charge.lua", "components/groundpounder.lua", "prefabs/dragonfly.lua", "prefabs/willow_ember.lua", "prefabs/bearger.lua", "prefabs/wurt_terraform_item.lua", "components/quaker.lua", "prefabs/moon_device.lua", "prefabs/ruins_cavein_obstacle.lua", "prefabs/saddle.lua", "prefabs/shadowmeteor.lua", "prefabs/eyeturret.lua", "languages/chinese_s.po"]
 size_class: complex
 reliability: verified
@@ -96,3 +96,4 @@ end
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过（0 errors／0 warnings）；Lua 片段 `parser_probe.exe --syntax-only` 通过。
 
 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

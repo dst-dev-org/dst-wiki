@@ -1,12 +1,12 @@
 ---
 title: "一角鲸的角（gnarwail_horn）"
 created: "2026-11-06"
-updated: "2026-11-06"
+updated: "2026-11-08"
 type: prefab
 summary: "原版海洋施法物 gnarwail_horn：一角鲸掉落的可装备吹奏号角，右键点海面从目标两侧生成即时激活的 wave_med 攻击浪并顺带照料农田，耐久 10 次、耗尽即碎；不是武器（无 weapon 组件），也是 TECH.LOST 蓝图配方 trident 的原料（需 3 个）。"
 aliases: ["gnarwail_horn", "一角鲸的角", "Gnarwail Horn", "海号角", "海号角武器"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/gnarwail_horn.lua", "prefabs/gnarwail.lua", "prefabs/wave.lua", "prefabs/pigking.lua", "ocean_util.lua", "messagebottletreasures.lua", "components/messagebottlemanager.lua", "components/spellcaster.lua", "components/equippable.lua", "components/finiteuses.lua", "components/farmplanttendable.lua", "components/combat.lua", "components/playeractionpicker.lua", "components/playercontroller.lua", "standardcomponents.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "mods.lua", "tuning.lua", "recipes.lua", "screens/redux/scrapbookdata.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -120,3 +120,4 @@ TUNING.GNARWAIL_HORN_FARM_PLANT_INTERACT_RANGE = 30
 - 结构检查：validate_page.py（0 error，122 行／24029 字节，standard 档）与 validate_source_links.py --strict（96 条源码引用、23 个源文件，0 error 0 warning）实际执行通过。
 
 返回 [[reference/prefabs/staffs-character-index|法杖与角色道具]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

@@ -1,12 +1,12 @@
 ---
 title: "slipperyfeet"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "在角色跑动或旋转时累计冰面打滑量，按来源、状态标签与防滑砂判定是否发出 feetslipped；跌倒动作交给状态机。"
 aliases: ["slipperyfeet", "角色冰面打滑", "跑步滑倒", "打滑累计", "feetslipped"]
 tags: [component, lifecycle, state-machine, event, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/slipperyfeet.lua", "components/slipperyfeettarget.lua", "components/areaaware.lua", "util/sourcemodifierlist.lua", "prefabs/player_common.lua", "prefabs/player_common_extensions.lua", "prefabs/wx78_possessedbody.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwx78_common.lua", "stategraphs/SGwx78_possessedbody.lua", "entityscript.lua"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ status: active
 相关：[[reference/components/slipperyfeettarget]]；[[reference/components/nonslipgritsource]]；[[reference/components/nonslipgrituser]]；[[reference/components/locomotor]]。
 - 2026-11-01 build 26335394：SGwilson ConfigureRunState 的 careful 分支加 flyingbroom 豁免（组件本体未变）；本页锚点按新版核对（L500-L502 行号不变、内容同位更新）。见 updates/build-26335394 SB-8。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

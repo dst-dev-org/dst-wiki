@@ -1,12 +1,12 @@
 ---
 title: "公牛海带茎（bullkelp_root）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-09"
 type: prefab
 summary: "原版海洋手持武器 bullkelp_root（公牛海带茎）：伤害 27.2、射程 2 与 whip 同档，无 finiteuses——新鲜度即耐久，每次命中折损 2%–4%，剩余新鲜度越低越易整件折断自毁（≤0 档 1.0，幸运降低折断概率）；可种回水面重生为空牛海带植物；单注册，无 quagmire 分支。"
 aliases: ["bullkelp_root", "公牛海带茎", "Bull Kelp Stalk", "牛海带根", "海带茎"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/bullkelp_root.lua", "components/weapon.lua", "components/equippable.lua", "components/perishable.lua", "components/pickable.lua", "components/stackable.lua", "components/deployable.lua", "components/inspectable.lua", "components/inventoryitem.lua", "components/inventoryitem_replica.lua", "components/inventory.lua", "componentutil.lua", "standardcomponents.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "prefabs/bullkelp_plant.lua", "prefabs/bullkelp_beached.lua", "prefabs/cannonballs.lua", "prefabs/mortarball.lua", "prefabs/trident.lua", "prefabs/winona_catapult_projectile.lua", "components/oceanicemanager.lua", "prefabs/oceanfishableflotsam.lua", "prefabs/otterden.lua", "tuning.lua", "constants.lua", "mods.lua", "screens/redux/scrapbookdata.lua", "widgets/itemtile.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 - 职责与适用：`prefabs/bullkelp_root.lua` 顶层 `fn` 注册的单注册可拾取手持武器（物品＋装备）：weapon 伤害＋equippable HANDS 槽，与 [[reference/prefabs/whip]] 同挂 `whip` 标签共用鞭击动画；特色是“新鲜度即耐久”：无 finiteuses，perishable 承担磨损与折断；deployable 只能种回水面。无 tool、无投射、无 SG／Brain，同文件无 quagmire 分支。[工厂](../../../raw/current/scripts/prefabs/bullkelp_root.lua#L66-L128)
 - 优先使用：改伤害／折断／磨损查[数值与消耗](#数值与消耗)；复刻“新鲜度武器、命中掷点自毁”读[命中折断](#命中折断)与[典型接入](#典型接入)；从零造同类手持武器查 [[cookbook/equipment/hand]]。
 - 重要副作用：每次命中先按 2%–4% 折损新鲜度，再按剩余新鲜度掷“折断”（≤0 档 1.0、<0.02 档 0.3、<0.5 档 0.1，幸运降低概率），折断在目标处生成 [[reference/prefabs/impact|impact]] 特效并下一帧移除装备的那一件；自然腐坏后整叠换 spoiled_food。[onattack](../../../raw/current/scripts/prefabs/bullkelp_root.lua#L27-L51)
-- 修改边界：标签与 floater 挂公共端、组件挂主模拟（[分界](../../../raw/current/scripts/prefabs/bullkelp_root.lua#L85-L91)）；伤害／射程与 whip 同档但耐久机制不同（见[命中折断](#命中折断)）；本页不覆盖牛海带植物 bullkelp_plant（Wiki 待建，来源见[获取途径](#获取途径)）。
+- 修改边界：标签与 floater 挂公共端、组件挂主模拟（[分界](../../../raw/current/scripts/prefabs/bullkelp_root.lua#L85-L91)）；伤害／射程与 whip 同档但耐久机制不同（见[命中折断](#命中折断)）；本页只写茎这件的武器面；同一株产出的叶片三态（生／熟／干，食物）见 [[reference/prefabs/kelp]]，牛海带植物 `bullkelp_plant` 本体见 [[reference/prefabs/bullkelp-plant]]，本页只作来源（见[获取途径](#获取途径)）。
 
 ## 注册与构造
 
@@ -41,7 +41,7 @@ status: active
 | 武器伤害 | `TUNING.BULLKELP_ROOT_DAMAGE`＝`wilson_attack`×0.8 | 27.2 生命值（源码推导，[tuning.lua#L370](../../../raw/current/scripts/tuning.lua#L370)） |
 | 武器攻击距离 | `TUNING.BULLKELP_ROOT_RANGE` | 武器加值 2（[tuning.lua#L429](../../../raw/current/scripts/tuning.lua#L429)）；实际范围＝玩家基础 3＋2＋目标物理半径，见 [[reference/prefabs/whip|whip 页]]攻击距离节 |
 | 每击新鲜度折损 | `TUNING.BULLKELP_ROOT_USE`＋`random()×BULLKELP_ROOT_USE_VAR` | 0.02–0.04（即 2%–4%，[tuning.lua#L430-L431](../../../raw/current/scripts/tuning.lua#L430-L431)） |
-| 折断基础概率 | `TUNING.BULLKELP_ROOT_SNAP_CHANCES` | HIGH 1.0／MED 0.3／LOW 0.1（[tuning.lua#L9356-L9360](../../../raw/current/scripts/tuning.lua#L9356-L9360)），档位见[命中折断](#命中折断) |
+| 折断基础概率 | `TUNING.BULLKELP_ROOT_SNAP_CHANCES` | HIGH 1.0／MED 0.3／LOW 0.1（[tuning.lua#L9356-L9360](../../../raw/current/scripts/tuning.lua#L9357-L9361)），档位见[命中折断](#命中折断) |
 | 保质期 | `TUNING.PERISH_SUPERSLOW`＝40×`total_day_time`×`perish_warp` | 19200 秒（40 游戏日；[tuning.lua#L2051](../../../raw/current/scripts/tuning.lua#L2051)、[时间基准](../../../raw/current/scripts/tuning.lua#L19-L20)、[perish_warp](../../../raw/current/scripts/tuning.lua#L47)） |
 | 堆叠上限 | `TUNING.STACK_SIZE_LARGEITEM` | 10（[tuning.lua#L81](../../../raw/current/scripts/tuning.lua#L81)） |
 | 燃料值 | `TUNING.SMALL_FUEL`＝`seg_time`×0.5 | 15 秒（[tuning.lua#L1674](../../../raw/current/scripts/tuning.lua#L1674)） |
@@ -64,8 +64,8 @@ status: active
 | 途径 | 内容与证据 |
 |---|---|
 | 拔起／摧毁植物 | bullkelp_plant 被摧毁时生成 root 茎（植物移除）；叶是否额外掉落取决于该路径自己的采摘条件——炮弹／迫击炮／投石机等分支先查 `CanBePicked()`，通过才按 `pickable.product` 生成海带叶：船炮炮弹（[cannonballs.lua#L107-L116](../../../raw/current/scripts/prefabs/cannonballs.lua#L92-L118)）、迫击炮（[mortarball.lua#L125-L135](../../../raw/current/scripts/prefabs/mortarball.lua#L110-L136)）、三叉戟 AoE（[三叉戟分支](../../../raw/current/scripts/prefabs/trident.lua#L98-L123)）、温妮投石机弹 AoE（[winona_catapult_projectile.lua#L134-L155](../../../raw/current/scripts/prefabs/winona_catapult_projectile.lua#L134-L155)）、海洋结冰覆盖地块（[oceanicemanager.lua#L196-L214](../../../raw/current/scripts/components/oceanicemanager.lua#L196-L214)，入口 `CreateIceAtTile` [L151](../../../raw/current/scripts/components/oceanicemanager.lua#L151)） |
-| 冲上岸 | bullkelp_plant 被推上陆地／木船后 1–2 秒 `CheckBeached`：先试 Pick（通过门禁才掉 1 kelp）、再移除植物、原地生成 root（[bullkelp_plant.lua#L42-L61](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L42-L61)） |
-| 拾取冲岸海带 | 拾取 `bullkelp_beachedroot` 实体替换为 kelp＋bullkelp_root 各 1（继承湿度，[bullkelp_beached.lua#L15-L33](../../../raw/current/scripts/prefabs/bullkelp_beached.lua#L15-L33)） |
+| 冲上岸 | bullkelp_plant 被推上陆地／木船后 1–2 秒 `CheckBeached`：先试 Pick（通过门禁才掉 1 片海带叶，见 [[reference/prefabs/kelp]]）、再移除植物、原地生成 root（[bullkelp_plant.lua#L42-L61](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L42-L61)） |
+| 拾取冲岸海带 | 拾取 `bullkelp_beachedroot` 实体替换为 kelp＋bullkelp_root 各 1（须拿到接收容器，否则两件都不生成；继承湿度，[bullkelp_beached.lua#L15-L33](../../../raw/current/scripts/prefabs/bullkelp_beached.lua#L15-L33)） |
 | 战利品池 | 海面漂流物 flotsam 加权表：root 权重 1 对 kelp 35（[oceanfishableflotsam.lua#L18-L21](../../../raw/current/scripts/prefabs/oceanfishableflotsam.lua#L18-L21)）；海獭窝掉落池权重 1（[otterden.lua#L16-L19](../../../raw/current/scripts/prefabs/otterden.lua#L16-L19)） |
 | 无配方 | recipes／recipes_filter 无 bullkelp 条目；scrapbook 图鉴收录（[scrapbookdata.lua#L240](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L240)） |
 
@@ -89,7 +89,7 @@ status: active
 | API／数据：`whip` 标签 | 挥击动画分支判定键，与 [[reference/prefabs/whip|whip]] 共用 | 装备在 HANDS 槽时读取 | [挂标签](../../../raw/current/scripts/prefabs/bullkelp_root.lua#L81)、[同族数值](../../../raw/current/scripts/tuning.lua#L370-L431) |
 | API／数据：`show_spoilage` 标签 | itemtile 新鲜度角标：还须带 `fresh`／`stale`／`spoiled` 之一（由 perishable 维护）才显示 | 客户端 HUD | [itemtile.lua#L730-L746](../../../raw/current/scripts/widgets/itemtile.lua#L732-L749)、[挂标签](../../../raw/current/scripts/prefabs/bullkelp_root.lua#L82) |
 | API／数据：`TryLuckRoll`＋`luckuser` | 折断掷点 | 命中结算时读攻击者幸运总值 | [[reference/components/luckuser#幸运值如何进入概率]]；[TryLuckRoll](../../../raw/current/scripts/componentutil.lua#L2237-L2251) |
-| 关联 Prefab：bullkelp_plant（Wiki 待建） | 部署产物与“拔起／冲岸”来源；`bullkelp_root_placer` 预览其放置 | 部署在水面；转换条件见[获取途径](#获取途径) | [CheckBeached](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L42-L61)、[pickable](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L104-L109) |
+| 关联 Prefab：bullkelp_plant（见 [[reference/prefabs/bullkelp-plant]]） | 部署产物与“拔起／冲岸”来源；`bullkelp_root_placer` 预览其放置 | 部署在水面；转换条件见[获取途径](#获取途径) | [CheckBeached](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L42-L61)、[pickable](../../../raw/current/scripts/prefabs/bullkelp_plant.lua#L104-L109) |
 | 关联 Prefab：spoiled_food（Wiki 待建） | 腐坏整叠替换产物 | perishable 耗尽时 | [替换块](../../../raw/current/scripts/components/perishable.lua#L293-L319) |
 | 关联 Prefab：impact | 折断时生成于目标处、按挥击方向旋转；未折断不生成 | 主模拟生成；FX 自删见其页 | [[reference/prefabs/impact]]；[生成块](../../../raw/current/scripts/prefabs/bullkelp_root.lua#L40-L49) |
 | 数据：scrapbook 图鉴 | 条目声明 weapondamage 27.2／weaponrange 2／perishable 19200／fuelvalue 15／stacksize 10／deps spoiled_food | 客户端 UI 数据 | [条目](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L240) |
@@ -140,3 +140,4 @@ end)
 - 结构检查：validate_page.py 与 strict 95 引用 0 错 0 警。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

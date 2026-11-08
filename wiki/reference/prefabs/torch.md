@@ -1,12 +1,12 @@
 ---
 title: "火炬（torch）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版手持照明装备 torch：HANDS 槽近战武器＋点火工具，点燃由 torchfire 跟随 FX 照明，fueled 随燃烧计时耗尽即毁，支持幸运掷点攻击引燃与右键投掷落地持续照明。"
 aliases: ["torch", "火炬", "火把", "照明武器", "投掷火把"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/torch.lua", "prefabs/torchfire.lua", "prefabs/torchfire_common.lua", "components/weapon.lua", "components/equippable.lua", "components/fueled.lua", "components/lighter.lua", "components/burnable.lua", "actions.lua", "componentactions.lua", "componentutil.lua", "prefabs/player_common.lua", "components/wisecracker.lua", "prefabs/wargshrine.lua", "components/wildfires.lua", "prefabs/charlie_boss_trial.lua", "prefabskin.lua", "standardcomponents.lua", "tuning.lua", "recipes.lua", "constants.lua", "mods.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -39,13 +39,13 @@ status: active
 | 武器伤害 | `TUNING.TORCH_DAMAGE`＝`wilson_attack`×.5 | 17 生命值（源码推导，[tuning.lua#L361](../../../raw/current/scripts/tuning.lua#L361)） |
 | 燃料总量 | `TUNING.TORCH_FUEL`＝`night_time`×1.25 | 75 燃料单位＝rate 1 下燃烧 75 秒（[tuning.lua#L1714](../../../raw/current/scripts/tuning.lua#L1714)） |
 | 雨中消耗增速 | `TUNING.TORCH_RAIN_RATE` | 1.5×降水率，rate 变为 `1+该值`，满雨 2.5（[tuning.lua#L1713](../../../raw/current/scripts/tuning.lua#L1713)、[雨衰接线](../../../raw/current/scripts/prefabs/torch.lua#L212-L218)） |
-| 照明半径／衰减 | `TUNING.TORCH_RADIUS[1]`／`TUNING.TORCH_FALLOFF[1]` | 2／0.5（技能档可升至半径 3~5，[tuning.lua#L7043-L7055](../../../raw/current/scripts/tuning.lua#L7043-L7055)） |
+| 照明半径／衰减 | `TUNING.TORCH_RADIUS[1]`／`TUNING.TORCH_FALLOFF[1]` | 2／0.5（技能档可升至半径 3~5，[tuning.lua#L7043-L7055](../../../raw/current/scripts/tuning.lua#L7044-L7056)） |
 | 光强／颜色 | torchfire_common 硬编码 | 0.75；(180,195,150)/255（[CreateLight](../../../raw/current/scripts/prefabs/torchfire_common.lua#L14-L17)） |
 | 攻击点燃概率 | `TUNING.TORCH_ATTACK_IGNITE_PERCENT` | 1 ×目标 `burnable.flammability`，经幸运公式 `LighterIgniteOnAttack` 修正（[tuning.lua#L421](../../../raw/current/scripts/tuning.lua#L421)、[公式](../../../raw/current/scripts/componentutil.lua#L2150)） |
 | 点燃后首扣时长 | `TUNING.TURNON_FUELED_CONSUMPTION`／`TURNON_FULL_FUELED_CONSUMPTION` | 0.5 秒量／满燃料 1/60 秒量（[tuning.lua#L1668-L1669](../../../raw/current/scripts/tuning.lua#L1668-L1669)） |
 | 防水效果 | `TUNING.WATERPROOFNESS_SMALL` | 0.2（[tuning.lua#L2949](../../../raw/current/scripts/tuning.lua#L2949)） |
 | 投掷参数 | complexprojectile 配置 | speed 15、gravity −35、出手偏移 (0.25, 1, 0)（[挂载](../../../raw/current/scripts/prefabs/torch.lua#L479-L487)、[偏移](../../../raw/current/scripts/prefabs/torch.lua#L325)） |
-| Wilson 技能档 | `TUNING.SKILLS.WILSON_TORCH_1~3`／`_4~6` | 燃料倍率 0.84/0.68/0.5；光档索引 2/3/4（半径 3/4/5，[tuning.lua#L7057-L7066](../../../raw/current/scripts/tuning.lua#L7057-L7066)） |
+| Wilson 技能档 | `TUNING.SKILLS.WILSON_TORCH_1~3`／`_4~6` | 燃料倍率 0.84/0.68/0.5；光档索引 2/3/4（半径 3/4/5，[tuning.lua#L7057-L7066](../../../raw/current/scripts/tuning.lua#L7058-L7067)） |
 
 获取途径与消费端：
 
@@ -124,3 +124,4 @@ end)
 - 结构检查：validate_page.py 0 error（125 行，standard）与 validate_source_links.py --strict 0 error 0 warning 通过。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]；同族照明对照 [[reference/prefabs/lighter|薇洛的打火机]]、[[reference/prefabs/queen-torch|女王火炬]]（永燃驱影）与 [[reference/prefabs/redlantern|红灯笼]]（一次性燃料）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

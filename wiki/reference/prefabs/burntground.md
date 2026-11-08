@@ -1,13 +1,13 @@
 ---
 title: "焦地渐隐与蜂蜜拖尾减速地面 FX（burntground、honey_trail）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "两个共享工厂的 4 个联网地面/贴底 FX：burntground.lua 的焦地两档（net_smallbyte 64 tick×5 天渐隐、可存读，月亮虹吸器破碎／流星雨落地／岩地房间世界生成三处生成）与 honey_trail.lua 的蜂蜜拖尾两档（每帧 PushTempGroundSpeedMultiplier 0.4 减速的混合载体，蜂王／蜂蜜弹弓弹／暗影憎恶三处生成，含 registered tags 检索变体）。"
 aliases: ["burntground", "burntground_faded", "honey_trail", "honey_trail_shrouden_fx", "焦地", "焦痕渐隐", "蜂蜜拖尾", "蜂蜜减速", "蜂王蜂蜜", "蜂蜜弹弓", "暗影憎恶凝胶拖尾"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/burntground.lua", "prefabs/honey_trail.lua", "prefabs/beequeen.lua", "prefabs/slingshotammo.lua", "prefabs/shrouden.lua", "prefabs/moon_device.lua", "prefabs/shadowmeteor.lua", "components/meteorshower.lua", "map/rooms/forest/terrain_rocky.lua", "components/locomotor.lua", "worldtiledefs.lua", "prefabs/ghostly_elixirs.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -127,3 +127,4 @@ end
 - [[reference/prefabs/eye_charge|有表现的玩法载体（眼弹、诱鱼区、黏块、速爆弹）]]（`gelblobbed` 凝胶语义的宿主家族）
 - [[reference/components/locomotor|locomotor 组件]]（`PushTempGroundSpeedMultiplier` 与外部速度乘数两套减速的宿主协议）
 - 返回 [[reference/prefabs/fx-world-index|天气、地形与生态痕迹]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

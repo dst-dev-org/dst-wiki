@@ -1,12 +1,12 @@
 ---
 title: "coach：沃尔夫冈定时鼓舞与随从 buff"
 created: 2026-10-26
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "沿沃尔夫冈技能、哨子和力量形态接线，定时恢复附近其他玩家理智并给随从施加限时伤害来源。"
 aliases: [coach, 沃尔夫冈鼓舞, 教练哨子, wolfgang_coach_buff, 随从鼓舞]
 tags: [component, lifecycle, callback, event, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/coach.lua, prefabs/wolfgang.lua, prefabs/wolfgang_whistle.lua, prefabs/skilltree_wolfgang.lua, components/mightiness.lua, tuning.lua, entityscript.lua]
 reliability: verified
 validation: source-reviewed
@@ -27,7 +27,7 @@ status: active
 | 接口／字段 | 默认值、参数 | 条件、副作用与证据 |
 |---|---|---|
 | `Enable()`／`Disable()` | enabled 初始 false | 分别设标记、增删 coaching 标签及 Start／Stop；没有 normal 形态或技能校验，不主动撤现存目标效果。[coach.lua:1-18](../../../raw/current/scripts/components/coach.lua#L1-L18) |
-| `StartInspiring()`／`StopInspiring()` | 初次延迟 `TUNING.COACH_TIME_TO_INSPIRE`（7秒） | start 仅在无 inspiretask 时排主任务；stop 取消并清该字段，不修改 enabled／标签或 lastcoachtime。[coach.lua:83-94](../../../raw/current/scripts/components/coach.lua#L83-L94)、[tuning.lua:7882-7884](../../../raw/current/scripts/tuning.lua#L7882-L7884) |
+| `StartInspiring()`／`StopInspiring()` | 初次延迟 `TUNING.COACH_TIME_TO_INSPIRE`（7秒） | start 仅在无 inspiretask 时排主任务；stop 取消并清该字段，不修改 enabled／标签或 lastcoachtime。[coach.lua:83-94](../../../raw/current/scripts/components/coach.lua#L83-L94)、[tuning.lua:7882-7884](../../../raw/current/scripts/tuning.lua#L7883-L7885) |
 | `settime`／`randtime` | 10／30秒 | 鼓舞须无上次时间，或距上次严格大于 settime；每次回调结束再排 `settime + random * randtime` 的下一次尝试，默认约10–40秒，不是每10秒稳定施加。[coach.lua:4-5](../../../raw/current/scripts/components/coach.lua#L4-L5)、[coach.lua:25-26](../../../raw/current/scripts/components/coach.lua#L25-L26)、[coach.lua:80](../../../raw/current/scripts/components/coach.lua#L80 |
 | `lastcoachtime`／`noteamlasttime` | 使用中才赋值 | 前者在进入鼓舞分支时更新，即便最终无人受益；后者让无受益对象的提示隔次出现。Disable 不重置这两个字段。[coach.lua:25-28](../../../raw/current/scripts/components/coach.lua#L25-L28)、[coach.lua:68-80](../../../raw/current/scripts/components/coach.lua#L68-L80) |
 
@@ -42,7 +42,7 @@ status: active
 
 ### 伤害 buff 的消费与撤销
 
-`wolfgang.lua` 注册同名效果 prefab。Attached 把效果挂到目标实体，监听目标死亡以 Stop，安排10秒后 Stop；目标有效且有 combat 时，以效果实体为来源向 `combat.externaldamagemultipliers` 添加倍率2，并创建附着 FX。这是该来源的伤害乘数，不代表所有最终伤害无条件翻倍。[wolfgang.lua:698-718](../../../raw/current/scripts/prefabs/wolfgang.lua#L698-L718)、[wolfgang.lua:788-790](../../../raw/current/scripts/prefabs/wolfgang.lua#L788-L790)、[tuning.lua:7882-7884](../../../raw/current/scripts/tuning.lua#L7882-L7884)
+`wolfgang.lua` 注册同名效果 prefab。Attached 把效果挂到目标实体，监听目标死亡以 Stop，安排10秒后 Stop；目标有效且有 combat 时，以效果实体为来源向 `combat.externaldamagemultipliers` 添加倍率2，并创建附着 FX。这是该来源的伤害乘数，不代表所有最终伤害无条件翻倍。[wolfgang.lua:698-718](../../../raw/current/scripts/prefabs/wolfgang.lua#L698-L718)、[wolfgang.lua:788-790](../../../raw/current/scripts/prefabs/wolfgang.lua#L788-L790)、[tuning.lua:7882-7884](../../../raw/current/scripts/tuning.lua#L7883-L7885)
 
 同键再次施加按 [[reference/components/debuff#关键接口]] 进入 Extended，原版回调取消旧 bufftask 再排完整10秒；不是新增另一个伤害来源。Detached 在目标有效且仍有 combat 时移除该来源，删 FX 后删除效果实体。buff 工厂只在服务端添加 debuff，设置 Attached／Detached／Extended 回调及 `persists=false`；这些独立生命周期不会由 coach:Disable 代替执行。[wolfgang.lua:720-761](../../../raw/current/scripts/prefabs/wolfgang.lua#L720-L761)
 
@@ -68,3 +68,4 @@ status: active
 
 相关：[[reference/components/debuff]]、[[reference/components/debuffable]]、[[reference/components/leader]]、[[reference/components/combat]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

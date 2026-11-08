@@ -1,12 +1,12 @@
 ---
 title: "W.A.R.B.O.T. 轨道光束与机械 Boss 战伴随特效族（wagboss_beam_fx 等 4 注册）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "Wagstaff 机械 Boss 战的 4 个伴随注册：轨道打击光束（FX＋Light＋combat/planardamage 的混合载体，伤害由光束实体自身结算）、机械腿超新星灼烧阻挡的地面喷射标记（弹射落地的是腿本体，本 FX 在阻挡时才出现）、终场演出里被拽走的瓦格斯塔夫联网说话体（自带本地白剪影子层）与其伴随的 containment 装置（官方名'月亮精华提取器'，混合载体）。"
 aliases: ["wagboss_beam_fx", "wagboss_robot_leg_fx", "wagstaff_npc_finale_fx", "alterguardian_contained", "轨道打击光束", "机械腿灼烧标记", "瓦格斯塔夫剪影", "月亮精华提取器", "战争瓦器人", "W.A.R.B.O.T.", "颗粒状传输", "机械Boss战特效"]
 tags: [prefab, fx, creature, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wagboss_beam.lua", "prefabs/wagboss_robot_leg.lua", "prefabs/wagstaff_npc.lua", "stategraphs/SGwagboss_robot.lua", "stategraphs/SGalterguardian_phase4_lunarrift.lua", "stategraphs/SGwagstaff_npc.lua", "components/lunarsupernovablocker.lua", "prefabs/wagboss_util.lua", "prefabs/alterguardian_phase3dead.lua", "components/wagpunk_arena_manager.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -27,7 +27,7 @@ status: active
 
 | 注册名 | 工厂与初始化分界 | 差异与证据 |
 |---|---|---|
-| `wagboss_beam_fx` | `fn`：Transform／AnimState／SoundEmitter／Light／Network；标签 `FX`＋`NOCLICK`；AnimState `beam_pre`→`beam_loop`＋泛光＋LightOverride 0.3；Light 蓝色（0.01,0.35,1）初始禁用；`animsync` net_bool；`SetPrefabNameOverride("wagboss_robot")`（死亡播报归属）；非专服造本地地面标记子体 | **混合载体**：主模拟加 combat（默认伤害 0）＋planardamage（[TUNING.WAGBOSS_BEAM_PLANAR_DAMAGE＝50](../../../raw/current/scripts/tuning.lua#L8692-L8694)），AOE 由光束自身每帧结算（见导航）。[工厂](../../../raw/current/scripts/prefabs/wagboss_beam.lua#L423-L488)、[结算组件](../../../raw/current/scripts/prefabs/wagboss_beam.lua#L472-L477) |
+| `wagboss_beam_fx` | `fn`：Transform／AnimState／SoundEmitter／Light／Network；标签 `FX`＋`NOCLICK`；AnimState `beam_pre`→`beam_loop`＋泛光＋LightOverride 0.3；Light 蓝色（0.01,0.35,1）初始禁用；`animsync` net_bool；`SetPrefabNameOverride("wagboss_robot")`（死亡播报归属）；非专服造本地地面标记子体 | **混合载体**：主模拟加 combat（默认伤害 0）＋planardamage（[TUNING.WAGBOSS_BEAM_PLANAR_DAMAGE＝50](../../../raw/current/scripts/tuning.lua#L8693-L8695)），AOE 由光束自身每帧结算（见导航）。[工厂](../../../raw/current/scripts/prefabs/wagboss_beam.lua#L423-L488)、[结算组件](../../../raw/current/scripts/prefabs/wagboss_beam.lua#L472-L477) |
 | `wagboss_robot_leg_fx` | `fxfn`：Transform／AnimState／Network；标签 `FX`＋`NOCLICK`；bank/build `wagboss_leg`、`ground_spray` 循环、贴地＋`LAYER_BACKGROUND` 排序 3＋泛光；非专服加本地子体 `CreateFx2`（`wagboss_lunar_blast/supernova_hit_large`，偏移 0.6）；主模拟仅 `persists=false` | **无自删、无净变量**：方向/显隐全由宿主组件每帧写入；子体与壳都是纯视觉。[工厂](../../../raw/current/scripts/prefabs/wagboss_robot_leg.lua#L228-L262)、[本地子体](../../../raw/current/scripts/prefabs/wagboss_robot_leg.lua#L206-L226) |
 | `wagstaff_npc_finale_fx` | `finale_fn`：Transform／AnimState／SoundEmitter／Follower／Network；六向；bank `wilson`、build `wagstaff`、播 `wagstaff_finale`→`wagstaff_finale2`；遮 face/帽子符号并覆盖 `fx_white`；erosion 参数 -1.0（初始隐藏）；talker（chatter）＋npc_talker；非专服造本地剪影子体 | 联网体是"被拽走的瓦格斯塔夫"本体层（可说话、可 Materialize/Brighten）；**剪影观感来自本地子体** `finale_CreateSilhouette`（build `wagstaff_finale`、Hide bgwhite、FinalOffset 1）。[工厂](../../../raw/current/scripts/prefabs/wagstaff_npc.lua#L1593-L1639)、[剪影子体](../../../raw/current/scripts/prefabs/wagstaff_npc.lua#L1559-L1575) |
 | `alterguardian_contained` | `alterguardian_containedfn`：Transform／AnimState／SoundEmitter／Light／Network；MakeInventoryPhysics(50,.5)；bank/build `alterguardian_contained`、`idle`、erosion -1.0；Light 橙色（255,179,107）初始禁用；主模拟 `persists=false`＋lootdropper＋inspectable＋`erode` 方法，听 `docollect` 事件 | **混合载体**：装置带掉落与光照（收集时亮灯、冬熟节掉 Boss 挂饰），可见状态全由动画与 erosion 事件驱动，无战斗组件。[工厂](../../../raw/current/scripts/prefabs/wagstaff_npc.lua#L1687-L1716)、[docollect](../../../raw/current/scripts/prefabs/wagstaff_npc.lua#L1676-L1685) |
@@ -36,7 +36,7 @@ status: active
 
 ### wagboss_beam_fx 的伤害结算归属
 
-光束生成于 Boss 的轨道打击：`signal_loop` 状态帧事件在 `canorbitalstrike` 且冷却（[24–30 秒](../../../raw/current/scripts/tuning.lua#L8701-L8701)）就绪时调 `TryOrbitalStrike`（[SGwagboss_robot L1907-L1911](../../../raw/current/scripts/stategraphs/SGwagboss_robot.lua#L1907-L1911)→[L395-L406](../../../raw/current/scripts/stategraphs/SGwagboss_robot.lua#L395-L406)）：从 `grouptargeter`/战斗目标里按竞技场内外范围（场外 [18 格](../../../raw/current/scripts/stategraphs/SGwagboss_robot.lua#L279-L279)）选目标，最多 `min(6, 目标数/2+1)` 个（[L337](../../../raw/current/scripts/stategraphs/SGwagboss_robot.lua#L337-L337)），每个目标一束，`TrackTarget` 让光束在 `beam_pre` 期间向目标滑移（[TrackTarget](../../../raw/current/scripts/prefabs/wagboss_beam.lua#L100-L120)）。
+光束生成于 Boss 的轨道打击：`signal_loop` 状态帧事件在 `canorbitalstrike` 且冷却（[24–30 秒](../../../raw/current/scripts/tuning.lua#L8702-L8702)）就绪时调 `TryOrbitalStrike`（[SGwagboss_robot L1907-L1911](../../../raw/current/scripts/stategraphs/SGwagboss_robot.lua#L1907-L1911)→[L395-L406](../../../raw/current/scripts/stategraphs/SGwagboss_robot.lua#L395-L406)）：从 `grouptargeter`/战斗目标里按竞技场内外范围（场外 [18 格](../../../raw/current/scripts/stategraphs/SGwagboss_robot.lua#L279-L279)）选目标，最多 `min(6, 目标数/2+1)` 个（[L337](../../../raw/current/scripts/stategraphs/SGwagboss_robot.lua#L337-L337)），每个目标一束，`TrackTarget` 让光束在 `beam_pre` 期间向目标滑移（[TrackTarget](../../../raw/current/scripts/prefabs/wagboss_beam.lua#L100-L120)）。
 
 | 结算分支 | 行为（伤害归属） | 证据 |
 |---|---|---|
@@ -107,3 +107,4 @@ fx:TrackTarget(target, x, z) -- beam_pre 期间向 target 滑移
 - [[reference/prefabs/deerclops_laserscorch|独眼巨鹿激光族]]（同为混合载体激光族，含焦痕/烟尾分层）
 - [[reference/prefabs/charlie_boss_aoe_flame_fx|藏影女王 Boss 战表现特效族]]（同为 Boss 战多注册、混合载体伤害归属辨析）
 - 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]（WAGboss 机械 Boss 战）
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

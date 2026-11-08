@@ -1,12 +1,12 @@
 ---
 title: "highlight"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "给实体叠加高亮加色并驱动闪光动画：悬停选中、攻击前闪烁等对目标的一次性着色，随用随加、用完即移除。"
 aliases: ["悬停高亮", "highlight", "目标高亮", "闪光高亮"]
 tags: [component, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/highlight.lua", "components/playercontroller.lua", "prefabs/oceanwhirlportal.lua", "components/highlightchild.lua", "prefabskin.lua", "prefabs/wortox_soul_spawn.lua", "prefabs/hermitcrab_teashop.lua"]
 reliability: verified
 validation: source-reviewed
@@ -64,3 +64,4 @@ target.components.highlight:Flash(0.3, 0.125, 0.1)
 - 源码审阅：2026-10-28，steam-buildid:26230496，覆盖组件全文、playercontroller 悬停/攻击两条消费链、wortox FX 与 `highlightoverride`/`highlightchildren` 设置者；未运行游戏。
 - 结构检查：validate_page.py、validate_source_links.py 与 Lua 语法探针通过。
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

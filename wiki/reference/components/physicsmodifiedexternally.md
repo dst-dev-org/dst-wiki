@@ -1,12 +1,12 @@
 ---
 title: "physicsmodifiedexternally"
 created: 2026-10-26
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "按来源实体汇总水平外部 motor 速度，协调船锚阻力与玩家速度同步，并在最后来源撤销时清零和移除组件。"
 aliases: ["physicsmodifiedexternally", "多来源外部速度", "漩涡牵引速度", "外部物理速度撤销"]
 tags: [component, lifecycle, event, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/physicsmodifiedexternally.lua", "components/oceanwhirlportalphysics.lua", "prefabs/oceanwhirlbigportal.lua", "components/boatphysics.lua", "components/locomotor.lua", "prefabs/player_classified.lua", "entityscript.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -77,3 +77,4 @@ status: active
 
 相关：[[reference/components/locomotor]] · [[reference/components/boatphysics]] · [[reference/components/boatdrag]] · [[reference/components/pushable]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

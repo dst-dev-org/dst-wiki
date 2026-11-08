@@ -1,12 +1,12 @@
 ---
 title: "三尾猫鞭（whip）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版长柄抽击武器 whip：伤害 27.2、耐久 175 仅攻击磨损、攻击距离＝玩家基础 3＋2（再加目标半径）；命中掷“超响鞭”（普通 25%／怪物 20%／Boss 5%，幸运加成），成功下一帧让 14 范围内有战斗目标的单位强制 hit 硬直并丢目标；单注册，无 quagmire 分支。"
 aliases: ["whip", "三尾猫鞭", "Tail o' Three Cats", "鞭子", "长鞭", "响鞭"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/whip.lua", "components/weapon.lua", "components/equippable.lua", "components/finiteuses.lua", "components/combat.lua", "componentutil.lua", "standardcomponents.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "stategraphs/SGhermitcrab.lua", "stategraphs/SGwx78_possessedbody.lua", "prefabs/impact.lua", "prefabs/bullkelp_root.lua", "prefabs/crabking.lua", "tuning.lua", "constants.lua", "recipes.lua", "recipes_filter.lua", "prefabs/scienceprototyper.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "screens/redux/scrapbookdata.lua", "mods.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -66,7 +66,7 @@ status: active
 |---|---|
 | 配方 | 猫尾（coontail）3＋触手皮（tentaclespots）1，`TECH.SCIENCE_TWO`（＝`{SCIENCE = 2}`，炼金引擎 `researchlab2` 的 `ALCHEMYMACHINE` 科技树档）。[配方](../../../raw/current/scripts/recipes.lua#L479)、[TECH](../../../raw/current/scripts/constants.lua#L1246)、[科技树](../../../raw/current/scripts/tuning.lua#L1267-L1270)、[researchlab2](../../../raw/current/scripts/prefabs/scienceprototyper.lua#L300) |
 | 配方过滤 | crafting 菜单 WEAPONS（武器）分组。[过滤列表](../../../raw/current/scripts/recipes_filter.lua#L1019-L1055)、[显示名 .po](../../../raw/current/scripts/languages/chinese_s.po#L427194-L427197) |
-| 生成点 | 全 scripts `SpawnPrefab("whip")` 零命中，map 布局／scenario 宝箱／treasurechest 掉落均无条目；scrapbook 图鉴收录（数据注明 weapondamage 27.2、weaponrange 2、finiteuses 175、deps coontail＋tentaclespots）。[图鉴数据](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1757) |
+| 生成点 | 全 scripts `SpawnPrefab("whip")` 零命中，map 布局／scenario 宝箱／treasurechest 掉落均无条目；scrapbook 图鉴收录（数据注明 weapondamage 27.2、weaponrange 2、finiteuses 175、deps coontail＋tentaclespots）。[图鉴数据](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1762) |
 
 ## 关联机制导航
 
@@ -83,7 +83,7 @@ status: active
 | API／数据：`TryLuckRoll`＋`luckuser` | 超响鞭掷点 | 命中结算时读攻击者幸运总值 | [[reference/components/luckuser#幸运值如何进入概率]]；[TryLuckRoll](../../../raw/current/scripts/componentutil.lua#L2237-L2251) |
 | 关联 Prefab：impact | 每次命中生成于目标处、按挥击方向旋转；超响鞭成功放大 3 倍 | 主模拟生成；本地动画 animover 自删、0.5 秒服务端自删、不存档 | [[reference/prefabs/impact]]；[构造](../../../raw/current/scripts/prefabs/impact.lua#L27-L54)、[生成块](../../../raw/current/scripts/prefabs/whip.lua#L69-L88) |
 | 关联 Prefab：bullkelp_root | 同挂 `whip` 标签的同族武器（同伤害／射程档），onattack 走“耐久折损＋掷点 Snap 自毁”路线，无超响鞭 | 独立注册；本文只记同族关系，详见 [[reference/prefabs/bullkelp_root]] | [onattack](../../../raw/current/scripts/prefabs/bullkelp_root.lua#L27-L49)、[数值](../../../raw/current/scripts/tuning.lua#L370-L431) |
-| 数据：scrapbook 图鉴 | `whip` 条目展示伤害／射程／耐久并声明配方依赖 | 客户端 UI 数据 | [条目](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1757) |
+| 数据：scrapbook 图鉴 | `whip` 条目展示伤害／射程／耐久并声明配方依赖 | 客户端 UI 数据 | [条目](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1762) |
 | 资源：anim／swap 动画包 | whip.zip（bank＋build `whip`）／swap_whip.zip（持握符号 `swap_object`＋`whipline` 绳线） | 静态声明 | [声明](../../../raw/current/scripts/prefabs/whip.lua#L1-L5) |
 
 ### 皮肤
@@ -136,3 +136,4 @@ end)
 - 结构检查：2026-11-06 validate_page.py 0 error（138 行／21604 字节，standard 档）与 validate_source_links.py --strict（89 条源码引用、24 个源文件，0 error 0 warning）实际执行通过。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

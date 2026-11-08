@@ -1,13 +1,13 @@
 ---
 title: "地面焦痕、跟随换装与附着状态的外围 FX 族（scorchedground）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "4 文件 4 注册的散件／附属 FX：可存读的随机地面焦痕、随暗影槌换装的跟随帧层（双 netvar＋高亮／颜色同步）、姐妹骨灰罐满花时的 loop／pst 状态机，以及附着玩家的孢子炸弹（本地无网光＋3.5 秒 timer 引爆）；宿主玩法不在本页。"
 aliases: ["scorchedground", "shadow_battleaxe_fx", "sisturn_moon_petal_fx", "sporebomb", "地面焦痕", "暗影槌跟随特效", "姐妹骨灰罐花瓣特效", "孢子炸弹", "散件贴地特效", "附着状态特效"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/scorchedground.lua", "prefabs/shadow_battleaxe.lua", "prefabs/sisturn.lua", "prefabs/sporebomb.lua", "prefabs/toadstool.lua", "stategraphs/SGtoadstool.lua", "components/debuffable.lua", "components/debuff.lua", "components/highlightchild.lua", "components/colouraddersync.lua", "components/colouradder.lua", "components/container.lua", "components/sisturnregistry.lua", "prefabs/player_common.lua", "prefabs/player_common_extensions.lua", "prefabs/forest.lua", "prefablist.lua", "map/layouts.lua", "map/rooms/forest/DLCrooms.lua", "map/tasks/dst_tasks_forestworld.lua", "map/static_layouts/dragonfly_arena.lua", "map/graphnode.lua", "map/object_layout.lua", "widgets/fumeover.lua", "entityscript.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -113,3 +113,4 @@ end
 相关：[[reference/prefabs/crabking_claw_shadow|地面贴片与投影阴影 FX 族]]（可存读贴地／层位贴片对照）、[[reference/prefabs/sleepcloud|睡眠云与孢子云]]（`sporecloud` 的玩法与清理）、[[reference/prefabs/fx-world-index|特效 Prefab 索引·环境与世界]]。
 
 返回 [[reference/prefabs/fx-world-index|天气、地形与生态痕迹]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

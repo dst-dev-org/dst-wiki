@@ -1,13 +1,13 @@
 ---
 title: "weather"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "地表天气组件：主端与客户端双端模拟 湿度→降水(雨/雪/月雹)→湿身 循环与温度驱动的积雪/融雪，管闪电调度/落点分流、花粉与地面overlay，推 weathertick。"
 aliases: ["天气", "下雨下雪", "weather"]
 tags: [component, network-sync]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/weather.lua", "prefabs/forest_network.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -33,7 +33,7 @@ status: active
 | 主端 ms_* 事件 | `ms_forceprecipitation(enable)`、`ms_setprecipitationmode(mode)`、`ms_setmoisturescale(mult)`、`ms_deltamoisture/ceil(delta)`、`ms_setsnowlevel(level)`、`ms_deltawetness(delta)`、`ms_setlightningmode(mode)`、`ms_setlightningdelay({min,max})`、`ms_sendlightningstrike(pos)`、`ms_startlunarhail` | c_forceprecipitation／魔杖闪电（altar_prototyper 也在用）等入口（[L586-L625](../../../raw/current/scripts/components/weather.lua#L586-L625)、[消费](../../../raw/current/scripts/prefabs/altar_prototyper.lua#L148)）。 |
 | `StartPrecipitation(temperature)` | 主端 | 湿度顶满 ceil、随机 floor/当季峰值；温度低于当季 `START_SNOW_THRESHOLDS`（冬 +5，其余 -5）出雪否则出雨；同时初始化下一次闪电延迟（[L419-L427](../../../raw/current/scripts/components/weather.lua#L419-L427)、[阈值](../../../raw/current/scripts/components/weather.lua#L79-L93)）。 |
 | 雨/雪自动切换 | 主端 OnUpdate | 雨中温度 <start 阈值转雪；雪中温度 >stop 阈值（冬 10 其余 0）转雨（[L1088-L1092](../../../raw/current/scripts/components/weather.lua#L1088-L1092)）。 |
-| 月雹循环 | `_lunarhaillevel` 0~100 | 月裂激活时按 `LUNARHAIL_EVENT_COOLDOWN`(10 日) 充能，满则 `StartLunarHail`；雹期按 `LUNARHAIL_EVENT_TIME`(3 segment) 放空；rate 为 sin 曲线（[L921-L949](../../../raw/current/scripts/components/weather.lua#L921-L949)、[tuning](../../../raw/current/scripts/tuning.lua#L7896-L7897)）。 |
+| 月雹循环 | `_lunarhaillevel` 0~100 | 月裂激活时按 `LUNARHAIL_EVENT_COOLDOWN`(10 日) 充能，满则 `StartLunarHail`；雹期按 `LUNARHAIL_EVENT_TIME`(3 segment) 放空；rate 为 sin 曲线（[L921-L949](../../../raw/current/scripts/components/weather.lua#L921-L949)、[tuning](../../../raw/current/scripts/tuning.lua#L7897-L7898)）。 |
 | `OnSendLightningStrike(pos)` | `ms_sendlightningstrike` 处理器 | 40 范围内找 `lightningblocker`（命中则改 thunder）/`lightningrod`（推 `lightningstrike`）/`lightningtarget`（玩家按 playerlightningtarget 概率，运气组件见 [[reference/components/luckuser]]）；风暴区改 `moonstorm_lightning`；最后 `StrikeLightningAtPoint` 落火/电击（[L627-L730](../../../raw/current/scripts/components/weather.lua#L627-L730)）。 |
 | `PushWeather()` | 推 `weathertick` | 携带 moisture/pop/precipitationrate/snowlevel/lunarhaillevel/lunarhailrate/wetness/light（[L491-L504](../../../raw/current/scripts/components/weather.lua#L491-L504)）。 |
 | `CalculateLight()` | → 0~1 | 降雪用冬季 dynrange；precipmode never 且非月雹恒 1（[L455-L479](../../../raw/current/scripts/components/weather.lua#L455-L479)）。 |
@@ -71,3 +71,4 @@ status: active
 
 相关：[[reference/components/caveweather]]、[[reference/components/moonstorms]]、[[reference/components/sandstorms]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

@@ -1,12 +1,12 @@
 ---
 title: "传统身体护甲族（armorgrass、armorwood 等 10 注册）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "prefabs 目录下 10 个独立 BODY 槽装备文件的逐件工厂与机制：7 件带 armor 组件的传统护甲（草/木/大理石/铥矿/蜗壳/暗夜/嶙峋）与 3 件同槽功能装备（饥饿腰带、骨甲护盾、胡萝卜外套），覆盖耐久吸收推导值、专属机制（壳态清仇恨、骨甲充能免伤、引兔随从）、配方与掉落、官方名与消费端标签，供模组参照原版做身体装备。"
 aliases: ["armorgrass", "草甲", "armorwood", "木甲", "armormarble", "大理石甲", "armorruins", "铥矿甲", "armorslurper", "饥饿腰带", "armorsnurtleshell", "蜗壳护甲", "armor_sanity", "暗夜甲", "armorskeleton", "骨头盔甲", "armor_rocky", "嶙峋甲壳", "armor_carrotlure", "胡萝卜外套", "body armor", "BODY 槽护甲", "身体护甲"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/armor_grass.lua", "prefabs/armor_wood.lua", "prefabs/armor_marble.lua", "prefabs/armor_ruins.lua", "prefabs/armor_slurper.lua", "prefabs/armor_snurtleshell.lua", "prefabs/armor_sanity.lua", "prefabs/armor_skeleton.lua", "prefabs/armor_rocky.lua", "prefabs/armor_carrotlure.lua", "tuning.lua", "recipes.lua", "languages/chinese_s.po", "components/armor.lua", "components/resistance.lua", "components/fueled.lua", "components/fuel.lua", "components/sewing.lua", "components/hunger.lua", "components/equippable.lua", "components/inventory.lua", "components/combat.lua", "components/rabbitkingmanager.lua", "componentutil.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwagdrone_rolling.lua", "prefabs/slurtle.lua", "prefabs/rocky_boss.lua", "prefabs/bunnyman.lua", "prefabs/rabbitking.lua", "prefabs/skilltree_wortox.lua", "prefabs/altar_prototyper.lua", "prefabskins.lua", "widgets/itemtile.lua", "prefabs/sewingkit.lua", "actions.lua"]
 reliability: verified
 validation: source-reviewed
@@ -72,7 +72,7 @@ size_class: complex
 | `heavyarmor`/`superheavyarmor`/`hardarmor` | 大理石甲/嶙峋甲（heavy＋superheavy＋hard）、蜗壳（hard） | 击退改 `knockbacklanded`（heavyarmor）；完全免击退改 `hit` 态并推 `knockbackblocked`（superheavyarmor）；Wagdrone 滚动冲撞 `EquipHasTag("hardarmor")` 走减免分支 | [SGwilson#L2024-L2026](../../../raw/current/scripts/stategraphs/SGwilson.lua#L2024-L2026)、[SGwagdrone_rolling#L324](../../../raw/current/scripts/stategraphs/SGwagdrone_rolling.lua#L324) |
 | `hidesmeats` | 胡萝卜外套 | `HasMeatInInventoryFor` 装备位判定直接返回 false：兔人不因携带肉仇恨、兔王状态判 PASSIVE | [componentutil#L771-L779](../../../raw/current/scripts/componentutil.lua#L771-L779)、[bunnyman#L265-L276](../../../raw/current/scripts/prefabs/bunnyman.lua#L265-L276)、[rabbitkingmanager#L431-L437](../../../raw/current/scripts/components/rabbitkingmanager.lua#L431-L437) |
 | `show_spoilage` | 胡萝卜外套 | 物品格腐败条显示 | [itemtile#L735-L739](../../../raw/current/scripts/widgets/itemtile.lua#L735-L739) |
-| `regular_bunnyman` | bunnyman（兔人本体写入） | 胡萝卜外套引怪的 MUST 标签 | [bunnyman#L527](../../../raw/current/scripts/prefabs/bunnyman.lua#L527)、[armor_carrotlure#L10-L11](../../../raw/current/scripts/prefabs/armor_carrotlure.lua#L10-L11) |
+| `regular_bunnyman` | bunnyman（兔人本体写入） | 胡萝卜外套引怪的 MUST 标签 | [bunnyman#L527](../../../raw/current/scripts/prefabs/bunnyman.lua#L539)、[armor_carrotlure#L10-L11](../../../raw/current/scripts/prefabs/armor_carrotlure.lua#L10-L11) |
 | `shadow_item` | 暗夜甲 | voidclothhat 的叠层判定读取（HANDS 槽物品须同时有 `shadow_item` 与 `planardamage`；与套装无关） | [hats.lua#L4008](../../../raw/current/scripts/prefabs/hats.lua#L4008) |
 | `shadowlevel` | 铥矿/腰带/暗夜/骨甲（pristine 优化标签） | itemtile 装备阴影特效（持有者有 `shadowmagic` 标签时） | [itemtile#L831](../../../raw/current/scripts/widgets/itemtile.lua#L831) |
 | `fossil` | 骨头盔甲 | scripts 域消费为物体命中音效选型（stone_）与 stalker 骨刺目标排除；无护甲玩法消费 | [componentutil#L1686](../../../raw/current/scripts/componentutil.lua#L1686)、[stalkerbrain#L74](../../../raw/current/scripts/brains/stalkerbrain.lua#L74) |
@@ -161,7 +161,7 @@ end)
 - **蜗壳壳态依赖玩家 SG。** `useableitem` 回调直接 `owner.sg:GoToState("shell_enter")`：只有玩家 SG 有 `shell_enter/shell_idle/shell_hit` 状态（[SGwilson#L5656-L5752](../../../raw/current/scripts/stategraphs/SGwilson.lua#L5656-L5752)）；给生物装备会在右键时因缺状态出错。壳态满吸收的还原挂在 owner `newstate` 监听上，直接读**当前 BODY 槽** armor——若在壳态边缘换甲，改的是新甲。
 - **`armor_rocky` 免击退有代价。** `superheavyarmor` 免击退由 SG 层实现（推 `knockbackblocked`）；嶙峋甲在该回调里对**骑乘状态**的持有者额外 `TakeDamage(52.5)`——这次损耗独立于受击吸收，改耐久公式时要同时核对这 1/20 上限项（[OnKnockbackBlocked](../../../raw/current/scripts/prefabs/armor_rocky.lua#L10-L15)、[tuning.lua#L1919](../../../raw/current/scripts/tuning.lua#L1919)）。
 - **胡萝卜外套的引怪与避肉都以装备位为界。** 引怪任务句柄挂装备实体（卸下/试穿模型/腐坏都 `DisableLure`）；`hidesmeats` 走 `EquipHasTag`——放背包不生效（[componentutil#L776](../../../raw/current/scripts/componentutil.lua#L776)）。引来的兔随从忠诚由外套每秒 +3 秒维持，卸甲后忠诚按 follower 原有规则自然耗尽。
-- **时间基数勿混。** 腰带 3840 秒＝8×`total_day_time`(480)；外套腐坏 1500 秒＝5×`day_time`(300)≈3.125 个全天；骨甲 720 秒燃料与挡刀 −45 均为 fueled 秒数（[tuning.lua#L1748](../../../raw/current/scripts/tuning.lua#L1748)、[L8505](../../../raw/current/scripts/tuning.lua#L8505)）。
+- **时间基数勿混。** 腰带 3840 秒＝8×`total_day_time`(480)；外套腐坏 1500 秒＝5×`day_time`(300)≈3.125 个全天；骨甲 720 秒燃料与挡刀 −45 均为 fueled 秒数（[tuning.lua#L1748](../../../raw/current/scripts/tuning.lua#L1748)、[L8505](../../../raw/current/scripts/tuning.lua#L8506)）。
 - **modmain 全局前缀。** mod 环境（[mods.lua#L258-L317](../../../raw/current/scripts/mods.lua#L258-L317)）无 `__index=_G`，`TheWorld`/`EQUIPSLOTS`/`FRAMES` 等一律 `GLOBAL.` 前缀，`TUNING` 直用；`AddPrefabPostInit` 等注册函数由 modutil 注入、无前缀。
 
 ## 验证记录
@@ -185,3 +185,4 @@ end)
 - [[reference/components/equippable|equippable 组件]]（BODY 槽/减速/dapperness 的主要页）
 
 返回 [[reference/prefabs/wearables-index|穿戴防具与饰品]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

@@ -1,12 +1,12 @@
 ---
 title: oceanfishable
 created: 2026-10-21
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 海钓中"被钓对象"的钓竿互链、体力与挣扎、收线抵抗与可捕获判定
 aliases: ["海钓鱼体力", "收线张力", "oceanfishing 被钓对象", "挣扎状态"]
 tags: [component, state-machine, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/oceanfishable.lua", "components/oceanfishingrod.lua", "prefabs/oceanfish.lua", "prefabs/oceanfishingbobber.lua", "prefabs/oceanfishableflotsam.lua", "brains/oceanfishbrain.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -17,7 +17,7 @@ status: active
 
 ## 快速判断
 
-- 职责与适用：海钓里"被钓对象"一侧——与钓竿互链、体力／挣扎状态、反拉收线速度、可捕获标签；钓竿侧张力状态机见 [[reference/components/oceanfishingrod]]。
+- 职责与适用：海钓里"被钓对象"一侧——与钓竿互链、体力／挣扎状态、反拉收线速度、可捕获标签；钓竿侧张力状态机见 [[reference/components/oceanfishingrod]]；原版鱼种、鱼群与产出见 [[reference/prefabs/ocean-fish]]。
 - 优先使用：由钓竿侧 `rod.components.oceanfishingrod:SetTarget(obj)` 建立关系；对象侧只读 `GetRod`、`IsStruggling`，别手写 `rod` 字段。
 - 重要副作用：`SetRod` 会反向调 `rod:SetTarget`，并在对象上增删 `oceanfishing_catchable`；钩住期间每帧改 `locomotor.walkspeed`／`runspeed`。
 - 修改边界：服务端组件；没挂竿时不 `OnUpdate`、不加可捕获标签；客户端只读标签／复制品，不能靠它驱动行为。
@@ -99,3 +99,4 @@ AddPrefabPostInit("oceanfish_small_1", TweakFish)
 - 游戏运行：未运行。
 - 结构检查：validate_page.py 本页 0 error／0 warning（95 行，低于 180 行／14 KiB 上限）；validate_source_links.py --strict 0 error／0 warning，本页源码引用 27 处（唯一目标 26 个，覆盖 8 个源文件）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

@@ -1,12 +1,12 @@
 ---
 title: "wax"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "把物品标记为普通蜂蜡或蜡喷雾，接入目标 waxable 的打蜡动作与成功消耗。"
 aliases: ["蜂蜡材料", "蜡喷雾", "打蜡工具", "wax"]
 tags: [component, item, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/wax.lua", "components/waxable.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "prefabs/beeswax.lua", "prefabs/beeswax_spray.lua"]
 reliability: verified
 validation: source-reviewed
@@ -63,3 +63,4 @@ status: active
 - 游戏运行：未运行；新材料与目标组合未实测。
 - 结构检查：页面格式／链接与源码锚点严格检查通过；本页仅说明原版组装，无新增完整 Lua 示例。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

@@ -1,12 +1,12 @@
 ---
 title: "dumbbelllifter"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "沃尔夫冈专属的哑铃举起状态组件：登记正在用的哑铃、驱动 mightydumbbell 训练并用 tag 供动画与动作判断。"
 aliases: ["哑铃举起", "健身组件", "dumbbelllifter"]
 tags: [component, actions]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["components/dumbbelllifter.lua", "actions.lua", "stategraphs/SGwilson.lua", "prefabs/wolfgang.lua"]
 reliability: verified
@@ -52,3 +52,4 @@ status: active
 - 游戏运行：未运行。
 - 结构检查：validate_page.py 通过（0 issue；53 行、4911 字节，simple 档内）；validate_source_links.py --strict 通过（17 处源码引用，0 error／0 warning）；本页无完整 Lua 代码块。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

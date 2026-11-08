@@ -1,12 +1,12 @@
 ---
 title: "鹤嘴锄（pickaxe）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版基础挖矿工具两注册的 MakePickaxe 工厂组装：MINE 挖掘、耐久消耗、武器伤害与皮肤接线，可作手持工具族同文件多注册参照。"
 aliases: ["pickaxe", "goldenpickaxe", "鹤嘴锄", "黄金鹤嘴锄", "Opulent Pickaxe", "镐", "挖矿工具"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/pickaxe.lua", "components/equippable.lua", "components/tool.lua", "components/weapon.lua", "components/finiteuses.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "standardcomponents.lua", "tuning.lua", "recipes.lua", "actions.lua", "bufferedaction.lua", "constants.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -95,3 +95,4 @@ end)
 相关：[[reference/prefabs/index|Prefab 索引]]；[[reference/components/fumaroletool|同文件气孔镐的温档组件]]。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

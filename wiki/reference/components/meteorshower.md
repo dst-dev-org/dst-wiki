@@ -1,12 +1,12 @@
 ---
 title: "meteorshower"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "挂在隐形单体 meteorspawner 实体上的流星雨状态机：三级强度循环冷却/爆发，按玩家在场调节频率与流星大小预算。"
 aliases: ["meteorshower", "流星雨", "流星生成器", "meteorspawner 组件"]
 tags: [component, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/meteorshower.lua", "prefabs/meteorspawner.lua", "map/rooms/forest/terrain_rocky.lua", "map/customize.lua", "tuning.lua", "components/worldmeteorshower.lua"]
 reliability: verified
 validation: source-reviewed
@@ -72,3 +72,4 @@ end
 
 相关：[[reference/components/worldmeteorshower]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

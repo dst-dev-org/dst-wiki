@@ -1,12 +1,12 @@
 ---
 title: "centipedebody"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "多节蜈蚣型 Boss 的体节编排组件：控制器实体统一生成/约束/驱动头与躯干链，支持双头换控、睡眠停摆与吃瘴气增节。"
 aliases: ["centipedebody", "蜈蚣体节", "影子蜈蚣控制器", "多节 Boss 编排"]
 tags: [component, creature, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/centipedebody.lua", "prefabs/shadowthrall_centipede.lua", "brains/shadowthrall_centipede_controller_brain.lua", "brains/shadowthrall_centipede_brain.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -17,7 +17,7 @@ status: active
 
 ## 快速判断
 
-- 职责与适用：装在“控制器”实体上（原版为隐形 `shadowthrall_centipede`，带 planarentity 与控制大脑），负责生成、物理串联（P2P 约束）与逐节转向一整条体节链；头/躯干是独立 prefab，通过 `controller` 反向引用控制器。[安装](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L398-L405) [体节反引用](../../../raw/current/scripts/components/centipedebody.lua#L131)
+- 职责与适用：装在“控制器”实体上（原版为隐形 `shadowthrall_centipede`，带 planarentity 与控制大脑），负责生成、物理串联（P2P 约束）与逐节转向一整条体节链；头/躯干是独立 prefab，通过 `controller` 反向引用控制器。[安装](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L395-L402) [体节反引用](../../../raw/current/scripts/components/centipedebody.lua#L131)
 - 优先使用：整体成链用 `CreateFullBody()`；战中增节用 `GrowNewSegment(index?)`（上限 `max_torso`）；查询/移交控制权用 `GetControllingHead()`/`GiveControlToOtherHead()`。[成链](../../../raw/current/scripts/components/centipedebody.lua#L107-L117) [增节](../../../raw/current/scripts/components/centipedebody.lua#L173-L184)
 - 重要副作用：任一体节 `onremove` 会移除控制器，控制器移除又解开并删除全部体节；体节休眠令全链 Halt（大脑停摆）。[级联移除](../../../raw/current/scripts/components/centipedebody.lua#L27-L32) [停摆](../../../raw/current/scripts/components/centipedebody.lua#L64-L72)
 - 修改边界：构造即 StartUpdatingComponent 并监听控制器 death 停更新；有 OnSave（体节 GUID 清单）/LoadPostPass（重挂与随机选头），OnLoad 为空。无迁移支持——换控制器不能沿用旧链。[更新与死亡](../../../raw/current/scripts/components/centipedebody.lua#L38-L62) [存读](../../../raw/current/scripts/components/centipedebody.lua#L309-L338)
@@ -26,7 +26,7 @@ status: active
 
 | 接口 | 条件、作用与证据 |
 |---|---|
-| `CreateFullBody()` | 生成头 + `num_torso` 个躯干 + 第二个头（尾端反向），控制权给 `heads[1]`。原版控制器在生成后 0 秒任务里调用（非 POPULATING）。[实现](../../../raw/current/scripts/components/centipedebody.lua#L107-L117) [调用](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L352-L355) |
+| `CreateFullBody()` | 生成头 + `num_torso` 个躯干 + 第二个头（尾端反向），控制权给 `heads[1]`。原版控制器在生成后 0 秒任务里调用（非 POPULATING）。[实现](../../../raw/current/scripts/components/centipedebody.lua#L107-L117) [调用](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L349-L352) |
 | `SpawnSegment(prefab,pos?,index?)` / `SpawnHead` / `SpawnTorso` | 缺省位置为前一节背后一个直径处；插到 index 时同时重连前后约束。[实现](../../../raw/current/scripts/components/centipedebody.lua#L157-L171) |
 | `SetSegment(body,index?)` | 登记 controller 反引用、插入链表、为相邻节加 P2P 约束（下一帧生效并强制刷新枢轴）、监听 sleep/wake/onremove；头部置 `has_brain_control=false`，第二个头 `flipped=true`（尾向）。[实现](../../../raw/current/scripts/components/centipedebody.lua#L127-L155) |
 | `GrowNewSegment(index?)` | `#bodies >= max_torso` 时拒绝；index 缺省在非末尾随机插入；推 `grow_segment` 事件。体节吃瘴气的大脑调用它成长（[调用](../../../raw/current/scripts/brains/shadowthrall_centipede_brain.lua#L74)）。[实现](../../../raw/current/scripts/components/centipedebody.lua#L173-L184) |
@@ -56,7 +56,7 @@ if not POPULATING then
 end
 ```
 
-- 调整与验证：`turnspeed` 是每秒朝向插值比例（1.5 为原版值，[调参](../../../raw/current/scripts/tuning.lua#L8885)）；验证顺序——成链后拖动控制头，各节应延迟跟随且转向平滑。
+- 调整与验证：`turnspeed` 是每秒朝向插值比例（1.5 为原版值，[调参](../../../raw/current/scripts/tuning.lua#L8886)）；验证顺序——成链后拖动控制头，各节应延迟跟随且转向平滑。
 
 ## 常见陷阱与限制
 
@@ -72,3 +72,4 @@ end
 
 相关：[[reference/components/aoespell]]、[[reference/components/shadowdominance]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

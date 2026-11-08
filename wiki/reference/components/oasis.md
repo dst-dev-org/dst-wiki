@@ -1,13 +1,13 @@
 ---
 title: "oasis"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "绿洲范围标记组件：按半径判定实体是否在绿洲内，并给出进入程度的 0~1 接近度，供沙尘暴强度计算消减。"
 aliases: ["绿洲范围", "oasis", "绿洲接近度"]
 tags: [component, mechanism]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/oasis.lua", "prefabs/oasislake.lua", "components/sandstorms.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -59,3 +59,4 @@ TheWorld:PushEvent("ms_registeroasis", inst)
 - 结构检查：2026-10-28 validate_page.py 通过（本页）；validate_source_links.py --strict 通过；Lua 示例经 parser_probe --syntax-only 解析通过。
 - 游戏运行：未运行；注册自定义绿洲对沙暴的实际消减未实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

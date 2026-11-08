@@ -1,13 +1,13 @@
 ---
 title: "极地熊獾桶霜气与伯尼大火 FX（beargerfur_sack_frost_fx、bernie_big_fire）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "熊獾掉落物与伯尼伙伴的外围 FX：极地熊獾桶放置态开桶时父挂跟随 ground 符号的联网霜气层（复用 icebox_open_fx 动画库、自定义 Kill 播 pst 退场），与伯尼！被点燃时的联网火层（Light＋AnimState＋SoundEmitter，反伤在宿主 damagereflect，20 秒后 EndBernieFire 播 pst 自删）。含 bernie_big 本体（health/combat/locomotor 完整生物）辨析。"
 aliases: ["beargerfur_sack_frost_fx", "bernie_big_fire", "极地熊獾桶", "熊獾桶霜气", "开桶霜气", "伯尼大火", "伯尼燃烧", "大伯尼火层"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/beargerfur_sack.lua", "prefabs/bernie_big.lua", "prefabs/bernie_common.lua", "prefabs/bernie_active.lua", "brains/berniebrain.lua", "stategraphs/SGberniebig.lua", "components/lighter.lua", "prefabs/willow_ember.lua", "prefabs/icebox_victorian_frost_fx.lua", "prefabs/icebox_kitchen_fx.lua", "prefabs/icebox_crystal_fx.lua", "recipes.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -40,7 +40,7 @@ status: active
 | 生成 | `ToggleFrostFX(inst, true)`：生成 FX、父挂桶体、`FollowSymbol(inst.GUID, "ground", -25, -15, 0)`；唯一调用在 `OnOpen`——**仅放置态**（`not inventoryitem:IsHeld()`）且延迟＝开桶动画长度；手持开桶只提前播循环声、不生霜气 | [ToggleFrostFX](../../../raw/current/scripts/prefabs/beargerfur_sack.lua#L32-L52)、[OnOpen](../../../raw/current/scripts/prefabs/beargerfur_sack.lua#L75-L97) |
 | 关桶 | `OnClose` → `ToggleFrostFX(inst, false)` → 走 `Kill`：`FX_Kill` 先等当前动画播完 → `FX_OnKillTask` 播 `pst` → pst 长度＋2 帧后 Remove；`ToggleFrostFX` 开头取消未触发的延迟生成任务 | [OnClose](../../../raw/current/scripts/prefabs/beargerfur_sack.lua#L99-L120)、[Kill 两段](../../../raw/current/scripts/prefabs/beargerfur_sack.lua#L136-L146) |
 | 即删路径 | 收进库存 `OnPutInInventory`、实体移除 `OnRemoveEntity` → `ToggleFrostFX(false, true)` **直接 Remove 不播 pst** | [OnPutInInventory](../../../raw/current/scripts/prefabs/beargerfur_sack.lua#L122-L127)、[OnRemoveEntity](../../../raw/current/scripts/prefabs/beargerfur_sack.lua#L129-L132) |
-| 宿主 | `beargerfur_sack`：容器物品（`portablestorage`，`droponopen=true`），preserver 速率 0.05；配方＝月晶锻造二级（月神熔炉：满警戒笼＋熊獾毛＋纯粹辉煌 3＋月岩 5） | [宿主工厂](../../../raw/current/scripts/prefabs/beargerfur_sack.lua#L152-L209)、[配方](../../../raw/current/scripts/recipes.lua#L857)、[调值](../../../raw/current/scripts/tuning.lua#L7967-L7967) |
+| 宿主 | `beargerfur_sack`：容器物品（`portablestorage`，`droponopen=true`），preserver 速率 0.05；配方＝月晶锻造二级（月神熔炉：满警戒笼＋熊獾毛＋纯粹辉煌 3＋月岩 5） | [宿主工厂](../../../raw/current/scripts/prefabs/beargerfur_sack.lua#L152-L209)、[配方](../../../raw/current/scripts/recipes.lua#L857)、[调值](../../../raw/current/scripts/tuning.lua#L7968-L7968) |
 
 `icebox_open_fx` 动画库名带 icebox 前缀，但冰箱本体及其皮肤 FX 用的是 `icebox_kitchen`／`icebox_victorian`／`icebox_crystal` 等独立 bank——全库该 bank 的唯一消费者就是本页霜气层（负向检索见[验证记录](#验证记录)）。
 
@@ -50,7 +50,7 @@ status: active
 |---|---|---|
 | 技能门禁 | `onLeaderChanged`：伯尼的 leader 激活 `willow_burnignbernie` 技能（源码拼写如此）→ 给伯尼挂 `canlight` 并监听 `onlighterlight` | [监听注册](../../../raw/current/scripts/prefabs/bernie_big.lua#L344-L347) |
 | 点燃来源 | `lighter` 组件 `Light()` 无条件推 `onlighterlight`；willow_ember 的加热目标与爆燃对 `canlight` 实体也推同事件 | [lighter.lua](../../../raw/current/scripts/components/lighter.lua#L18-L26)、[ember 加热](../../../raw/current/scripts/prefabs/willow_ember.lua#L243-L243)、[ember 爆燃](../../../raw/current/scripts/prefabs/willow_ember.lua#L283-L283) |
-| **火层生成** | `OnLighterLight`：无 `fire_thorns_task`（未燃烧）→ 生成 `bernie_big_fire` 父挂伯尼；按 leader 同盟技能换装——暗影：build `bernie_fire_fx_shadow_build`＋`MultColour(0,0,0,0.5)`；月亮：build `bernie_fire_fx_lunar_build`＋`MultColour(0.3,0.3,0.3,0.3)`；`SetFinalOffset(-3)`；宿主挂 `damagereflect`（50）＋监听 `onreflectdamage`（对攻击者按 hiteffectsymbol 挂 `impact` 命中 FX）；移除 `canlight` | [OnLighterLight](../../../raw/current/scripts/prefabs/bernie_big.lua#L235-L265)、[反射命中 FX](../../../raw/current/scripts/prefabs/bernie_big.lua#L45-L59)、[调值](../../../raw/current/scripts/tuning.lua#L8127-L8127) |
+| **火层生成** | `OnLighterLight`：无 `fire_thorns_task`（未燃烧）→ 生成 `bernie_big_fire` 父挂伯尼；按 leader 同盟技能换装——暗影：build `bernie_fire_fx_shadow_build`＋`MultColour(0,0,0,0.5)`；月亮：build `bernie_fire_fx_lunar_build`＋`MultColour(0.3,0.3,0.3,0.3)`；`SetFinalOffset(-3)`；宿主挂 `damagereflect`（50）＋监听 `onreflectdamage`（对攻击者按 hiteffectsymbol 挂 `impact` 命中 FX）；移除 `canlight` | [OnLighterLight](../../../raw/current/scripts/prefabs/bernie_big.lua#L235-L265)、[反射命中 FX](../../../raw/current/scripts/prefabs/bernie_big.lua#L45-L59)、[调值](../../../raw/current/scripts/tuning.lua#L8128-L8128) |
 | **收尾** | 点燃即排 20 秒任务（燃烧中再点燃只重置该任务、不重生火层）→ `endthornsfire`：`fire_fx:EndBernieFire()` 播 `bernie_fire_reg_pst` → FX 的 animover 自删；宿主移除 `damagereflect` 与事件监听、回挂 `canlight` | [20 秒任务](../../../raw/current/scripts/prefabs/bernie_big.lua#L262-L264)、[endthornsfire](../../../raw/current/scripts/prefabs/bernie_big.lua#L61-L76) |
 | 级联清理 | 伯尼死亡 SG → `GoInactive` → 生成 `bernie_inactive` 并 `inst:Remove()` → 火层只经 `SetParent` 父挂，原生删除结果未核验（**不播 pst**）；`goinactive` 不调 `endthornsfire` | [死亡状态](../../../raw/current/scripts/stategraphs/SGberniebig.lua#L266-L272)、[goinactive](../../../raw/current/scripts/prefabs/bernie_big.lua#L78-L95) |
 | 生成链 | `bernie_active`（行走伯尼）brain 判定 leader 低理智或 `hotheaded`（`willow_bernieai` 技能＋20 格内敌对对齐生物）→ `GoBig` → `bernie_big` | [gobig](../../../raw/current/scripts/prefabs/bernie_active.lua#L40-L71)、[brain 调用](../../../raw/current/scripts/brains/berniebrain.lua#L127-L130)、[hotheaded](../../../raw/current/scripts/prefabs/bernie_common.lua#L16-L24) |
@@ -124,3 +124,4 @@ end
 - [[reference/prefabs/ice_crack_grid_fx|海冰网格裂纹]]（冰面语义对照；霜气动画库与冰箱皮肤 FX 分属不同 bank）
 - [[reference/prefabs/fire|火焰、火光与烟雾特效族]]（常规火焰的 firefx／heater 体系——伯尼火层同样不走该链）
 - 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]（熊獾掉落物与伯尼伙伴）
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

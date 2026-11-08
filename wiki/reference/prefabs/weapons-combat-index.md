@@ -35,7 +35,7 @@ tags: [overview]
 | [[reference/prefabs/boomerang|回旋镖（boomerang）]] | HANDS 槽；投掷武器：本体即投射物，命中/脱靶均返航（CATCH 需双标签、背包开启才自动装备/入包）；伤害 27.2、耐久 10、未接住回程自伤；炼金引擎配方与 WeaponBoon 恩惠 | boomerang、回旋镖、Boomerang、飞去来器、投掷武器 / active |
 | [[reference/prefabs/voidcloth_boomerang|阴郁回旋镖（voidcloth_boomerang）]] | HANDS 槽；充能代理投射：本体不离手、伤害/位面 5→27.2 随尺寸缩放、对月 ×1.25、不可接回；在场弹体 3（套装 4）放电退化近战；耐久 85（掷出/近战各磨 1） | voidcloth_boomerang、阴郁回旋镖、Gloomerang、虚布回旋镖、投掷武器 / active |
 | [[reference/prefabs/throwables|投掷武器族（sleepbomb 等 4 注册＋2 伴生 FX）]] | HANDS 槽；三炸弹 complexprojectile 抛物线，仅南瓜/亮茄命中动态挂 explosive（50 堆叠/200 位面）、睡袋只生成 sleepcloud；雪球追踪、降温灭火＋冷度扩散（可冻结）、推雪人 | sleepbomb、pumpkin_bomb、bomb_lunarplant、snowball_item、睡袋、南瓜炸弹、亮茄炸弹、雪球 / active |
-| [[reference/prefabs/ranged-weapons|远程武器族（blowdart 等 15 注册）]] | HANDS 槽；吹箭五变体（发射脱手不可回收、催眠/引燃/减速）、嚎弹炮、弹弓五变体＋FX/作业包（frame 改装整体替换、999ex 只取消堆叠上限、拟态皮筋可免弹）、蚊子炸弹抛物线 AoE（按投掷者玩家标签筛人） | blowdart、blowdart_sleep、blowdart_fire、houndstooth_blowpipe、slingshot、slingshotex、mosquitobomb、吹箭、催眠吹箭、嚎弹炮、弹弓、蚊子炸弹 / active |
+| [[reference/prefabs/ranged-weapons|远程武器族（blowdart 等 13 个主注册）]] | HANDS 槽；吹箭五变体（发射脱手不可回收、催眠/引燃/减速）、嚎弹炮、弹弓五变体＋FX/作业包（frame 改装整体替换、999ex 只取消堆叠上限、拟态皮筋可免弹）、蚊子炸弹抛物线 AoE（按投掷者玩家标签筛人） | blowdart、blowdart_sleep、blowdart_fire、houndstooth_blowpipe、slingshot、slingshotex、mosquitobomb、吹箭、催眠吹箭、嚎弹炮、弹弓、蚊子炸弹 / active |
 
 ## 防御与事件武器
 

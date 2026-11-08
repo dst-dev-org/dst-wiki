@@ -1,12 +1,12 @@
 ---
 title: spooked
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "复用万圣夜的工作惊吓积累，区分个人蝙蝠幻象、通用惊吓特效、角色动作和精神损失。"
 aliases: ["spooked", "砍树惊吓", "采矿惊吓", "挖坟惊吓", "万圣夜蝙蝠幻象", "TryCustomSpook"]
 tags: [component, callback, event, state-machine, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/spooked.lua", "components/age.lua", "actions.lua", "prefabs/player_common.lua", "prefabs/player_common_extensions.lua", "stategraphs/SGwilson.lua", "prefabs/battreefx.lua", "prefabs/spooked_fx.lua", "prefabs/rocks.lua", "prefabs/mound.lua", "componentutil.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -52,7 +52,7 @@ status: active
 |---|---|---|
 | 每次成功砍树后尝试 | `ACTIONS.CHOP` 在成功工作且目标仍有效后 `Spook(target)`。[actions.lua:1748](../../../raw/current/scripts/actions.lua#L1748 | 普通接口还要求目标是旧生长阶段 4，或仍可 CHOP；怪树先返回。树种必须有映射；失败筛选之前积累已增加。[筛选:75](../../../raw/current/scripts/components/spooked.lua#L75) |
 | 采矿破坏外观变档才尝试 | 岩石变为 med／low 且动画有变化时，自定义蜘蛛 FX，分别用 HIGH／LOW 倍率。[rocks.lua:183](../../../raw/current/scripts/prefabs/rocks.lua#L183 | 不是每次敲击；当前 HIGH=0.315、LOW=0.1，基准是自定义的 100。[tuning.lua:9034](../../../raw/current/scripts/tuning.lua#L9034 |
-| 挖坟工作完成后尝试 | 坟丘回调检查工作者组件，传 `spooked_worms_fx` 与 DIG 倍率。[mound.lua:123](../../../raw/current/scripts/prefabs/mound.lua#L123 | DIG=0.456；FX 是预制物资源，不是动画名称。[常量:9036](../../../raw/current/scripts/tuning.lua#L9036)、[FX 注册:53](../../../raw/current/scripts/prefabs/spooked_fx.lua#L53) |
+| 挖坟工作完成后尝试 | 坟丘回调检查工作者组件，传 `spooked_worms_fx` 与 DIG 倍率。[mound.lua:123](../../../raw/current/scripts/prefabs/mound.lua#L123 | DIG=0.456；FX 是预制物资源，不是动画名称。[常量:9036](../../../raw/current/scripts/tuning.lua#L9037)、[FX 注册:53](../../../raw/current/scripts/prefabs/spooked_fx.lua#L53) |
 
 ### 视觉、动作与精神分别由谁负责
 
@@ -80,3 +80,4 @@ status: active
 
 相关：[[reference/components/sanity]]、[[reference/components/workable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

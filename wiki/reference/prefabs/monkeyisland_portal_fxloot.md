@@ -1,13 +1,13 @@
 ---
 title: "猴岛传送门假掉落（monkeyisland_portal_fxloot）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "猴岛传送门吐 loot 的表现层假掉落：四种小物件动画随机之一，带真实物理被掷出、落地才续播动画、播完自删；满额兜底路径不计入 _loot；未满额时也可被加权抽中并记入 _loot，不存档。"
 aliases: ["monkeyisland_portal_fxloot", "传送门假掉落", "fxloot", "猴岛传送门特效掉落"]
 tags: [prefab, fx, loot]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/monkeyisland_portal_fxloot.lua", "prefabs/monkeyisland_portal.lua", "components/lootdropper.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -36,7 +36,7 @@ status: active
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
 | 生成者：monkeyisland_portal | spawn_fx_loot：SpawnPrefab 后 `FlingItem(fx, 门位置+竖直4)`；try_portal_spawn 在 `_loot` 计数 < MONKEYISLAND_PORTAL_MAXLOOT(10) 时走真 loot，否则（或真 loot 生成失败）走本 fx | 主模拟循环：PORTALLOOT 计时器每 SPEWTIME(15 秒) 重触发（[计时](../../../raw/current/scripts/prefabs/monkeyisland_portal.lua#L344-L357)） | [假 loot 生成](../../../raw/current/scripts/prefabs/monkeyisland_portal.lua#L160-L166)、[分流](../../../raw/current/scripts/prefabs/monkeyisland_portal.lua#L184-L194) |
-| 权重：加权吐物表 | 本 fx 固定权重 10.0 是表内最高（其他条目权重来自常量或 TUNING）；未满额时 spawn_real_loot 也可按该权重选中本 FX 并记入 _loot；满额时另走不入表的 spawn_fx_loot 兜底 | 真 loot 权重可被 TUNING 覆写，fxloot 权重硬编码 | [权重表](../../../raw/current/scripts/prefabs/monkeyisland_portal.lua#L35-L46)、[TUNING](../../../raw/current/scripts/tuning.lua#L6686-L6694) |
+| 权重：加权吐物表 | 本 fx 固定权重 10.0 是表内最高（其他条目权重来自常量或 TUNING）；未满额时 spawn_real_loot 也可按该权重选中本 FX 并记入 _loot；满额时另走不入表的 spawn_fx_loot 兜底 | 真 loot 权重可被 TUNING 覆写，fxloot 权重硬编码 | [权重表](../../../raw/current/scripts/prefabs/monkeyisland_portal.lua#L35-L46)、[TUNING](../../../raw/current/scripts/tuning.lua#L6687-L6695) |
 | API：LootDropper:FlingItem | 给 Physics 施加随机方向冲量实现抛掷：水平 speed 4-6、竖直 `GetRandomWithVariance(y_speed, y_speed_variance)` 即 8±2 | 本 fx 有 Physics 无 inventoryitem，照样被掷 | [FlingItem](../../../raw/current/scripts/components/lootdropper.lua#L321-L373)、[门配置](../../../raw/current/scripts/prefabs/monkeyisland_portal.lua#L403-L406) |
 | 关联 Prefab：monkeyisland_portal_lootfollowfx | 真 loot 与本 fx 生成后都会被 attach_light_fx 挂跟随光效子实体并临时加 outofreach 标签＋LightOverride(0.6)，`fx_len` 秒后复原；本 fx 不在 YOFFSET 表内，光效偏移 0 | followfx 的 fx_len 在主模拟侧赋值，故加光分支在主模拟恒真 | [attach_light_fx](../../../raw/current/scripts/prefabs/monkeyisland_portal.lua#L173-L182)、[fx_len](../../../raw/current/scripts/prefabs/monkeyisland_portal.lua#L96-L99) |
 | 资源 | anim/fx_portal_items.zip（bank/build 同名） | 声明与使用已核验，包内容未解包 | [资产声明](../../../raw/current/scripts/prefabs/monkeyisland_portal_fxloot.lua#L1-L4) |
@@ -72,3 +72,4 @@ SomeLootDropper:FlingItem(fx, Vector3(x, y + 4, z))
 
 返回 [[reference/prefabs/fx-event-index|节庆、小游戏与事件模式]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

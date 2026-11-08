@@ -1,12 +1,12 @@
 ---
 title: "searchable"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "接入无自动生长周期的搜寻交互，控制可搜状态、动作速度及回调结果。"
 aliases: ["搜寻交互", "翻找巢穴", "加快搜寻", "searchable"]
 tags: [component, callback, actions, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/searchable.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "prefabs/otterden.lua", "entityscript.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -69,3 +69,4 @@ end)
 - 游戏运行：未运行；多人实际动画、其他模组抢写字段和禁用状态自定义持久化未实测。
 - 结构检查：页面格式／链接与源码锚点严格检查通过；完整 `modmain.lua` 示例通过现有解析器 Lua 5.1 语法检查，临时文件已清理。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

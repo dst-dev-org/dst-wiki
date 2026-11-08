@@ -1,12 +1,12 @@
 ---
 title: "pushable"
 created: 2026-10-26
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "由被推实体管理单个推者、前向速度和间距补偿，配合玩家推动状态图完成开始、持续与停止推滚。"
 aliases: ["pushable", "推动物体", "滚雪球", "推者与被推物间距", "START_PUSHING"]
 tags: [component, lifecycle, callback, state-machine, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/pushable.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua", "prefabs/snowman.lua", "prefabs/snowball_item.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -75,3 +75,4 @@ status: active
 
 相关：[[reference/components/locomotor]] · [[reference/components/physicsmodifiedexternally]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 0 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09）。

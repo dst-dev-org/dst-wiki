@@ -1,12 +1,12 @@
 ---
 title: "heavyobstacleusetarget"
 created: "2026-10-26"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "给目标提供使用当前 BODY 重物的动作回调，区分可用标签、动作过滤和宿主实际转移物品的职责。"
 aliases: ["搬运重物放入目标", "健身房装载重物", "USE_HEAVY_OBSTACLE", "heavyobstacleusetarget"]
 tags: [component, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/heavyobstacleusetarget.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "prefabs/mighty_gym.lua", "components/mightygym.lua", "class.lua"]
 reliability: verified
 validation: source-reviewed
@@ -60,3 +60,4 @@ LoadWeight 负责放入健身房库存；满槽且未指定槽位时先丢出轮
 
 相关：搬运物自身的碰撞状态见 [[reference/components/heavyobstaclephysics]]；普通装备槽行为见 [[reference/components/equippable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

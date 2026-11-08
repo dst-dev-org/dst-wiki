@@ -1,12 +1,12 @@
 ---
 title: "hullhealth"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "服务端船体损伤结算：把碰撞换算成漏水与 HP 损失，按秒结算漏水，并支持自降解。"
 aliases: ["船体损伤与漏水", "撞船掉血", "船体破洞", "hullhealth"]
 tags: [component, lifecycle, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/hullhealth.lua", "components/boatphysics.lua", "components/health.lua", "components/walkableplatform.lua", "components/boatleak.lua", "components/boatring.lua", "prefabs/boat.lua", "prefabs/boat_leak.lua", "prefabs/yotd_boats.lua", "tuning.lua", "entityscript.lua"]
 reliability: verified
 validation: source-reviewed
@@ -32,7 +32,7 @@ status: active
 | `max_health_damage` | HP，默认 70（远古船 40） | 单次碰撞／单个 bumper 的伤害基数，乘速度比后取 `floor`；不是总血量。[tuning](../../../raw/current/scripts/tuning.lua#L4143)、[结算](../../../raw/current/scripts/components/hullhealth.lua#L203-L210) |
 | `leakproof` | 布尔 | 为真时 `RefreshLeakIndicator` 直接返回 false；`boat_leak` 自己也会在落到 leakproof 船时移除，动态漏点同样留不住。[hullhealth](../../../raw/current/scripts/components/hullhealth.lua#L110-L117)、[boat_leak](../../../raw/current/scripts/prefabs/boat_leak.lua#L47-L54) |
 | `SetSelfDegrading(stat)` | 秒／1 HP；0 停止 | 启动 `OnUpdate`，每累计 `stat × GetDamageMult("degradedamage")` 秒扣 1 HP；停止时只移除 tag，不清进度。[SetSelfDegrading](../../../raw/current/scripts/components/hullhealth.lua#L214-L222)、[OnUpdate](../../../raw/current/scripts/components/hullhealth.lua#L237-L254) |
-| `GetDamageMult(cat)` | 倍率，默认 1 | 在船心 4 格内找带 `boat_health_buffer` 且站在本船上的实体，命中返回 `TUNING.BOAT_HEALTH_BUFFER_MULT[cat]`（collide 0.5／degradedamage 2）。[实现](../../../raw/current/scripts/components/hullhealth.lua#L48-L66)、[tuning](../../../raw/current/scripts/tuning.lua#L6759-L6763) |
+| `GetDamageMult(cat)` | 倍率，默认 1 | 在船心 4 格内找带 `boat_health_buffer` 且站在本船上的实体，命中返回 `TUNING.BOAT_HEALTH_BUFFER_MULT[cat]`（collide 0.5／degradedamage 2）。[实现](../../../raw/current/scripts/components/hullhealth.lua#L48-L66)、[tuning](../../../raw/current/scripts/tuning.lua#L6760-L6764) |
 
 ### 碰撞到伤害的顺序
 
@@ -119,3 +119,4 @@ end)
 
 相关：[[reference/components/boatphysics]]、[[reference/components/boatring]]、[[reference/components/health]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

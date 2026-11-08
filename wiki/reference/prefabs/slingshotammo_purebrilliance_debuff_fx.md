@@ -1,12 +1,12 @@
 ---
 title: "弹弓元素弹药附带表现（slingshotammo_purebrilliance_debuff_fx 等 3 注册）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "slingshotammo_debuffs.lua 的 3 个弹弓命中后表现注册：辉煌闪现标记的前后双层跟随标记（载体 mark 为 CLASSIFIED 非联网逻辑实体）、恐惧燃料 DoT 的每跳恐怖幻影（混合载体：FX 自带 planardamage 并池化复用）与减速贴片的纯视觉随层；生成链、伤害归属与端模型分档辨析。"
 aliases: ["slingshotammo_purebrilliance_debuff_fx", "slingshotammo_horrorfuel_debuff_fx", "slingshotammo_slow_debuff_fx", "slingshotammo_purebrilliance_debuff", "辉煌闪现", "群聚恐怖", "弹弓辉煌闪现标记", "弹弓恐惧DoT", "弹弓减速", "纯粹辉煌弹药", "纯粹恐惧弹药", "减速弹药"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/slingshotammo_debuffs.lua", "prefabs/slingshotammo.lua", "components/debuffable.lua", "components/debuff.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -124,3 +124,4 @@ end
 - [[reference/prefabs/abigail_attack_shadow_fx|温蒂、阿比盖尔与辉煌闪现标记特效]]（`purebrilliance_mark_hit_fx` 的工厂与通用表条目）
 - [[reference/prefabs/wurt_casting_fx|沃特施法特效]]（同名 fuel 前缀的施法动画，注册名不同）
 - 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

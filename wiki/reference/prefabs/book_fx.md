@@ -1,12 +1,12 @@
 ---
 title: "读书施法书本特效（book_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "读书动作中挂在读者身上的书本特效：薇克巴顿/麦克斯韦两套、步行/骑乘双版本共六个注册名，联网 FX 由 SGwilson book 状态按书本标签与骑乘自动选型，施法结算失败播失败动画与音效。"
 aliases: ["book_fx", "book_fx_mount", "waxwell_book_fx", "waxwell_book_fx_mount", "waxwell_shadow_book_fx", "waxwell_shadow_book_fx_mount", "读书特效", "施法书本特效"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/book_fx.lua", "stategraphs/SGwilson.lua", "prefabs/waxwelljournal.lua", "prefabs/books.lua", "prefabs/wickerbottom.lua", "prefabs/waxwell.lua"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ inst:AddTag("shadowmagic") -- 读书特效换用 waxwell_book_fx 系（黑色书
 
 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

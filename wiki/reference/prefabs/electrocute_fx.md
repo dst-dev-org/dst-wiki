@@ -1,12 +1,12 @@
 ---
 title: "电击表现与连锁闪电（electrocute_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "电击反应的表现叠加层：挂在被电目标上按体型播 shock 动画并闪黄白，主模拟延迟生成 shock_arc_fx 连锁附近的可电击单位；触发链来自 electric stimuli 攻击与闪电，本实体不结算伤害。"
 aliases: ["electrocute_fx", "电击特效", "电击表现", "shock_fx 电击", "连锁闪电", "电击连锁"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/electrocute_fx.lua", "stategraphs/commonstates.lua", "componentutil.lua", "stategraphs/SGwilson.lua", "components/playerlightningtarget.lua", "prefabs/lightninggoat.lua", "stategraphs/SGwx78_possessedbody.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -38,7 +38,7 @@ status: active
 | 触发链：attacked（electric） | 攻击 stimuli 为 electric（weapon stimuli 或 [[reference/components/electricattacks|electricattacks]] 攻击者）→ `CommonHandlers.OnAttacked` → `try_electrocute_onattacked`（绝缘、noelectrocute/nointerrupt 态、恢复延迟过滤）→ `try_goto_electrocute_state`：有 electrocute 态进状态（状态内 spawn）；无则直接 spawn＋进 hit 态，`sg.mem.burn_on_electrocute` 时点燃 | 免疫标签 electricdamageimmune 不在此过滤（注释说明会破坏玩家行为）；`CalcEntityElectrocuteDuration` 默认 0.8 秒、burn_on_electrocute 缩到 0.4 秒 | [attack_can_electrocute](../../../raw/current/scripts/stategraphs/commonstates.lua#L195-L213)、[try_goto_electrocute_state](../../../raw/current/scripts/stategraphs/commonstates.lua#L238-L278)、[时长](../../../raw/current/scripts/componentutil.lua#L1003-L1018) |
 | 触发链：electrocute 事件 | 挂 `CommonHandlers.OnElectrocute` 的生物 SG 监听 `electrocute` 事件 → `try_electrocute_onevent` → 同上进入电击；本实体 DoFork 对连锁目标 `PushEventImmediate("electrocute", data)` 即走此路 | 事件带 attackdata 才继续 fork；`lightninggoat` 借同一事件直接 `setcharged`（电击＝充能） | [OnElectrocute](../../../raw/current/scripts/stategraphs/commonstates.lua#L344-L346)、[onevent](../../../raw/current/scripts/stategraphs/commonstates.lua#L327-L333)、[闪电羊充能](../../../raw/current/scripts/prefabs/lightninggoat.lua#L161-L163)、[监听注册](../../../raw/current/scripts/prefabs/lightninggoat.lua#L285) |
 | 触发链：闪电 | 地面落雷 AOE：`StrikeLightningAtPoint` 对可电击（CanEntityBeElectrocuted）且非玩家的实体调 `LightningStrikeAttack`——直接扣血并推无 attackdata 的 `electrocute`（不 fork）；玩家接雷走 [[reference/components/playerlightningtarget|playerlightningtarget]] → 同函数，但 SGwilson 无 `electrocute` 事件监听，只掉血不进电击态 | `CanEntityBeElectrocuted`＝SG 有 electrocute 态或 sg.mem.burn_on_electrocute，且非 sg.mem.noelectrocute | [LightningStrikeAttack](../../../raw/current/scripts/componentutil.lua#L1032-L1052)、[AOE 门控](../../../raw/current/scripts/componentutil.lua#L1065-L1090)、[玩家接雷](../../../raw/current/scripts/components/playerlightningtarget.lua#L4-L9) |
-| 连锁 fork | DoFork：范围 `ELECTROCUTE_FORK_RANGE(3)+r+PADDING(3)` 查注册标签实体，过滤后生成 `shock_arc_fx` 居中指向、`PushEventImmediate("electrocute", data)`；玩家攻击者且非 PVP 的目标组排除 player，怪物组可电玩家 | numforks 默认 2，逐级递减；`ELECTROCUTE_FORK_DELAY=11` 帧；每轮最多 `FORK_TARGETS=2` 个新目标（进 electrocute 态才计数） | [DoFork](../../../raw/current/scripts/prefabs/electrocute_fx.lua#L29-L92)、[StartFork](../../../raw/current/scripts/prefabs/electrocute_fx.lua#L126-L133)、[数值](../../../raw/current/scripts/tuning.lua#L8654-L8661) |
+| 连锁 fork | DoFork：范围 `ELECTROCUTE_FORK_RANGE(3)+r+PADDING(3)` 查注册标签实体，过滤后生成 `shock_arc_fx` 居中指向、`PushEventImmediate("electrocute", data)`；玩家攻击者且非 PVP 的目标组排除 player，怪物组可电玩家 | numforks 默认 2，逐级递减；`ELECTROCUTE_FORK_DELAY=11` 帧；每轮最多 `FORK_TARGETS=2` 个新目标（进 electrocute 态才计数） | [DoFork](../../../raw/current/scripts/prefabs/electrocute_fx.lua#L29-L92)、[StartFork](../../../raw/current/scripts/prefabs/electrocute_fx.lua#L126-L133)、[数值](../../../raw/current/scripts/tuning.lua#L8655-L8662) |
 | 玩家专属路径 | SGwilson 的 `electrocute` 状态播 legacy `shock` 动画并在脚下挂旧 `shock_fx` 实体（另一预制，[[reference/prefabs/shock_fx|shock_fx 族页]]），再 `StartElectrocuteForkOnTarget` 复用本文件的 fork 逻辑；SGwx78_possessedbody 同构 | 玩家不生成本实体；fork 需 attackdata | [玩家状态](../../../raw/current/scripts/stategraphs/SGwilson.lua#L3405-L3428)、[fork 调用](../../../raw/current/scripts/stategraphs/SGwilson.lua#L3457)、[同构状态](../../../raw/current/scripts/stategraphs/SGwx78_possessedbody.lua#L3026) |
 | 音效 | 按 size 选 4 档，时长 ≤0.4 秒用短版（*_sml/med/big），否则加长版 | 由 SetFxTarget 依 duration 选择 | [音效表](../../../raw/current/scripts/prefabs/electrocute_fx.lua#L8-L22)、[选择](../../../raw/current/scripts/prefabs/electrocute_fx.lua#L154-L155) |
 | 组件：colouradder | 闪白黄 Push/Pop（b=c/2）；目标无该组件时补挂 | 主模拟；客户端可见性同 electricchargedfx 的边界（颜色更新可走 colouraddersync 或 AnimState，实际客户端效果未运行验证） | [OnUpdate](../../../raw/current/scripts/prefabs/electrocute_fx.lua#L159-L165)、[[reference/components/colouradder]] |
@@ -79,3 +79,4 @@ table.insert(events, CommonHandlers.OnElectrocute())
 
 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

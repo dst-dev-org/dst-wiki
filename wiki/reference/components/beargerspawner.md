@@ -1,12 +1,12 @@
 ---
 title: "beargerspawner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "森林世界按秋季概率表调度破坏王（Bearger）生成：秋季首日掷骰数量、按剩余天数排计时器、预警阶段锁定目标玩家并按距离播放音效与台词。"
 aliases: ["beargerspawner", "破坏王", "bearger", "秋季 boss 生成", "bearger spawner"]
 tags: [component, creature, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/beargerspawner.lua", "prefabs/forest.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -80,3 +80,4 @@ end
 - [[reference/components/deerclopsspawner]]：同代际的冬季 hassler 调度器，结构相近。
 - [[reference/components/worldsettingstimer]]：生成计时器的宿主组件。
 - [[reference/components/moosespawner]]：春季 hassler 的对应实现。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

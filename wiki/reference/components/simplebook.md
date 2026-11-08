@@ -1,12 +1,12 @@
 ---
 title: "simplebook"
 created: "2026-10-20"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "轻量阅读回调与可见性检查；原烹饪指南用它打开弹窗，不要求 reader 或自动消费／精神结算。"
 aliases: ["烹饪指南阅读后发送模组事件", "普通角色阅读物品", "simplebook"]
 tags: [component, item, ui, callback, actions]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/simplebook.lua", "prefabs/cookbook.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua"]
 reliability: verified
 validation: source-reviewed
@@ -67,3 +67,4 @@ end)
 - 结构检查：本批格式、来源、源码引用／行号、大小与登记通过；完整保留原回调并通知例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；不同角色、可见性失败、重复通知、主机／远端弹窗与其他模组回调包装待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

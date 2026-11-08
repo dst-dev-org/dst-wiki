@@ -1,12 +1,12 @@
 ---
 title: "teacher"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "让蓝图等一次性载体教会指定配方，保留学习门禁、成功回调和整实体消耗顺序。"
 aliases: ["蓝图学习", "一次性配方教学", "读蓝图奖励", "渔具图纸", "teacher"]
 tags: [component, recipe, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/teacher.lua", "components/builder.lua", "prefabs/blueprint.lua", "prefabs/tacklesketch.lua", "prefabs/wx78_scanner.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "mainfunctions.lua", "entityscript.lua", "modutil.lua", "components/hunger.lua"]
 reliability: verified
 validation: source-reviewed
@@ -64,7 +64,7 @@ end)
 
 - **普通／指定蓝图：** 随机入口选 `recipetouse`，指定入口由配方循环生成；宿主保存 `recipetouse`／稀有状态，并在 OnLoad 重新 `SetRecipe` 和设置显示。不要仅改 `teacher.recipe` 后声称已完成命名和读档。[blueprint.lua:11-32](../../../raw/current/scripts/prefabs/blueprint.lua#L11-L32)、[:196–201](../../../raw/current/scripts/prefabs/blueprint.lua#L196-L201)、[:225–242](../../../raw/current/scripts/prefabs/blueprint.lua#L225-L242)
 - **渔具图纸：** 基础 `tacklesketch` 工厂虽设 `sketchid=1`，却没有在该处设置 teacher.recipe；具体 `<item>_tacklesketch` 工厂及 OnLoad 才设置。表中的索引被存档，不可任意重排；不能凭基础名字假定能直接教学。[tacklesketch.lua:6-20](../../../raw/current/scripts/prefabs/tacklesketch.lua#L6-L20)、[:23–35](../../../raw/current/scripts/prefabs/tacklesketch.lua#L23-L35)、[:97–103](../../../raw/current/scripts/prefabs/tacklesketch.lua#L97-L103)、[:116–139](../../../raw/current/scripts/prefabs/tacklesketch.lua#L116-L139)
-- **非手读路径：** WX-78 扫描完成后的收获函数按 `_module_recipe` 配置 teacher，再直接 `Teach(picker)`；这是该宿主专用流程，不能泛化成 teacher 会自动扫描生物。[wx78_scanner.lua:1021-1027](../../../raw/current/scripts/prefabs/wx78_scanner.lua#L1021-L1027)、[:1135–1145](../../../raw/current/scripts/prefabs/wx78_scanner.lua#L1135-L1145)
+- **非手读路径：** WX-78 扫描完成后的收获函数按 `_module_recipe` 配置 teacher，再直接 `Teach(picker)`；这是该宿主专用流程，不能泛化成 teacher 会自动扫描生物。[wx78_scanner.lua:1021-1027](../../../raw/current/scripts/prefabs/wx78_scanner.lua#L1023-L1029)、[:1135–1145](../../../raw/current/scripts/prefabs/wx78_scanner.lua#L1138-L1148)
 
 ## 常见陷阱与限制
 
@@ -83,3 +83,4 @@ end)
 - 结构检查：本页元数据、链接、大小与源码引用定向检查通过；完整 modmain 示例经现有 Full Moon／Lua 5.1 语法检查。
 - 游戏运行：未运行；联机提示、实际读蓝图／奖励、重载和其他模组回调联动待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

@@ -1,12 +1,12 @@
 ---
 title: "小型一次性外围 FX 族（grasspartfx、脆弱玫瑰、黑暗痕迹等 8 注册）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "七个宿主文件内手写的 8 个小型一次性注册：草蜥蜴替身草屑、鱼饵碎块、恶液吐落物跟随、无眼鹿挣脱／生角、渔网开网溅水与温娜脆弱玫瑰／黑暗痕迹的工厂、端、生成点与清理。"
 aliases: ["grasspartfx", "chumpiece", "gelblob_item_fx", "deer_unshackle_fx", "deer_growantler_fx", "fishingnetvisualizerfx", "charlierose", "charlieresidue", "脆弱玫瑰", "黑暗痕迹", "草屑", "草蜥蜴变身特效", "鱼饵碎块", "恶液吐物品", "无眼鹿挣脱锁链", "无眼鹿生角", "渔网溅水", "玫瑰眼镜残影"]
 tags: [prefab, fx, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/charlierose.lua", "prefabs/charlieresidue.lua", "prefabs/chum_aoe.lua", "prefabs/grass.lua", "prefabs/gelblob.lua", "prefabs/deer.lua", "prefabs/fishingnetvisualizerfx.lua", "prefabs/fishingnetvisualizer.lua", "prefabs/flower.lua", "prefabs/waterplant_pollen.lua", "prefabs/player_common_extensions.lua", "prefabs/winona.lua", "stategraphs/SGdeer.lua", "stategraphs/SGfishingnetvisualizer.lua", "stategraphs/SGwilson.lua", "components/roseinspectableuser.lua", "components/edible.lua", "components/eater.lua", "components/container.lua", "components/inventory.lua", "brains/oceanfishbrain.lua", "brains/deergemmedbrain.lua", "components/deerherdspawner.lua", "prefabs/oceanfishdef.lua", "prefabs/fishingnet.lua", "actions.lua", "simutil.lua", "tuning.lua", "constants.lua", "languages/chinese_s.po"]
 size_class: complex
 reliability: verified
@@ -101,3 +101,4 @@ fx.AnimState:SetMultColour(r, g, b, a)
 - 未覆盖：动画包时长与内容、客户端实际观感、专服与晚加入、读档中途存档表现、宿主玩法（玫瑰眼镜流程、鱼饵云鱼群生成、鹿群迁移、恶液吞人、渔网捕获）细节。
 
 返回 [[reference/prefabs/fx-world-index|天气、地形与生态痕迹]]、[[reference/prefabs/fx-index|FX 主题总索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

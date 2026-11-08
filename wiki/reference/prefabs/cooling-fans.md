@@ -6,7 +6,7 @@ type: prefab
 summary: "原版手扇参照：featherfan／perdfan 共用 fans.lua 的 common_fn 工厂，FAN 右键动作经 fan 组件回调在半径 7 内灭火（含传播器余热重置）并把实体体温向 2.5 度方向拉（单次最多 -50）；幸运扇另接吟唱回调，每次动作前摇内最多两次生成 2 秒龙卷风、每次 2 耐久；两态均无新鲜度、不可堆叠。"
 aliases: ["featherfan", "perdfan", "羽毛扇", "幸运扇", "豪华扇", "降温扇", "Luxury Fan", "Lucky Fan"]
 tags: [prefab, item]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/fans.lua", "components/fan.lua", "components/finiteuses.lua", "components/burnable.lua", "components/temperature.lua", "componentutil.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "componentactions.lua", "bufferedaction.lua", "prefabs/staff_tornado.lua", "simutil.lua", "mainfunctions.lua", "recipes.lua", "prefabskins.lua", "prefabs/skinprefabs.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -124,3 +124,4 @@ AddPrefabPostInit("perdfan", ExtendFan)
 - 外部复检修订：2026-11-08（docs/reports/w05/prefab-inventory-review-b01-20261108，主代理逐项回源码核实采纳）：降温叠加表述纠正——两段回调各自现读体温、各自 clamp、各自过 `Temperature:DoDelta` 的隔热折算（temperature.lua:71-84），删除上一轮"合计 −55／−130"的说法（第二段读到的是第一段降温后的温度：无隔热、初温 30 度例中追加段 clamp(2.5−2.5,−80,0)＝0）；9 次耐久轨迹改为带前提的示例表述（每次吟唱需 `FindWalkableOffset` 找到落点才扣 2 费、普通 FAN 需通过物品拟态检查才进结算）；"postinit 对新旧实例都生效"收窄为新构造与读档重建实例（SpawnSaveRecord 先 SpawnPrefab，mainfunctions.lua:464-466）；制作站名按 `STRINGS.NAMES.PERDSHRINE` 改"火鸡神龛"（chinese_s.po:346810-346812）；frontmatter sources 补 components/temperature.lua 与 mainfunctions.lua。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

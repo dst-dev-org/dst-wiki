@@ -1,13 +1,13 @@
 ---
 title: "pocketwatch"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "旺达怀表的施法基座：inactive 开关联动 pocketwatch_inactive 标签，CanCast／CastSpell 执行 prefab 注入的 CanCastFn／DoCastSpell。"
 aliases: ["pocketwatch", "怀表施法组件", "回溯表施法基座"]
 tags: [component, item, actions]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/pocketwatch.lua", "prefabs/pocketwatch_common.lua", "prefabs/pocketwatch.lua", "prefabs/pocketwatch_portal.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -63,3 +63,4 @@ end
 
 相关：[[reference/components/pocketwatch-dismantler]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

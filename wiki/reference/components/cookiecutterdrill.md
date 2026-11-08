@@ -1,12 +1,12 @@
 ---
 title: "cookiecutterdrill"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "记录饼干切割者钻船进度并在钻完时触发船体漏水与进食计时的状态组件，进度由状态图驱动。"
 aliases: ["cookiecutterdrill", "钻船计时", "饼干切割者钻船", "船体漏水触发"]
 tags: [component, ai]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["components/cookiecutterdrill.lua", "prefabs/cookiecutter.lua", "stategraphs/SGcookiecutter.lua", "tuning.lua"]
 reliability: verified
@@ -59,3 +59,4 @@ inst.components.cookiecutterdrill.leak_damage = -20
 - 游戏运行：未运行；未复现钻船漏水完整链路。
 - 结构检查：validate_page.py 通过；validate_source_links.py --strict 通过（本批 16 页合并执行）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

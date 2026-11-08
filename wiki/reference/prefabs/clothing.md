@@ -1,13 +1,13 @@
 ---
 title: "BODY 槽衣物与背心族（raincoat 等 12 注册）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "BODY 槽衣物与背心 12 注册（9 文件）的工厂、组件与消费端：雷电绝缘/防水、夏冬保温、dapperness、装备期 fueled 与常驻腐坏两条耐久链、气球背心挨打即爆、独奏乐器招募与影子等级；含配方、奖品亭兑换、官方名与皮肤。"
 aliases: ["raincoat", "hawaiianshirt", "sweatervest", "reflectivevest", "trunkvest_summer", "trunkvest_winter", "beargervest", "balloonvest", "carnival_vest_a", "carnival_vest_b", "carnival_vest_c", "onemanband", "雨衣", "花衬衫", "犬牙背心", "清凉夏装", "透气背心", "松软背心", "熊皮背心", "充气背心", "叽叽喳喳围巾", "叽叽喳喳斗篷", "叽叽喳喳小披肩", "独奏乐器", "一人乐队", "背心"]
 tags: [prefab, item, equipment]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/raincoat.lua", "prefabs/hawaiianshirt.lua", "prefabs/sweatervest.lua", "prefabs/reflectivevest.lua", "prefabs/trunkvest.lua", "prefabs/beargervest.lua", "prefabs/balloonvest.lua", "prefabs/carnival_vest.lua", "prefabs/onemanband.lua", "prefabs/balloons_common.lua", "prefabs/balloonspeed.lua", "prefabs/waxwell.lua", "prefabs/hutch.lua", "prefabs/koalefant.lua", "prefabs/carnival_prizebooth.lua", "prefabskins.lua", "recipes.lua", "tuning.lua", "constants.lua", "languages/chinese_s.po", "componentutil.lua", "components/equippable.lua", "components/insulator.lua", "components/waterproofer.lua", "components/fueled.lua", "components/fuel.lua", "components/sanity.lua", "components/temperature.lua", "components/moisture.lua", "components/inventory.lua", "components/hunger.lua", "components/poppable.lua", "components/flotationdevice.lua", "components/leaderrollcall.lua", "components/shadowlevel.lua", "components/drownable.lua", "components/dynamicmusic.lua", "components/playerlightningtarget.lua", "components/burnable.lua", "standardcomponents.lua", "stategraphs/SGwilson.lua", "stategraphs/SGcatcoon.lua", "stategraphs/SGshadowwaxwell.lua", "brains/catcoonbrain.lua"]
 reliability: verified
 validation: source-reviewed
@@ -27,7 +27,7 @@ status: active
 
 ### 工厂与共同骨架
 
-9 文件各自独立工厂、无共享 helper。12 注册全部 `equipslot = EQUIPSLOTS.BODY`（raincoat [L61](../../../raw/current/scripts/prefabs/raincoat.lua#L61)、hawaiianshirt [L52](../../../raw/current/scripts/prefabs/hawaiianshirt.lua#L52)、sweatervest [L46](../../../raw/current/scripts/prefabs/sweatervest.lua#L46)、reflectivevest [L63](../../../raw/current/scripts/prefabs/reflectivevest.lua#L63)、trunkvest [L77](../../../raw/current/scripts/prefabs/trunkvest.lua#L77)、beargervest [L72](../../../raw/current/scripts/prefabs/beargervest.lua#L72)、balloonvest [L82](../../../raw/current/scripts/prefabs/balloonvest.lua#L82)、carnival_vest [L49](../../../raw/current/scripts/prefabs/carnival_vest.lua#L49)、onemanband [L89](../../../raw/current/scripts/prefabs/onemanband.lua#L89)）。装备表现统一 `OverrideSymbol("swap_body", …)`（onemanband 用 `swap_body_tall`，[L13](../../../raw/current/scripts/prefabs/onemanband.lua#L13)；carnival 另盖 `backpack`，[carnival_vest.lua#L4-L5](../../../raw/current/scripts/prefabs/carnival_vest.lua#L4-L5)）；皮肤走 `GetSkinBuild`。**带 fueled 的装备回调 `StartConsuming`、卸下与入模型 `StopConsuming`**（raincoat [L14](../../../raw/current/scripts/prefabs/raincoat.lua#L14)、[L19](../../../raw/current/scripts/prefabs/raincoat.lua#L19)、[L28](../../../raw/current/scripts/prefabs/raincoat.lua#L28)），燃料只在装备期消耗。
+9 文件各自独立工厂、无共享 helper。12 注册全部 `equipslot = EQUIPSLOTS.BODY`（raincoat [L61](../../../raw/current/scripts/prefabs/raincoat.lua#L62)、hawaiianshirt [L52](../../../raw/current/scripts/prefabs/hawaiianshirt.lua#L53)、sweatervest [L46](../../../raw/current/scripts/prefabs/sweatervest.lua#L46)、reflectivevest [L63](../../../raw/current/scripts/prefabs/reflectivevest.lua#L64)、trunkvest [L77](../../../raw/current/scripts/prefabs/trunkvest.lua#L78)、beargervest [L72](../../../raw/current/scripts/prefabs/beargervest.lua#L73)、balloonvest [L82](../../../raw/current/scripts/prefabs/balloonvest.lua#L82)、carnival_vest [L49](../../../raw/current/scripts/prefabs/carnival_vest.lua#L49)、onemanband [L89](../../../raw/current/scripts/prefabs/onemanband.lua#L89)）。装备表现统一 `OverrideSymbol("swap_body", …)`（onemanband 用 `swap_body_tall`，[L13](../../../raw/current/scripts/prefabs/onemanband.lua#L13)；carnival 另盖 `backpack`，[carnival_vest.lua#L4-L5](../../../raw/current/scripts/prefabs/carnival_vest.lua#L4-L5)）；皮肤走 `GetSkinBuild`。**带 fueled 的装备回调 `StartConsuming`、卸下与入模型 `StopConsuming`**（raincoat [L14](../../../raw/current/scripts/prefabs/raincoat.lua#L14)、[L19](../../../raw/current/scripts/prefabs/raincoat.lua#L19)、[L28](../../../raw/current/scripts/prefabs/raincoat.lua#L28)），燃料只在装备期消耗。
 
 单位换算（[tuning.lua#L2207](../../../raw/current/scripts/tuning.lua#L2207)、[L2214-L2216](../../../raw/current/scripts/tuning.lua#L2214-L2216)、[L2260-L2263](../../../raw/current/scripts/tuning.lua#L2260-L2263)、[L1674](../../../raw/current/scripts/tuning.lua#L1674)、[L1681](../../../raw/current/scripts/tuning.lua#L1681)）：`total_day_time`=480 秒；insulator 值是**秒**（SMALL 60/MED 120/LARGE 240）；dapperness 是**理智/秒**（SMALL ≈16/MED ≈26.7/MED_LARGE ≈35.5 每天合计）；SANITYAURA_SMALL ≈200/天；SMALL_FUEL=15 秒燃料值；SMALL_BURNTIME=7.5 秒。
 
@@ -37,13 +37,13 @@ status: active
 
 | 注册名（官方名） | 组件与关键数值 | 获取与证据 |
 |---|---|---|
-| `raincoat`（雨衣） | **雷电绝缘**（`equippable.insulated=true`）＋防水 SMALL＋冬保温 SMALL＋fueled USAGE 10 天耗尽自毁＋pristine `waterproofer`＋tradable | 配方 2 触手皮+2 绳+2 骨片 SCIENCE_ONE（[recipes.lua#L546](../../../raw/current/scripts/recipes.lua#L546)）；[raincoat.lua#L60-L77](../../../raw/current/scripts/prefabs/raincoat.lua#L60-L77) |
-| `hawaiianshirt`（花衬衫） | dapperness MED＋**夏**保温 LARGE＋perishable 15 天**常驻腐坏**耗尽自毁＋pristine `show_spoilage`（物品格显示腐坏条） | 配方 3 莎草纸+3 蛛丝+5 仙人掌花 SCIENCE_TWO（[recipes.lua#L551](../../../raw/current/scripts/recipes.lua#L551)）；[hawaiianshirt.lua#L51-L64](../../../raw/current/scripts/prefabs/hawaiianshirt.lua#L51-L64) |
+| `raincoat`（雨衣） | **雷电绝缘**（`equippable.insulated=true`）＋防水 SMALL＋冬保温 SMALL＋fueled USAGE 10 天耗尽自毁＋pristine `waterproofer`＋tradable | 配方 2 触手皮+2 绳+2 骨片 SCIENCE_ONE（[recipes.lua#L546](../../../raw/current/scripts/recipes.lua#L546)）；[raincoat.lua#L60-L77](../../../raw/current/scripts/prefabs/raincoat.lua#L61-L78) |
+| `hawaiianshirt`（花衬衫） | dapperness MED＋**夏**保温 LARGE＋perishable 15 天**常驻腐坏**耗尽自毁＋pristine `show_spoilage`（物品格显示腐坏条） | 配方 3 莎草纸+3 蛛丝+5 仙人掌花 SCIENCE_TWO（[recipes.lua#L551](../../../raw/current/scripts/recipes.lua#L551)）；[hawaiianshirt.lua#L51-L64](../../../raw/current/scripts/prefabs/hawaiianshirt.lua#L52-L65) |
 | `sweatervest`（犬牙背心） | dapperness MED＋冬保温 SMALL＋fueled USAGE 10 天＋tradable | 配方 8 猎犬牙+6 蛛丝 SCIENCE_TWO（[recipes.lua#L547](../../../raw/current/scripts/recipes.lua#L547)）；[sweatervest.lua#L45-L59](../../../raw/current/scripts/prefabs/sweatervest.lua#L45-L59) |
-| `reflectivevest`（清凉夏装） | dapperness SMALL＋**夏**保温 MED＋防水 SMALL＋fueled USAGE 8 天＋pristine `waterproofer` | 配方 1 绳+3 红雀羽毛+2 猪皮 SCIENCE_ONE（[recipes.lua#L550](../../../raw/current/scripts/recipes.lua#L550)）；[reflectivevest.lua#L62-L79](../../../raw/current/scripts/prefabs/reflectivevest.lua#L62-L79) |
-| `trunkvest_summer`（透气背心） | dapperness SMALL＋**夏**保温 SMALL＋防水 SMALL＋fueled USAGE 15 天＋pristine `waterproofer`＋tradable | 配方 1 trunk_summer+8 蛛丝 SCIENCE_TWO（[recipes.lua#L548](../../../raw/current/scripts/recipes.lua#L548)）；trunk 出自考拉象掉落（[koalefant.lua#L22-L23](../../../raw/current/scripts/prefabs/koalefant.lua#L22-L23)、[L36](../../../raw/current/scripts/prefabs/koalefant.lua#L36)）；[trunkvest.lua#L95-L110](../../../raw/current/scripts/prefabs/trunkvest.lua#L95-L110) |
-| `trunkvest_winter`（松软背心） | dapperness SMALL＋**冬**保温 LARGE＋无防水＋fueled USAGE 15 天＋tradable | 配方 1 trunk_winter+8 蛛丝+2 牛毛 SCIENCE_TWO（[recipes.lua#L549](../../../raw/current/scripts/recipes.lua#L549)）；[trunkvest.lua#L112-L124](../../../raw/current/scripts/prefabs/trunkvest.lua#L112-L124) |
-| `beargervest`（熊皮背心） | dapperness MED_LARGE＋冬保温 LARGE＋fueled USAGE 7 天＋**装备期持有者饥饿消耗 ×0.75**＋tradable | 配方 1 熊皮+1 犬牙背心+2 绳 SCIENCE_TWO（[recipes.lua#L553](../../../raw/current/scripts/recipes.lua#L553)）；饥饿修饰符 [beargervest.lua#L15-L17](../../../raw/current/scripts/prefabs/beargervest.lua#L15-L17)（消费端 [hunger.lua#L154](../../../raw/current/scripts/components/hunger.lua#L154)）；组件 [L71-L81](../../../raw/current/scripts/prefabs/beargervest.lua#L71-L81) |
+| `reflectivevest`（清凉夏装） | dapperness SMALL＋**夏**保温 MED＋防水 SMALL＋fueled USAGE 8 天＋pristine `waterproofer` | 配方 1 绳+3 红雀羽毛+2 猪皮 SCIENCE_ONE（[recipes.lua#L550](../../../raw/current/scripts/recipes.lua#L550)）；[reflectivevest.lua#L62-L79](../../../raw/current/scripts/prefabs/reflectivevest.lua#L63-L80) |
+| `trunkvest_summer`（透气背心） | dapperness SMALL＋**夏**保温 SMALL＋防水 SMALL＋fueled USAGE 15 天＋pristine `waterproofer`＋tradable | 配方 1 trunk_summer+8 蛛丝 SCIENCE_TWO（[recipes.lua#L548](../../../raw/current/scripts/recipes.lua#L548)）；trunk 出自考拉象掉落（[koalefant.lua#L22-L23](../../../raw/current/scripts/prefabs/koalefant.lua#L22-L23)、[L36](../../../raw/current/scripts/prefabs/koalefant.lua#L36)）；[trunkvest.lua#L95-L110](../../../raw/current/scripts/prefabs/trunkvest.lua#L96-L111) |
+| `trunkvest_winter`（松软背心） | dapperness SMALL＋**冬**保温 LARGE＋无防水＋fueled USAGE 15 天＋tradable | 配方 1 trunk_winter+8 蛛丝+2 牛毛 SCIENCE_TWO（[recipes.lua#L549](../../../raw/current/scripts/recipes.lua#L549)）；[trunkvest.lua#L112-L124](../../../raw/current/scripts/prefabs/trunkvest.lua#L113-L125) |
+| `beargervest`（熊皮背心） | dapperness MED_LARGE＋冬保温 LARGE＋fueled USAGE 7 天＋**装备期持有者饥饿消耗 ×0.75**＋tradable | 配方 1 熊皮+1 犬牙背心+2 绳 SCIENCE_TWO（[recipes.lua#L553](../../../raw/current/scripts/recipes.lua#L553)）；饥饿修饰符 [beargervest.lua#L15-L17](../../../raw/current/scripts/prefabs/beargervest.lua#L15-L17)（消费端 [hunger.lua#L154](../../../raw/current/scripts/components/hunger.lua#L154)）；组件 [L71-L81](../../../raw/current/scripts/prefabs/beargervest.lua#L72-L82) |
 
 **表B 特殊机制（5 注册）**
 
@@ -68,7 +68,7 @@ status: active
 ### 燃料与腐坏链
 
 - **fueled**：1 单位=1 秒（rate=1，[fueled.lua#L89](../../../raw/current/scripts/components/fueled.lua#L89)、[L325-L328](../../../raw/current/scripts/components/fueled.lua#L325-L328)）。USAGE 型打 `needssewing`→缝纫包 SEW（[fueled.lua#L10-L16](../../../raw/current/scripts/components/fueled.lua#L10-L16)、[componentactions.lua#L1708-L1713](../../../raw/current/scripts/componentactions.lua#L1708-L1713)）——本族除 hawaiianshirt/balloonvest/onemanband 外均可缝补。`accepting` 默认 false（[fueled.lua#L94](../../../raw/current/scripts/components/fueled.lua#L94)），fuel 物品默认 BURNABLE（[fuel.lua#L13-L21](../../../raw/current/scripts/components/fuel.lua#L13-L21)），MAGIC 注释即"不配燃料"（[constants.lua#L1995-L2007](../../../raw/current/scripts/constants.lua#L1995-L2007)）——**balloonvest/onemanband 不可补耐久**。耗尽本族均 Remove，balloonvest 例外 `FueledDepletedPop`（[balloons_common.lua#L189-L191](../../../raw/current/scripts/prefabs/balloons_common.lua#L189-L191)）。
-- **perishable（仅 hawaiianshirt）**：创建即计时，背包内照常腐坏，耗尽 Remove（[hawaiianshirt.lua#L57-L60](../../../raw/current/scripts/prefabs/hawaiianshirt.lua#L57-L60)）。**两件考拉象背心不是 perishable**——`trunkvest_summer/winter` 是 `FUELTYPE.USAGE` 的 fueled 注册（装备期才耗），别把"衬衫／背心"整体当成腐坏链（[trunkvest 工厂](../../../raw/current/scripts/prefabs/trunkvest.lua#L76-L88)）。
+- **perishable（仅 hawaiianshirt）**：创建即计时，背包内照常腐坏，耗尽 Remove（[hawaiianshirt.lua#L57-L60](../../../raw/current/scripts/prefabs/hawaiianshirt.lua#L58-L61)）。**两件考拉象背心不是 perishable**——`trunkvest_summer/winter` 是 `FUELTYPE.USAGE` 的 fueled 注册（装备期才耗），别把"衬衫／背心"整体当成腐坏链（[trunkvest 工厂](../../../raw/current/scripts/prefabs/trunkvest.lua#L77-L89)）。
 - **dapperness 消费端**：`Sanity:Recalc` 累加装备 dapperness（[sanity.lua#L513-L522](../../../raw/current/scripts/components/sanity.lua#L513-L522)）；`GetDapperness` 中 **dapperfn 覆盖静态值**、浸湿追加 −0.1/秒（[equippable.lua#L196-L211](../../../raw/current/scripts/components/equippable.lua#L196-L211)、[tuning.lua#L2926](../../../raw/current/scripts/tuning.lua#L2926)）。
 
 ### 气球背心链
@@ -89,7 +89,7 @@ status: active
 
 ### 调整原版衣物数值与新建 BODY 背心
 
-- 前提与选择：只调数值用 modmain `AddPrefabPostInit`（mastersim 门禁）改组件字段；新建背心复刻 raincoat 最小集 `inventoryitem`＋`inspectable`＋`equippable BODY`（[raincoat.lua#L31-L79](../../../raw/current/scripts/prefabs/raincoat.lua#L31-L79)）＋按需组件，pristine 标签在 `SetPristine` 前加。
+- 前提与选择：只调数值用 modmain `AddPrefabPostInit`（mastersim 门禁）改组件字段；新建背心复刻 raincoat 最小集 `inventoryitem`＋`inspectable`＋`equippable BODY`（[raincoat.lua#L31-L79](../../../raw/current/scripts/prefabs/raincoat.lua#L31-L80)）＋按需组件，pristine 标签在 `SetPristine` 前加。
 - 生效与撤销：装备期标签随网络同步生效，卸下自动失效；fueled 在装备回调内 Start/StopConsuming（入模型须另传只停耗的回调，[raincoat.lua#L27-L29](../../../raw/current/scripts/prefabs/raincoat.lua#L27-L29)）；postinit 改动随实体存档，卸 mod 后随实体重建消失。
 
 ```lua
@@ -132,3 +132,4 @@ end)
 - [[reference/components/fueled|fueled]]、[[reference/components/perishable|perishable]]（两条耐久链）
 - [[reference/components/leaderrollcall|leaderrollcall]]、[[reference/components/shadowlevel|shadowlevel]]、[[reference/components/poppable|poppable]]、[[reference/components/flotationdevice|flotationdevice]]（独奏乐器与气球背心专属组件）
 - 返回 [[reference/prefabs/wearables-index|穿戴防具与饰品]]、[[reference/prefabs/index|原版 Prefab 索引]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 14 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

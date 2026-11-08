@@ -1,12 +1,12 @@
 ---
 title: "teleportedoverride"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "向紫法杖传送流程提供目标实体或落点回调，不拦截所有传送方式。"
 aliases: ["传送落点覆盖", "紫法杖目的地", "被传送目标", "teleportedoverride"]
 tags: [component, callback, modding]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/teleportedoverride.lua", "prefabs/staff.lua", "prefabs/staff_common.lua", "prefabs/wagstaff_npc.lua", "prefabs/pigman.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -37,7 +37,7 @@ status: active
 
 ### 猪人被紫法杖命中时保持当前位置
 
-目标模组 `modmain.lua`，服务端为 `pigman` 增加目的地回调；不改美术／动作，不用于通用免疫。若其他模组已有组件，本例保留其策略，不覆盖。[组件](../../../raw/current/scripts/components/teleportedoverride.lua#L15-L21)、[猪人工厂](../../../raw/current/scripts/prefabs/pigman.lua#L1035)、[Hook](../../../raw/current/scripts/modutil.lua#L593-L599)
+目标模组 `modmain.lua`，服务端为 `pigman` 增加目的地回调；不改美术／动作，不用于通用免疫。若其他模组已有组件，本例保留其策略，不覆盖。[组件](../../../raw/current/scripts/components/teleportedoverride.lua#L15-L21)、[猪人工厂](../../../raw/current/scripts/prefabs/pigman.lua#L1047)、[Hook](../../../raw/current/scripts/modutil.lua#L593-L599)
 
 ```lua
 AddPrefabPostInit("pigman", function(inst)
@@ -72,3 +72,4 @@ end)
 - 结构与语法：本批执行格式、登记、链接／源码锚点检查及完整示例 Lua 5.1 语法检查；结果见本批交付报告。
 - 游戏运行：未运行；猪人命中、洞穴／地表、海上平台、目标消失、多人及其他模组策略冲突待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

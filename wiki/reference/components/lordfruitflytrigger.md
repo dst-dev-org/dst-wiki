@@ -21,7 +21,7 @@ status: active
 - 职责与适用：与 [[reference/components/singingshelltrigger]] 同构的"靠近即触发"组件：每帧扫描 `trigger_range`（15）内实体，新进入者调用其 `v._activatefn(v, self.inst)`，离开再进入会重复触发。[扫描循环](../../../raw/current/scripts/components/lordfruitflytrigger.lua#L62-L79)
 - 优先使用：**当前快照内无任何消费者**——全库 grep 仅组件自身引用，没有 `AddComponent("lordfruitflytrigger")`，也没有读取其标签或字段的代码；不能作为可靠接入点，仅作考古/预研参考。
 - 重要副作用：构造即加 `lordfruitflytrigger` 标签、常驻更新（构造里 farming_manager 分支与无条件调用双重 `StartUpdating`，靠 `updating` 标志幂等）；监听世界事件 `ms_fruitflytimerfinished` 清空重叠表。[构造](../../../raw/current/scripts/components/lordfruitflytrigger.lua#L19-L39)
-- 修改边界：组件按"挂在果蝇王身上"设计——`death` 暂停扫描、`respawnfromghost` 恢复；但 `prefabs/fruitfly.lua` 的 lordfruitfly 构建并未挂它。[事件钩子](../../../raw/current/scripts/components/lordfruitflytrigger.lua#L37-L38)
+- 修改边界：组件按"挂在果蝇王身上"设计——`death` 暂停扫描、`respawnfromghost` 恢复；但 `prefabs/fruitfly.lua` 的 lordfruitfly 构建并未挂它；果蝇王本体见 [[reference/prefabs/fruit-fly]]。[事件钩子](../../../raw/current/scripts/components/lordfruitflytrigger.lua#L37-L38)
 
 ## 关键接口
 

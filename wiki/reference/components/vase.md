@@ -1,12 +1,12 @@
 ---
 title: "vase"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "花瓶插花接收端：接收 DECORATEVASE 放入的花，管理新鲜／蔫化状态、发光定时与花样式推送回调，支持读档与跳时间。"
 aliases: ["花瓶", "插花容器", "vase组件"]
 tags: [component, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/vase.lua", "prefabs/decor_flowervase.lua", "actions.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 - 职责与适用：挂在花瓶类家具（decor_flowervase、endtable、vaultrelic，[装配例](../../../raw/current/scripts/prefabs/decor_flowervase.lua#L169-L172)）上，接收玩家用 [[reference/components/vasedecoration]] 物品发动的 DECORATEVASE，保存花样式并驱动蔫化与灯光。
 - 优先使用：`Decorate(giver, item)` 是动作执行入口（[执行](../../../raw/current/scripts/actions.lua#L2452-L2455)）；程序插花用 `SetFlower(flowerid, wilt_time)`（[L119-L154](../../../raw/current/scripts/components/vase.lua#L119-L154)）。
 - 重要副作用：`enabled` 字段带赋值监听，同步宿主 `vase` 标签（[L1-L3](../../../raw/current/scripts/components/vase.lua#L1-L3)）；发光花会在宿主上开周期灯光任务，进出 limbo 自动熄灭／恢复（[L13-L31](../../../raw/current/scripts/components/vase.lua#L13-L31)）。
-- 修改边界：可插花种类完全由 `TUNING.VASE_FLOWER_MAP` 决定（[映射](../../../raw/current/scripts/tuning.lua#L8007-L8017)）；存读只存花 id 与剩余蔫化时间（[L230-L244](../../../raw/current/scripts/components/vase.lua#L230-L244)）。
+- 修改边界：可插花种类完全由 `TUNING.VASE_FLOWER_MAP` 决定（[映射](../../../raw/current/scripts/tuning.lua#L8008-L8018)）；存读只存花 id 与剩余蔫化时间（[L230-L244](../../../raw/current/scripts/components/vase.lua#L230-L244)）。
 
 ## 关键接口
 
@@ -57,7 +57,7 @@ local function fn()
 end
 ```
 
-- 调整与验证：花的样式索引写在 `TUNING.VASE_FLOWER_SWAPS`（`lightsource` 决定是否发光），`VASE_FLOWER_MAP` 把物品 prefab 映射到样式下标数组；映射缺失的物品插不进去（[调 tuning](../../../raw/current/scripts/tuning.lua#L7988-L8017)）。
+- 调整与验证：花的样式索引写在 `TUNING.VASE_FLOWER_SWAPS`（`lightsource` 决定是否发光），`VASE_FLOWER_MAP` 把物品 prefab 映射到样式下标数组；映射缺失的物品插不进去（[调 tuning](../../../raw/current/scripts/tuning.lua#L7989-L8018)）。
 
 ## 常见陷阱与限制
 
@@ -73,3 +73,4 @@ end
 
 相关：[[reference/components/vasedecoration]]（物品端标记）、[[reference/components/perishable]]（蔫化时长来源）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

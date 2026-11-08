@@ -1,12 +1,12 @@
 ---
 title: talker
 created: 2026-10-21
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 复用玩家与 NPC 说话能力，选择 Say 或 Chatter，处理消息同步、过滤、动画和取消
 aliases: [头顶文字, 角色说话, NPC 台词, Say, MakeChatter, 禁止说话]
 tags: [component, callback, lifecycle, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/talker.lua, networking.lua, prefabs/player_common.lua, prefabs/pigman.lua, behaviours/chattynode.lua, stategraphs/SGwilson.lua, widgets/followtext.lua, entityscript.lua, modutil.lua, tuning.lua]
 reliability: verified
 validation: source-reviewed
@@ -44,7 +44,7 @@ status: active
 
 ### NPC 的 Chatter 与显示设置
 
-`MakeChatter()` 建立五个网络变量并在客户端监听 dirty；猪人在 `SetPristine` 前完成它。`Chatter(strtbl, strid, time, forcetext, echotochatpriority)` 只在已初始化的主模拟端执行。`strtbl` 为 `STRINGS` 下点分路径，id 为 0 取最终值，非零取索引；解析失败会 `ShutUp`，自定义表须在所需客户端注册。[解析与 dirty](../../../raw/current/scripts/components/talker.lua#L26-L78)、[网络初始化／发送](../../../raw/current/scripts/components/talker.lua#L81-L123)、[猪人宿主](../../../raw/current/scripts/prefabs/pigman.lua#L783-L794)。
+`MakeChatter()` 建立五个网络变量并在客户端监听 dirty；猪人在 `SetPristine` 前完成它。`Chatter(strtbl, strid, time, forcetext, echotochatpriority)` 只在已初始化的主模拟端执行。`strtbl` 为 `STRINGS` 下点分路径，id 为 0 取最终值，非零取索引；解析失败会 `ShutUp`，自定义表须在所需客户端注册。[解析与 dirty](../../../raw/current/scripts/components/talker.lua#L26-L78)、[网络初始化／发送](../../../raw/current/scripts/components/talker.lua#L81-L123)、[猪人宿主](../../../raw/current/scripts/prefabs/pigman.lua#L794-L805)。
 
 Chatter 强制使 id dirty，支持重复同一句；`forcetext=true` 同时作为 `Say` 的 `noanim/force`。发送后 1 秒任务只是 `strtbl:set_local("")`，不是台词时长，也不直接终止文字。时间和 id 使用 tinybyte/smallbyte 网络类型，勿当任意浮点时长或无限索引；本页不补造这些类型的编码范围。[dirty 消费](../../../raw/current/scripts/components/talker.lua#L53-L57)、[发送与清除](../../../raw/current/scripts/components/talker.lua#L86-L122)。
 
@@ -78,7 +78,7 @@ end)
 
 ## 常见陷阱与限制
 
-- **同名回调职责不同**：`ontalk` 在服务端获准 Say 时执行，`ontalkfn` 在本地逐行线程执行，`ontalk` 事件由 SG 等消费者处理。猪人的 `ontalk` 会播放哼声；直接覆盖会丢原功能。[猪人回调](../../../raw/current/scripts/prefabs/pigman.lua#L52-L54)、[安装](../../../raw/current/scripts/prefabs/pigman.lua#L805-L806)、[组件调用点](../../../raw/current/scripts/components/talker.lua#L214-L218)。
+- **同名回调职责不同**：`ontalk` 在服务端获准 Say 时执行，`ontalkfn` 在本地逐行线程执行，`ontalk` 事件由 SG 等消费者处理。猪人的 `ontalk` 会播放哼声；直接覆盖会丢原功能。[猪人回调](../../../raw/current/scripts/prefabs/pigman.lua#L52-L54)、[安装](../../../raw/current/scripts/prefabs/pigman.lua#L816-L817)、[组件调用点](../../../raw/current/scripts/components/talker.lua#L214-L218)。
 - **新宿主只加服务器组件**：`Networking_Talk` 找不到客户端 talker 就跳过；新增宿主应参考上述共同构造模式。[接收条件](../../../raw/current/scripts/networking.lua#L139-L143)。
 - **本地中止不是全网中止承诺**：普通 Say 不把 `force/noanim/colour/sgparam` 全部打包广播，远端由 `Networking_Talk` 用默认值再说；不能推导出服务端强制标志或动画参数会同步。[广播实参](../../../raw/current/scripts/components/talker.lua#L193-L199)、[接收实参](../../../raw/current/scripts/networking.lua#L139-L143)。
 - **清理路径有区别**：移除组件时退订 dirty、移除忽略标签并 `ShutUp`；实体移除用 `CancelSay`，实体通用清理另取消 pending tasks。自定义外部监听／任务仍由其创建者负责，不能把说话组件当通用任务管理器。[组件清理](../../../raw/current/scripts/components/talker.lua#L126-L131)、[实体回调](../../../raw/current/scripts/components/talker.lua#L314)、[通用清理](../../../raw/current/scripts/entityscript.lua#L1741-L1750)。
@@ -98,3 +98,4 @@ end)
 ## 相关链接
 
 - [[reference/components/storyteller]]：对故事道具播剧本的讲述端。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

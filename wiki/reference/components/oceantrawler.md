@@ -1,12 +1,12 @@
 ---
 title: "oceantrawler"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "海洋拖网船的捕鱼容器逻辑：放下后按周期捕获附近海洋鱼，休眠补偿计算，满载溢出鱼群逃逸，并联动诱饵、鱼群事件与生成加成。"
 aliases: ["oceantrawler", "海洋拖网", "拖网船", "捕鱼网", "ocean trawler"]
 tags: [component, item, loot]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/oceantrawler.lua", "prefabs/ocean_trawler.lua", "actions.lua", "components/schoolspawner.lua", "components/squidspawner.lua"]
 reliability: verified
 validation: source-reviewed
@@ -84,3 +84,4 @@ end)
 
 - [[reference/components/schoolspawner]]：休眠补偿的鱼种来源与生成加成消费方。
 - [[reference/components/squidspawner]]：满载拖网提高乌贼生成率。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 0 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09）。

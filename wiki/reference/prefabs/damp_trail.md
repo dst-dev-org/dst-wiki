@@ -1,13 +1,13 @@
 ---
 title: "地面痕迹与瞬时提示的外围 FX 族（damp_trail、poopcloud、petrify_announce）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "三个一次性外围表现注册：森林复活骸骨的地面拖尾 damp_trail、施肥／便便用的本地便便云 poopcloud、森林石化的纯音效公告 petrify_announce；差异在联网壳与本地代理、三段动画与 1 秒兜底清理。"
 aliases: ["damp_trail", "poopcloud", "petrify_announce", "地面拖尾", "便便云", "石化公告音", "外围 FX 族"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/damp_trail.lua", "prefabs/stalker.lua", "stategraphs/SGstalker.lua", "tuning.lua", "prefabs/poopcloud.lua", "prefabs/compost.lua", "prefabs/compostwrap.lua", "prefabs/guano.lua", "prefabs/poop.lua", "prefabs/mosquitofertalizer.lua", "scenarios/chest_foodspoil.lua", "scenarios/sleepingspider_spiderambush.lua", "scenarios/statue_enemywave.lua", "scenarios/wes_enemywave.lua", "prefabs/petrify_announce.lua", "components/forestpetrification.lua", "prefabs/forest.lua", "prefabs/compostingbin.lua", "prefabs/soil_amender.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -131,3 +131,4 @@ end
 - [[reference/prefabs/fx-world-index|特效 Prefab 索引·生物与环境]]、[[reference/prefabs/fx-index|特效 Prefab 索引]]
 
 返回 [[reference/prefabs/fx-world-index|天气、地形与生态痕迹]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

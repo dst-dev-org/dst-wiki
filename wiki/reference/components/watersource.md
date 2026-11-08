@@ -1,12 +1,12 @@
 ---
 title: "watersource"
 created: "2026-10-18"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "配置实体水源的可用标签、使用回调与补充份量，区分可耗材料、池塘和接收方行为。"
 aliases: ["一块冰补两次水", "水源消耗", "水源可用开关", "watersource"]
 tags: [component, item, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/watersource.lua", "components/fillable.lua", "prefabs/inv_rocks_ice.lua", "prefabs/wateringcan.lua", "prefabs/pond.lua", "prefabs/snowball_item.lua", "tuning.lua", "actions.lua", "componentactions.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -31,7 +31,7 @@ status: active
 | `override_fill_uses` | 构造未赋值；原壶读取 number | 原壶有此值则给 finiteuses 加该量并限制到 total，无该值才补满；不是通用水量，也不影响 filledprefab 换物分支。[组件注释](../../../raw/current/scripts/components/watersource.lua#L13-L25) [实际消费者](../../../raw/current/scripts/prefabs/wateringcan.lua#L26-L37) |
 | `OnRemoveFromEntity()` | 清 watersource 标签 | 组件无自有 OnSave／OnLoad；动态 availability 的存读／重建须由宿主安排，不能假定字段自动持久化。[移除](../../../raw/current/scripts/components/watersource.lua#L27-L31) |
 
-原可耗来源：ice 用回调从 stackable 取一件删除，份量 1；snowball_item 同样删一份，配置份量来自 TUNING，本快照为 0.3，不能假定只允许整数。池塘不配置这类物品消耗，结冰／解冻时改 available。[冰消费](../../../raw/current/scripts/prefabs/inv_rocks_ice.lua#L45-L51) [冰配置](../../../raw/current/scripts/prefabs/inv_rocks_ice.lua#L115-L117) [雪团消费](../../../raw/current/scripts/prefabs/snowball_item.lua#L115-L121) [雪团配置](../../../raw/current/scripts/prefabs/snowball_item.lua#L227-L229) [份量](../../../raw/current/scripts/tuning.lua#L8560) [池塘](../../../raw/current/scripts/prefabs/pond.lua#L145-L182)
+原可耗来源：ice 用回调从 stackable 取一件删除，份量 1；snowball_item 同样删一份，配置份量来自 TUNING，本快照为 0.3，不能假定只允许整数。池塘不配置这类物品消耗，结冰／解冻时改 available。[冰消费](../../../raw/current/scripts/prefabs/inv_rocks_ice.lua#L45-L51) [冰配置](../../../raw/current/scripts/prefabs/inv_rocks_ice.lua#L115-L117) [雪团消费](../../../raw/current/scripts/prefabs/snowball_item.lua#L115-L121) [雪团配置](../../../raw/current/scripts/prefabs/snowball_item.lua#L227-L229) [份量](../../../raw/current/scripts/tuning.lua#L8561) [池塘](../../../raw/current/scripts/prefabs/pond.lua#L145-L182)
 
 ## 典型接入
 
@@ -67,3 +67,4 @@ end)
 - 结构检查：格式、来源、链接／行号、大小与登记通过；完整示例通过已有 Full Moon Lua 5.1 syntax-only，不证明实际消费或满容量行为。
 - 游戏运行：未运行；单块／堆叠／最后一份、满壶／余量不足、池塘冻结、雪团小数份量、存读与其他模组消费者待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

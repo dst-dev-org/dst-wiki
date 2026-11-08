@@ -1,12 +1,12 @@
 ---
 title: "远古戍卫塔挥击与砸地特效（vault_pillar_guard_swipe_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "远古戍卫塔（Ruinous Vaults 守卫）的攻击表现：挥击地面动画与砸地双层动画（网络壳＋非专服本地子实体同步动画时间）；无玩法组件，伤害由宿主 SG 的 AOE 结算。"
 aliases: ["vault_pillar_guard_swipe_fx", "vault_pillar_guard_smash_fx", "vault_pillar_guard_fx", "远古戍卫塔特效", "戍卫塔砸地特效", "pillar guard fx"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/vault_pillar_guard_fx.lua", "stategraphs/SGvault_pillar_guard.lua", "prefabs/vault_pillar_guard.lua", "tuning.lua", "languages/chinese_s.po"]
 size_class: simple
 reliability: verified
@@ -40,7 +40,7 @@ status: active
 | smash 生成：attack3 跃砸 | 第 43 帧 SpawnSmashFx（注释：故意晚一帧），第 45-47 帧连续三次 DoSmashAOE（半径 4，Work＋Dig＋Attack＋TossItems） | smash 网络壳父挂宿主；子实体时间同步仅客户端需要 | [跃砸帧事件](../../../raw/current/scripts/stategraphs/SGvault_pillar_guard.lua#L867-L885)、[DoSmashAOE](../../../raw/current/scripts/stategraphs/SGvault_pillar_guard.lua#L219-L224) |
 | 子实体时间同步 | smash_PostUpdate 把子实体动画时间设为父实体当前动画时间，然后移除自身 updatelooper（只对齐一次） | 仅非主模拟（纯客户端）分支挂 updatelooper；主机直接自然播放 | [同步逻辑](../../../raw/current/scripts/prefabs/vault_pillar_guard_fx.lua#L43-L49)、[挂载分支](../../../raw/current/scripts/prefabs/vault_pillar_guard_fx.lua#L70-L75) |
 | 回收 | 各攻击态退出时 KillSwipeOrSmashFx 兜底 Remove | 主模拟；`persists=false` 不入存档 | [兜底](../../../raw/current/scripts/stategraphs/SGvault_pillar_guard.lua#L250-L256)、[调用点](../../../raw/current/scripts/stategraphs/SGvault_pillar_guard.lua#L621) |
-| 伤害参考值 | 宿主 combat 默认伤害 150（TUNING.VAULT_PILLAR_GUARD_DAMAGE），FX 不参与 | 数值属宿主，列作量级参考 | [combat 设值](../../../raw/current/scripts/prefabs/vault_pillar_guard.lua#L590)、[数值](../../../raw/current/scripts/tuning.lua#L9517) |
+| 伤害参考值 | 宿主 combat 默认伤害 150（TUNING.VAULT_PILLAR_GUARD_DAMAGE），FX 不参与 | 数值属宿主，列作量级参考 | [combat 设值](../../../raw/current/scripts/prefabs/vault_pillar_guard.lua#L590)、[数值](../../../raw/current/scripts/tuning.lua#L9518) |
 | 依赖声明 | vault_pillar_guard prefab 依赖表声明两注册名 | 声明保证资源加载，不代表即时生成 | [依赖表](../../../raw/current/scripts/prefabs/vault_pillar_guard.lua#L30-L31) |
 
 ## 典型接入
@@ -62,3 +62,4 @@ status: active
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

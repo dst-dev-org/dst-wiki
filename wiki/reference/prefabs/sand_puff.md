@@ -1,12 +1,12 @@
 ---
 title: "沙尘与暗影烟团（sand_puff 族）"
 created: "2026-10-30"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "通用表九个烟团注册：沙色三项、黑影五项（透明／实心／放大／前后分层）与拟态烟团，覆盖懒惰掠夺者拾取、传送法杖 poof、玫瑰眼镜燃料呈现、表演瞬移等生成者。"
 aliases: ["sand_puff", "sand_puff_large_front", "sand_puff_large_back", "shadow_puff", "shadow_puff_solid", "shadow_puff_solid_large", "shadow_puff_large_front", "shadow_puff_large_back", "itemmimic_puff", "沙尘烟团", "暗影烟团", "黑烟", "烟团", "传送烟", "拟态烟团", "影子烟"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/fx.lua", "fx.lua", "prefabs/amulet.lua", "tuning.lua", "prefabs/staff_common.lua", "components/blinkstaff.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "componentutil.lua", "play_commonfn.lua", "prefabs/abigail.lua", "prefabs/boatrace_start.lua", "components/yoth_knightmanager.lua", "stategraphs/SGitemmimic_revealed.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -84,3 +84,4 @@ front.Transform:SetPosition(x, y, z)
 
 返回 [[reference/prefabs/fx-world-index|天气、地形与生态痕迹]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

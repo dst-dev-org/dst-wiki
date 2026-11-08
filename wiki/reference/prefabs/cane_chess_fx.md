@@ -1,12 +1,12 @@
 ---
 title: "城堡手杖棋子拖尾（cane_chess_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "城堡手杖的黑白棋子拖尾：十三个注册、阵营选色、持有者追踪、最短存续与动画退场回收。"
 aliases: ["cane_chess_fx", "城堡手杖棋子特效", "手杖棋子拖尾", "黑白棋子特效", "棋子拖尾消失", "cane_chess", "cane_chess_fx_bishop_b", "cane_chess_fx_king_b", "cane_chess_fx_knight_b", "cane_chess_fx_pawn_b", "cane_chess_fx_queen_b", "cane_chess_fx_rook_b", "cane_chess_fx_bishop_w", "cane_chess_fx_king_w", "cane_chess_fx_knight_w", "cane_chess_fx_pawn_w", "cane_chess_fx_queen_w", "cane_chess_fx_rook_w", "城堡手杖棋子拖尾"]
 tags: [prefab, fx, lifecycle, server-client, network-sync]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/cane_chess_fx.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -71,3 +71,4 @@ OnAnimDirty 只在没有本地 vfx 且没有待创建任务时安排创建；已
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

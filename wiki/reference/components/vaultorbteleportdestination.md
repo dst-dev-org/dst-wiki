@@ -1,13 +1,13 @@
 ---
 title: "vaultorbteleportdestination"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "给传送底座挂地图目的地标记：生成隐藏全图图标与关闭点图标，供宝库球传送动作与地图选点识别；随宝石插拔挂卸。"
 aliases: ["vaultorbteleportdestination", "宝库球传送目的地", "传送底座地图标记"]
 tags: [component, ui, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/vaultorbteleportdestination.lua", "prefabs/telebase.lua", "components/vaultorbteleporter.lua", "actions.lua", "screens/mapscreen.lua"]
 reliability: verified
 validation: source-reviewed
@@ -21,7 +21,7 @@ status: active
 - 职责与适用：服务端组件，挂在传送底座上被选中的球体目标；构造即生成隐藏的 `globalmapicon`（跟随本体）与子级 `globalmapiconnoproxy` 关闭点图标，打上 `vaultorbteleportdestinationtrackericon` 标签并按 `vaultorbdestination_icon.png` 显示。[构造](../../../raw/current/scripts/components/vaultorbteleportdestination.lua#L9-L20)
 - 优先使用：需要"底座当前是否可作为宝库球目的地"时，以本组件存在与否为准——传送执行方 `vaultorbteleporter:Activate` 先查 `target.components.vaultorbteleportdestination`，缺失直接返回失败 NOTARGET。[门禁](../../../raw/current/scripts/components/vaultorbteleporter.lua#L67-L69)
 - 重要副作用：图标实体随组件生命周期联动：组件被移除或本体消失时清掉隐藏图标；隐藏图标被移除也会反向把组件从本体上拆掉。[清理](../../../raw/current/scripts/components/vaultorbteleportdestination.lua#L4-L13)
-- 修改边界：组件不实现传送本身（在 vaultorbteleporter），也不决定哪个球可用（telebase 的宝石校验）；地图端仅按标签聚合显示。[地图消费](../../../raw/current/scripts/screens/mapscreen.lua#L381-L383)
+- 修改边界：组件不实现传送本身（在 vaultorbteleporter），也不决定哪个球可用（telebase 的宝石校验）；地图端仅按标签聚合显示。[地图消费](../../../raw/current/scripts/screens/mapscreen.lua#L385-L387)
 
 ## 关键接口
 
@@ -66,3 +66,4 @@ end
 - 结构检查：2026-10-28 validate_page.py 通过；validate_source_links.py --strict 锚点通过（见批级记录）。
 - 游戏运行：未运行；地图选点未实测。
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

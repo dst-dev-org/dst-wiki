@@ -1,12 +1,12 @@
 ---
 title: "slingshotmods"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "沃尔特弹弓的模块化改装接口：在弹弓内隐藏挂载 slingshotmodscontainer 容器装弹弓带／架／柄零件，经弹弓改装套件动作开关，按技能与归属校验并随弹弓存档。"
 aliases: ["slingshotmods", "弹弓改装", "slingshot 改装容器", "MODSLINGSHOT"]
 tags: [component, item, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/slingshotmods.lua", "prefabs/slingshot.lua", "components/slingshotmodder.lua", "actions.lua", "containers.lua"]
 reliability: verified
 validation: source-reviewed
@@ -69,3 +69,4 @@ inst:AddComponent("slingshotmods")
 
 相关链接：[[reference/components/slingshotmodder]]、[[reference/components/container]]、[[reference/components/containerinstallableitem]]、[[reference/components/inventoryitem]]
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

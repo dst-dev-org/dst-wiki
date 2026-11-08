@@ -1,12 +1,12 @@
 ---
 title: "暗夜剑（nightsword）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版暗影操控器武器 nightsword：HANDS 槽近战武器，伤害 68、耐久 100 仅攻击磨损，装备期持续扣理智（魔法系，Maxwell 免疫），影子等级 2 供 Maxwell 影像随从增伤；耗尽整实体移除，5 皮肤各配装备跟随攻击爆发 FX。"
 aliases: ["nightsword", "暗夜剑", "Dark Sword", "暗影武器"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/nightsword.lua", "prefabs/nightsword_cotl_fx.lua", "prefabs/shadowchesspieces.lua", "prefabs/skinprefabs.lua", "prefabs/magicprototyper.lua", "prefabs/waxwell.lua", "prefabs/wanda.lua", "prefabs/walter.lua", "prefabs/gestalt_guard.lua", "prefabs/hats.lua", "components/weapon.lua", "components/finiteuses.lua", "components/equippable.lua", "components/inspectable.lua", "components/inventoryitem.lua", "components/sanity.lua", "components/shadowlevel.lua", "components/combat.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "stategraphs/SGshadowwaxwell.lua", "standardcomponents.lua", "prefabskin.lua", "tuning.lua", "constants.lua", "recipes.lua", "recipes_filter.lua", "map/boons.lua", "worldgen_main.lua", "wx78_moduledefs.lua", "scenarios/chest_insanity.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -126,3 +126,4 @@ end)
 - 结构检查：validate_page.py 0 error（128 行／21743 字节，standard 档）与 validate_source_links.py --strict（88 条源码引用、29 个源文件，0 error 0 warning）实际执行通过；一个 lua 围栏语法完整。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

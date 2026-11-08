@@ -1,12 +1,12 @@
 ---
 title: "地面贴片与投影阴影 FX 族（crabking_claw_shadow）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "4 文件 6 注册的地面贴片／投影阴影：巨钳水下阴影与挥击弧、冰眼结晶器冰圈（真实冻结／降温／grog）、绝望螨焦痕淡出、柱基座与裂口；宿主玩法不在本页。"
 aliases: ["crabking_claw_shadow", "crabking_claw_swipe_fx", "deerclopseyeball_sentryward_fx", "fused_shadeling_bomb_scorch", "daywalker_pillar_base_fx", "daywalker_pillar_hole", "巨钳阴影", "巨钳挥击弧", "爆炸焦痕", "冰圈贴片", "柱子基座", "地面裂口", "地面贴片", "投影阴影"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/crabking_claw.lua", "stategraphs/SGcrabkingclaw.lua", "prefabs/deerclopseyeball_sentryward.lua", "prefabs/fused_shadeling_bomb.lua", "prefabs/shadowthrall_projectile_fx.lua", "prefabs/daywalker_pillar.lua", "tuning.lua", "entityscript.lua", "simutil.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -55,7 +55,7 @@ netvar 仅焦痕 `_fade`（`net_byte`，脏事件 `fadedirty`）；其余 5 个�
 | 项 | 规则 | 证据 |
 |---|---|---|
 | 作用域 | `FindEntities(x, 0, z, _radius)`，oneof `{heatrock, freezable, fire, smolder, inventoryitemtemperature}`；排除 `playerghost`／`INLIMBO`／`flight`／`invisible` 与全部 `*_fueled`；跳过已死实体 | [标签表](../../../raw/current/scripts/prefabs/deerclopseyeball_sentryward.lua#L544-L553) |
-| 半径 | 每帧 `_radius × 0.98 + 3.5 × 0.02`；新生成 0.25，加载时 3.5 | [扩张](../../../raw/current/scripts/prefabs/deerclopseyeball_sentryward.lua#L550-L551)、[初值](../../../raw/current/scripts/prefabs/deerclopseyeball_sentryward.lua#L617)、[数值](../../../raw/current/scripts/tuning.lua#L7970) |
+| 半径 | 每帧 `_radius × 0.98 + 3.5 × 0.02`；新生成 0.25，加载时 3.5 | [扩张](../../../raw/current/scripts/prefabs/deerclopseyeball_sentryward.lua#L550-L551)、[初值](../../../raw/current/scripts/prefabs/deerclopseyeball_sentryward.lua#L617)、[数值](../../../raw/current/scripts/tuning.lua#L7971) |
 | 灭火 | `burnable` 且无 `fueled` → `Extinguish()` | [灭火](../../../raw/current/scripts/prefabs/deerclopseyeball_sentryward.lua#L555-L557) |
 | 冻结 | `freezable` 未冻结且 `coldness < ResolveResistance() × 0.7` → `AddColdness(0.1, 1, true)` | [冻结](../../../raw/current/scripts/prefabs/deerclopseyeball_sentryward.lua#L558-L563) |
 | 降温 | 实体温度高于 -2 → 设为 -2 | [降温](../../../raw/current/scripts/prefabs/deerclopseyeball_sentryward.lua#L564-L567)、[数值](../../../raw/current/scripts/tuning.lua#L698) |
@@ -101,3 +101,4 @@ end
 相关：[[reference/prefabs/deer_ice_circle|无眼鹿冰火法阵]]（使用同名 `deer_ice_circle` 动画资源的地面圈）、[[reference/prefabs/crab_king_bubble1|蟹王伴随表现特效族]]（同 Boss 表现族的分层与生成协议）。
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

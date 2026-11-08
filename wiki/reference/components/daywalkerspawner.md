@@ -1,12 +1,12 @@
 ---
 title: "daywalkerspawner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "洞穴 daywalker（挖掘者）生成器：仅在跨分片侧记录「当前被囚于洞穴」时按天数择地造竞技场，清场并围柱。"
 aliases: ["洞穴挖掘者生成", "daywalkerspawner"]
 tags: [component, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/daywalkerspawner.lua", "prefabs/cave.lua", "components/shard_daywalkerspawner.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -35,7 +35,7 @@ status: active
 ## 生成条件与流程（关键流程）
 
 1. 跨分片门控：每次昼夜切换（`OnDayChange`）先问 [[reference/components/shard_daywalkerspawner]]——只有其记录的位置名等于 `"cavejail"`（daywalker 当前被囚于洞穴）才继续倒计时（[L199-L202](../../../raw/current/scripts/components/daywalkerspawner.lua#L199-L202)；地表侧对称见 [[reference/components/forestdaywalkerspawner]]）。
-2. 天数倒计时：`days_to_spawn > 0` 先扣减返回；归 0 才尝试生成，成功后重置为 10 天（[L205-L218](../../../raw/current/scripts/components/daywalkerspawner.lua#L205-L218)；[常量](../../../raw/current/scripts/tuning.lua#L6913-L6915)）。
+2. 天数倒计时：`days_to_spawn > 0` 先扣减返回；归 0 才尝试生成，成功后重置为 10 天（[L205-L218](../../../raw/current/scripts/components/daywalkerspawner.lua#L205-L218)；[常量](../../../raw/current/scripts/tuning.lua#L6914-L6916)）。
 3. 择点：3×3 瓦片全在地面＋35 半径无玩家＋无蚁狮陷坑＋优先无建筑者；全不理想退化为建筑最少者，再退化为 5/10/15 环找可走偏移（[L125-L180](../../../raw/current/scripts/components/daywalkerspawner.lua#L125-L180)）。
 4. 造场：清场规则区分 structure（可工作则 Destroy 否则移除）／植物树木（移除）／NPC_workable（保留）；随后生成 3 根 `daywalker_pillar` 围住 daywalker（[L83-L123](../../../raw/current/scripts/components/daywalkerspawner.lua#L83-L123)）。
 5. 战败记录：监听 daywalker onremove，`defeated` 则 `IncrementPowerLevel` 并 `Shard_SyncBossDefeated("daywalker")` 广播跨分片（[L220-L229](../../../raw/current/scripts/components/daywalkerspawner.lua#L220-L229)）。
@@ -53,3 +53,4 @@ status: active
 
 相关：[[reference/components/shard_daywalkerspawner]]、[[reference/components/forestdaywalkerspawner]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

@@ -1,12 +1,12 @@
 ---
 title: "裂隙地皮改造视觉层与河灯影层（lunarrift_terraformer_visual、floatinglantern_shadow）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "两个宿主附层注册：月裂传送门的地皮改造管理器本身无 AnimState，全靠 lunarrift_terraformer_visual 按 23 秒阶段表演出瓦片改造进度；天灯（河灯）的 floatinglantern_shadow 是引擎父挂的地面影子，动画由本体 PlaySyncedAnimation 成对驱动。"
 aliases: ["lunarrift_terraformer_visual", "floatinglantern_shadow", "rift_terraformer", "月裂地皮改造视觉", "裂隙地皮改造者", "河灯影层", "天灯影子", "天灯"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/rift_terraformer.lua", "prefabs/lunarrift_portal.lua", "prefabs/floatinglantern.lua", "recipes.lua", "simutil.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -118,3 +118,4 @@ end
 - [[reference/prefabs/impact|命中与落点伤害表现及传送门投影 FX 族]]（含 `lunarrift_terraformer_explosion` 与 `lunarrift_portal_shadow`）
 - [[reference/prefabs/fire|火焰、火光与烟雾特效族]]（含天灯燃烧层 `floatinglanternfire`）
 - 返回 [[reference/prefabs/fx-structure-index|建筑、装置与遗迹演出]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

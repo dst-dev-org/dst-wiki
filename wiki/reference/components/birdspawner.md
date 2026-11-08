@@ -1,12 +1,12 @@
 ---
 title: "birdspawner"
 created: "2026-10-24"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "管理森林世界按玩家调度的飞鸟生成、落点与鸟种选择，并提供显式生成、时间修正和离屏追踪接口。"
 aliases: ["birdspawner", "世界刷鸟", "改变自然鸟生成速度", "地皮鸟种", "鸟离屏消失", "SetBirdTypesForTile"]
 tags: [component, creature, lifecycle, modding, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/birdspawner.lua", "components/birdattractor.lua", "prefabs/forest.lua", "prefabs/player_common.lua", "prefabs/hats.lua", "prefabs/birds.lua", "prefabs/books.lua", "prefabs/birdtrap.lua", "util/sourcemodifierlist.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -83,3 +83,4 @@ status: active
 ## 相关链接
 
 - [[reference/components/lunarhailbirdsoundmanager]]：月雹鸟声效档位的世界网络同步。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

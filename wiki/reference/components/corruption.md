@@ -1,12 +1,12 @@
 ---
 title: "corruption"
 created: "2026-10-26"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: "component"
 summary: "物品上的服务端腐化值账本（原版宿主 king_cane）：0~TUNING.KING_CANE_MAX_CORRUPTION 计量与满值 corrupted 态、三回调、施法目标硬直登记与 CorruptEnt 按目标类型分发；腐化清除入口由 moonbase 消费。"
 aliases: ["王者法杖腐化值", "腐化值组件", "corruption"]
 tags: ["component", "callback", "network-sync"]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/corruption.lua", "prefabs/king_cane.lua", "prefabs/moonbase.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua", "stategraphs/commonstates.lua", "componentutil.lua", "components/shadowthrallmanager.lua", "prefabs/bunnyman.lua", "prefabs/monkey.lua", "prefabs/rabbit.lua", "prefabs/knight.lua", "prefabs/chesspieces.lua", "tuning.lua"]
 reliability: "verified"
 validation: "source-reviewed"
@@ -99,3 +99,4 @@ end)
 
 相关：[[reference/components/rechargeable]]、[[reference/components/blinkstaff]]（冷却与施法喂入方）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

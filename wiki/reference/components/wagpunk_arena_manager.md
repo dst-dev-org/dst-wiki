@@ -1,13 +1,13 @@
 ---
 title: "wagpunk_arena_manager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "瓦冈朋克竞技场任务线组件：以 8 态状态机驱动 Spark Ark→珍珠地图→铺地→组装机器人→拉杆→首领战全流程，战斗时圈人开疯癫并经 net 变量广播屏障。"
 aliases: ["瓦冈朋克竞技场", "wagpunk 竞技场任务线", "wagpunk_arena_manager"]
 tags: [component, lifecycle, state-machine, network-sync]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/wagpunk_arena_manager.lua", "prefabs/forest.lua", "components/wagboss_tracker.lua", "tuning.lua", "prefabs/hermitcrab.lua", "prefabs/beebox.lua", "prefabs/monkeyisland_portal.lua", "prefabs/monkeyqueen.lua"]
 reliability: verified
 validation: source-reviewed
@@ -98,3 +98,4 @@ end)
 
 相关：[[reference/components/wagboss_tracker]]、[[reference/components/wagpunk_manager]]、[[reference/components/wagpunk_floor_helper]]、[[reference/components/reticule]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

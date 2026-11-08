@@ -1,13 +1,13 @@
 ---
 title: "远古手杖影子拖尾（cane_ancient_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "远古手杖的影子动画拖尾：通用及三种编号注册、随机缩放／翻转同步、联网代理与本地动画的分别回收。"
 aliases: ["cane_ancient_fx", "cane_ancient_fx1", "cane_ancient_fx2", "cane_ancient_fx3", "远古手杖影子拖尾", "手杖影子残影", "cane_ancient"]
 tags: [prefab, fx, lifecycle, server-client, network-sync]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/cane_ancient_fx.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -63,3 +63,4 @@ OnRandDirty 在 _complete 已真或 _rand<=0 时返回，不创建本地动画�
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

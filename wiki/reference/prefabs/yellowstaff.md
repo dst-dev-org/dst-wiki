@@ -1,12 +1,12 @@
 ---
 title: "唤星者魔杖（yellowstaff）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "唤星／矮星法杖这一施法物品的地点召唤、次数和精神消耗，以及皮肤映射到唤月法杖的转换入口。"
 aliases: ["yellowstaff", "唤星者魔杖", "唤星", "矮星", "唤星法杖", "Star Caller's Staff", "召唤矮星"]
 tags: [prefab, item, equipment, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/staff.lua", "prefabs/staff_common.lua", "prefabs/stafflight.lua", "prefabs/moonbase.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "components/spellcaster.lua", "standardcomponents.lua", "tuning.lua", "entityscript.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -73,3 +73,4 @@ spellcaster:SetSpellFn(createlight) 决定效果；canuseonpoint／water 配置�
 
 返回 [[reference/prefabs/staffs-character-index|法杖与角色道具]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

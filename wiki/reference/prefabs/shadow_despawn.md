@@ -1,13 +1,13 @@
 ---
 title: "暗影消散、舞台影手与暗影憎恶光束的外围 FX 族（shadow_despawn 等）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "四个暗影阵营外围表现注册：影人消散过渡、多刺舞台之手的影臂与影手、暗影憎恶的持续光束；差异集中在端、父挂、伤害归属与清理。"
 aliases: ["shadow_despawn", "stageusher_attackarm", "stageusher_attackhand", "shrouden_optic_blast_fx", "影人消散", "暗影消散特效", "舞台影手", "舞台影臂", "多刺舞台之手影手", "暗影憎恶光束", "外围 FX 族"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/shadowwaxwell.lua", "prefabs/stageusher.lua", "prefabs/shrouden_optic_blast.lua", "prefabs/shadow_trap.lua", "prefabs/rabbit.lua", "prefabs/bunnyman.lua", "prefabs/monkey.lua", "prefabs/clockwork_common.lua", "prefabs/daywalker_pillar.lua", "prefabs/moonbase.lua", "prefabs/terrarium.lua", "prefabs/quagmire_book_shadow.lua", "prefabs/shrouden.lua", "stategraphs/SGshadowwaxwell.lua", "stategraphs/SGstageusher.lua", "stategraphs/SGshrouden.lua", "stategraphs/SGshadow_trap.lua", "components/stretcher.lua", "components/combat.lua", "components/spdamageutil.lua", "aoeutil.lua", "entityscript.lua", "tuning.lua", "prefablist.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -73,10 +73,10 @@ status: active
 |---|---|---|---|
 | `shadow_despawn` | 无内建父挂；平台／世界坐标由每个生成点自己决定（见上表）。 | 无伤害、无光环，也不参与攻击结算。 | 主模拟 `animover` 自删，`persists=false`，无兜底；客户端依赖网络移除。[清理](../../../raw/current/scripts/prefabs/shadowwaxwell.lua#L651-L658) |
 | `stageusher_attackarm` | 不 `SetParent`；`stretcher:SetStretchTarget(hand)` 逐帧朝向并拉伸（resting 2.5、宽比 0.1）。 | 纯 FX，无伤害、无光环；拉伸目标失效时组件自行停止更新。 | 自身无 `animover`、无 lifetime；影手 `onremove` 时删除；影手正常消散后连带收尾。[拉伸](../../../raw/current/scripts/components/stretcher.lua#L16-L50)、[删除监听](../../../raw/current/scripts/prefabs/stageusher.lua#L298-L299) |
-| `stageusher_attackhand` | 不 `SetParent`，世界坐标移动；无 Follower。 | 正常路径走 `owner.components.combat:DoAttack(target)`（owner 已设 `ignorehitrange`），每 4 帧在半径 2 内检测，同目标 25 帧内不重复；无 owner 时 `target.components.combat:GetAttacked(hand, 80)`。光环 `-TUNING.SANITYAURA_MED`。 | 目标移除即停伤害并清 `updatelooper`；owner 移除即 `Remove`；到达步数耗尽后 `grab`→`hand_scare`→`animover` 自删，同时让影臂播 `arm_scare1..4`。[检测](../../../raw/current/scripts/prefabs/stageusher.lua#L393-L434)、[回调](../../../raw/current/scripts/prefabs/stageusher.lua#L496-L504)、[光环](../../../raw/current/scripts/prefabs/stageusher.lua#L492-L493)、[参数](../../../raw/current/scripts/tuning.lua#L6880-L6886) |
+| `stageusher_attackhand` | 不 `SetParent`，世界坐标移动；无 Follower。 | 正常路径走 `owner.components.combat:DoAttack(target)`（owner 已设 `ignorehitrange`），每 4 帧在半径 2 内检测，同目标 25 帧内不重复；无 owner 时 `target.components.combat:GetAttacked(hand, 80)`。光环 `-TUNING.SANITYAURA_MED`。 | 目标移除即停伤害并清 `updatelooper`；owner 移除即 `Remove`；到达步数耗尽后 `grab`→`hand_scare`→`animover` 自删，同时让影臂播 `arm_scare1..4`。[检测](../../../raw/current/scripts/prefabs/stageusher.lua#L393-L434)、[回调](../../../raw/current/scripts/prefabs/stageusher.lua#L496-L504)、[光环](../../../raw/current/scripts/prefabs/stageusher.lua#L492-L493)、[参数](../../../raw/current/scripts/tuning.lua#L6881-L6887) |
 | `shrouden_optic_blast_fx` | `InitBlast` 里 `Follower:FollowSymbol(caster.GUID, "optic_blast_fx_follow")`；自身不 `SetParent`。 | 武器 0＋位面 5，经施法者 `combat:DoAttack` 与施法者自身 35 位面合并为结算前 40；施法者存活时每帧 `AOEUtil.Work／Attack／TossItems`，同目标 0.25 秒重复；`onattackother` 在 2 秒内累计 3 次即击退并伴随颜色闪烁；红光；烟雾为客户端本地。 | `KillFx` 睡眠中直接 `Remove`，否则播 pst 后 `animover` 自删；`resetboss` 直接 `Remove`；施法者死亡／失效时 AOE 更新被移除但实体保留到收尾；`persists=false`。[InitBlast](../../../raw/current/scripts/prefabs/shrouden_optic_blast.lua#L353-L367)、[AOE](../../../raw/current/scripts/prefabs/shrouden_optic_blast.lua#L200-L213)、[KillFx](../../../raw/current/scripts/prefabs/shrouden_optic_blast.lua#L303-L322) |
 
-位面叠加的读法：`CalcDamage` 在带武器时先取武器伤害与武器 `planardamage`（5），再用 `SpDamageUtil.CollectSpDamage` 把攻击者自身的 `planardamage`（35）并入同一张位面表，得到 40；随后才经目标 `planardefense`／倍率与 PvP 修正。直接伤害取武器的 `SetDamage(0)`，原版施法者也没有另设 `combat.damagebonus`，所以物理部分为 0；自定义施法者若设了 `damagebonus` 会叠加到直接伤害上。[武器路径](../../../raw/current/scripts/components/combat.lua#L871-L964)、[位面定义](../../../raw/current/scripts/components/spdamageutil.lua#L23-L25)、[施法者位面](../../../raw/current/scripts/prefabs/shrouden.lua#L1409-L1410)、[数值](../../../raw/current/scripts/tuning.lua#L9719-L9734)
+位面叠加的读法：`CalcDamage` 在带武器时先取武器伤害与武器 `planardamage`（5），再用 `SpDamageUtil.CollectSpDamage` 把攻击者自身的 `planardamage`（35）并入同一张位面表，得到 40；随后才经目标 `planardefense`／倍率与 PvP 修正。直接伤害取武器的 `SetDamage(0)`，原版施法者也没有另设 `combat.damagebonus`，所以物理部分为 0；自定义施法者若设了 `damagebonus` 会叠加到直接伤害上。[武器路径](../../../raw/current/scripts/components/combat.lua#L871-L964)、[位面定义](../../../raw/current/scripts/components/spdamageutil.lua#L23-L25)、[施法者位面](../../../raw/current/scripts/prefabs/shrouden.lua#L1409-L1410)、[数值](../../../raw/current/scripts/tuning.lua#L9720-L9735)
 
 ### 资源与关联 Prefab
 
@@ -178,3 +178,4 @@ end
 - [[reference/prefabs/fx-world-index|特效 Prefab 索引·环境与世界]]、[[reference/prefabs/fx-index|特效 Prefab 索引]]
 
 返回 [[reference/prefabs/fx-shadow-index|暗影生物、裂隙生物与附着]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

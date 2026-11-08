@@ -1,12 +1,12 @@
 ---
 title: "steeringwheeluser"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "玩家操舵组件：登舵占位、把玩家钉在舵轮上、按指向改船舵方向并驱动转向动画，断舵/移除自动回落。"
 aliases: ["操舵", "舵轮玩家", "steeringwheeluser"]
 tags: [component]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/steeringwheeluser.lua", "components/steeringwheel.lua", "components/playercontroller.lua", "prefabs/player_common.lua", "prefabs/steeringwheel.lua", "stategraphs/SGwilson.lua", "actions.lua", "networkclientrpc.lua"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ end)
 
 相关：[[reference/components/steeringwheel]]、[[reference/components/boatphysics]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

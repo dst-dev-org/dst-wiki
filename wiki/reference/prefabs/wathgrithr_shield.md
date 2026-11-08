@@ -1,12 +1,12 @@
 ---
 title: "战斗圆盾（wathgrithr_shield）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版女武神技能树专属手持盾牌 wathgrithr_shield：装备时 85% 被动吸收＋51 伤害，右键主动招架（178° 扇区、10 秒冷却，传入 1 秒窗口在 pre 后计时）成功免伤并回充冷却；耐久在 armor 组件、耗尽整体移除，可借鉴'主动格挡＋冷却'武器组装。"
 aliases: ["wathgrithr_shield", "战斗圆盾", "Battle Rönd", "盾牌格挡", "女武神盾牌"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wathgrithr_shield.lua", "components/weapon.lua", "components/armor.lua", "components/rechargeable.lua", "components/parryweapon.lua", "components/aoespell.lua", "components/aoetargeting.lua", "components/equippable.lua", "components/equippable_replica.lua", "components/inventory.lua", "components/combat.lua", "components/inspectable.lua", "components/inventoryitem.lua", "components/builder.lua", "components/playeractionpicker.lua", "stategraphs/SGwilson.lua", "actions.lua", "componentactions.lua", "standardcomponents.lua", "mods.lua", "tuning.lua", "recipes.lua", "recipes_filter.lua", "constants.lua", "prefabs/skilltree_wathgrithr.lua", "prefabs/reticulearc.lua", "scrapbook_prefabs.lua", "screens/redux/scrapbookdata.lua", "strings.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -38,16 +38,16 @@ status: active
 
 | 项 | 键 | 实际值 |
 |---|---|---|
-| 武器伤害 | `TUNING.WATHGRITHR_SHIELD_DAMAGE`＝`wilson_attack`×1.5 | 51 生命值（源码推导，[tuning.lua#L8075](../../../raw/current/scripts/tuning.lua#L8075)） |
-| 护甲吸收 | `TUNING.WATHGRITHR_SHIELD_ABSORPTION`＝0.85×1 | 85%（[tuning.lua#L8076](../../../raw/current/scripts/tuning.lua#L8076)） |
-| 护甲耐久上限 | `TUNING.WATHGRITHR_SHIELD_ARMOR`＝150×4×0.7 | 420 耐久点（[tuning.lua#L8077](../../../raw/current/scripts/tuning.lua#L8077)） |
-| 每次攻击磨损 | `TUNING.WATHGRITHR_SHIELD_USEDAMAGE` | 3 耐久点/次，`armor:TakeDamage`（[tuning.lua#L8078](../../../raw/current/scripts/tuning.lua#L8078)、[OnAttackFn](../../../raw/current/scripts/prefabs/wathgrithr_shield.lua#L121-L126)） |
-| 招架扇区角 | `TUNING.WATHGRITHR_SHIELD_PARRY_ARC` | 178 度（判定阈 89°，[tuning.lua#L8080](../../../raw/current/scripts/tuning.lua#L8080)） |
-| 施法冷却 | `TUNING.WATHGRITHR_SHIELD_COOLDOWN` | 10 秒（施法 `Discharge`，[tuning.lua#L8082](../../../raw/current/scripts/tuning.lua#L8082)） |
-| 装备冷却下限 | `TUNING.WATHGRITHR_SHIELD_COOLDOWN_ONEQUIP` | 2 秒（[tuning.lua#L8083](../../../raw/current/scripts/tuning.lua#L8083)） |
-| 招架窗口时长 | `TUNING.WATHGRITHR_SHIELD_PARRY_DURATION` | 传入 1 秒（`parry_pre` 结束才交 `parry_idle` 计时）；技能 2 ×2.5＝2.5 秒（[tuning.lua#L8084](../../../raw/current/scripts/tuning.lua#L8084)、[倍率](../../../raw/current/scripts/tuning.lua#L7217)） |
-| 招架成功回充 | `TUNING.WATHGRITHR_SHIELD_COOLDOWN_ONPARRY_REDUCTION` | 0.7：不足 70% 充能时推进到 70%，剩余冷却 3 秒（[tuning.lua#L8085](../../../raw/current/scripts/tuning.lua#L8085)、[OnParry](../../../raw/current/scripts/prefabs/wathgrithr_shield.lua#L99-L101)） |
-| 招架反击加成 | `SKILLS.WATHGRITHR.SHIELD_PARRY_BONUS_DAMAGE_SCALE`／`..._BONUS_DAMAGE` | clamp(来袭伤害×0.5, 15, 30)，持续 5 秒（[tuning.lua#L7219-L7221](../../../raw/current/scripts/tuning.lua#L7219-L7221)） |
+| 武器伤害 | `TUNING.WATHGRITHR_SHIELD_DAMAGE`＝`wilson_attack`×1.5 | 51 生命值（源码推导，[tuning.lua#L8075](../../../raw/current/scripts/tuning.lua#L8076)） |
+| 护甲吸收 | `TUNING.WATHGRITHR_SHIELD_ABSORPTION`＝0.85×1 | 85%（[tuning.lua#L8076](../../../raw/current/scripts/tuning.lua#L8077)） |
+| 护甲耐久上限 | `TUNING.WATHGRITHR_SHIELD_ARMOR`＝150×4×0.7 | 420 耐久点（[tuning.lua#L8077](../../../raw/current/scripts/tuning.lua#L8078)） |
+| 每次攻击磨损 | `TUNING.WATHGRITHR_SHIELD_USEDAMAGE` | 3 耐久点/次，`armor:TakeDamage`（[tuning.lua#L8078](../../../raw/current/scripts/tuning.lua#L8079)、[OnAttackFn](../../../raw/current/scripts/prefabs/wathgrithr_shield.lua#L121-L126)） |
+| 招架扇区角 | `TUNING.WATHGRITHR_SHIELD_PARRY_ARC` | 178 度（判定阈 89°，[tuning.lua#L8080](../../../raw/current/scripts/tuning.lua#L8081)） |
+| 施法冷却 | `TUNING.WATHGRITHR_SHIELD_COOLDOWN` | 10 秒（施法 `Discharge`，[tuning.lua#L8082](../../../raw/current/scripts/tuning.lua#L8083)） |
+| 装备冷却下限 | `TUNING.WATHGRITHR_SHIELD_COOLDOWN_ONEQUIP` | 2 秒（[tuning.lua#L8083](../../../raw/current/scripts/tuning.lua#L8084)） |
+| 招架窗口时长 | `TUNING.WATHGRITHR_SHIELD_PARRY_DURATION` | 传入 1 秒（`parry_pre` 结束才交 `parry_idle` 计时）；技能 2 ×2.5＝2.5 秒（[tuning.lua#L8084](../../../raw/current/scripts/tuning.lua#L8085)、[倍率](../../../raw/current/scripts/tuning.lua#L7218)） |
+| 招架成功回充 | `TUNING.WATHGRITHR_SHIELD_COOLDOWN_ONPARRY_REDUCTION` | 0.7：不足 70% 充能时推进到 70%，剩余冷却 3 秒（[tuning.lua#L8085](../../../raw/current/scripts/tuning.lua#L8086)、[OnParry](../../../raw/current/scripts/prefabs/wathgrithr_shield.lua#L99-L101)） |
+| 招架反击加成 | `SKILLS.WATHGRITHR.SHIELD_PARRY_BONUS_DAMAGE_SCALE`／`..._BONUS_DAMAGE` | clamp(来袭伤害×0.5, 15, 30)，持续 5 秒（[tuning.lua#L7219-L7221](../../../raw/current/scripts/tuning.lua#L7220-L7222)） |
 
 ### 招架流程（施放 → 判定 → 免伤）
 
@@ -63,7 +63,7 @@ status: active
 |---|---|
 | 配方（唯一获取路径） | 金块 4＋牛毛 3，`TECH.NONE` 无需站台；`builder_skill="wathgrithr_arsenal_shield_1"`，未激活该技能时 `KnowsRecipe`／`CanLearn` 拒绝（[配方](../../../raw/current/scripts/recipes.lua#L196)、[KnowsRecipe 检查](../../../raw/current/scripts/components/builder.lua#L876-L878)、[CanLearn 检查](../../../raw/current/scripts/components/builder.lua#L964-L966)）。全 scripts grep 除配方、图鉴与列表数据外无其他生成点。 |
 | 配方过滤 | crafting 菜单归 CHARACTER（Wathgrithr 分组）、WEAPONS、ARMOUR 三类（[CHARACTER](../../../raw/current/scripts/recipes_filter.lua#L182)、[WEAPONS](../../../raw/current/scripts/recipes_filter.lua#L1019)、[ARMOUR](../../../raw/current/scripts/recipes_filter.lua#L1059)） |
-| 图鉴数据（非生成点） | scrapbook_prefabs 收录；`scrapbookdata` 展示 weapondamage=51／armor=420／absorb 0.85，与 tuning 推导一致（[收录](../../../raw/current/scripts/scrapbook_prefabs.lua#L1677)、[展示](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1742)） |
+| 图鉴数据（非生成点） | scrapbook_prefabs 收录；`scrapbookdata` 展示 weapondamage=51／armor=420／absorb 0.85，与 tuning 推导一致（[收录](../../../raw/current/scripts/scrapbook_prefabs.lua#L1677)、[展示](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1747)） |
 
 角色限制两层，都落在技能层而非 prefab 硬编码：
 
@@ -84,7 +84,7 @@ status: active
 | 组件：inspectable／inventoryitem | 检视与拾取，无定制 | 主模拟 | [[reference/components/inspectable#关键接口]]、[[reference/components/inventoryitem#关键接口]]；[挂载](../../../raw/current/scripts/prefabs/wathgrithr_shield.lua#L188-L189) |
 | 组件：floater／hauntable | `MakeInventoryFloatable`（"small"）；`MakeHauntableLaunch` 作祟弹飞 | 公共端／主模拟 | [[reference/components/floater#关键接口]]、[[reference/components/hauntable#按效果选工厂]]；[floater](../../../raw/current/scripts/prefabs/wathgrithr_shield.lua#L165)、[hauntable helper](../../../raw/current/scripts/standardcomponents.lua#L1053) |
 | API／数据：`combat.redirectdamagefn` | parry_pre 监听期间安装的招架闭包，是免伤的真正执行者 | 持有者 combat 的单槽回调；状态退出链负责清理 | [[reference/components/parryweapon#原版动作与清理链]]、[[reference/components/combat#关键接口]]；[安装](../../../raw/current/scripts/stategraphs/SGwilson.lua#L5776-L5786)、[消费](../../../raw/current/scripts/components/combat.lua#L585) |
-| API／数据：技能树节点 | `wathgrithr_arsenal_shield_1`（配方＋装备标签）、`_2`（窗口×2.5）、`_3`（反击加成） | 女武神技能树 arsenal 组；经 `skilltreeupdater` 查询 | [[reference/components/skilltreeupdater#关键接口]]；[节点](../../../raw/current/scripts/prefabs/skilltree_wathgrithr.lua#L307-L330)、[倍率](../../../raw/current/scripts/tuning.lua#L7217-L7221) |
+| API／数据：技能树节点 | `wathgrithr_arsenal_shield_1`（配方＋装备标签）、`_2`（窗口×2.5）、`_3`（反击加成） | 女武神技能树 arsenal 组；经 `skilltreeupdater` 查询 | [[reference/components/skilltreeupdater#关键接口]]；[节点](../../../raw/current/scripts/prefabs/skilltree_wathgrithr.lua#L307-L330)、[倍率](../../../raw/current/scripts/tuning.lua#L7218-L7222) |
 | API／数据：`toolpunch` 标签 | 装备态攻击播 `toolpunch` 拳击动画（与 shieldofterror 同标签） | 攻击状态时读取 | [SGwilson.lua#L10845-L10855](../../../raw/current/scripts/stategraphs/SGwilson.lua#L10845-L10855) |
 | API／数据：`battleshield` 标签 | 公共端添加；快照全 scripts grep 无消费者 | — | [添加](../../../raw/current/scripts/prefabs/wathgrithr_shield.lua#L153) |
 | 关联 Prefab：reticulearc／reticulearcping | aoetargeting 的瞄准环与落点 ping | 客户端表现；同文件注册两个 prefab | [声明](../../../raw/current/scripts/prefabs/wathgrithr_shield.lua#L7-L11)、[注册](../../../raw/current/scripts/prefabs/reticulearc.lua#L65-L66) |
@@ -132,3 +132,4 @@ TUNING.WATHGRITHR_SHIELD_PARRY_DURATION = 1.5
 - 结构检查：validate_page.py 0 error（134 行／24529 字节，standard 档）与 validate_source_links.py --strict 0 error 0 warning（26 个源文件）。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 13 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

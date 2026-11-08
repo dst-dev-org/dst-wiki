@@ -1,12 +1,12 @@
 ---
 title: "moonstormstaticcatcher"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "月风暴静电捕捉端：装备物品用它对 moonstormstaticcapturable 目标执行 DIVEGRAB 抓取并维护瞄准通知。"
 aliases: ["静电捕捉器", "moonstormstaticcatcher", "月风暴捕捉"]
 tags: [component, item]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/moonstormstaticcatcher.lua", "components/moonstormstaticcapturable.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua", "prefabs/moonstorm_static.lua"]
 reliability: verified
 validation: source-reviewed
@@ -65,3 +65,4 @@ end
 ## 相关链接
 
 - [[reference/components/moonstormstaticcapturable]]：静电可捕捉目标端：瞄准集合与被抓结算。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

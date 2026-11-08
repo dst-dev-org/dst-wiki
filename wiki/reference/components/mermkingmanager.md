@@ -1,12 +1,12 @@
 ---
 title: "mermkingmanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级鱼人王管理器：登记王座、挑选并护送鱼人候选者，候选到位后变身鱼人王，并维护跨分片的王与任务装备查询。"
 aliases: ["mermkingmanager", "鱼人王", "merm king", "王座候选", "鱼人王管理器"]
 tags: [component, creature, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/mermkingmanager.lua", "prefabs/cave.lua", "prefabs/forest.lua", "prefabs/mermthrone.lua", "prefabs/merm.lua"]
 reliability: verified
 validation: source-reviewed
@@ -45,7 +45,7 @@ status: active
 
 ### 自定义王座或鱼人加入王位流程
 
-- 前提与选择：世界需装有 mermkingmanager（森林/洞穴默认都有）；自定义"鱼人"宿主要有 mermcandidate 组件参与卡路里流程；王座只需在建造/摧毁时推 `onthronebuilt`／`onthronedestroyed` 即可被登记。[候选安装](../../../raw/current/scripts/prefabs/merm.lua#L1125-L1129) [王座事件](../../../raw/current/scripts/prefabs/mermthrone.lua#L27-L29)
+- 前提与选择：世界需装有 mermkingmanager（森林/洞穴默认都有）；自定义"鱼人"宿主要有 mermcandidate 组件参与卡路里流程；王座只需在建造/摧毁时推 `onthronebuilt`／`onthronedestroyed` 即可被登记。[候选安装](../../../raw/current/scripts/prefabs/merm.lua#L1132-L1136) [王座事件](../../../raw/current/scripts/prefabs/mermthrone.lua#L27-L29)
 - 生效与撤销：候选登记后立即改观感（MERM_PRINCE）；取消候选走 `onremove`/`death` 自动清理，或王座被毁时统一重置。变身不可逆（ReplacePrefab 换实体）。
 - 原版依据：mermwatchtower 等消费方都用 `HasKingAnywhere()` 决定守卫生成与台词，跨分片语义由 shard_mermkingwatcher 提供。[哨塔消费](../../../raw/current/scripts/prefabs/mermwatchtower.lua#L16-L17)
 
@@ -83,3 +83,4 @@ end
 
 - [[reference/components/mermcandidate]]：候选者的卡路里积累与变身判定。
 - [[reference/components/shard_mermkingwatcher]]：跨分片王状态的同步组件。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

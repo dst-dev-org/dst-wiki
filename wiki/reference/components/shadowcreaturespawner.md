@@ -1,12 +1,12 @@
 ---
 title: "shadowcreaturespawner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级暗影生物（爬行梦魇/恐怖之喙/海洋梦魇）按玩家理智的人口管理器：目标人口渐进调整、离屏即删、影怪自我进化自动换跟踪。"
 aliases: ["shadowcreaturespawner", "暗影生物生成器", "梦魇生成", "影怪人口"]
 tags: [component, creature, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/shadowcreaturespawner.lua", "prefabs/shadowcreature.lua", "prefabs/cave.lua", "prefabs/forest.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -18,7 +18,7 @@ status: active
 ## 快速判断
 
 - 职责与适用：洞穴与森林世界都安装的主模拟组件（[洞穴](../../../raw/current/scripts/prefabs/cave.lua#L520) [森林](../../../raw/current/scripts/prefabs/forest.lua#L660)），为每个玩家维护一个目标人口并渐进逼近：理智 >0.5 无怪、0.1～0.5 最多 1 只、≤0.1 最多 2 只（查理竞技场 3 只），精神疯狂（induced）最多 5 只。仅生成爬行梦魇/恐怖之喙/海洋梦魇，不管 [[reference/components/shadowhandspawner]] 的手与 waveyjones。[断言](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L7)
-- 优先使用：调节奏改 `TUNING.SANITYMONSTERS_*`（人口上限、增减概率、间隔）；主动触发走 `SpawnShadowCreature(player, params?)`。[生成入口](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L100-L142) [调参](../../../raw/current/scripts/tuning.lua#L6127-L6147)
+- 优先使用：调节奏改 `TUNING.SANITYMONSTERS_*`（人口上限、增减概率、间隔）；主动触发走 `SpawnShadowCreature(player, params?)`。[生成入口](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L100-L142) [调参](../../../raw/current/scripts/tuning.lua#L6128-L6148)
 - 重要副作用：生成的怪带 `spawnedforplayer` 标记；离屏（entitysleep）下一 tick 即被移除；人口调低时随机挑怪标记 `wantstodespawn`+`persists=false` 由其自行消失；玩家移除时其所有怪同样处置。[离屏移除](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L63-L65) [人口收缩](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L153-L169)
 - 修改边界：无 OnSave/OnLoad——人口与跟踪关系不持久化；任务挂玩家实体，玩家离开即取消。[玩家生命周期](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L326-L344)
 
@@ -26,13 +26,13 @@ status: active
 
 | 接口 | 条件、作用与证据 |
 |---|---|
-| `SpawnShadowCreature(player, params?)` | params 缺省取该玩家注册表。船+理智 <0.1 → 船半径+3～11 找海面生成 `oceanhorror`，连败 4 次改在可通行点生成陆地怪；陆地按 15 半径 8 次找可行走点生成 `crawlinghorror` 或（理智 <0.1 且运气 0.5）`terrorbeak`。[实现](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L87-L142) [运气回合](../../../raw/current/scripts/tuning.lua#L6147) |
+| `SpawnShadowCreature(player, params?)` | params 缺省取该玩家注册表。船+理智 <0.1 → 船半径+3～11 找海面生成 `oceanhorror`，连败 4 次改在可通行点生成陆地怪；陆地按 15 半径 8 次找可行走点生成 `crawlinghorror` 或（理智 <0.1 且运气 0.5）`terrorbeak`。[实现](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L87-L142) [运气回合](../../../raw/current/scripts/tuning.lua#L6148) |
 | `ms_exchangeshadowcreature`（世界事件） | 影怪/ocean 影怪自我交换（变体/升级）时推送；组件把跟踪对象从旧怪换成新怪，人口计数不变。[处理](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L74-L85) [推送](../../../raw/current/scripts/prefabs/shadowcreature.lua#L217) |
 | `GetDebugString()` | 输出当前管理的影怪总数。[实现](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L364-L372) |
 
 ### 人口节奏（UpdatePopulation）
 
-每玩家 poptask 循环：疯狂状态走快速 5～6 秒档、目标上限 5；普通状态按理智分档（[分档](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L220-L261)、[上限与概率](../../../raw/current/scripts/tuning.lua#L6127-L6147)），每次至多 ±1 并经 `TryLuckRoll` 掷增减概率；查理竞技场单独 3 只上限与专属概率、7±7 秒节奏；vault 密室房间 0.2±0.1 秒快速档；非疯狂时 0.1±0.1 秒快速清理档（[节奏调度](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L283-L295)）。目标变化才启动 spawntask，按 `SANITYMONSTERS_SPAWN_INTERVAL(5)+方差(10)` 逐只补齐或收缩（[UpdateSpawn](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L144-L174)）。`inducedinsanity`/`sanitymodechanged` 事件重置计时立即重评（[重置](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L317-L324)）。
+每玩家 poptask 循环：疯狂状态走快速 5～6 秒档、目标上限 5；普通状态按理智分档（[分档](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L220-L261)、[上限与概率](../../../raw/current/scripts/tuning.lua#L6128-L6148)），每次至多 ±1 并经 `TryLuckRoll` 掷增减概率；查理竞技场单独 3 只上限与专属概率、7±7 秒节奏；vault 密室房间 0.2±0.1 秒快速档；非疯狂时 0.1±0.1 秒快速清理档（[节奏调度](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L283-L295)）。目标变化才启动 spawntask，按 `SANITYMONSTERS_SPAWN_INTERVAL(5)+方差(10)` 逐只补齐或收缩（[UpdateSpawn](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L144-L174)）。`inducedinsanity`/`sanitymodechanged` 事件重置计时立即重评（[重置](../../../raw/current/scripts/components/shadowcreaturespawner.lua#L317-L324)）。
 
 ## 典型接入
 
@@ -66,3 +66,4 @@ TUNING.SANITYMONSTERS_CHANCES = {                -- 对应两档的增减概率
 
 相关：[[reference/components/shadowhandspawner]]、[[reference/components/brightmarespawner]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

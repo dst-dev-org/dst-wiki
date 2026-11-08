@@ -1,12 +1,12 @@
 ---
 title: "circuitnode"
 created: "2026-10-20"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "薇诺娜工程节点的启用、按标签发现和双向集合；供电、功率、重新连接由宿主协作。"
 aliases: ["服务端断开聚光灯电路", "薇诺娜电路节点", "双向节点连接", "circuitnode"]
 tags: [component, callback, lifecycle, energy, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/circuitnode.lua", "prefabs/winona_battery_low.lua", "prefabs/winona_spotlight.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -73,3 +73,4 @@ end)
 - 结构检查：本批格式、来源、链接／锚点、大小与登记；完整断开事件例经已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；零／多连接、满载供电、断开后重连、初始化顺序、烧毁／锤拆／读档和平台场景待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

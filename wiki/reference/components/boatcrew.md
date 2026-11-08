@@ -1,12 +1,12 @@
 ---
 title: "boatcrew：海盗船员编队与战术状态"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "挂在海盗船上的编队管理：成员登记与阵亡退队、掠夺目标与战利品胜负判定、hunt/assault/retreat/delivery 状态与划船朝向。"
 aliases: [海盗船员编队, 船员编队, boatcrew, 海盗船编队]
 tags: [component, state-machine, ai]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/boatcrew.lua", "components/piratespawner.lua", "components/crewmember.lua", "brains/powdermonkeybrain.lua", "stategraphs/SGpowdermonkey.lua", "prefabs/primemate.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -52,7 +52,7 @@ if boat and boat.components.boatcrew then
 end
 ```
 
-- 调整与验证：每成员战利品配额 [tuning.lua:6714](../../../raw/current/scripts/tuning.lua#L6714)；`primemate` 也读取本组件（[primemate.lua:181](../../../raw/current/scripts/prefabs/primemate.lua#L181）。
+- 调整与验证：每成员战利品配额 [tuning.lua:6714](../../../raw/current/scripts/tuning.lua#L6715)；`primemate` 也读取本组件（[primemate.lua:181](../../../raw/current/scripts/prefabs/primemate.lua#L181）。
 
 ## 常见陷阱与限制
 
@@ -67,3 +67,4 @@ end
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

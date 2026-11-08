@@ -1,12 +1,12 @@
 ---
 title: "frograin"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "春季蛙雨调度器：按世界状态窗口为每个玩家定时落蛙，控制总蛙量与本地蛙量，月裂开启时有概率换成月蛙。"
 aliases: ["蛙雨", "青蛙雨", "frograin"]
 tags: [component, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/frograin.lua", "prefabs/forest.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -36,7 +36,7 @@ status: active
 1. 开窗：`isspring && israining && precipitationrate > FROG_RAIN_PRECIPITATION(0.55) && moistureceil > FROG_RAIN_MOISTURE(2500)`，进入更新并给全部玩家排计时（[L97-L124](../../../raw/current/scripts/components/frograin.lua#L97-L124)）。
 2. 单场雨的蛙帽：开始下雨时掷 `FROG_RAIN_CHANCE(0.16)`，命中则 `_frogcap = random(FROG_RAIN_LOCAL_MIN 12, FROG_RAIN_LOCAL_MAX 35)`，否则为 0（[L136-L143](../../../raw/current/scripts/components/frograin.lua#L136-L143)）。
 3. 每次落蛙：随机 0.1–2 秒，检查全局 `_frogs < FROG_RAIN_MAX(300)` 且玩家 50 半径内蛙数 `< _frogcap`，在 60 半径内取地面有效点，蛙 `persists=false`、随机朝向、`sg:GoToState("fall")`、Teleport 高度 35（[L67-L80](../../../raw/current/scripts/components/frograin.lua#L67-L80)、[落蛙](../../../raw/current/scripts/components/frograin.lua#L55-L64)）。
-4. 月蛙替换：`riftspawner:IsLunarPortalActive()` 时按玩家掷 `TryLuckRoll(player, 0.6, LuckFormulas.RiftPossession)` 决定 `lunarfrog`（[L51-L53](../../../raw/current/scripts/components/frograin.lua#L51-L53)；[常量](../../../raw/current/scripts/tuning.lua#L7955)）。
+4. 月蛙替换：`riftspawner:IsLunarPortalActive()` 时按玩家掷 `TryLuckRoll(player, 0.6, LuckFormulas.RiftPossession)` 决定 `lunarfrog`（[L51-L53](../../../raw/current/scripts/components/frograin.lua#L51-L53)；[常量](../../../raw/current/scripts/tuning.lua#L7956)）。
 5. 清理：蛙 entitysleep 后下一帧删除；玩家离开取消其计时（[L126-L130](../../../raw/current/scripts/components/frograin.lua#L126-L130)、[L157-L165](../../../raw/current/scripts/components/frograin.lua#L157-L165)）。
 
 ## 常见陷阱与限制
@@ -53,3 +53,4 @@ status: active
 
 相关：[[reference/components/birdspawner]]（同为世界实体季节生成器）、[[reference/components/wildfires]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

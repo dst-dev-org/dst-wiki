@@ -1,13 +1,13 @@
 ---
 title: "幽灵复活转生光效（ghost_transform_overlay_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "玩家被 reviver 类物品复活（TellTale Heart 路径）时叠加在玩家身上的转生表现：shudder→brace→transform 复活动画＋复刻幽灵灯光的逐帧闪变光效；单注册名，由 SGwilson reviver_rebirth 状态生成并挂到玩家实体。"
 aliases: ["ghost_transform_overlay_fx", "复活转生特效", "幽灵转生", "复活光效"]
 tags: [prefab, fx, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/ghost_transform_overlay_fx.lua", "stategraphs/SGwilson.lua", "prefabs/player_common_extensions.lua", "prefabs/player_common.lua"]
 reliability: verified
 validation: source-reviewed
@@ -69,3 +69,4 @@ fx.entity:SetParent(inst.entity)  -- 挂到宿主实体上跟随显示
 
 返回 [[reference/prefabs/fx-transition-index|变身、召唤、传送与退场]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

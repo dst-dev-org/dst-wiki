@@ -1,12 +1,12 @@
 ---
 title: "回旋镖（boomerang）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版手持投掷武器 boomerang：武器本体即投射物，攻击脱手飞出追踪命中，命中／脱靶都飞回（仅命中时掷出者为鬼魂才落地）；CATCH 提示需弹体 catchable 与操作者 cancatch，接取后仅在背包开启时自动装备（HANDS 空闲）或入包；伤害 27.2、耐久 10、耗尽不返回原地移除。"
 aliases: ["boomerang", "回旋镖", "Boomerang", "飞去来器", "投掷武器"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/boomerang.lua", "components/projectile.lua", "components/weapon.lua", "components/combat.lua", "components/catcher.lua", "components/finiteuses.lua", "components/equippable.lua", "components/inspectable.lua", "components/inventoryitem.lua", "components/inventory.lua", "components/wisecracker.lua", "components/builder.lua", "widgets/widgetutil.lua", "prefabs/player_common.lua", "prefabs/charlie_boss.lua", "prefabs/voidcloth_boomerang.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "componentactions.lua", "actions.lua", "tuning.lua", "constants.lua", "recipes.lua", "recipes_filter.lua", "prefabs/scienceprototyper.lua", "standardcomponents.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "map/boons.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -107,3 +107,4 @@ end)
 - 结构检查：validate_page.py 通过（109 行／19321 字节，standard 档内）；validate_source_links.py --strict 通过（0 error 0 warning）。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

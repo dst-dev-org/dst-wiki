@@ -1,12 +1,12 @@
 ---
 title: "worldreset：世界重置倒计时与执行"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "挂在 world_network 上的世界重置组件：全员变鬼或空服时按难度开启倒计时并同步各端，到点执行存档删除重开。"
 aliases: [世界重置, 重置倒计时, worldreset, 世界重生倒计时]
 tags: [component, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/worldreset.lua", "prefabs/world_network.lua", "worldsettings_overrides.lua", "networking.lua", "widgets/worldresettimer.lua", "widgets/playerdeathnotification.lua"]
 reliability: verified
 validation: source-reviewed
@@ -18,7 +18,7 @@ status: active
 ## 快速判断
 
 - 职责与适用：世界级组件，由 `world_network` prefab 挂载（[world_network.lua:60](../../../raw/current/scripts/prefabs/world_network.lua#L60），主分片权威、从分片与客户端经 net_byte 同步倒计时。世界设置 `reset_time` 开启后，"全员皆鬼"触发倒计时（默认 120s，读档期 180s），全端弹出重置提示，到点删档重开。
-- 优先使用：要开关/改重置难度 → 用世界设置覆盖 `reset_time`（none/slow/default/fast/always），其实现推送 `ms_setworldresettime`（([worldsettings_overrides.lua:3845-3860](../../../raw/current/scripts/worldsettings_overrides.lua#L3976-L3991)）；模组不要直接改组件内部状态。
+- 优先使用：要开关/改重置难度 → 用世界设置覆盖 `reset_time`（none/slow/default/fast/always），其实现推送 `ms_setworldresettime`（([worldsettings_overrides.lua:3845-3860](../../../raw/current/scripts/worldsettings_overrides.lua#L3981-L3996)）；模组不要直接改组件内部状态。
 - 重要副作用：倒计时开启即 `TheNet:SetIsWorldResetting(true)`，只剩活人时取消；HUD 经 `showworldreset`/`hideworldreset`/`worldresettick` 三个世界事件驱动（[UI 监听](../../../raw/current/scripts/widgets/worldresettimer.lua#L53-L54)）。
 - 修改边界：`instant` 档（always）无倒计时，全员在场即直接重置；倒计时不写档，读档后按玩家计数与设置重新起算。
 
@@ -68,3 +68,4 @@ TheWorld:PushEvent("ms_setworldresettime", nil)
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

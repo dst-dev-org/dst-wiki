@@ -1,12 +1,12 @@
 ---
 title: "stunnable"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "在滚动时间窗累计生命变化，超过阈值后发出眩晕事件，由龙蝇状态图完成倒地与起身。"
 aliases: ["stunnable", "伤害窗口眩晕", "龙蝇倒地", "连续伤害阈值", "stunned", "stun_finished"]
 tags: [component, event, state-machine, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/stunnable.lua", "components/health.lua", "prefabs/dragonfly.lua", "stategraphs/SGdragonfly.lua", "entityscript.lua", "tuning.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -83,3 +83,4 @@ end)
 - 示例范围：仅配置实际原宿主，沿用其事件消费者；完整 `modmain.lua` 经 Lua 5.1 语法检查。页面元数据／大小／本地链接与源码行锚点检查通过。
 - 游戏运行：未运行。阈值临界、多次同时间戳变化、治疗入账、冷却交界、重复强制触发、死亡／睡眠／触电、读档与联机表现仍需实测；未设计其他宿主的通用眩晕协议。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

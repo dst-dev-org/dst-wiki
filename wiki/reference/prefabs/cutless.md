@@ -1,12 +1,12 @@
 ---
 title: "木头短剑（cutless）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版粉猴手持武器 cutless（官方简中名木头短剑）：伤害 27.2、耐久 150 仅攻击磨损；每次命中从目标物品栏或容器敲落一件无 nosteal 物品并随机弹飞（起点分别为目标位置与容器坐标）；可作 BURNABLE 燃料（45）；无配方、仅粉猴生态获取。"
 aliases: ["cutless", "Cutless", "木头短剑", "弯刀"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/cutless.lua", "components/weapon.lua", "components/equippable.lua", "components/finiteuses.lua", "components/inspectable.lua", "components/inventoryitem.lua", "components/thief.lua", "components/container.lua", "components/fuel.lua", "components/fueled.lua", "components/inventory.lua", "components/combat.lua", "components/piratespawner.lua", "prefabs/monkeyhut.lua", "prefabs/powdermonkey.lua", "standardcomponents.lua", "tuning.lua", "constants.lua", "mods.lua", "screens/redux/scrapbookdata.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -47,8 +47,8 @@ status: active
 
 | 项 | 键 | 实际值 |
 |---|---|---|
-| 武器伤害 | `TUNING.CUTLESS_DAMAGE`＝`wilson_attack`×0.8 | 27.2 生命值（源码推导，[tuning.lua#L6705](../../../raw/current/scripts/tuning.lua#L6705)） |
-| 耐久上限 | `TUNING.CUTLESS_USES` | 150（[tuning.lua#L6706](../../../raw/current/scripts/tuning.lua#L6706)） |
+| 武器伤害 | `TUNING.CUTLESS_DAMAGE`＝`wilson_attack`×0.8 | 27.2 生命值（源码推导，[tuning.lua#L6705](../../../raw/current/scripts/tuning.lua#L6706)） |
+| 耐久上限 | `TUNING.CUTLESS_USES` | 150（[tuning.lua#L6706](../../../raw/current/scripts/tuning.lua#L6707)） |
 | 燃料值 | `TUNING.MED_FUEL`＝`seg_time`×1.5 | 45（fuel 组件 `fuelvalue`，`seg_time`＝30 秒；经 `Fueled:TakeFuelItem` 按该值 DoDelta 进宿主 fueled 燃料量，[tuning.lua#L1675](../../../raw/current/scripts/tuning.lua#L1675)、[消费](../../../raw/current/scripts/components/fueled.lua#L210-L212)） |
 | 每次攻击磨损 | weapon `attackwear`（从未赋值） | 1 耐久点/次，且为唯一消耗路径（无 tool、无 `SetConsumption`；[OnAttack 结算](../../../raw/current/scripts/components/weapon.lua#L114)） |
 
@@ -123,3 +123,4 @@ end)
 - 结构检查：validate_page.py（0 error，125 行／16795 字节，standard 档）与 validate_source_links.py --strict（66 条源码引用、21 个源文件，0 error 0 warning）实际执行通过；首跑 3 条 `source-blank` warning（两处引用起点落在空行）已改为实义行后复跑归零。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

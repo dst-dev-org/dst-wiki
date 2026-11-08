@@ -1,13 +1,13 @@
 ---
 title: "暗影地面痕特效（shadow_glob_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "麦克斯韦暗影秘典法术与暗影傀儡消散留下的半透明地面影：主模拟随机 3 变体一次播放自毁，海面可开启客户端涟漪；'shadowtrail' 标签兼作布痕去重占位。"
 aliases: ["shadow_glob_fx", "暗影地面痕", "影子拖尾", "shadow trail fx"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/shadow_glob_fx.lua", "prefabs/shadow_trap.lua", "stategraphs/SGshadow_trap.lua", "prefabs/shadow_pillar.lua", "stategraphs/SGshadowwaxwell.lua", "prefabs/waxwelljournal.lua", "prefabs/cane_ancient_fx.lua", "prefabskin.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -80,3 +80,4 @@ end
 
 返回 [[reference/prefabs/fx-world-index|天气、地形与生态痕迹]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

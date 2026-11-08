@@ -1,13 +1,13 @@
 ---
 title: "命中与落点伤害表现及传送门投影 FX 族（impact 等 7 注册）"
 created: "2026-11-04"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 size_class: complex
 summary: "六个源文件、七个注册的外围载体：impact 网络壳＋非专服本地命中动画；houndstooth_proj 自带 weapon／planardamage／Light 的弹道与独立尾迹；junkball_fx 抛掷第一段与 junkball_fall_fx 落点（对每个目标按条件择一破坏／采摘／攻击）；lunarrift_terraformer_explosion 第 5 帧爆炸直伤；lunarrift_portal_shadow 与 multiplayer_portal_moonrock_fx 的父挂投影。"
 aliases: ["impact", "houndstooth_proj", "junkball_fx", "junkball_fall_fx", "lunarrift_terraformer_explosion", "lunarrift_portal_shadow", "multiplayer_portal_moonrock_fx", "月形爆裂", "命中特效", "落点伤害", "传送门投影", "裂隙阴影", "天体传送门特效", "外围 FX 族"]
 tags: [prefab, fx, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/impact.lua", "prefabs/houndstooth_blowpipe.lua", "prefabs/junkball.lua", "prefabs/lunarrift_terraformer_explosion.lua", "prefabs/lunarrift_portal.lua", "prefabs/multiplayer_portal.lua", "components/projectile.lua", "components/weapon.lua", "components/combat.lua", "prefabs/rift_terraformer.lua", "prefabs/junk_pile_big.lua", "stategraphs/SGdaywalker2.lua", "prefabs/bernie_big.lua", "prefabs/blowdart.lua", "prefabs/blowdart_lava.lua", "prefabs/blowdart_lava2.lua", "prefabs/boomerang.lua", "prefabs/bullkelp_root.lua", "prefabs/gestalt_guard_evolved.lua", "prefabs/hutch.lua", "prefabs/whip.lua", "stategraphs/SGshadowwaxwell.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwx78_possessedbody.lua", "tuning.lua", "constants.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -61,9 +61,9 @@ status: active
 
 | 混合注册 | 伤害来源与结算入口 | 数值、范围与过滤 | 证据 |
 |---|---|---|---|
-| `houndstooth_proj` | 弹体自身的 `weapon`＋`planardamage`；`has_damage_set=true` 让 `Projectile:Hit` 把弹体当 weapon 传给攻击者 combat 的 `DoAttack`。 | 物理与 planar 基础值都取 `wilson_attack`（34×多人攻击系数）；对 `shadow_aligned` 目标 1.1×；命中距离 1.5、速度 25、射程 30。 | [has_damage_set](../../../raw/current/scripts/prefabs/houndstooth_blowpipe.lua#L310)、[Hit](../../../raw/current/scripts/components/projectile.lua#L236-L256)、[GetDamage](../../../raw/current/scripts/components/weapon.lua#L94-L103)、[tuning](../../../raw/current/scripts/tuning.lua#L7981-L7985) |
-| `junkball_fall_fx` | 落点 `DoDamage` 优先取 `inst.attacker.components.combat`，攻击者无效时退回自身 `combat`；临时把 `defaultdamage` 设为 30、`playerdamagepercent=nil`、`ignorehitrange=true`，再 `combat:DoAttack`。 | 半径 1.5＋目标物理半径；必须命中 `_combat`／pickable／workable 的 oneof 标签。每个目标按条件**择一**：可 work → `Destroy`；否则可摘且非 intense → `Pick`；否则 `combat:CanTarget` → `DoAttack`；进入一个分支后不再执行后续分支。`targets` 记录 worked／picked／attacked，去重只覆盖这三路，地面物品抛飞与 `formpile` 聚堆分支不在其内；多颗落点共享同一 `targets` 表；目标装备带 `junk` 标签时该次外部倍率置 0。 | [DoDamage](../../../raw/current/scripts/prefabs/junkball.lua#L339-L396)、[combat 配置](../../../raw/current/scripts/prefabs/junkball.lua#L583-L586)、[tuning](../../../raw/current/scripts/tuning.lua#L8167) |
-| `lunarrift_terraformer_explosion` | `do_explosion` 对每个命中实体直接 `hit_entity.components.combat:GetAttacked(inst, 30, nil)`；FX 自身没有 combat 组件。 | 半径 `sqrt(2×TILE_SCALE²)/2`≈2.83：即半条地块对角线（直径等于 1 个地块的对角线），以爆心为圆心恰好覆盖 1 个地块的四角；必须 `_combat`，且 ONEOF 只取 `animal`／`character`／`monster`／`structure`，排除 `lunar_aligned`、`FX`、`flight`、`INLIMBO`、`playerghost` 等；不要求目标有 health。 | [标签与半径](../../../raw/current/scripts/prefabs/lunarrift_terraformer_explosion.lua#L6-L11)、[结算](../../../raw/current/scripts/prefabs/lunarrift_terraformer_explosion.lua#L13-L31)、[tuning](../../../raw/current/scripts/tuning.lua#L7630)、[TILE_SCALE](../../../raw/current/scripts/constants.lua#L17) |
+| `houndstooth_proj` | 弹体自身的 `weapon`＋`planardamage`；`has_damage_set=true` 让 `Projectile:Hit` 把弹体当 weapon 传给攻击者 combat 的 `DoAttack`。 | 物理与 planar 基础值都取 `wilson_attack`（34×多人攻击系数）；对 `shadow_aligned` 目标 1.1×；命中距离 1.5、速度 25、射程 30。 | [has_damage_set](../../../raw/current/scripts/prefabs/houndstooth_blowpipe.lua#L310)、[Hit](../../../raw/current/scripts/components/projectile.lua#L236-L256)、[GetDamage](../../../raw/current/scripts/components/weapon.lua#L94-L103)、[tuning](../../../raw/current/scripts/tuning.lua#L7982-L7986) |
+| `junkball_fall_fx` | 落点 `DoDamage` 优先取 `inst.attacker.components.combat`，攻击者无效时退回自身 `combat`；临时把 `defaultdamage` 设为 30、`playerdamagepercent=nil`、`ignorehitrange=true`，再 `combat:DoAttack`。 | 半径 1.5＋目标物理半径；必须命中 `_combat`／pickable／workable 的 oneof 标签。每个目标按条件**择一**：可 work → `Destroy`；否则可摘且非 intense → `Pick`；否则 `combat:CanTarget` → `DoAttack`；进入一个分支后不再执行后续分支。`targets` 记录 worked／picked／attacked，去重只覆盖这三路，地面物品抛飞与 `formpile` 聚堆分支不在其内；多颗落点共享同一 `targets` 表；目标装备带 `junk` 标签时该次外部倍率置 0。 | [DoDamage](../../../raw/current/scripts/prefabs/junkball.lua#L339-L396)、[combat 配置](../../../raw/current/scripts/prefabs/junkball.lua#L583-L586)、[tuning](../../../raw/current/scripts/tuning.lua#L8168) |
+| `lunarrift_terraformer_explosion` | `do_explosion` 对每个命中实体直接 `hit_entity.components.combat:GetAttacked(inst, 30, nil)`；FX 自身没有 combat 组件。 | 半径 `sqrt(2×TILE_SCALE²)/2`≈2.83：即半条地块对角线（直径等于 1 个地块的对角线），以爆心为圆心恰好覆盖 1 个地块的四角；必须 `_combat`，且 ONEOF 只取 `animal`／`character`／`monster`／`structure`，排除 `lunar_aligned`、`FX`、`flight`、`INLIMBO`、`playerghost` 等；不要求目标有 health。 | [标签与半径](../../../raw/current/scripts/prefabs/lunarrift_terraformer_explosion.lua#L6-L11)、[结算](../../../raw/current/scripts/prefabs/lunarrift_terraformer_explosion.lua#L13-L31)、[tuning](../../../raw/current/scripts/tuning.lua#L7631)、[TILE_SCALE](../../../raw/current/scripts/constants.lua#L17) |
 
 ### 组件、网络与资源
 
@@ -143,3 +143,4 @@ end
 相关页面：[[reference/prefabs/hitsparks_fx|命中火花特效（hitsparks_fx）]]（`houndstooth_proj` 的命中火花来源）。
 
 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

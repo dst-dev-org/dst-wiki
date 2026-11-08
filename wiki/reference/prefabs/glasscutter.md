@@ -1,12 +1,12 @@
 ---
 title: "玻璃刀（glasscutter）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "月岛科技手持武器：无工具功能的高伤害玻璃刀，对暗影生物增伤并对纯影目标低磨损，覆盖耐久、伤害、配方与皮肤接线。"
 aliases: ["glasscutter", "玻璃刀", "Glass Cutter", "对暗影生物增伤的武器", "玻璃刀耐久"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/glasscutter.lua", "components/equippable.lua", "components/weapon.lua", "components/finiteuses.lua", "components/damagetypebonus.lua", "componentutil.lua", "standardcomponents.lua", "tuning.lua", "recipes.lua", "constants.lua", "strings.lua", "languages/chinese_s.po", "prefabskins.lua", "screens/redux/scrapbookdata.lua", "prefabs/shadowcreature.lua", "prefabs/stalker.lua", "prefabs/moon_altar.lua"]
 reliability: verified
 validation: source-reviewed
@@ -97,3 +97,4 @@ end)
 - 结构检查：validate_page.py 与 validate_source_links.py --strict 实际执行通过（结果见交付报告）。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

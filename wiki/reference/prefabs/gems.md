@@ -6,7 +6,7 @@ type: prefab
 summary: "prefabs/gem.lua 单工厂 buildgem 注册的七种可拾取宝石：同一实体模板（可堆叠 40、ELEMENTAL 可食、GEM 材料修复者、鼹鼠饵料），颜色差异只有动画、浮力参数与注册名；主要消费是配方材料、蟹王嵌彩与档案馆开关（opal）。"
 aliases: ["purplegem", "bluegem", "redgem", "orangegem", "yellowgem", "greengem", "opalpreciousgem", "紫宝石", "蓝宝石", "红宝石", "橙宝石", "黄宝石", "绿宝石", "彩虹宝石", "宝石族", "Iridescent Gem"]
 tags: [prefab, item]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/gem.lua", "recipes.lua", "componentactions.lua", "prefabs/crabking.lua", "prefabs/archive_props.lua", "prefabs/tumbleweed.lua", "prefabs/bishop.lua", "prefabs/dragonfly.lua", "prefabs/pigking.lua", "components/quaker.lua", "components/repairable.lua", "components/repairer.lua", "constants.lua", "tuning.lua", "prefabs/mole.lua", "brains/molebrain.lua", "prefabs/rocky.lua", "prefabs/rocky_boss.lua", "prefabs/dustmoth.lua", "prefabs/compostingbin.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 - 职责与适用：`prefabs/gem.lua` 用单一工厂 `buildgem(colour, precious)` 注册 7 个矿物类材料物品：六色常规宝石 `purplegem`／`bluegem`／`redgem`／`orangegem`／`yellowgem`／`greengem` 与 `opalpreciousgem`（彩虹宝石）。七注册共用同一 fn：可堆叠 40、ELEMENTAL 食物类型（喂矿物食性生物）、GEM 材料修复者、鼹鼠饵料与交易接受门槛。[工厂与注册](../../../raw/current/scripts/prefabs/gem.lua#L17-L101)
 - 优先使用：查宝石组件、获取与消费路径读本页；配方用量直达 [recipes.lua](../../../raw/current/scripts/recipes.lua)；给新物品借鉴"单工厂多色变体"组装时看注册表；蟹王嵌彩行为见 [crabking.lua](../../../raw/current/scripts/prefabs/crabking.lua#L1360-L1378)。
 - 重要副作用：地上宝石带 `quakedebris` 标签，洞穴地震落石落点 2 距离内会将其砸碎移除（[quaker.lua L25](../../../raw/current/scripts/components/quaker.lua#L25)、[L228-L235](../../../raw/current/scripts/components/quaker.lua#L228-L235)）；`sparkletask` 闪光任务只在 master sim 建立。
-- 修改边界：颜色差异全部来自工厂闭包参数，原版 fn 内无按颜色的组件分支；给个别宝石加组件用 `AddPrefabPostInit`。`repairer` 的 GEM 材料在原版没有 `repairable` 消费者（见陷阱），模组接入需自行配对。
+- 修改边界：同类矿物材料（燧石、石头、大理石、金块）见 [[reference/prefabs/basic-mineral-materials]]；颜色差异全部来自工厂闭包参数，原版 fn 内无按颜色的组件分支；给个别宝石加组件用 `AddPrefabPostInit`。`repairer` 的 GEM 材料在原版没有 `repairable` 消费者（见陷阱），模组接入需自行配对。
 
 ## 注册与构造
 
@@ -95,3 +95,4 @@ end)
 - 外部复检修订（2026-11-08，R10，主代理回源码核实；珍珠款优先级经复检二次勘正）：「工厂外部无按颜色分支」收窄为本工厂内部（消费方特判见蟹王／档案馆）；蟹王战利品选择——已嵌珍珠（gemcount.pearl>0）直接珍珠款，未嵌珍珠才需 opal≥3 且寄居蟹已交出珍珠（hermit.pearlgiven）改珍珠款（crabking.lua L1497-L1505）；档案馆存档恢复补 spawnopal 经 trader:AcceptGift 恢复嵌宝状态（archive_props.lua L886-L891）。
 
 返回 [[reference/prefabs/index|原版 Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

@@ -1,12 +1,12 @@
 ---
 title: "拾荒疯猪挥击地面特效（daywalker2_swipe_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "拾荒疯猪（Scrappy Werepig）挥物攻击的地面横扫动画：单注册、Reverse 反手、提前 3 帧生成防丢帧；无玩法组件，伤害由宿主 SG 的弧形 AOE 结算。"
 aliases: ["daywalker2_swipe_fx", "daywalker2_fx", "拾荒疯猪挥击特效", "疯猪挥击特效", "daywalker swipe"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/daywalker2_fx.lua", "stategraphs/SGdaywalker2.lua", "prefabs/daywalker2.lua", "tuning.lua", "languages/chinese_s.po"]
 size_class: simple
 reliability: verified
@@ -36,7 +36,7 @@ status: active
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
 | 生成者：SGdaywalker2 SpawnSwipeFX | `SpawnPrefab("daywalker2_swipe_fx")` 后父挂宿主、前向偏移 1，传 reverse 调 Reverse()；源码注释：提前 3 帧生成（带 3 空白前导帧）防网络时序丢帧 | 主模拟；宿主 SG 持 statemem.fx 引用 | [生成函数](../../../raw/current/scripts/stategraphs/SGdaywalker2.lua#L421-L429) |
-| 生成时机：attack_swing 态 | 第 12 帧 SpawnSwipeFX(inst, 1, true)（反手）；第 16 帧 DoArcAttack(1, 4.5, 240°) 结算伤害 | onenter 把 combat 默认伤害临时设为 125，onexit 恢复 DAYWALKER_DAMAGE 并 KillSwipeFX 兜底 | [伤害设值](../../../raw/current/scripts/stategraphs/SGdaywalker2.lua#L1284)、[生成与结算](../../../raw/current/scripts/stategraphs/SGdaywalker2.lua#L1290-L1297)、[恢复与兜底](../../../raw/current/scripts/stategraphs/SGdaywalker2.lua#L1313-L1315)、[数值](../../../raw/current/scripts/tuning.lua#L6959) |
+| 生成时机：attack_swing 态 | 第 12 帧 SpawnSwipeFX(inst, 1, true)（反手）；第 16 帧 DoArcAttack(1, 4.5, 240°) 结算伤害 | onenter 把 combat 默认伤害临时设为 125，onexit 恢复 DAYWALKER_DAMAGE 并 KillSwipeFX 兜底 | [伤害设值](../../../raw/current/scripts/stategraphs/SGdaywalker2.lua#L1284)、[生成与结算](../../../raw/current/scripts/stategraphs/SGdaywalker2.lua#L1290-L1297)、[恢复与兜底](../../../raw/current/scripts/stategraphs/SGdaywalker2.lua#L1313-L1315)、[数值](../../../raw/current/scripts/tuning.lua#L6960) |
 | 回收 | animover 自删＋宿主状态退出兜底；`persists=false` 不入存档 | [自删](../../../raw/current/scripts/prefabs/daywalker2_fx.lua#L37-L40)、[兜底](../../../raw/current/scripts/stategraphs/SGdaywalker2.lua#L431-L437) | 同左 |
 
 ## 典型接入
@@ -57,3 +57,4 @@ status: active
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

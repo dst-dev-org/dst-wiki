@@ -1,12 +1,12 @@
 ---
 title: "提灯（lantern）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版手持照明装备 lantern：HANDS 槽 machine 开关＋CAVE 燃料计时，装备自动点亮、入袋自动熄灭、落地按剩余燃料重新点亮，亮度与半径随剩余燃料渐变；无 weapon 组件按空手伤害；耗尽不销毁可反复充能。"
 aliases: ["lantern", "提灯", "灯笼", "mininglantern", "开关提灯", "提灯照明"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/mininglantern.lua", "components/equippable.lua", "components/fueled.lua", "components/fuel.lua", "components/machine.lua", "components/inventoryitem.lua", "components/inventory.lua", "components/inspectable.lua", "components/combat.lua", "componentactions.lua", "actions.lua", "prefabs/lightbulb.lua", "prefabs/fireflies.lua", "prefabs/slurtleslime.lua", "prefabs/charlie_boss_trial.lua", "stategraphs/SGwilson.lua", "prefabs/player_common.lua", "prefabskin.lua", "standardcomponents.lua", "recipes.lua", "tuning.lua", "constants.lua", "class.lua", "mods.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -49,8 +49,8 @@ status: active
 
 | 途径 | 证据 |
 |---|---|
-| 配方：twigs 3＋rope 2＋lightbulb 2，`TECH.SCIENCE_TWO`＝`{SCIENCE=2}`（炼金引擎档） | [配方](../../../raw/current/scripts/recipes.lua#L433)、[科技](../../../raw/current/scripts/constants.lua#L1246)；配方不含萤火虫（萤火虫用于 pumpkin_lantern／minerhat，[对照](../../../raw/current/scripts/recipes.lua#L430-L432)） |
-| 充能：荧光果 `fuel` 组件 `fuelvalue=MED_LARGE_FUEL`（90）、萤火虫 `LARGE_FUEL`（180）、蛞蝓黏浆 `MED_FUEL`（45），fueltype 均 `CAVE` | [lightbulb](../../../raw/current/scripts/prefabs/lightbulb.lua#L56-L58)、[fireflies](../../../raw/current/scripts/prefabs/fireflies.lua#L233-L235)、[slurtleslime](../../../raw/current/scripts/prefabs/slurtleslime.lua#L63-L65)、[tuning](../../../raw/current/scripts/tuning.lua#L1675-L1677) |
+| 配方：twigs 3＋rope 2＋lightbulb 2，`TECH.SCIENCE_TWO`＝`{SCIENCE=2}`（炼金引擎档） | [配方](../../../raw/current/scripts/recipes.lua#L433)、[科技](../../../raw/current/scripts/constants.lua#L1246)；配方不含萤火虫（萤火虫用于 [[reference/prefabs/pumpkin-lantern|南瓜灯]]／minerhat，[对照](../../../raw/current/scripts/recipes.lua#L430-L432)） |
+| 充能：[[reference/prefabs/lightbulb|荧光果]] `fuel` 组件 `fuelvalue=MED_LARGE_FUEL`（90）、萤火虫 `LARGE_FUEL`（180）、蛞蝓黏浆 `MED_FUEL`（45），fueltype 均 `CAVE` | [lightbulb](../../../raw/current/scripts/prefabs/lightbulb.lua#L56-L58)、[fireflies](../../../raw/current/scripts/prefabs/fireflies.lua#L233-L235)、[slurtleslime](../../../raw/current/scripts/prefabs/slurtleslime.lua#L63-L65)、[tuning](../../../raw/current/scripts/tuning.lua#L1675-L1677) |
 | 消费端：影之手按 `light`＋`turnedon` 标签寻点亮提灯为目标 | [charlie_boss_trial](../../../raw/current/scripts/prefabs/charlie_boss_trial.lua#L318-L321) |
 
 ## 关联机制导航
@@ -142,3 +142,4 @@ end)
 - 结构检查：validate_page.py 与 strict 均通过。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]；燃料机制详见 [[reference/components/fueled]]；同族照明对照 [[reference/prefabs/torch]]／[[reference/prefabs/lighter]]／[[reference/prefabs/redlantern|红灯笼]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

@@ -1,12 +1,12 @@
 ---
 title: "worldvoter"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界投票器：承载用户指令发起的投票会话，倒计时经 net 变量全网同步，主 shard 收票计票并驱动 votedialog UI 与禁言冷却。"
 aliases: ["世界投票", "投票踢人", "worldvoter 组件"]
 tags: [component, network-sync]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: standard
 sources: ["components/worldvoter.lua", "prefabs/world_network.lua", "widgets/votedialog.lua", "tuning.lua"]
 reliability: verified
@@ -80,3 +80,4 @@ end)
 
 - [[reference/components/shard_worldvoter]]
 - [[reference/components/playervoter]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

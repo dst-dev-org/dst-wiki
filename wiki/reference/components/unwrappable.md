@@ -1,12 +1,12 @@
 ---
 title: "unwrappable"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "把包内物品保存为记录并在拆包时重建，管理拆包门禁、回调与只读预览。"
 aliases: ["包裹内容保存", "关闭包裹预览", "拆包恢复物品", "unwrappable"]
 tags: [component, item, lifecycle, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/unwrappable.lua", "components/bundler.lua", "prefabs/bundle.lua", "actions.lua", "stategraphs/SGwilson.lua", "containers.lua", "entityscript.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -73,3 +73,4 @@ end)
 - 结构／示例检查：本批格式、来源文件、链接／行锚点、导航登记及完整 Lua 5.1 示例语法检查通过。
 - 游戏运行：未运行；预览副本清理、重复请求／延迟、堆叠与新鲜度恢复、燃烧、跨世界与其他模组兼容需验证。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

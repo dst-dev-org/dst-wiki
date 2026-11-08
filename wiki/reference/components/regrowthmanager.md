@@ -1,12 +1,12 @@
 ---
 title: "regrowthmanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级资源再生管理器：实体移除时登记队列，按种类时钟与季节倍率在原位附近重生 carrot、flower、蘑菇等资源，可注册自定义类型。"
 aliases: ["regrowthmanager", "世界资源再生", "资源重生管理", "SetRegrowthForType"]
 tags: [component, lifecycle, worldgen]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/regrowthmanager.lua", "standardcomponents.lua", "prefabs/cave.lua", "prefabs/forest.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -78,3 +78,4 @@ AddPrefabPostInit("forest", SetupRegrowth)
 
 相关：[[reference/components/plantregrowth]]、[[reference/components/forestresourcespawner]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 0 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09）。

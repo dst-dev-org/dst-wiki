@@ -1,12 +1,12 @@
 ---
 title: "sleepingbag"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "床具侧占用、睡眠参数与唤醒回调；睡袋和帐篷共用组件，实际恢复由使用者与状态图完成。"
 aliases: ["睡袋","帐篷回血","床具睡眠","午睡凉棚","sleepingbag"]
 tags: [component, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/sleepingbag.lua","components/sleepingbaguser.lua","prefabs/bedroll.lua","prefabs/tent.lua","actions.lua","componentactions.lua","stategraphs/SGwilson.lua","prefabs/player_common.lua","components/moisture.lua","components/temperature.lua","tuning.lua","modutil.lua","entityscript.lua"]
 reliability: verified
 validation: source-reviewed
@@ -83,3 +83,4 @@ end)
 
 相关：[[reference/components/sleepingbaguser]]；[[reference/components/finiteuses]]；[[reference/components/health]]；[[reference/components/temperature]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

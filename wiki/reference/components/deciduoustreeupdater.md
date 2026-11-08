@@ -1,12 +1,12 @@
 ---
 title: "deciduoustreeupdater：桦树精怪物化行为驱动"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "挂在桦树实体上的怪物化驱动：树变桦树精后按周期索敌、砸根须、放桦果鸭，睡觉/烧毁/砍倒即解除并移除组件。"
 aliases: [桦树精更新器, 桦树怪物化, deciduoustreeupdater, 桦果鸭生成]
 tags: [component, state-machine, ai, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/deciduoustreeupdater.lua", "prefabs/deciduoustrees.lua", "stategraphs/SGdeciduoustree.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -63,3 +63,4 @@ inst.components.deciduoustreeupdater:StopMonster()
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

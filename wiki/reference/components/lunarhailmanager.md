@@ -1,12 +1,12 @@
 ---
 title: "lunarhailmanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "月雹风暴期间按玩家调度月玻璃碎块坠落：按地表拓扑节点选掉落物、警告阴影、落地伤害与遮挡豁免；当前版本已弃用且无安装点。"
 aliases: ["lunarhailmanager", "月雹", "lunar hail", "月玻璃碎块", "lunarhail debris"]
 tags: [component, lifecycle, loot]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/lunarhailmanager.lua", "prefabs/forest.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -29,7 +29,7 @@ status: active
 | `SetDebris(data)` | table（master 限定） | 整体替换默认掉落表 `{ {weight=2.5, loot={"moonglass"}}, {weight=1, loot={"moonglass_charged"}} }`；权重随机后取 loot 中随机一项。[替换](../../../raw/current/scripts/components/lunarhailmanager.lua#L410-L414) [默认表](../../../raw/current/scripts/components/lunarhailmanager.lua#L31-L35) |
 | `SetTagDebris(tag, data)` | table（master 限定） | 按世界拓扑节点的 tags 数组匹配扩展掉落表（可设空表表示该区域不掉默认物）；无命中标签时回落默认表。[标签掉落](../../../raw/current/scripts/components/lunarhailmanager.lua#L53-L100) |
 | `ToggleLunarHail`（内部，WatchWorldState） | bool | 监听 `islunarhailing` 世界状态：开启时为所有活跃玩家排程，关闭时取消全部任务；玩家加入/离开由 `ms_playerjoined`／`ms_playerleft` 维护。[启停](../../../raw/current/scripts/components/lunarhailmanager.lua#L388-L404) [监听](../../../raw/current/scripts/components/lunarhailmanager.lua#L427-L432) |
-| 排程间隔（内部） | Lerp 计算 | 下次掉落延迟 = Lerp(`RATE_MIN`, `RATE_MAX`, 1-sin(p·π)) × 附近玩家数，p 为 `lunarhaillevel/100`；即雹量峰值间隔最短、玩家越多间隔越长。[间隔](../../../raw/current/scripts/components/lunarhailmanager.lua#L302-L311) [常量](../../../raw/current/scripts/tuning.lua#L7888-L7894) |
+| 排程间隔（内部） | Lerp 计算 | 下次掉落延迟 = Lerp(`RATE_MIN`, `RATE_MAX`, 1-sin(p·π)) × 附近玩家数，p 为 `lunarhaillevel/100`；即雹量峰值间隔最短、玩家越多间隔越长。[间隔](../../../raw/current/scripts/components/lunarhailmanager.lua#L302-L311) [常量](../../../raw/current/scripts/tuning.lua#L7889-L7895) |
 | 落点与遮挡（内部） | — | 玩家位置 60 半径内随机扇形取点；点上有 shadecanopy／shadecanopysmall（树冠）或雨穹顶则跳过本次掉落。[取点](../../../raw/current/scripts/components/lunarhailmanager.lua#L322-L344) [遮挡豁免](../../../raw/current/scripts/components/lunarhailmanager.lua#L313-L320) |
 | `SpawnDebris(spawn_point, override_prefab?)`（内部） | — | 按落点拓扑节点选掉落表，35 高度投放，随机缩放 0.8～1.0、50% 旋转，配 warningshadow 落点预警影子并挂帧级落地检测任务。[投放](../../../raw/current/scripts/components/lunarhailmanager.lua#L265-L300) |
 | 落地结算（内部） | — | 只对玩家结算伤害（ sheltered 或装备 `lunarhailprotection` 豁免）；对 farmplantstress 设 happiness 压力；对非持久化的 lunarhaildebris 掉落物 Launch 弹开；之后按概率保留或弹跳后碎裂为 mining fx。[命中条件](../../../raw/current/scripts/components/lunarhailmanager.lua#L136-L156) [落地分支](../../../raw/current/scripts/components/lunarhailmanager.lua#L158-L257) |
@@ -41,7 +41,7 @@ status: active
 
 - 前提与选择：组件代码完整但无安装点；想启用需自行 `inst:AddComponent("lunarhailmanager")` 到 forest（或自定义世界）master_postinit——组件自会监听世界状态与玩家事件。月雹风暴本身由 weather/月雹世界状态驱动，启用组件不会制造风暴。[弃用位置](../../../raw/current/scripts/prefabs/forest.lua#L711
 - 生效与撤销：islunarhailing 为真时自动开始排程；用 `SetDebris`/`SetTagDebris` 在组件安装后立即配置掉落表。移除组件不会取消已排的玩家级任务（排程任务挂在玩家实体上，离开世界时清理）。[排程归属](../../../raw/current/scripts/components/lunarhailmanager.lua#L346-L353)
-- 原版依据：默认掉落 moonglass/moonglass_charged 与伤害、保留概率等常量都取自 tuning 的 LUNARHAIL 段；掉落间隔算法注释声明与 weather 的 CalculateLunarHailRate 同型。[常量](../../../raw/current/scripts/tuning.lua#L7888-L7894)
+- 原版依据：默认掉落 moonglass/moonglass_charged 与伤害、保留概率等常量都取自 tuning 的 LUNARHAIL 段；掉落间隔算法注释声明与 weather 的 CalculateLunarHailRate 同型。[常量](../../../raw/current/scripts/tuning.lua#L7889-L7895)
 
 ```lua
 -- 服务器端：给森林世界重新挂载本组件并自定义掉落（组件当前无原版安装点）
@@ -80,3 +80,4 @@ end)
 
 - [[reference/components/lunarhailbuildup]]：月雹积累值侧组件。
 - [[reference/components/lunarhailbirdsoundmanager]]：月雹鸟声效档位同步。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09）。

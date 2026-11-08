@@ -1,12 +1,12 @@
 ---
 title: catcher：角色接取飞行投射物
 created: 2026-10-22
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 控制角色接取可捕获投射物的提示距离、准备状态和实际接取时机
 aliases: [catcher, 接回旋镖, 接取投射物, cancatch, readytocatch]
 tags: [component, state-machine, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/catcher.lua, components/projectile.lua, prefabs/player_common.lua, prefabs/boomerang.lua, componentactions.lua, actions.lua, stategraphs/SGwilson.lua, modutil.lua]
 reliability: verified
 validation: source-reviewed
@@ -79,3 +79,4 @@ end)
 - 完整 `modmain.lua` 示例通过现有解析器的 Lua 5.1 语法检查；本页通过定向页面格式／本地链接与严格源码行号检查。
 - 未运行游戏；未验证联机延迟下的接取手感、自定义角色 SG 或其他模组覆盖后的行为。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

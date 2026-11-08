@@ -1,12 +1,12 @@
 ---
 title: "skinner_beefalo"
 created: "2026-10-19"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "保存牛五部位皮肤、发出服装变更并委托宿主刷新；授权、换装状态和恢复不是组件单独完成。"
 aliases: ["清除牛装扮", "牛皮肤部位", "skinner_beefalo"]
 tags: [component, creature, callback, event, network-sync, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/skinner_beefalo.lua", "prefabs/beefalo.lua", "prefabs/beefalo_groomer.lua", "prefabs/beef_bell.lua", "skinsutils.lua"]
 reliability: verified
 validation: source-reviewed
@@ -75,3 +75,4 @@ end)
 
 - 版本沿用：2026-10-28 原始哈希等价批量沿用-70（26148036→26230496，本页 sources 所列文件原始字节全部未变），页内未决项零标记、符号反查无命中、严格链接通过；批次依据见 [[updates/build-26230496/index#wiki-沿用记录]]。
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

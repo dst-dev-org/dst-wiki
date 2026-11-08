@@ -1,12 +1,12 @@
 ---
 title: "grottowarmanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "洞穴“地底战争”管理器：档案室被破后布防线、推野性梦魇相位，并在玩家进入致月区时按双方数量平衡刷 gestalt 卫兵与梦魇喙妖。"
 aliases: ["grottowarmanager", "地底战争", "grotto war", "月魇战场"]
 tags: [component, creature, ai, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/grottowarmanager.lua", "prefabs/archive_props.lua", "components/nightmareclock.lua", "prefabs/cave.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -67,3 +67,4 @@ end
 
 相关：[[reference/components/archivemanager]]、[[reference/components/nightmareclock]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

@@ -1,12 +1,12 @@
 ---
 title: "channelable"
 created: "2026-10-19"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "建筑持续交互的参与者与 SG／回调桥接；准入、停止、多人集合和宿主清理分别管理。"
 aliases: ["服务端中止沙漠传送阵调谐", "建筑持续交互", "channelable"]
 tags: [component, building, actions, callback, lifecycle, state-machine]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/channelable.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua", "prefabs/townportal.lua", "prefabs/waterpump.lua"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ end)
 - 结构检查：本批格式、来源、链接／行号、大小及登记通过；完整中止事件例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；玩家中止／打断／视线丢失、精神修正清理、配对／存读、多人模式和热移除待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

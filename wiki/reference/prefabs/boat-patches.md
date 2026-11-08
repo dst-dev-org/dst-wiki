@@ -6,7 +6,7 @@ type: prefab
 summary: "prefabs/boatpatch.lua 双注册的船漏修补物：木补丁（boatpatch）永久补漏并按 WOOD 材料直修木质船体；海带补丁（boatpatch_kelp）复用木工厂后覆盖为 KELP 修复、临时补漏（中漏 0.5 天／小漏 0.75 天到期回漏）且可食可腐。"
 aliases: ["boatpatch", "boatpatch_kelp", "船补丁", "海带补丁", "船体修补", "Boat Patch", "Kelp Patch", "补船"]
 tags: [prefab, item]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/boatpatch.lua", "components/boatpatch.lua", "components/boatleak.lua", "components/repairable.lua", "components/repairer.lua", "actions.lua", "componentactions.lua", "components/playeractionpicker.lua", "prefabs/boat.lua", "recipes.lua", "prefabs/otterden.lua", "prefabs/merm.lua", "prefabs/mermking.lua", "prefabs/wurt.lua", "brains/waveyjoneshandbrain.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -19,8 +19,8 @@ status: active
 
 - 职责与适用：`prefabs/boatpatch.lua` 注册 2 个可拾取修补物：`boatpatch`（木补丁，[fn_wood L43-L91](../../../raw/current/scripts/prefabs/boatpatch.lua#L43-L91)）与 `boatpatch_kelp`（海带补丁，[fn_kelp L93-L132](../../../raw/current/scripts/prefabs/boatpatch.lua#L93-L132)）。都可堆叠 20、可燃可作燃料；核心消费是补船漏（REPAIR_LEAK）与直接修船体（REPAIR）；海带补丁额外可食、会腐坏。
 - 优先使用：查补漏链、到期回漏、修船材料匹配读本页；漏点状态机正文在 [[reference/components/boatleak]]，组件接口在 [[reference/components/boatpatch]]；补漏贴图与到期碎屑 fx 在 [[reference/prefabs/boat_grass_erode|草／海带船侵蚀与垫料特效]]。
-- 重要副作用：海带补丁进入 `repaired_kelp` 临时态并挂到期任务，到期漏点回 `med_leak`（[boatleak.lua L251-L260](../../../raw/current/scripts/components/boatleak.lua#L251-L260)）；海带补丁可作 VEGGIE 食物（负理智），鱼人与沃特有亲和抵消负面（[merm.lua L1108](../../../raw/current/scripts/prefabs/merm.lua#L1108)）。
-- 修改边界：两注册差异全部在服务端构造段与 fn_kelp 覆盖段（`show_spoilage`、bank/build 替换在 `SetPristine` 之后）；海带修复强度与食用数值读配方缓存，模组改 `boatpatch_kelp` 配方在这几个取缓存的参数上首次生成后不生效（见陷阱）。本页不覆盖漏点产生与船体伤害机制（[[reference/components/hullhealth]]）。
+- 重要副作用：海带补丁进入 `repaired_kelp` 临时态并挂到期任务，到期漏点回 `med_leak`（[boatleak.lua L251-L260](../../../raw/current/scripts/components/boatleak.lua#L251-L260)）；海带补丁可作 VEGGIE 食物（负理智），鱼人与沃特有亲和抵消负面（[merm.lua L1108](../../../raw/current/scripts/prefabs/merm.lua#L1115)）。
+- 修改边界：两注册差异全部在服务端构造段与 fn_kelp 覆盖段（`show_spoilage`、bank/build 替换在 `SetPristine` 之后）；海带修复强度与食用数值读配方缓存，模组改 `boatpatch_kelp` 配方在这几个取缓存的参数上首次生成后不生效（见陷阱）。本页不覆盖漏点产生与船体伤害机制（[[reference/components/hullhealth]]）；补丁的 KELP 材料即海带叶，三态数值与干制见 [[reference/prefabs/kelp]]。
 
 ## 注册与构造
 
@@ -39,7 +39,7 @@ status: active
 - **结算**（[ACTIONS.REPAIR_LEAK.fn L4916-L4920](../../../raw/current/scripts/actions.lua#L4916-L4920) → [BoatLeak:Repair L62-L94](../../../raw/current/scripts/components/boatleak.lua#L62-L94)）：
   1. 补丁带 repairer 且当前平台有 repairable 且材料匹配 → `repairable:Repair` 给船体回血并消耗补丁；材料不匹配则跳过回血；船体满血（`health:GetPercent() >= 1`）时 `Repair` 直接返回 false 不回血（[repairable.lua L106-L114](../../../raw/current/scripts/components/repairable.lua#L106-L114)），此时补丁仍按第 2 条消耗；
   2. 未被修复消耗的补丁按堆叠移除一枚；
-  3. `repair_state = "repaired_"..patch_type or "repaired"`（[L87-L88](../../../raw/current/scripts/components/boatleak.lua#L87-L88)）：木补丁 patch_type=nil → 永久 `repaired` 态（[L234-L235](../../../raw/current/scripts/components/boatleak.lua#L234-L235)，换 `boat_repair_build` 贴图，无到期任务）；海带补丁 → `repaired_kelp` 态（[L251-L260](../../../raw/current/scripts/components/boatleak.lua#L251-L260)），`SetRepairedTime` 中漏 `0.5` 天／小漏 `0.75` 天（[tuning.lua L8255-L8256](../../../raw/current/scripts/tuning.lua#L8255-L8256)），到期回 `med_leak`——到期 fx 链见 [[reference/prefabs/boat_grass_erode|草／海带船侵蚀与垫料特效]]。
+  3. `repair_state = "repaired_"..patch_type or "repaired"`（[L87-L88](../../../raw/current/scripts/components/boatleak.lua#L87-L88)）：木补丁 patch_type=nil → 永久 `repaired` 态（[L234-L235](../../../raw/current/scripts/components/boatleak.lua#L234-L235)，换 `boat_repair_build` 贴图，无到期任务）；海带补丁 → `repaired_kelp` 态（[L251-L260](../../../raw/current/scripts/components/boatleak.lua#L251-L260)），`SetRepairedTime` 中漏 `0.5` 天／小漏 `0.75` 天（[tuning.lua L8255-L8256](../../../raw/current/scripts/tuning.lua#L8256-L8257)），到期回 `med_leak`——到期 fx 链见 [[reference/prefabs/boat_grass_erode|草／海带船侵蚀与垫料特效]]。
 
 ### 直接修船体：REPAIR
 
@@ -60,7 +60,7 @@ status: active
 | 组件：stackable／inventoryitem／inspectable | `maxsize = TUNING.STACK_SIZE_MEDITEM`（20） | 两注册同值 | [boatpatch.lua L76-L80](../../../raw/current/scripts/prefabs/boatpatch.lua#L76-L80)、[tuning.lua L82](../../../raw/current/scripts/tuning.lua#L82)；[[reference/components/stackable]]、[[reference/components/inventoryitem]] |
 | 组件：burnable／propagator／fuel | 木：`MED_BURNTIME`；海带覆盖 `SMALL_BURNTIME`；两者 `fuelvalue = MED_FUEL × 2` | 服务端；海带不改 fuel | [boatpatch.lua L82-L86](../../../raw/current/scripts/prefabs/boatpatch.lua#L82-L86)、[L115](../../../raw/current/scripts/prefabs/boatpatch.lua#L115)、[tuning.lua L1675-L1682](../../../raw/current/scripts/tuning.lua#L1675-L1682)；[[reference/components/burnable]]、[[reference/components/fuel]] |
 | 组件：perishable（仅海带） | `PERISH_MED`（10 天）、耗尽替换 `spoiled_food`、`StartPerishing` | 服务端；`show_spoilage` 标签驱动新鲜度显示 | [boatpatch.lua L120-L123](../../../raw/current/scripts/prefabs/boatpatch.lua#L120-L123)、[tuning.lua L2048](../../../raw/current/scripts/tuning.lua#L2048)；[[reference/components/perishable]] |
-| 组件：edible／bait／tradable（仅海带） | VEGGIE：`hungervalue = CALORIES_TINY × 3`、`healthvalue = -3`、`sanityvalue = -45`（负值按成本缓存缩放）；鱼人／沃特亲和抵消负面 | 服务端；玩家可食 | [boatpatch.lua L125-L129](../../../raw/current/scripts/prefabs/boatpatch.lua#L125-L129)、[tuning.lua L2021-L2058](../../../raw/current/scripts/tuning.lua#L2021-L2058)；[merm.lua L1108](../../../raw/current/scripts/prefabs/merm.lua#L1108)、[mermking.lua L638](../../../raw/current/scripts/prefabs/mermking.lua#L638)、[wurt.lua L651](../../../raw/current/scripts/prefabs/wurt.lua#L651)；[[reference/components/edible]] |
+| 组件：edible／bait／tradable（仅海带） | VEGGIE：`hungervalue = CALORIES_TINY × 3`、`healthvalue = -3`、`sanityvalue = -45`（负值按成本缓存缩放）；鱼人／沃特亲和抵消负面 | 服务端；玩家可食 | [boatpatch.lua L125-L129](../../../raw/current/scripts/prefabs/boatpatch.lua#L125-L129)、[tuning.lua L2021-L2058](../../../raw/current/scripts/tuning.lua#L2021-L2058)；[merm.lua L1108](../../../raw/current/scripts/prefabs/merm.lua#L1115)、[mermking.lua L638](../../../raw/current/scripts/prefabs/mermking.lua#L638)、[wurt.lua L651](../../../raw/current/scripts/prefabs/wurt.lua#L651)；[[reference/components/edible]] |
 | API／数据：配方成本缓存 | `CACHED_KELP_RECIPE_COST` 首次生成时从 `AllRecipes.boatpatch_kelp` 汇总海带数量（非全海带或读不到回退默认 3） | 服务端、全局一次；驱动修复值与食物数值 | [boatpatch.lua L23-L41](../../../raw/current/scripts/prefabs/boatpatch.lua#L23-L41) |
 | 关联 Prefab：`boat` 系 | REPAIR_LEAK 目标宿主＋repairable 材料（WOOD／HAY／KELP／nil） | 修船收益按材料匹配 | [[reference/components/hullhealth]]；[boat.lua L572-L573](../../../raw/current/scripts/prefabs/boat.lua#L572-L573) |
 | 关联 Prefab：`fishingnetvisualizer`／`repaired_kelp_timeout_fx` | 两注册的 prefabs 依赖声明 | 木／海带各一；到期 fx 消费链已核验 | [boatpatch.lua L12-L20](../../../raw/current/scripts/prefabs/boatpatch.lua#L12-L20)；[[reference/prefabs/boat_grass_erode]] |
@@ -88,3 +88,4 @@ status: active
 - 外部复检修订（2026-11-08，R11，主代理回源码核实）：补漏回血补 `Repairable:Repair` 成功门禁——满血（GetPercent>=1）返回 false、材料不匹配跳过（repairable.lua L106-L114、L154-L156），此时补漏仍消耗一件补丁；「修船扣船体血」改「修船回血」；配方缓存不生效限定到取缓存的参数（healthrepairvalue 与 edible 三数值，boatpatch.lua L105-L129）。
 
 返回 [[reference/prefabs/index|原版 Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

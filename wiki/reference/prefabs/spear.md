@@ -1,12 +1,12 @@
 ---
 title: "长矛（spear）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版基础手持武器 spear：单注册 HANDS 槽近战武器，伤害 34、耐久 150 仅攻击磨损，耗尽整个实体移除；可借鉴最小武器组装。"
 aliases: ["spear", "长矛", "Spear", "基础武器"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/spear.lua", "components/weapon.lua", "components/equippable.lua", "components/finiteuses.lua", "components/inspectable.lua", "components/inventoryitem.lua", "components/combat.lua", "components/retrofitforestmap_anr.lua", "standardcomponents.lua", "tuning.lua", "constants.lua", "recipes.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "prefabs/hutch.lua", "prefabs/charlie_stage.lua", "prefabs/hound.lua", "map/layouts.lua", "map/pointsofinterest.lua", "map/levels/forest.lua", "worldgen_main.lua", "map/static_layouts/cave_base_1.lua", "map/static_layouts/chessy_1.lua", "map/static_layouts/teleportato_box_layout.lua", "map/static_layouts/skeleton_warrior.lua", "map/static_layouts/skeleton_hunter.lua", "map/static_layouts/skeleton_hunter_swamp.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -100,3 +100,4 @@ end)
 - 结构检查：validate_page.py 0 error（103 行，simple）与 validate_source_links.py --strict 0 error 0 warning 通过。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

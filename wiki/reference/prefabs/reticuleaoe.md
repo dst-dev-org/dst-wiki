@@ -1,13 +1,13 @@
 ---
 title: "瞄准圈、准星与 AoE 目标指示特效（reticule 家族）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "八个 reticule 系 prefab 文件注册的 48 个瞄准圈、准星与落点提示：37 个非联网本地 FX 与 11 个联网 target FX 的工厂、变体、生成点和清理边界。"
 aliases: ["reticule", "reticuleaoe", "reticuleaoesmall", "reticuleaoesummon", "reticuleaoe_1_6", "reticuleaoe_1d2_12", "reticuleaoe5line", "reticuleaoecatapultvolley", "reticuleaoecatapultelementalvolley", "reticuleaoecatapultwakeup", "reticuleaoeping", "reticuleaoesmallping", "reticuleaoesummonping", "reticuleaoeping_1_6", "reticuleaoeping_1d2_12", "reticuleaoeping5line", "reticuleaoefiretarget_1ping", "reticuleaoeghosttarget_ping", "reticuleaoecatapultvolleyping", "reticuleaoecatapultwakeupping", "reticuleaoewinonaengineeringping", "reticuleaoehostiletarget", "reticuleaoefriendlytarget", "reticuleaoecctarget", "reticuleaoesmallhostiletarget", "reticuleaoesummontarget", "reticuleaoesummontarget_1", "reticuleaoesummontarget_1d2", "reticuleaoeshadowtarget_6", "reticuleaoefiretarget_1", "reticuleaoeghosttarget", "reticuleaoehostiletarget_1d25", "reticulearc", "reticulearcping", "reticulecharging", "reticuleline", "reticuleline2", "reticulelineping", "reticulelong", "reticulelongping", "reticulelongmulti", "reticulelongmultiping", "reticulemultitarget", "reticulemultitargetsub", "reticulemultitargetping", "golfclub_reticule", "golfclub_reticule_fx", "golfclub_reticulecharging", "golfclub_reticuleping", "reticule 家族", "瞄准圈", "准星", "AoE 目标指示", "落点提示", "蓄力瞄准环"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/reticule.lua", "prefabs/reticuleaoe.lua", "prefabs/reticulearc.lua", "prefabs/reticulecharging.lua", "prefabs/reticuleline.lua", "prefabs/reticulelong.lua", "prefabs/reticulemultitarget.lua", "prefabs/golfclub_reticule.lua", "components/reticule.lua", "components/aoetargeting.lua", "components/aoecharging.lua", "components/chargingreticule.lua", "components/golfclub_reticule.lua", "components/playercontroller.lua", "stategraphs/SGwilson.lua", "prefabs/books_lavaarena.lua", "prefabs/winona_remote.lua", "prefabs/waxwelljournal.lua", "prefabs/willow_ember.lua", "prefabs/shadow_trap.lua", "prefabs/slingshot.lua", "prefabs/fireballstaff.lua", "prefabs/ghostcommand_defs.lua", "prefabs/cannon_aoe_range_fx.lua", "components/deployhelper.lua", "prefabs/hammer_mjolnir.lua", "prefabs/sleepbomb.lua", "prefabs/healingstaff.lua", "prefabs/lavaarena_firebomb.lua", "prefabs/spear_lance.lua", "prefabs/lavaarena_heavyblade.lua", "prefabs/wathgrithr_shield.lua", "prefabs/spear_gungnir.lua", "prefabs/spear_wathgrithr.lua", "prefabs/blowdart_lava.lua", "prefabs/blowdart_lava2.lua", "prefabs/lavaarena_lucy.lua", "prefabs/woodie.lua", "prefabs/walter.lua"]
 reliability: verified
 validation: source-reviewed
@@ -176,3 +176,4 @@ end)
 - 结构检查：2026-11-04 实测通过；`validate_page.py`（complex，178 行／约 31.8 KiB）、`validate_source_links.py --strict`（112 引用／90 目标，0 错 0 警）、Lua 示例 `parser_probe --syntax-only`（374 B，exit 0）。
 
 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

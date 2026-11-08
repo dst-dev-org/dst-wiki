@@ -1,12 +1,12 @@
 ---
 title: "虚布回旋镖与皮弗娄牛复活雷光（voidcloth_boomerang_launch_fx 等）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "虚布回旋镖发射与命中、皮弗娄牛复活雷光的三个通用表特效及各自生成入口。"
 aliases: ["voidcloth_boomerang_launch_fx", "voidcloth_boomerang_impact_fx", "beefalo_reviving_lightning_fx", "虚布回旋镖特效", "牛复活雷光"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/voidcloth_boomerang.lua", "prefabs/beef_bell.lua", "prefabs/beefalo.lua", "stategraphs/SGBeefalo.lua"]
 reliability: verified
 validation: source-reviewed
@@ -47,3 +47,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

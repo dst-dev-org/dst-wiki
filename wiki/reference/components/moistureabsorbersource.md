@@ -1,12 +1,12 @@
 ---
 title: "moistureabsorbersource"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "在持有物品上声明可被持有者发现的吸湿源，由回调提供干燥速率并自行承担储水。"
 aliases: ["吸湿源", "干燥物品", "除湿物品", "desiccant", "moistureabsorbersource"]
 tags: [component, lifecycle, item]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/moistureabsorbersource.lua", "components/moistureabsorberuser.lua", "components/moisture.lua", "componentutil.lua", "prefabs/desiccant.lua", "components/inventoryitem.lua", "components/inventoryitemmoisture.lua", "tuning.lua", "prefablist.lua", "recipes.lua"]
 reliability: "verified"
 validation: "source-reviewed"
@@ -106,3 +106,4 @@ end)
 - 游戏运行：未运行。
 - 结构检查：`validate_page.py` 0 error／0 warning；`validate_source_links.py --strict` 0 error／0 warning（23 条源码引用，23 条行锚点）；`parser_probe --syntax-only` 通过。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

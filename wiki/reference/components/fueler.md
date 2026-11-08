@@ -1,12 +1,12 @@
 ---
 title: "fueler"
 created: "2026-10-22"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "让动作执行者自身提供补充燃料量，沿原版小乌鸦添火路径区分 fueler、燃料物品与人物加成。"
 aliases: ["自身供燃料", "生物添火", "小乌鸦添燃料", "不消耗物品添燃料", "fueler"]
 tags: [component, energy, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/fueler.lua", "components/fuel.lua", "components/fueled.lua", "actions.lua", "componentactions.lua", "prefabs/carnival_crowkid.lua", "brains/carnival_crowkidbrain.lua", "stategraphs/SGcarnival_crowkid.lua", "tuning.lua", "entityscript.lua"]
 reliability: verified
 validation: source-reviewed
@@ -80,3 +80,4 @@ end)
 
 相关：[[reference/components/fuel]]；[[reference/components/fueled]]；[[reference/components/fuelmaster]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

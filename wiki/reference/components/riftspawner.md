@@ -1,12 +1,12 @@
 ---
 title: "riftspawner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级裂隙生成器：按难度模式与 worldsettingstimer 计时生成月/暗影裂隙 portal，维护裂隙池、亲和查询与启用设置事件。"
 aliases: ["riftspawner", "裂隙", "rift", "月裂隙", "暗影裂隙", "rift portal"]
 tags: [component, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/riftspawner.lua", "prefabs/cave.lua", "prefabs/forest.lua", "prefabs/rift_portal_defs.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -20,13 +20,13 @@ status: active
 - 职责与适用：世界组件（cave 与 forest 都安装），按 `RIFTPORTAL_DEFS`（prefabs/rift_portal_defs）选 prefab 并在世界选点生成裂隙实体；管理裂隙池（`rifts`）与启用状态，不实现裂隙本体成长/掉落。[安装](../../../raw/current/scripts/prefabs/cave.lua#L568-L569) [森林安装](../../../raw/current/scripts/prefabs/forest.lua#L705
 - 优先使用：查询裂隙用 `GetRifts()`／`GetRiftsOfAffinity(affinity)`／`IsShadowPortalActive()`；命令生成用 `SpawnRift(forced_pos)`（控制台/调试路径）；改难度走 `rifts_setdifficulty` 等世界事件。[查询](../../../raw/current/scripts/components/riftspawner.lua#L257-L323)
 - 重要副作用：生成裂隙即 `AddRiftToPool` 并推世界事件 `ms_riftaddedtopool`（shadowparasitemanager 等以此为波次信号）；启用月裂隙会同时 `wagpunk_manager:Enable()` 并置 `LUNAR_RIFTS_ACTIVE`/`SHADOW_RIFTS_ACTIVE` 世界标签。[入池](../../../raw/current/scripts/components/riftspawner.lua#L80-L87) [启用](../../../raw/current/scripts/components/riftspawner.lua#L183-L197)
-- 修改边界：最多 `MAXIMUM_RIFTS_COUNT(1)` 个裂隙；新点必须离既有裂隙 15 瓦以外；世界设置事件在 cave/forest 各自驱动月/影分支，命令 SpawnRift 不检查启用开关。[上限](../../../raw/current/scripts/tuning.lua#L7620-L7622) [距离](../../../raw/current/scripts/components/riftspawner.lua#L51-L61)
+- 修改边界：最多 `MAXIMUM_RIFTS_COUNT(1)` 个裂隙；新点必须离既有裂隙 15 瓦以外；世界设置事件在 cave/forest 各自驱动月/影分支，命令 SpawnRift 不检查启用开关。[上限](../../../raw/current/scripts/tuning.lua#L7621-L7623) [距离](../../../raw/current/scripts/components/riftspawner.lua#L51-L61)
 
 ## 关键接口
 
 | 接口／字段 | 签名或已核验类型 | 条件、作用与证据 |
 |---|---|---|
-| `spawnmode` | 1-5（默认 3） | never/rare/default/often/always；经世界事件 `rifts_setdifficulty` 设置（worldsettings_overrides 在世界生成选项应用时推送），never 停计时器，其它把剩余时间压到 `RIFTS_SPAWNDELAY(5天)`。[难度](../../../raw/current/scripts/components/riftspawner.lua#L153-L174) [事件源](../../../raw/current/scripts/worldsettings_overrides.lua#L3993-L4002) |
+| `spawnmode` | 1-5（默认 3） | never/rare/default/often/always；经世界事件 `rifts_setdifficulty` 设置（worldsettings_overrides 在世界生成选项应用时推送），never 停计时器，其它把剩余时间压到 `RIFTS_SPAWNDELAY(5天)`。[难度](../../../raw/current/scripts/components/riftspawner.lua#L153-L174) [事件源](../../../raw/current/scripts/worldsettings_overrides.lua#L3998-L4007) |
 | `SpawnRift(forced_pos?)` | → 裂隙或 nil | 从已启用亲和的 RIFTPORTAL_DEFS 随机选 prefab，用 def 的 `GetNextRiftSpawnLocation(map, def)` 选点（forced_pos 优先但同样受 15 瓦距离限制），设置 thrall 类型后入池。prefab 不存在/选点失败返回 nil。[生成](../../../raw/current/scripts/components/riftspawner.lua#L90-L123) |
 | `TryToSpawnRift(forced_pos?)` | → 裂隙或 nil | 只在 `rifts_count < MAXIMUM_RIFTS_COUNT` 时转调 SpawnRift。[上限检查](../../../raw/current/scripts/components/riftspawner.lua#L125-L131) |
 | 生成计时器（OnRiftTimerDone） | worldsettingstimer `rift_spawn_timer` | 构造时以 `RIFTS_SPAWNDELAY + 1` 注册，初始启用由 `SPAWN_RIFTS ~= 0` 决定；到点生成，失败 1 天后重试，成功且未满则续排 RIFTS_SPAWNDELAY。[计时](../../../raw/current/scripts/components/riftspawner.lua#L41-L46) [重试](../../../raw/current/scripts/components/riftspawner.lua#L135-L151) |
@@ -48,7 +48,7 @@ status: active
 
 - 前提与选择：世界需装有 riftspawner（森林/洞穴默认都有）。强制生成用 `SpawnRift(pos)` 可绕过 spawnmode 与上限的 TryToSpawnRift 门禁但仍受 15 瓦间距与选点失败约束；正常启用路径走世界设置事件或 wagstaff 剧情。[命令路径](../../../raw/current/scripts/consolecommands.lua#L2029-L2032)
 - 生效与撤销：生成的裂隙实体独立成长，组件侧"撤销"是移除裂隙实体（自动出池并重启计时器）；`spawnmode=1` 只停未来生成，不清现存裂隙。
-- 原版依据：难度与启用的官方入口是 worldsettings_overrides 按世界选项推事件；月裂隙剧情源是 wagstaff_npc 完成剧情推 `lunarrift_opened`，暗影侧由 charliecutscene 推 `shadowrift_opened`。[设置源](../../../raw/current/scripts/worldsettings_overrides.lua#L3993-L4002) [剧情源](../../../raw/current/scripts/components/charliecutscene.lua#L254
+- 原版依据：难度与启用的官方入口是 worldsettings_overrides 按世界选项推事件；月裂隙剧情源是 wagstaff_npc 完成剧情推 `lunarrift_opened`，暗影侧由 charliecutscene 推 `shadowrift_opened`。[设置源](../../../raw/current/scripts/worldsettings_overrides.lua#L3998-L4007) [剧情源](../../../raw/current/scripts/components/charliecutscene.lua#L254
 
 ```lua
 -- 服务器端：查询当前世界暗影裂隙是否激活（供任务/生成逻辑门禁）
@@ -85,3 +85,4 @@ end
 - [[reference/components/riftthralltype]]：生成时设置的裂隙 thrall 类型组件。
 - [[reference/components/lunarriftmutationsmanager]]：月裂隙的生物变异消费方。
 - [[reference/components/miasmamanager]]：以阴影裂隙活跃度为门禁的雾气系统。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

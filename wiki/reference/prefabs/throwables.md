@@ -1,13 +1,13 @@
 ---
 title: "投掷炸弹与雪球（sleepbomb、pumpkin_bomb、bomb_lunarplant、snowball_item）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "四注册手持投掷物：睡袋、南瓜炸弹、亮茄炸弹都走 complexprojectile 抛物线，但只有南瓜／亮茄命中瞬间动态挂 explosive 并按堆叠爆炸（50 物理＋击退／200 位面），睡袋命中只生成睡眠云；雪球走 projectile 追踪，命中唤醒、0 伤、降温灭火并扩散冷度（可冻结）；weapon 0 伤、HANDS 整叠装备，爆炸参数命中时读 TUNING。"
 aliases: ["sleepbomb", "pumpkin_bomb", "bomb_lunarplant", "snowball_item", "睡袋", "南瓜炸弹", "亮茄炸弹", "雪球", "Napsack", "Pumpkin Bomb", "Brightshade Bomb", "Snowball", "投掷武器", "投掷炸弹"]
 tags: [prefab, item, equipment]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/sleepbomb.lua", "prefabs/pumpkin_bomb.lua", "prefabs/bomb_lunarplant.lua", "prefabs/snowball_item.lua", "prefabs/sleepcloud.lua", "components/explosive.lua", "components/complexprojectile.lua", "components/projectile.lua", "components/combat.lua", "components/equippable.lua", "components/inventory.lua", "components/wateryprotection.lua", "components/snowballmelting.lua", "components/snowballmanager.lua", "components/damagetypebonus.lua", "components/workable.lua", "components/builder.lua", "recipes.lua", "recipes_filter.lua", "tuning.lua", "constants.lua", "componentutil.lua", "languages/chinese_s.po", "prefabs/toadstool.lua", "prefabs/blueprint.lua", "prefabs/pigking.lua", "prefabs/mermking.lua", "prefabs/leafpile.lua", "map/boons.lua", "prefabs/snowman.lua", "prefabs/waterprojectiles.lua", "prefabs/firesuppressor.lua", "prefabs/wateringcan.lua", "stategraphs/SGworm_boss_head.lua", "actions.lua", "fx.lua", "mods.lua"]
 reliability: verified
 validation: source-reviewed
@@ -64,7 +64,7 @@ status: active
 | 组件：pushable／snowmandecoratable | 雪球可推滚，开始推即换成小型雪人并转 `snowaccum` | 主模拟；雪球本体即雪人小底座 | [[reference/components/pushable]]；[替换](../../../raw/current/scripts/prefabs/snowball_item.lua#L125-L147)、[装饰尺寸](../../../raw/current/scripts/prefabs/snowball_item.lua#L200-L201) |
 | 组件：smotherer／标签 `extinguisher`/`frozen` | 雪球扑灭阴燃（SMOTHER）与 MANUALEXTINGUISH 灭明火 | 主模拟动作；smotherer 组件是空壳，动作在 actions.lua 定义 | [[reference/components/smotherer]]；[SMOTHER](../../../raw/current/scripts/actions.lua#L1844-L1849)、[灭火](../../../raw/current/scripts/actions.lua#L1852-L1857) |
 | 同步：net_smallbyte `spinticks` | 亮茄投掷时服务端 `set(3)`，客户端 `spinticksdirty` 后本地周期任务淡入发光核心（30 tick 到 0.6 加色） | 仅表现层；核心为本地非联网实体、跟 `bomb_lunarplant_follow` 符号 | [netvar](../../../raw/current/scripts/prefabs/bomb_lunarplant.lua#L215)、[客户端](../../../raw/current/scripts/prefabs/bomb_lunarplant.lua#L123-L136) |
-| API／数据：TUNING | 爆炸参数命中时读取 | `ConfigureExplosive` 与 sleepcloud timer 实参 | [南瓜](../../../raw/current/scripts/tuning.lua#L9805-L9809)、[亮茄](../../../raw/current/scripts/tuning.lua#L394-L399)、[睡袋](../../../raw/current/scripts/tuning.lua#L1939)、[雪球](../../../raw/current/scripts/tuning.lua#L8560-L8571) |
+| API／数据：TUNING | 爆炸参数命中时读取 | `ConfigureExplosive` 与 sleepcloud timer 实参 | [南瓜](../../../raw/current/scripts/tuning.lua#L9806-L9810)、[亮茄](../../../raw/current/scripts/tuning.lua#L394-L399)、[睡袋](../../../raw/current/scripts/tuning.lua#L1939)、[雪球](../../../raw/current/scripts/tuning.lua#L8561-L8572) |
 
 ### 生成宿主与消费者
 
@@ -123,3 +123,4 @@ end)
 - 结构检查：validate_page.py 与 strict 114 引用 0 错 0 警。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

@@ -1,12 +1,12 @@
 ---
 title: "vinebridgemanager：藤桥地皮管理与生命周期"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级临时地皮管理器：在海洋格上铺 CHARLIE_VINE 藤桥地皮并保留底层地皮，按耐久网格承伤、计时破坏，存档可续接中断的破坏。"
 aliases: [藤桥管理器, 藤蔓桥, vinebridgemanager, 温妮莎藤桥]
 tags: [component, worldgen, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/vinebridgemanager.lua", "prefabs/world.lua", "componentutil.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -67,3 +67,4 @@ vm:QueueDestroyForVineBridgeAtPoint(x, y, z,
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

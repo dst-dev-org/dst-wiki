@@ -1,12 +1,12 @@
 ---
 title: "探具与仪式工具族（thurible 等六注册）"
 created: 2026-11-07
-updated: 2026-11-07
+updated: 2026-11-09
 type: prefab
 summary: "五件 HANDS 槽探具与仪式工具的原版组装：暗影香炉的影怪引诱与暗影标签链、指南针的镜头指针 HUD 与地图显影、探测杖测距环、木手杖移动磨损加速、女巫扫帚清扫与附魔骑乘动画。"
-aliases: ["thurible", "thuriblebody", "compass", "diviningrod", "walking_stick", "witchbroom", "暗影香炉", "指南针", "罗盘", "探测杖", "木手杖", "行走手杖", "女巫扫帚", "附魔女巫扫帚", "骑士香炉", "血色香炉", "Shadow Thurible", "Compass", "Divining Rod", "Wooden Walking Stick", "Witch's Broom", "Enchanted Witch's Broom", "探具与仪式工具"]
+aliases: ["thurible", "compass", "diviningrod", "walking_stick", "witchbroom", "暗影香炉", "指南针", "罗盘", "探测杖", "木手杖", "行走手杖", "女巫扫帚", "附魔女巫扫帚", "骑士香炉", "血色香炉", "Shadow Thurible", "Compass", "Divining Rod", "Wooden Walking Stick", "Witch's Broom", "Enchanted Witch's Broom", "探具与仪式工具"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/thurible.lua", "prefabs/thurible_smoke.lua", "prefabs/compass.lua", "prefabs/diviningrod.lua", "prefabs/walking_stick.lua", "prefabs/witchbroom.lua", "prefabs/cane.lua", "prefabs/stalker.lua", "prefabs/livingtree_root.lua", "prefabs/leafpile.lua", "prefabs/nightmarefuel.lua", "prefabs/skinprefabs.lua", "prefabs/globalmapicon.lua", "prefabs/gestalt_guard_evolved.lua", "prefabs/wx78_possessedbody.lua", "prefabs/skilltree_woodie.lua", "brains/stalkerbrain.lua", "stategraphs/SGwilson.lua", "widgets/hudcompass.lua", "screens/mapscreen.lua", "components/equippable.lua", "components/fueled.lua", "components/shadowlevel.lua", "components/maprevealable.lua", "components/sweepable.lua", "components/sweeper.lua", "components/playercontroller.lua", "components/combat_replica.lua", "actions.lua", "stringutil.lua", "ocean_util.lua", "containers.lua", "constants.lua", "tuning.lua", "recipes.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -27,7 +27,7 @@ status: active
 | 注册名／变体 | 工厂与初始化分界 | 差异与证据 |
 |---|---|---|
 | `thurible` | fn：公共端物理／动画＋shadow_item、shadowlure、nopunch、shadowlevel 标签 → 主模拟 inspectable、inventoryitem、equippable、fueled(NIGHTMARE)、shadowlevel | 唯一有皮肤的注册，且 `SetSinks(true)` 沉水；装备生成 thuriblebody、点燃生成 thurible_smoke 跟随 FX。[工厂](../../../raw/current/scripts/prefabs/thurible.lua#L232-L300)、[标签](../../../raw/current/scripts/prefabs/thurible.lua#L247-L252)、[注册](../../../raw/current/scripts/prefabs/thurible.lua#L329-L330) |
-| `thuriblebody` | thuriblebodyfn：纯视觉 FX 体（bank `thurible`），`persists=false` 不存档 | 装备时按 thurible 皮肤名生成并挂 owner，卸装／移除清理。[工厂](../../../raw/current/scripts/prefabs/thurible.lua#L302-L327) |
+| `thuriblebody` | thuriblebodyfn：纯视觉 FX 体（bank `thurible`），`persists=false` 不存档 | 装备时按 thurible 皮肤名生成并挂 owner，卸装／移除清理。[工厂](../../../raw/current/scripts/prefabs/thurible.lua#L302-L327)；父挂与清理见 [[reference/prefabs/staff_lunarplant_fx#父挂跟随与高亮]] |
 | `compass` | fn：公共端 compass、weapon 标签＋漂浮 → 主模拟 inventoryitem、equippable、fueled(1200s)、weapon(10) | fueled.accepting 保持默认 false 不可补燃料，耗尽直接 Remove。[工厂](../../../raw/current/scripts/prefabs/compass.lua#L98-L161)、[耗尽](../../../raw/current/scripts/prefabs/compass.lua#L79-L90) |
 | `diviningrod` | fn：公共端 irreplaceable、nonpotatable、diviningrod、nopunch 标签＋小地图图标 → 主模拟 inspectable(getstatus)、key(MAXWELL)、equippable | 无耐久／燃料，装备后循环测距播报。[工厂](../../../raw/current/scripts/prefabs/diviningrod.lua#L149-L201)、[图标](../../../raw/current/scripts/prefabs/diviningrod.lua#L160) |
 | `walking_stick` | fn：公共端动画＋漂浮 → 主模拟 fueled(USAGE)、inspectable、inventoryitem、equippable(1.15)、fuel | 无 weapon 组件与 weapon 标签（无伤害加成），仅移动中耗耐久。[工厂](../../../raw/current/scripts/prefabs/walking_stick.lua#L50-L110)、[移动监听](../../../raw/current/scripts/prefabs/walking_stick.lua#L94-L102) |
@@ -78,7 +78,7 @@ status: active
 
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
-| fueled＋locomote | USAGE 型、`no_sewing=true`、`4×total_day_time=1920s`；监听 owner 的 locomote，`WantsToMoveForward` 才 StartConsuming；耗尽 Remove 消失 | 主模拟；不移动不磨损 | [耐久](../../../raw/current/scripts/prefabs/walking_stick.lua#L76-L80)、[移动监听](../../../raw/current/scripts/prefabs/walking_stick.lua#L94-L102)、[穿脱挂监听](../../../raw/current/scripts/prefabs/walking_stick.lua#L6-L23)、[常量](../../../raw/current/scripts/tuning.lua#L7823) |
+| fueled＋locomote | USAGE 型、`no_sewing=true`、`4×total_day_time=1920s`；监听 owner 的 locomote，`WantsToMoveForward` 才 StartConsuming；耗尽 Remove 消失 | 主模拟；不移动不磨损 | [耐久](../../../raw/current/scripts/prefabs/walking_stick.lua#L76-L80)、[移动监听](../../../raw/current/scripts/prefabs/walking_stick.lua#L94-L102)、[穿脱挂监听](../../../raw/current/scripts/prefabs/walking_stick.lua#L6-L23)、[常量](../../../raw/current/scripts/tuning.lua#L7824) |
 | equippable | walkspeedmult=WALKING_STICK_SPEED_MULT=1.15 | 主模拟 | [[reference/components/equippable]]；[配置](../../../raw/current/scripts/prefabs/walking_stick.lua#L84-L89)、[常量](../../../raw/current/scripts/tuning.lua#L414-L415) |
 | fuel／burnable | fuelvalue=LARGE_FUEL(180s) 可作火源燃料；MakeSmallBurnable＋MakeSmallPropagator | 主模拟 | [fuel](../../../raw/current/scripts/prefabs/walking_stick.lua#L91-L92)、[燃烧](../../../raw/current/scripts/prefabs/walking_stick.lua#L104-L105)、[常量](../../../raw/current/scripts/tuning.lua#L1676-L1677) |
 | 配方 | log×3＋charcoal×1、TECH.NONE、`builder_skill="woodie_human_lucy_3"`（Lucy 雕刻 3 级），sg_state="carvewood" | 限定 Woodie 技能树 | [配方](../../../raw/current/scripts/recipes.lua#L175)、[技能](../../../raw/current/scripts/prefabs/skilltree_woodie.lua#L382-L387) |
@@ -91,7 +91,7 @@ status: active
 |---|---|---|---|
 | finiteuses＋sweeper | 125 次，`SetConsumption(ACTIONS.SWEEP,1)` 每次清扫扣 1，耗尽 Remove；对"sweeper 工具＋sweepable 目标"给 SWEEP 动作，`sweepable:Sweep` 播扫帚音效＋走目标回调 | 主模拟；目标示例：落叶堆 sweep 后掉落战利品并碎裂移除 | [[reference/components/finiteuses]]、[[reference/components/sweeper]]；[耐久](../../../raw/current/scripts/prefabs/witchbroom.lua#L179-L183)、[SWEEP](../../../raw/current/scripts/actions.lua#L7126-L7133)、[可用性](../../../raw/current/scripts/components/playercontroller.lua#L2063)、[sweepable](../../../raw/current/scripts/components/sweepable.lua#L24-L32)、[落叶堆](../../../raw/current/scripts/prefabs/leafpile.lua#L433-L437) |
 | weapon／propweapon | SetDamage(1)（源码注释：SG 接管伤害，此值基本无效）；攻击走 `attack_prop_pre` 状态；propweapon_nopvp 参与 PVP 判定 | 主模拟＋客户端判定 | [weapon](../../../raw/current/scripts/prefabs/witchbroom.lua#L185-L186)、[SG 分支](../../../raw/current/scripts/stategraphs/SGwilson.lua#L1413)、[PVP](../../../raw/current/scripts/components/combat_replica.lua#L307)、[标签](../../../raw/current/scripts/prefabs/witchbroom.lua#L153-L155) |
-| propsmashed | 监听 propsmashed：扣 5 次＋播放清扫音效 | 主模拟 | [回调](../../../raw/current/scripts/prefabs/witchbroom.lua#L64-L71)、[监听](../../../raw/current/scripts/prefabs/witchbroom.lua#L198)、[常量](../../../raw/current/scripts/tuning.lua#L9800-L9803) |
+| propsmashed | 监听 propsmashed：扣 5 次＋播放清扫音效 | 主模拟 | [回调](../../../raw/current/scripts/prefabs/witchbroom.lua#L64-L71)、[监听](../../../raw/current/scripts/prefabs/witchbroom.lua#L198)、[常量](../../../raw/current/scripts/tuning.lua#L9801-L9804) |
 | 附魔 MakeLiving | livingtree_root（完全正常的树根）用于非附魔扫帚后：置 living、加 `flyingbroom`、换 living_build 与图标、`walkspeedmult=1.1`、补满耐久＋生成 FX；此后移动每秒 `Use(125/(10×total_day_time))≈0.026 次`（约 10 总日耗尽） | 主模拟；附魔态随存档恢复 | [使用入口](../../../raw/current/scripts/prefabs/livingtree_root.lua#L79-L92)、[SetLiving](../../../raw/current/scripts/prefabs/witchbroom.lua#L74-L92)、[移动磨损](../../../raw/current/scripts/prefabs/witchbroom.lua#L64-L66)、[名称](../../../raw/current/scripts/languages/chinese_s.po#L344765-L344767) |
 | flyingbroom 消费端 | SG 普通奔跑分支记录 normalflyingbroom，切入 run_flyingbroom_start／run_flyingbroom（骑乘奔跑动画）；卸装、小心行走、风暴／瘴气无护目回退普通 run | 玩家 SG 共用；纯观感，不改变位移 | [分支](../../../raw/current/scripts/stategraphs/SGwilson.lua#L500-L507)、[触发](../../../raw/current/scripts/stategraphs/SGwilson.lua#L11305-L11306)、[状态](../../../raw/current/scripts/stategraphs/SGwilson.lua#L28832-L28844) |
 | 配方 | 树枝2＋绳索1＋草3、`TECH.HALLOWED_NIGHTS`（万圣夜活动期以 `{SCIENCE=10}` 临时解锁） | 需世界开启 Hallowed Nights | [配方](../../../raw/current/scripts/recipes.lua#L1415)、[门禁](../../../raw/current/scripts/constants.lua#L1311) |
@@ -141,3 +141,4 @@ end)
 - 结构检查：validate_page 实测 144 行／24490 B，standard 档（240 行／24 KiB）内通过。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

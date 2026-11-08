@@ -1,12 +1,12 @@
 ---
 title: "playingcardsmanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "森林世界的主模拟扑克牌 ID 池管理器：为卡组与散卡分配牌 ID 并在实体移除时回收，供抽牌、发牌与补登记使用。"
 aliases: ["扑克牌管理器", "playingcardsmanager", "发牌", "牌 ID 回收"]
 tags: [component, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/playingcardsmanager.lua", "prefabs/forest.lua", "prefabs/deck_of_cards.lua", "prefabs/balatro_machine.lua", "actions.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -60,7 +60,7 @@ end
 
 ## 常见陷阱与限制
 
-- **Debug_ResetAvailableIDs 是坏的：** 它读全局 `NUM_SUITS`／`NUM_PIPS`（本快照从未定义），而初始化读 `TUNING.PLAYINGCARDS_*`；直接调用抛 `attempt to index a nil value (global 'NUM_SUITS')`。[对比](../../../raw/current/scripts/components/playingcardsmanager.lua#L25-L29) [常量位置](../../../raw/current/scripts/tuning.lua#L8642)
+- **Debug_ResetAvailableIDs 是坏的：** 它读全局 `NUM_SUITS`／`NUM_PIPS`（本快照从未定义），而初始化读 `TUNING.PLAYINGCARDS_*`；直接调用抛 `attempt to index a nil value (global 'NUM_SUITS')`。[对比](../../../raw/current/scripts/components/playingcardsmanager.lua#L25-L29) [常量位置](../../../raw/current/scripts/tuning.lua#L8643)
 - **池空不补：** `available_ids` 耗尽后发牌退化为纯随机，且这种 ID 不入池、不回收；只有登记过 onremove 的实体才在移除时归还 ID。[回退](../../../raw/current/scripts/components/playingcardsmanager.lua#L109-L113)
 - **跟踪表混装卡组与散卡：** `decks` 同时登记 deck_of_cards 与 playing_card 实体，OnSave 的 `living_decks` 两者都会出现；这是设计行为，LoadPostPass 按实体类型各自的 onremove 回调处理。[存档](../../../raw/current/scripts/components/playingcardsmanager.lua#L65-L82)
 
@@ -72,3 +72,4 @@ end
 
 相关：[[reference/components/playingcard]]、[[reference/components/deckcontainer]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

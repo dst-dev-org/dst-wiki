@@ -1,12 +1,12 @@
 ---
 title: "猴诅咒与变形特效（monkey_cursed_pre_fx 等）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "猴诅咒施加与消退、玩家变猴和恢复的六个通用表动画及触发边界。"
 aliases: ["monkey_morphin_power_players_fx", "monkey_de_morphin_fx", "monkey_cursed_pre_fx", "monkey_cursed_pst_fx", "monkey_deform_pre_fx", "monkey_deform_pst_fx", "猴诅咒特效", "变猴特效", "解除猴诅咒"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "curse_monkey_util.lua", "components/cursable.lua", "stategraphs/SGwilson.lua", "prefabs/player_common.lua", "prefabs/cursed_monkey_token.lua", "prefabs/wonkey.lua"]
 reliability: verified
 validation: source-reviewed
@@ -53,3 +53,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-transition-index|变身、召唤、传送与退场]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

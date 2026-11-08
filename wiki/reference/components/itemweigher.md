@@ -1,12 +1,12 @@
 ---
 title: "itemweigher"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "为便携秤接入称重动作与执行回调，区分类型匹配、重量播报和工具消耗。"
 aliases: ["便携秤", "称重工具", "鱼称重", "itemweigher"]
 tags: [component, item, actions, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/itemweigher.lua", "prefabs/pocket_scale.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "constants.lua", "entityscript.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -70,3 +70,4 @@ end)
 - 游戏运行：未运行；无限称重、多人交互、耗尽边界及其他模组回调兼容待实测。
 - 结构检查：本页格式／链接、源码锚点严格检查及完整 Lua 5.1 示例语法检查通过；不代替游戏验证。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

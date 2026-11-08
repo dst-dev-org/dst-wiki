@@ -1,13 +1,13 @@
 ---
 title: "牧者黏液雾云（lunar_goop_cloud_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "月牧者（Grazer）周身悬浮的雾气粒子实体：联网纯粒子发射器，父级 IsCloudEnabled 关断发射，催眠玩法在宿主侧，本实体只做视觉。"
 aliases: ["lunar_goop_cloud_fx", "牧者雾云", "月牧者雾气", "lunar goop cloud"]
 tags: [prefab, fx, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/lunar_goop_cloud_fx.lua", "prefabs/lunar_grazer.lua", "stategraphs/SGlunar_grazer.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -37,7 +37,7 @@ status: active
 |---|---|---|---|
 | 宿主：lunar_grazer | 牧者初始化时生成并 `SetParent` 到自身（`inst.cloud`），实体随宿主移动、宿主移除时一并消失 | 主模拟生成；客户端经网络拿到同一父子关系 | [挂载](../../../raw/current/scripts/prefabs/lunar_grazer.lua#L429-L430) |
 | 开关协议：IsCloudEnabled | 发射回调读父级 `IsCloudEnabled()`；宿主用 net_bool `_cloudenabled` 承载，状态图各状态成对 EnableCloud(false/true)，本 FX 只据此停发粒子；宿主 EnableCloud 还会启停自己的 cloudtask | 客户端可读（net_bool 同步）；本实体不监听事件、每帧轮询父级方法 | [门控](../../../raw/current/scripts/prefabs/lunar_goop_cloud_fx.lua#L108-L113)、[宿主定义](../../../raw/current/scripts/prefabs/lunar_grazer.lua#L416-L418)、[状态图开关](../../../raw/current/scripts/stategraphs/SGlunar_grazer.lua#L126-L142) |
-| 催眠玩法（在宿主，不在本实体） | 牧者 cloudtask 每 1 秒在 CLOUD_RADIUS 2.5 内对睡眠者 AddGrogginess(1, 6)；云开启才跑（EnableCloud 控制 Start/StopCloudTask） | 主模拟；玩家经 grogginess、生物经 sleeper 分支；0.5 秒保护窗防连触 | [DoCloudTask](../../../raw/current/scripts/prefabs/lunar_grazer.lua#L197-L225)、[开关接线](../../../raw/current/scripts/prefabs/lunar_grazer.lua#L235-L245)、[数值](../../../raw/current/scripts/tuning.lua#L7646-L7647) |
+| 催眠玩法（在宿主，不在本实体） | 牧者 cloudtask 每 1 秒在 CLOUD_RADIUS 2.5 内对睡眠者 AddGrogginess(1, 6)；云开启才跑（EnableCloud 控制 Start/StopCloudTask） | 主模拟；玩家经 grogginess、生物经 sleeper 分支；0.5 秒保护窗防连触 | [DoCloudTask](../../../raw/current/scripts/prefabs/lunar_grazer.lua#L197-L225)、[开关接线](../../../raw/current/scripts/prefabs/lunar_grazer.lua#L235-L245)、[数值](../../../raw/current/scripts/tuning.lua#L7647-L7648) |
 | 资源 | fx/animsmoke.tex＋shaders/vfx_particle_reveal.ksh，色/缩放包 `lunar_goop_cloud_*envelope_smoke` 首次生成时注册 | 客户端；声明与使用已核验 | [资源与包](../../../raw/current/scripts/prefabs/lunar_goop_cloud_fx.lua#L1-L12)、[注册包](../../../raw/current/scripts/prefabs/lunar_goop_cloud_fx.lua#L20-L42) |
 
 ## 典型接入
@@ -71,3 +71,4 @@ cloud.entity:SetParent(host.entity)          -- 宿主需提供 IsCloudEnabled �
 
 返回 [[reference/prefabs/fx-world-index|天气、地形与生态痕迹]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

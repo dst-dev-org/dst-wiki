@@ -1,13 +1,13 @@
 ---
 title: "moonsparkchargeable"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "月风暴火花充电组件：让带 fueled 的装备被 moonstorm_spark 电击时按百分比回充，月镜护目镜的原版挂载件。"
 aliases: ["月暴充电", "moonsparkchargeable", "火花充电"]
 tags: [component, energy]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/moonsparkchargeable.lua", "prefabs/hats.lua", "prefabs/moonstorm_spark.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -18,7 +18,7 @@ status: active
 
 ## 快速判断
 
-- 职责与适用：给可充电装备（需同时有 fueled 组件）标记"可被月风暴火花充电"；`moonstorm_spark` 按标签找到宿主后调用 `DoSpark` 一次回充固定百分比。[DoSpark](../../../raw/current/scripts/components/moonsparkchargeable.lua#L18-L23)
+- 职责与适用：给可充电装备（需同时有 fueled 组件）标记"可被月风暴火花充电"；`moonstorm_spark` 按标签找到宿主后调用 `DoSpark` 一次回充固定百分比（物品侧见 [[reference/prefabs/moonstorm-spark]]）。[DoSpark](../../../raw/current/scripts/components/moonsparkchargeable.lua#L18-L23)
 - 优先使用：做"被雷/被火花劈中回充耐久"类装备时挂本组件并保留 fueled；原版唯一挂载点是 [moonstorm_goggles](../../../raw/current/scripts/prefabs/hats.lua#L2303)。
 - 重要副作用：构造即加 `moonsparkchargeable` 标签，OnRemoveFromEntity 摘除；标签是 moonstorm_spark 的 `CHARGE_MUST_TAGS` 查找条件。[标签查找](../../../raw/current/scripts/prefabs/moonstorm_spark.lua#L15)
 - 修改边界：只与 fueled 协作（`GetPercent/SetPercent`），不支持其他燃料接口；`doer` 参数原版不使用。
@@ -27,7 +27,7 @@ status: active
 
 | 接口／字段 | 签名或已核验类型 | 条件、作用与证据 |
 |---|---|---|
-| `fueled_percent` | `number`（默认 `TUNING.MOONSTORM_SPARKCHARGE_DEFAULT` = 0.1） | 每次 DoSpark 给 fueled 增加的百分比；0.1 即 10%。[默认值](../../../raw/current/scripts/tuning.lua#L9242) |
+| `fueled_percent` | `number`（默认 `TUNING.MOONSTORM_SPARKCHARGE_DEFAULT` = 0.1） | 每次 DoSpark 给 fueled 增加的百分比；0.1 即 10%。[默认值](../../../raw/current/scripts/tuning.lua#L9243) |
 | `SetFueledPercent(amount)` | `amount: number -> nil` | 覆写单次回充量；grep 全库无原版调用者，属预留接口。[实现](../../../raw/current/scripts/components/moonsparkchargeable.lua#L14-L16) |
 | `DoSpark(doer)` | `doer: entity（未使用）-> nil` | `fueled_percent ~= 0` 且有 fueled 时执行 `SetPercent(clamp(GetPercent() + fueled_percent, 0, 1))`。[实现](../../../raw/current/scripts/components/moonsparkchargeable.lua#L18-L23) |
 | `moonsparkchargeable`（标签） | — | 构造加、卸载摘；供 spark 检索，建议在 prefab pristine 态显式加。[标签](../../../raw/current/scripts/components/moonsparkchargeable.lua#L7) |
@@ -37,7 +37,7 @@ status: active
 ### 让自定义装备被月风暴火花回充（原版参照）
 
 - 前提与选择：服务端；宿主需有 `fueled` 组件（原版护目镜先挂 fueled 再挂本组件，([hats.lua:2296-2303](../../../raw/current/scripts/prefabs/hats.lua#L2296-L2303)）；客户端 pristine 态加同名标签保持网络端一致（([hats.lua:2280-2283](../../../raw/current/scripts/prefabs/hats.lua#L2280-L2283)）。
-- 生效与撤销：`moonstorm_spark` 每 5~15 秒对半径 4 内带标签实体逐个 `DoSpark`（([moonstorm_spark.lua:42-45](../../../raw/current/scripts/prefabs/moonstorm_spark.lua#L42-L45)）；`fueled` 耗尽即装备移除，组件随实体消失。
+- 生效与撤销：`moonstorm_spark` 每次伤害结算对半径 4 内带标签实体逐个 `DoSpark`（每次 +10%；5–15 秒是到下一轮前置 FX 的等待，伤害与充能另有 5 帧前摇）。`fueled` 耗尽即装备移除，组件随实体消失。[充能调用 L42-L46](../../../raw/current/scripts/prefabs/moonstorm_spark.lua#L42-L46)、[节拍 L49-L57](../../../raw/current/scripts/prefabs/moonstorm_spark.lua#L49-L57)
 - 原版依据：护目镜 fueltype 为 USAGE，回充走 fueled 的通用百分比接口，不涉及专用燃料类型。
 
 ```lua
@@ -65,3 +65,4 @@ inst.components.moonsparkchargeable:SetFueledPercent(0.2) -- 每次火花回充 
 
 相关：[[reference/components/fueled]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

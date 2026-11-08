@@ -1,13 +1,13 @@
 ---
 title: "balloonmaker"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "在物品上提供 MakeBalloon 在指定坐标生成气球；原版已标注弃用，仅为模组保留，MAKEBALLOON 动作无登记入口。"
 aliases: ["balloonmaker", "气球制造器", "生成气球", "MAKEBALLOON"]
 tags: [component, item]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/balloonmaker.lua", "prefabs/balloons_empty.lua", "actions.lua", "stategraphs/SGwilson.lua", "recipes.lua"]
 reliability: verified
 validation: source-reviewed
@@ -48,3 +48,4 @@ status: active
 - 结构检查：2026-10-28 validate_page.py 通过（balloonmaker.md）；validate_source_links.py --strict 本页全部源码锚点通过；本页无完整 Lua 示例。
 - 游戏运行：未运行；MakeBalloon 生成与维斯配方路径未实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

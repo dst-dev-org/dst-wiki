@@ -1,12 +1,12 @@
 ---
 title: "宿主挂接的附属表现实体（fence_gate_anim 等）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "六类宿主的 12 个表现子实体：服务端生成后 SetParent 跟随宿主、经 highlightchildren／highlightforward 转发高亮；SetParent 不登记 EntityScript.children，宿主删除时的引擎级联未核验（灯链两族除外：不设父、独立存档）。"
 aliases: ["fence_gate_anim", "quagmire_park_gate_anim", "wood_chair_back", "stone_chair_back", "hermit_chair_rocking_back", "yoth_chair_rocking_back", "hermitcrab_teashop_front", "junk_pile_side", "junk_pile_blueprint", "yots_lantern_light_chain", "hermitcrab_lightpost_light_chain", "waterplant_base", "附属表现子实体", "椅子背面层", "灯柱灯链"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/fence.lua", "prefabs/furniture_chairs.lua", "prefabs/hermitcrab_teashop.lua", "prefabs/hermithouse.lua", "prefabs/junk_pile_big.lua", "prefabs/lantern_posts.lua", "prefabs/lantern_posts_defs.lua", "prefabs/waterplant.lua", "components/highlight.lua", "components/playercontroller.lua", "prefabskin.lua", "standardcomponents.lua", "entityscript.lua", "recipes.lua", "map/forest_map.lua", "map/maptags.lua", "map/static_layouts/junk_yard1.lua", "map/rooms/forest/terrain_ocean.lua", "map/bunches.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -142,3 +142,4 @@ return Prefab("my_host_front", fn)
 - [[reference/prefabs/fx-world-index|特效 Prefab 索引·生物与环境]]
 
 返回 [[reference/prefabs/fx-structure-index|建筑、装置与遗迹演出]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

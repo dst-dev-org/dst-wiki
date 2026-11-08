@@ -1,12 +1,12 @@
 ---
 title: "grue"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "玩家黑暗惩罚（查理）组件：完全黑暗中按 5-11 秒节奏先警告后攻击，按免疫来源表豁免，伤害走 combat 的 darkness 刺激并扣理智，支持非致命钳制与抗性次数。"
 aliases: ["grue", "查理", "黑暗惩罚", "Charlie 组件"]
 tags: [component, lifecycle, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/grue.lua", "prefabs/player_common.lua", "tuning.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -60,7 +60,7 @@ end
 ## 常见陷阱与限制
 
 - 伤害固定走 combat：`GetAttacked(nil, damage, nil, "darkness")`（([grue.lua:187](../../../raw/current/scripts/components/grue.lua#L187）意味着护甲会正常吸收、`damagetyperesist` 等按 stimuli 处理；想改伤害量应调 `TUNING.GRUEDAMAGE`（[tuning.lua:762](../../../raw/current/scripts/tuning.lua#L762）而非覆写 Attack。
-- 非致命模式默认关闭：`NONLETHAL_DARKNESS = false`（([tuning.lua:6850-6851](../../../raw/current/scripts/tuning.lua#L6850-L6851)）；开启后伤害被钳制到不低于 20% 最大生命的水平（([grue.lua:173-184](../../../raw/current/scripts/components/grue.lua#L173-L184)）。
+- 非致命模式默认关闭：`NONLETHAL_DARKNESS = false`（([tuning.lua:6850-6851](../../../raw/current/scripts/tuning.lua#L6851-L6852)）；开启后伤害被钳制到不低于 20% 最大生命的水平（([grue.lua:173-184](../../../raw/current/scripts/components/grue.lua#L173-L184)）。
 - `SetSleeping` 已废弃但仍可用（([grue.lua:162-168](../../../raw/current/scripts/components/grue.lua#L162-L168)），新代码应直接用 `AddImmunity("sleeping")`，避免与 SG 桥接的增删互相踩。
 - 初始免疫判定在延迟 0 帧任务里（([grue.lua:83](../../../raw/current/scripts/components/grue.lua#L83）：挂载同一帧内的光照状态尚不可靠，若在 PostInit 立即 `Start()` 可能与桥接状态冲突。
 
@@ -72,3 +72,4 @@ end
 
 相关链接：[[reference/components/combat]]、[[reference/components/sanity]]、[[reference/components/health]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

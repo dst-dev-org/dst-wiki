@@ -1,12 +1,12 @@
 ---
 title: "沃尔夫冈力量变身与远古守护者血滴（minotaur_blood1 等）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "力量状态上升动画与远古守护者受伤阶段随机血滴的四个通用表注册及调用条件。"
 aliases: ["wolfgang_mighty_fx", "minotaur_blood1", "minotaur_blood2", "minotaur_blood3", "力量变身特效", "远古守护者血滴", "牛头怪血滴"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "components/mightiness.lua", "stategraphs/SGwilson.lua", "prefabs/wolfgang.lua", "prefabs/minotaur.lua"]
 reliability: verified
 validation: source-reviewed
@@ -46,3 +46,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

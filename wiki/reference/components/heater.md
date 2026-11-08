@@ -1,12 +1,12 @@
 ---
 title: "heater"
 created: "2026-10-12"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "配置附近、携带或装备热源的输出与热／冷方向，明确暖石、携带范围和人物体温的区别。"
 aliases: ["随身热源", "携带供热", "暖石供热", "装备供热", "热源输出", "heater"]
 tags: [component, item, mechanism, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/heater.lua", "components/temperature.lua", "components/inventory.lua", "prefabs/heatrock.lua", "modutil.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -88,3 +88,4 @@ end)
 
 相关：[[reference/components/temperature]]；[[reference/components/inventory#携带范围的选择]]；[[reference/components/inventoryitem#生命周期]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

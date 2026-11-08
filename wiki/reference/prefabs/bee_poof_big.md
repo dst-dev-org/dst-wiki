@@ -1,12 +1,12 @@
 ---
 title: "蜂蜜飞溅、蜂群烟与病害蝇群烟（bee_poof 族）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "fx.lua 通用表相邻四注册：巨大蜂窝受击蜂蜜飞溅、蜂王护卫聚焦变身烟与图书召蜂烟、病害关联的蝇群腾起烟（当前无生成点缺口）。"
 aliases: ["bee_poof_big", "bee_poof_small", "honey_splash", "disease_puff", "蜂群烟", "蜂群出巢烟", "蜂蜜飞溅", "蜂王护卫变身烟", "病害特效", "病害蝇群烟", "蝇群烟"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "prefabs/beeguard.lua", "prefabs/books.lua", "prefabs/beequeenhive.lua", "stategraphs/SGbeequeen.lua", "prefabs/grass.lua", "components/diseaseable.lua", "prefabs/grassgekko.lua", "prefabs/honey_trail.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -79,3 +79,4 @@ end
 - 结构检查：2026-11-01 `validate_page.py`（本页 0 问题，81 行／11 KiB 内，standard 档；未登记叶级索引属预期，另有同状态既有页）与 `validate_source_links.py --strict`（0 错误 0 警告）通过；Lua 示例经 parser_probe `--syntax-only` 可解析。
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

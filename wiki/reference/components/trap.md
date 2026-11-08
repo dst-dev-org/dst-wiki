@@ -1,12 +1,12 @@
 ---
 title: "trap"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "捕捉陷阱的就绪、SG 触发、战利品记录／重建、诱饵与饥饿计时；不同于伤害型地雷。"
 aliases: ["普通捕捉陷阱搜索范围改为二", "兔子陷阱捕获流程", "陷阱收获", "trap"]
 tags: [component, callback, lifecycle, loot, state-machine, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/trap.lua", "prefabs/trap.lua", "prefabs/birdtrap.lua", "stategraphs/SGtrap.lua", "actions.lua", "componentactions.lua"]
 reliability: verified
 validation: source-reviewed
@@ -20,13 +20,13 @@ status: active
 - 职责与适用：捕捉后记录产物名／有限 lootdata，移除原目标；收获重新 Spawn 实体并推进腐败时间，不是把完整活体放进隐藏容器。伤害型触发见 [[reference/components/mine]]。[捕获](../../../raw/current/scripts/components/trap.lua#L270-L304) [收获](../../../raw/current/scripts/components/trap.lua#L350-L376)
 - 优先使用：Set 就绪，DoTriggerOn 通知 SG，再由 SG 调 DoSpring；扩展捕获效果用 onspring，收获用 onharvest，诱饵协作见 [[reference/components/bait]]。[触发](../../../raw/current/scripts/components/trap.lua#L189-L199) [SG](../../../raw/current/scripts/stategraphs/SGtrap.lua#L18) [回调设置](../../../raw/current/scripts/components/trap.lua#L71-L76)
 - 重要副作用：Set／Reset 会清战利品、目标、诱饵关联和 foodspoil 计时，不适合用来“刷新有货陷阱”；Harvest 先发事件／调宿主，可能先耗尽并删除陷阱，再发放缓存位置的战利品。[重置](../../../raw/current/scripts/components/trap.lua#L126-L146) [收获警告](../../../raw/current/scripts/components/trap.lua#L350-L376)
-- 修改边界：服务端；候选标签、目标可捕捉字段、SG 和资源需协作。仅 AddComponent 不构成完整捕捉物品；CHECKTRAP 动作返回 true 不证明获得战利品。[动作](../../../raw/current/scripts/actions.lua#L1686-L1690) [原宿主](../../../raw/current/scripts/prefabs/trap.lua#L66-L87)
+- 修改边界：服务端；候选标签、目标可捕捉字段、SG 和资源需协作。仅 AddComponent 不构成完整捕捉物品；CHECKTRAP 动作返回 true 不证明获得战利品。[动作](../../../raw/current/scripts/actions.lua#L1686-L1690) [原宿主](../../../raw/current/scripts/prefabs/trap.lua#L67-L88)
 
 ## 关键接口
 
 | 接口／字段 | 条件、作用与证据 |
 |---|---|
-| `range`／`targettag`／`checkperiod` | 默认 1.5／smallcreature／0.75 秒；原普通 trap 改 targettag=canbetrapped，birdtrap 改 bird。搜索排 INLIMBO／untrappable、检查非死亡，命中标签仍可能只是安全拆陷阱。[默认](../../../raw/current/scripts/components/trap.lua#L33) [搜索](../../../raw/current/scripts/components/trap.lua#L180-L208) [宿主](../../../raw/current/scripts/prefabs/trap.lua#L77-L79) [鸟类](../../../raw/current/scripts/prefabs/birdtrap.lua#L140-L143) |
+| `range`／`targettag`／`checkperiod` | 默认 1.5／smallcreature／0.75 秒；原普通 trap 改 targettag=canbetrapped，birdtrap 改 bird。搜索排 INLIMBO／untrappable、检查非死亡，命中标签仍可能只是安全拆陷阱。[默认](../../../raw/current/scripts/components/trap.lua#L33) [搜索](../../../raw/current/scripts/components/trap.lua#L180-L208) [宿主](../../../raw/current/scripts/prefabs/trap.lua#L78-L80) [鸟类](../../../raw/current/scripts/prefabs/birdtrap.lua#L140-L143) |
 | `Set()`／`Reset(sprung?)` | Set 先 Reset，再 isset=true、排周期；Reset 停周期、清产物／魂／诱饵／目标／饥饿，并按参数设 issprung。Disarm 是已废弃的 Reset 别名。[方法](../../../raw/current/scripts/components/trap.lua#L126-L162) |
 | `DoTriggerOn(target)` | 看 inventoryitem.trappable 或 lootdropper.trappable 决定保存 target，停更新并发 springtrap；可捕捉目标收到 trapped，否则收到 safelydisarmedtrap。不在此移除目标或产生物品。[方法](../../../raw/current/scripts/components/trap.lua#L184-L199) |
 | `DoSpring()`／`onspring` | 有效目标先 fn(trap,target,bait)，再按可捕捉类型保存 Prefab／lootdata 或 GenerateLoot，启动饥饿；有 lootprefabs 才发 ontrapped 并 Remove 目标，最后处理诱饵／触发状态。[方法](../../../raw/current/scripts/components/trap.lua#L270) |
@@ -44,7 +44,7 @@ SGtrap 醒着先播 trap_pre，再 DoSpring；睡着可直接结算。原普通�
 
 ### 普通捕捉陷阱搜索范围改为二个世界单位
 
-目标模组 `modmain.lua`；只改原 Prefab trap，保留其 targettag、SG、诱饵、次数和饥饿协议，不改 birdtrap。[安装](../../../raw/current/scripts/prefabs/trap.lua#L66-L87) [搜索读取](../../../raw/current/scripts/components/trap.lua#L204-L208)
+目标模组 `modmain.lua`；只改原 Prefab trap，保留其 targettag、SG、诱饵、次数和饥饿协议，不改 birdtrap。[安装](../../../raw/current/scripts/prefabs/trap.lua#L67-L88) [搜索读取](../../../raw/current/scripts/components/trap.lua#L204-L208)
 
 ```lua
 AddPrefabPostInit("trap", function(inst)
@@ -74,3 +74,4 @@ end)
 - 结构检查：本批格式、来源、链接／锚点、大小与登记；完整范围例经已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；安全拆除、最后一次耐久、诱饵被吃／偷、离屏捕获、饥饿／腐败和保存重建待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

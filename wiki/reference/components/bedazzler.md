@@ -1,12 +1,12 @@
 ---
 title: "bedazzler"
 created: "2026-10-19"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "蜘蛛巢装饰工具的目标状态检查与直接耐久消费；角色候选、装饰效果由动作和目标组件协作。"
 aliases: ["蜘蛛巢装饰工具耗用减半", "装饰工具消耗", "bedazzler"]
 tags: [component, item, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/bedazzler.lua", "prefabs/spiderden_bedazzler.lua", "actions.lua", "componentactions.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -29,7 +29,7 @@ status: active
 | `SetUseAmount(use_amount)` | 直接存字段，构造无默认 use_amount；执行处 nil／false 回退 1。以原工具真实配置为基准，不把缺字段当 0。[定义](../../../raw/current/scripts/components/bedazzler.lua#L1-L7) [消费](../../../raw/current/scripts/components/bedazzler.lua#L23-L28) |
 | `CanBedazzle(target)` | 返回 true 或 false,reason；按 BURNING→BURNT→FROZEN→ALREADY_BEDAZZLED 顺序。target 必须有效，测试不保证有 bedazzlement。[方法](../../../raw/current/scripts/components/bedazzler.lua#L9-L21) |
 | `Bedazzle(target)` | 直接访问 target.components.bedazzlement:Start；有 finiteuses 才直接 Use。目标已装饰时 Start 可以不处理，工具仍继续扣耗用量。[执行](../../../raw/current/scripts/components/bedazzler.lua#L23-L29) |
-| 原工具 | spiderden_bedazzler 服务端配库存、检查、finiteuses 耗尽移除和 bedazzler；use_amount 来自 TUNING.BEDAZZLER_USE_AMOUNT，当前为 20。[组装](../../../raw/current/scripts/prefabs/spiderden_bedazzler.lua#L29-L45) [参数](../../../raw/current/scripts/tuning.lua#L6281-L6284) |
+| 原工具 | spiderden_bedazzler 服务端配库存、检查、finiteuses 耗尽移除和 bedazzler；use_amount 来自 TUNING.BEDAZZLER_USE_AMOUNT，当前为 20。[组装](../../../raw/current/scripts/prefabs/spiderden_bedazzler.lua#L29-L45) [参数](../../../raw/current/scripts/tuning.lua#L6282-L6285) |
 
 ## 典型接入
 
@@ -63,3 +63,4 @@ end)
 - 结构检查：本批格式、来源、链接／行号、大小及登记通过；完整半耗例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；正常／燃烧／冻结／重复装饰拒绝、剩余耐久耗尽及额外动作消费叠加待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

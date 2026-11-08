@@ -1,13 +1,13 @@
 ---
 title: "实用与投掷装备（瓶中信／路标导航仪／种壳）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-09"
 type: prefab
 size_class: standard
 summary: "三组 HANDS 实用/投掷装备：瓶中信系（显影/空瓶装恶液/海獭 AI 投掷瓶/恶液罐）、路标导航仪（三分支指针、marker/visual 清理、宝库生成与拆解）、种壳（equipstack 整叠投掷、59.5 伤害、AOE；PvP 下未命中落船板才漏水；waterplant 运行时武器 excluded）。"
-aliases: ["messagebottle", "messagebottleempty", "messagebottle_throwable", "gelblob_bottle", "vault_compass", "vault_compass_marker", "vault_compass_visual", "waterplant_bomb", "瓶中信", "空瓶子", "恶液罐", "路标导航仪", "种壳", "Message in a Bottle", "Vault Compass", "Sea Wort Herb Seed"]
+aliases: ["messagebottle", "messagebottleempty", "messagebottle_throwable", "gelblob_bottle", "vault_compass", "vault_compass_marker", "waterplant_bomb", "瓶中信", "空瓶子", "恶液罐", "路标导航仪", "种壳", "Message in a Bottle", "Vault Compass", "Sea Wort Herb Seed"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/messagebottle.lua", "prefabs/vault_compass.lua", "prefabs/vaultroom_defs.lua", "prefabs/waterplant_seed.lua", "prefabs/waterplant.lua", "brains/hermitcrabbrain.lua", "components/equippable.lua", "components/mapspotrevealer.lua", "components/messagebottlemanager.lua", "components/bottler.lua", "components/waterproofer.lua", "components/complexprojectile.lua", "components/weapon.lua", "components/stackable.lua", "components/furnituredecor.lua", "components/inventoryitem.lua", "recipes.lua", "tuning.lua", "constants.lua", "strings.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -32,7 +32,7 @@ status: active
 | `messagebottle_throwable` | commonmakebottle(throwing_postinit)：追加 equippable(HANDS)＋complexprojectile(15 速／-35 重力) | hermitcrab 专用投掷瓶：Brain 内生成投掷，玩家常规流程不持有。[装配](../../../raw/current/scripts/prefabs/messagebottle.lua#L323-L338)、[投掷者](../../../raw/current/scripts/brains/hermitcrabbrain.lua#L452-L454) |
 | `gelblob_bottle` | gelblobbottlefn：公共端 projectile 标签 → 主模拟 stackable(10)、equippable(HANDS, `equipstack=true`)、complexprojectile | 玩家可持有：掷地释放恶液，落海漂浮后消失。[工厂](../../../raw/current/scripts/prefabs/messagebottle.lua#L429-L481)、[命中](../../../raw/current/scripts/prefabs/messagebottle.lua#L385-L401) |
 | `vault_compass` | fn：公共端 weapon/furnituredecor 标签＋漂浮 → 主模拟 inspectable(KEYROOM/NOTVAULT)、inventoryitem、furnituredecor、equippable(HANDS)、weapon(UNARMED) | 装备生成 `vault_compass_marker`（挂 owner）＋`vault_compass_visual`（专页 [[reference/prefabs/vault_compass_visual]]）。[工厂](../../../raw/current/scripts/prefabs/vault_compass.lua#L140-L186)、[装备](../../../raw/current/scripts/prefabs/vault_compass.lua#L82-L100) |
-| `vault_compass_marker`／`vault_compass_visual` | markerfn：空动画挂 owner；visualpointerfn：OnGround＋背景层＋泛光指针 | 均带 `staysthroughvirtualrooms`；visual `persists=false`，由 ClearMarker 清理。[marker](../../../raw/current/scripts/prefabs/vault_compass.lua#L190-L210)、[visual](../../../raw/current/scripts/prefabs/vault_compass.lua#L214-L243) |
+| `vault_compass_marker`／`vault_compass_visual` | markerfn：空动画挂 owner；visualpointerfn：OnGround＋背景层＋泛光指针 | 均带 `staysthroughvirtualrooms`；visual `persists=false`，由 ClearMarker 清理。[marker](../../../raw/current/scripts/prefabs/vault_compass.lua#L190-L210)、[visual](../../../raw/current/scripts/prefabs/vault_compass.lua#L214-L243)；指针三态与清理归 [[reference/prefabs/vault_compass_visual#路标指针罗盘装备期的三层结构与方位判定]] |
 | `waterplant_bomb` | fn：公共端 reticule＋projectile/weapon 标签 → 主模拟 complexprojectile、weapon、combat、inventoryitem、stackable、equippable(HANDS, `equipstack=true`) | 种壳：海草掉落，玩家可拾取整叠投掷，命中 AOE；boss 侧 `waterplant_projectile` 无 equippable。[工厂](../../../raw/current/scripts/prefabs/waterplant_seed.lua#L148-L221)、[投掷命中](../../../raw/current/scripts/prefabs/waterplant_seed.lua#L111-L127) |
 
 ## 机制
@@ -77,3 +77,4 @@ status: active
 - 结构检查：validate_page 实测 79 行（standard 档 480 行／24 KiB 内）通过；strict 39 引用 0 错 0 警、30 唯一目标、8 源文件；record 后 21 组来源 unchanged。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

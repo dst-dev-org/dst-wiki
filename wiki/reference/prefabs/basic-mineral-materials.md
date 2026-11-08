@@ -1,12 +1,12 @@
 ---
 title: 矿物原料与幸运金块（flint、nitre、rocks、marble、goldnugget、lucky_goldnugget）
 created: "2026-11-08"
-updated: "2026-11-08"
+updated: "2026-11-10"
 type: prefab
 summary: 玩家物品栏形态的五种矿物原料与活动货币幸运金块：注册名与文件名的关系（物品态 vs 世界态）、挖矿／活动产出路径、堆叠／可食／燃料／进贡实际接线与 lucky_goldnugget 的专属消费链。
 aliases: ["flint", "nitre", "rocks", "marble", "goldnugget", "lucky_goldnugget", "燧石", "硝石", "石头", "大理石", "金块", "幸运金块", "矿物原料", "inv_rocks", "inv_marble"]
 tags: [prefab, item]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/flint.lua", "prefabs/nitre.lua", "prefabs/inv_rocks.lua", "prefabs/inv_marble.lua", "prefabs/goldnugget.lua", "prefabs/rocks.lua", "prefabs/marbletree.lua", "prefabs/pigking.lua", "prefabs/antlion.lua", "prefabs/knight.lua", "prefabs/chessjunk.lua", "prefabs/kitcoonden.lua", "prefabs/boatrace_start.lua", "prefabs/oceanfishdef.lua", "prefabs/mermking.lua", "prefabs/bundle.lua", "prefabs/worm.lua", "prefabs/worm_boss.lua", "prefabs/shadowthrall_mouth.lua", "brains/molebrain.lua", "components/yotb_stager.lua", "components/yotc_raceprizemanager.lua", "components/quaker.lua", "recipes.lua", "tuning.lua", "constants.lua", "components/stackable.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -43,7 +43,7 @@ status: active
 
 | 注册名 | 产出（已核验） |
 |---|---|
-| `flint`／`nitre`／`rocks` | 挖巨砾：`SetSharedLootTable('rock1')`（石头×3＋硝石＋燧石概率）、`'rock2'`（石头×3＋金块＋燧石）、`'rock_flintless*'`（纯石头）、`'rock_moon'`（石头＋燧石＋月岩 `moonrocknugget`）、`'rock_petrified_tree*'`（石头／硝石／燧石），OnWork 按 loot 表 DropLoot。 [loot 表](../../../raw/current/scripts/prefabs/rocks.lua#L65-L166)、[OnWork](../../../raw/current/scripts/prefabs/rocks.lua#L168-L200)、[月岩名称](../../../raw/current/scripts/languages/chinese_s.po#L345669-L345672) |
+| `flint`／`nitre`／`rocks` | 挖巨砾：`SetSharedLootTable('rock1')`（石头×3＋硝石＋燧石概率）、`'rock2'`（石头×3＋金块＋燧石）、`'rock_flintless*'`（纯石头）、`'rock_moon'`（石头＋燧石＋月岩 `moonrocknugget`，见 [[reference/prefabs/moonrocknugget]]）、`'rock_petrified_tree*'`（石头／硝石／燧石），OnWork 按 loot 表 DropLoot。 [loot 表](../../../raw/current/scripts/prefabs/rocks.lua#L65-L166)、[OnWork](../../../raw/current/scripts/prefabs/rocks.lua#L168-L200)、[月岩名称](../../../raw/current/scripts/languages/chinese_s.po#L345669-L345672) |
 | `marble` | 挖大理石树 `marbletree`：loot 表 `'marble_tree'`（marble×1.0、×0.5）。大理石柱／雕像等其他来源本页未逐一枚举。 [loot 表](../../../raw/current/scripts/prefabs/marbletree.lua#L14-L17)、[接线](../../../raw/current/scripts/prefabs/marbletree.lua#L86) |
 | `goldnugget` | 金脉巨砾 `'rock2'` loot 表；猪王 `cointoss`：按进贡物 `goldvalue` 每点 SpawnPrefab("goldnugget")；**非 YOTP（猪年）活动期**作为猪王小游戏投掷物——`MINIGAME_ITEM` 仅在 `IsSpecialEventActive(SPECIAL_EVENTS.YOTP)` 时切为 lucky_goldnugget，其他 YOT 活动（YOTB/YOTC/YOTH 等）期间仍是普通金块。 [rock2 表](../../../raw/current/scripts/prefabs/rocks.lua#L76-L85)、[cointoss](../../../raw/current/scripts/prefabs/pigking.lua#L74-L77)、[MINIGAME_ITEM 切换](../../../raw/current/scripts/prefabs/pigking.lua#L540) |
 | `lucky_goldnugget` | 活动季专属：猪王 YOTP 小游戏（`MINIGAME_ITEM` 切换，[pigking.lua#L540](../../../raw/current/scripts/prefabs/pigking.lua#L540)、[投掷生成](../../../raw/current/scripts/prefabs/pigking.lua#L414-L428)）；幸运骑士掉落 redpouch_yoth 包 4 枚（[knight.lua#L290-L299](../../../raw/current/scripts/prefabs/knight.lua#L290-L299)）；棋子残骸 redpouch_yoth 包 1 枚（[chessjunk.lua#L147-L155](../../../raw/current/scripts/prefabs/chessjunk.lua#L147-L155)）；猫猫窝扔红包（[kitcoonden.lua#L119-L122](../../../raw/current/scripts/prefabs/kitcoonden.lua#L119-L122)）；赛船奖励（[boatrace_start.lua#L117-L123](../../../raw/current/scripts/prefabs/boatrace_start.lua#L117-L123)）；胡萝卜鼠赛跑奖品（YOTC=`year_of_the_carrat`，[constants.lua#L850](../../../raw/current/scripts/constants.lua#L850)；[yotc_raceprizemanager.lua#L32](../../../raw/current/scripts/components/yotc_raceprizemanager.lua#L32)）；牛王赛马奖品（[yotb_stager.lua#L995-L1009](../../../raw/current/scripts/components/yotb_stager.lua#L995-L1009)）；YOT 活动海鱼 `oceanfish_medium_6/7`：`SpecialEventSetup` 接线 loot／heavy_loot／oncooked_fn（[oceanfishdef.lua#L1089-L1094](../../../raw/current/scripts/prefabs/oceanfishdef.lua#L1089-L1094)）、烤鱼产物函数 `MEDIUM_YOT_ONCOOKED_FN` 烤出 2 枚（[oceanfishdef.lua#L149-L153](../../../raw/current/scripts/prefabs/oceanfishdef.lua#L149-L153)）；鱼人王收活动鱼付幸运金块（[mermking.lua#L132-L137](../../../raw/current/scripts/prefabs/mermking.lua#L132-L137)）；蠕虫／影口 chance loot（[worm.lua#L261-L263](../../../raw/current/scripts/prefabs/worm.lua#L261-L263)、[shadowthrall_mouth.lua#L225-L229](../../../raw/current/scripts/prefabs/shadowthrall_mouth.lua#L225-L229)）、蠕虫 Boss 幸运掉落（[worm_boss.lua#L480](../../../raw/current/scripts/prefabs/worm_boss.lua#L480)）。基础红包 `redpouch` 内含 1 枚（[bundle.lua#L684](../../../raw/current/scripts/prefabs/bundle.lua#L684)）。 |
@@ -128,3 +128,4 @@ end
 - 外部复检修订：2026-11-08，按外部复检报告（docs/reports/w05/prefab-inventory-review-b01-20261108.md R13，主代理回源码验证成立）修订两处：①goldnugget 行"YOT 活动期外作为猪王小游戏投掷物"收窄为"非 YOTP（猪年）活动期"——`MINIGAME_ITEM` 仅在 `IsSpecialEventActive(SPECIAL_EVENTS.YOTP)` 时切为 lucky_goldnugget（pigking.lua#L540），其他 YOT 活动期仍是普通金块；②补记幸运金兑换的玩家门禁：`AcceptTest` 要求 `goldvalue>0` 且 merm 角色递非 pig_token 直接拒绝（pigking.lua#L598-L606），nav 表 AcceptTest 锚同步扩到含 merm 分支的完整函数。
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

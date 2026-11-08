@@ -1,12 +1,12 @@
 ---
 title: "读书施法特效族（fx_book_moon 等 18 注册名）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "books.lua 原版书目施法成功的法术演出特效 18 注册名：通用表 FX 一批、步行/骑乘双 anim，两条生成路径（Book:OnRead 读者落点 fx/fxmount 字段链、书本 fn 内按受效对象直接生成），无 fxmount 的书骑乘回落基名并强制六向。"
 aliases: ["fx_book_moon", "fx_book_moon_mount", "fx_book_research_station", "fx_book_research_station_mount", "fx_book_temperature", "fx_book_temperature_mount", "fx_book_bees", "fx_book_fire", "fx_book_fire_mount", "fx_book_light", "fx_book_light_upgraded", "fx_book_birds", "fx_book_birds_mount", "fx_book_sleep", "fx_book_sleep_mount", "fx_book_rain", "fx_book_rain_mount", "fx_book_fish", "读书特效", "读书法术特效", "施法特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "prefabs/books.lua", "components/book.lua", "components/reader.lua", "actions.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -46,7 +46,7 @@ size_class: complex
 
 两条路径共用同一批注册名，选名依据不同：
 
-**路径 A——`Book:OnRead` 在读者位置生成。** 施法结算成功后由 book 组件执行（[OnRead](../../../raw/current/scripts/components/book.lua#L61-L80)）：`ismount = reader.components.rider ~= nil and rider:IsRiding()`，`fx = ismount and self.fxmount or self.fx`，SpawnPrefab 后 `SetPosition(读者位置)`、`SetRotation(读者朝向)`。def 的 `fx`/`fxmount` 字段在 [MakeBook](../../../raw/current/scripts/prefabs/books.lua#L971-L977) 只作依赖声明，真正消费是 [SetFx 挂载](../../../raw/current/scripts/prefabs/books.lua#L1029)→[选名](../../../raw/current/scripts/components/book.lua#L64-L67)。def 未提供 `fxmount` 时骑乘**不自动拼 `_mount`**，而是回落基名并 `Transform:SetSixFaced()`（[回落分支](../../../raw/current/scripts/components/book.lua#L68-L71)）。
+**路径 A——`Book:OnRead` 在读者位置生成。** 施法结算成功后由 book 组件执行（[OnRead](../../../raw/current/scripts/components/book.lua#L61-L80)）：`ismount = reader.components.rider ~= nil and rider:IsRiding()`，`fx = ismount and self.fxmount or self.fx`，SpawnPrefab 后 `SetPosition(读者位置)`、`SetRotation(读者朝向)`。def 的 `fx`/`fxmount` 字段在 [MakeBook](../../../raw/current/scripts/prefabs/books.lua#L971-L977) 只作依赖声明，真正消费是 [SetFx 挂载](../../../raw/current/scripts/prefabs/books.lua#L1030)→[选名](../../../raw/current/scripts/components/book.lua#L64-L67)。def 未提供 `fxmount` 时骑乘**不自动拼 `_mount`**，而是回落基名并 `Transform:SetSixFaced()`（[回落分支](../../../raw/current/scripts/components/book.lua#L68-L71)）。
 
 **路径 B——书本 `fn` 内按受效对象直接生成。** 与组件无关，是 def `fn` 的普通 SpawnPrefab：按各受效对象自身骑乘状态选名，位置/朝向取该对象；bees 用环形生成位、固定基名。均在各自成功判定通过之后执行。
 
@@ -72,9 +72,9 @@ size_class: complex
 | 组件：book | `SetFx(fx, fxmount)` 存名，`OnRead` 成功后选名生成（路径 A） | 主模拟；`reader.components.sanity` 存在才走默认结算 | [[reference/components/book#关键接口]]、[SetFx](../../../raw/current/scripts/components/book.lua#L21-L24) |
 | 组件／动作：reader 与 ACTIONS.READ | READ 动作 → `Reader:Read` → `Book:OnRead` | `READ = Action({mount_valid=true})`，fn 在施法结算（路径窗口）内 | [[reference/components/reader]]、[动作](../../../raw/current/scripts/actions.lua#L360)、[fn](../../../raw/current/scripts/actions.lua#L1328-L1333) |
 | SG：SGwilson `book`／`book_repeatcast`／`book2` | READ 的 ActionHandler 只选 `book`（cookbook／翻阅另选）；`book_repeatcast` 另有 CASTAOE 施法入口；book2 第 44 帧只准备 `fn50`，普通正式 READ 在第 50 帧才 `PerformBufferedAction()` 结算，`repeatcast` 则在 44 帧立即执行 → 上两条路径都发生在这之后 | 主模拟状态；骑乘由 `mount_valid` 与组件内 `IsRiding` 判定 | [READ 选状态](../../../raw/current/scripts/stategraphs/SGwilson.lua#L1046-L1051)、[repeatcast 入口](../../../raw/current/scripts/stategraphs/SGwilson.lua#L1316-L1320)、[44 帧准备](../../../raw/current/scripts/stategraphs/SGwilson.lua#L10267-L10306)、[50 帧结算](../../../raw/current/scripts/stategraphs/SGwilson.lua#L10307-L10311)；手持书动画链细节见 [[reference/prefabs/book_fx]] |
-| 生成者数据：books.lua def | `fx`/`fxmount`/`deps` 字段与 `fn`；`MakeBook` 把字段并入 prefabs 数组并 `SetFx` | 仅依赖声明不生成；生成点见上节两路径 | [MakeBook](../../../raw/current/scripts/prefabs/books.lua#L963-L977)、[挂载](../../../raw/current/scripts/prefabs/books.lua#L1029) |
+| 生成者数据：books.lua def | `fx`/`fxmount`/`deps` 字段与 `fn`；`MakeBook` 把字段并入 prefabs 数组并 `SetFx` | 仅依赖声明不生成；生成点见上节两路径 | [MakeBook](../../../raw/current/scripts/prefabs/books.lua#L963-L977)、[挂载](../../../raw/current/scripts/prefabs/books.lua#L1030) |
 | 关联 Prefab：`book_fx` 族 | 读书动作中挂在读者身上的**手持书本动画**，与本法术演出分层并存 | SGwilson 按书本 `shadowmagic` 标签与骑乘选名，`SetParent(读者)` 父挂 | [[reference/prefabs/book_fx]] |
-| 关联 Prefab：`fx_<名>_over_book`／`_under_book` 族 | books.lua `MakeFX` 独立工厂（bank `fx_books`），book2 按 def `fx_over`/`fx_under` 生成的前后景层；本批 18 名不属于该族（fish 书另有 `fx_under = "fish"`） | 骑乘追加 `_mount` | [MakeFX](../../../raw/current/scripts/prefabs/books.lua#L1053-L1077)、[fish fx_under](../../../raw/current/scripts/prefabs/books.lua#L563)；该族 Wiki 待建 |
+| 关联 Prefab：`fx_<名>_over_book`／`_under_book` 族 | books.lua `MakeFX` 独立工厂（bank `fx_books`），book2 按 def `fx_over`/`fx_under` 生成的前后景层；本批 18 名不属于该族（fish 书另有 `fx_under = "fish"`） | 骑乘追加 `_mount` | [MakeFX](../../../raw/current/scripts/prefabs/books.lua#L1054-L1078)、[fish fx_under](../../../raw/current/scripts/prefabs/books.lua#L563)；该族 Wiki 待建 |
 | 资源 | 每名 `Asset("ANIM", "anim/<基名>.zip")` 由工厂按 build 声明 | 声明已核验，zip 包内容未解包 | [资产生成](../../../raw/current/scripts/prefabs/fx.lua#L7-L16) |
 
 ## 典型接入
@@ -83,7 +83,7 @@ size_class: complex
 
 - 前提与选择：自定义书走原版读书动作（READ → book 组件）时，只需配 book 组件的回调与 FX 名，**不要自己 SpawnPrefab 读者落点特效**——成功后组件自动生成。
 - 生效与撤销：`SetFx(fx, fxmount)` 两参均可省略 mount；省略时骑乘回落基名并强制六向。施法失败（回调返回 false）不生成，也不扣次数。
-- 原版依据：原书即按 [def → SetFx](../../../raw/current/scripts/prefabs/books.lua#L1029) 配置；[回落分支](../../../raw/current/scripts/components/book.lua#L68-L71)。
+- 原版依据：原书即按 [def → SetFx](../../../raw/current/scripts/prefabs/books.lua#L1030) 配置；[回落分支](../../../raw/current/scripts/components/book.lua#L68-L71)。
 
 ```lua
 -- 自定义书 prefab 的 master 分支（TheWorld.ismastersim 之后）：
@@ -114,3 +114,4 @@ inst.components.book:SetFx("fx_book_fire", "fx_book_fire_mount")
 - 结构检查：validate_page、validate_source_links --strict 通过（结果见本批交付报告）。
 
 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 4 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

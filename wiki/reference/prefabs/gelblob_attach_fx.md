@@ -1,12 +1,12 @@
 ---
 title: "恶液接触附着黏液（gelblob_attach_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "恶液与暗影憎恶接触目标时挂身的黏液覆盖层：主层贴在目标身上、两根 Connector 连回宿主；对骑手／变形玩家与生物直接减速，普通玩家走 carefulwalker 谨慎步行，全部经共享表防叠加。"
 aliases: ["gelblob_attach_fx", "恶液附着", "黏液附着特效", "gelblob 减速", "shrouden gel fx"]
 tags: [prefab, fx, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/gelblob_attach_fx.lua", "prefabs/gelblob.lua", "prefabs/shrouden.lua", "components/carefulwalker.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -71,3 +71,4 @@ fx:KillFX()                      -- splash + Connector 回缩；locomotor 减速
 
 返回 [[reference/prefabs/fx-shadow-index|暗影生物、裂隙生物与附着]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

@@ -1,13 +1,13 @@
 ---
 title: "皮肤火星与随身连缀 FX 族（carnival_sparkle_bush、carrot_spinner、fan_wheel、critterbuff_lunarmoth）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "四个跨宿主文件的外围 FX 注册：鸦年华皮肤火星、胡萝卜旋转残影、迷你风扇叶片与小蛾子发光 buff 的工厂、端、生成点、父挂与清理。"
 aliases: ["carnival_sparkle_bush", "carrot_spinner", "fan_wheel", "critterbuff_lunarmoth", "皮肤火星", "鸦年华火星", "胡萝卜旋转特效", "迷你风扇叶片", "小蛾子发光", "随身连缀 FX", "外围 FX 族"]
 tags: [prefab, fx, network-sync, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/carnival_sparkle_bush.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "prefabs/carrot_spinner.lua", "prefabs/veggies.lua", "prefabs/fan_wheel.lua", "prefabs/minifan.lua", "prefabs/critterbuff_lunarmoth.lua", "prefabs/critters.lua", "components/perishable.lua", "components/timer.lua", "components/updatelooper.lua", "stategraphs/SGwilson.lua", "entityscript.lua", "brains/cozy_bunnymanbrain.lua", "constants.lua", "prefablist.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -122,3 +122,4 @@ end
 - 结构检查：`validate_page.py` 通过（0 issue；106 行、约 19 KiB，`size_class: complex` 档内）；`validate_source_links.py --strict` 通过（0 error／0 warning）；Lua 片段 `parser_probe.exe --syntax-only` 通过（只查语法、未执行，临时文件已删）。
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]、[[reference/prefabs/index|Prefab 索引]]。同属皮肤 `fx_prefab` 挂载范式的另见 [[reference/prefabs/rabbithouse_yule_glow_fx|倒挂树屋光晕特效]]；本页四注册都不走 [[reference/mechanisms/generic-fx-factory|通用 FX 工厂]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

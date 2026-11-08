@@ -1,12 +1,12 @@
 ---
 title: "raindome"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "作为雨棚提供者，在服务端维护可开关的半径并同步客户端，周期给半径内 inspectable 实体写入 rainimmunity 来源，并提供全图雨棚查询。"
 aliases: ["雨棚", "遮雨穹顶", "虚空伞雨棚", "免雨领域", "raindome"]
 tags: [component, lifecycle, aura, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/raindome.lua", "components/rainimmunity.lua", "prefabs/voidcloth_umbrella.lua", "tuning.lua", "components/raindomewatcher.lua", "widgets/raindomeover.lua", "prefabs/rain.lua", "prefabs/caverain.lua", "prefabs/caveacidrain.lua", "prefabs/lunarhail.lua", "components/inventoryitem.lua", "components/lunarhailmanager.lua", "components/machine.lua", "componentutil.lua", "main.lua", "entityscript.lua"]
 reliability: verified
 validation: source-reviewed
@@ -54,7 +54,7 @@ status: active
 ### 原版宿主：虚空伞 `voidcloth_umbrella`
 
 - 文件与端：`prefabs/voidcloth_umbrella.lua`；`UmbrellaFn` 在 `SetPristine` 前 `AddComponent("raindome")`，注释明确“必须客户端也加，但只在服务端配置”。服务端在 pristine 后 `SetRadius(TUNING.VOIDCLOTH_UMBRELLA_DOME_RADIUS)`。[装配与配置](../../../raw/current/scripts/prefabs/voidcloth_umbrella.lua#L375-L391)
-- 注册名与单位：prefab 名 `voidcloth_umbrella`；半径 `16` 世界坐标单位；`VOIDCLOTH_UMBRELLA_DOME_RATE=1.5` 是燃料消耗速率，不是半径。[注册](../../../raw/current/scripts/prefabs/voidcloth_umbrella.lua#L525-L527) [数值](../../../raw/current/scripts/tuning.lua#L7804-L7807)
+- 注册名与单位：prefab 名 `voidcloth_umbrella`；半径 `16` 世界坐标单位；`VOIDCLOTH_UMBRELLA_DOME_RATE=1.5` 是燃料消耗速率，不是半径。[注册](../../../raw/current/scripts/prefabs/voidcloth_umbrella.lua#L525-L527) [数值](../../../raw/current/scripts/tuning.lua#L7805-L7808)
 - 生效：`machine:TurnOn` 调 `turnon`，在燃料非空时 `raindome:Enable()`；`turnoff` 调 `Disable()`。燃料耗尽 `OnPerish` 会先 `TurnOff`。[开](../../../raw/current/scripts/prefabs/voidcloth_umbrella.lua#L240-L245) [关](../../../raw/current/scripts/prefabs/voidcloth_umbrella.lua#L273-L277) [耗尽](../../../raw/current/scripts/prefabs/voidcloth_umbrella.lua#L108-L111)
 - 读档：`machine` 只保存 `ison`，`OnLoad` 重新 `TurnOn`／`TurnOff`，因此 `Enable` 会被重放；`rainimmunity` 来源本身不存档，目标要等下一轮 `OnUpdate` 重新写入。[Machine 存读](../../../raw/current/scripts/components/machine.lua#L50-L61) [来源不存档](../../../raw/current/scripts/components/rainimmunity.lua#L1-L18)
 - 撤销：`Disable` 立即撤销来源；直接移除伞实体时由 `onremove` 监听兜底；`OnRemoveEntity` 只清 `_sizes`。客户端 HUD 不读 `.radius`，只用 `GetActiveRadius()`。[HUD](../../../raw/current/scripts/widgets/raindomeover.lua#L45-L49)
@@ -100,3 +100,4 @@ end
 
 相关：[[reference/components/rainimmunity]]；[[reference/components/raindomewatcher]]；[[reference/components/machine]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

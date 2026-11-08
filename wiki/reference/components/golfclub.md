@@ -1,12 +1,12 @@
 ---
 title: "golfclub"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "高尔夫球杆组件：对 golfable 目标登记瞄准占用，配合 reticule 蓄力并在挥杆命中时传递方向与速度。"
 aliases: ["高尔夫球杆", "golfclub"]
 tags: [component, item, actions]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/golfclub.lua", "prefabs/carnival_golfclub.lua", "components/golfclub_reticule.lua", "actions.lua", "stategraphs/SGwilson.lua", "prefabs/carnivalgame_golf_tee.lua"]
 reliability: verified
 validation: source-reviewed
@@ -63,3 +63,4 @@ end
 - 结构检查：本批 validate_page、validate_source_links 及示例 lua 语法探测（见批级记录）。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

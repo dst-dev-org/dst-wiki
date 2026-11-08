@@ -1,12 +1,12 @@
 ---
 title: firedetector：火情扫描与灭火器调度
 created: 2026-10-22
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 调整灭火器的目标扫描与紧急响应，区分发现目标、发射雪球和实际保护效果。
 aliases: [firedetector, 灭火器扫描, 只灭火不浇植物, 紧急灭火]
 tags: [component, building, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/firedetector.lua, prefabs/firesuppressor.lua, stategraphs/SGfiresuppressor.lua, prefabs/waterprojectiles.lua, components/wateryprotection.lua, components/machine.lua, tuning.lua]
 reliability: verified
 validation: source-reviewed
@@ -81,3 +81,4 @@ end)
 - 游戏运行：未运行；未实测大火数量、睡眠状态、断燃料或联机表现。
 - 结构与语法：本页通过页面格式和严格源码链接检查；完整 `modmain.lua` 通过 Lua 5.1 语法检查。检查不验证游戏效果。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

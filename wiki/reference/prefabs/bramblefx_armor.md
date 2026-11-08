@@ -1,13 +1,13 @@
 ---
 title: "荆棘尖刺反伤与陷阱穿刺（bramblefx_armor 等 3 注册）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "bramblefx.lua 共享工厂的 3 个混合 FX：穿在身上的荆棘外壳受击反伤尖刺环、亮茄系荆棘茄甲的升级版尖刺环（+5 平面伤害），以及 Wormwood 荆棘陷阱爆炸的原地穿刺环；三者都经 updatelooper 逐帧扩环并直接对 _combat 实体结算 GetAttacked——伤害归属分'穿戴者'与'FX 实体'两路，技能门禁与荆棘外壳抗性另有免疫链。"
 aliases: ["bramblefx_armor", "bramblefx_armor_upgrade", "bramblefx_trap", "尖刺", "荆棘尖刺", "荆棘反伤", "荆棘陷阱穿刺", "沃姆伍德荆棘", "bramble thorns"]
 tags: [prefab, fx, equipment, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/bramblefx.lua", "prefabs/armor_bramble.lua", "prefabs/armor_lunarplant.lua", "prefabs/trap_bramble.lua", "prefabs/wormwood.lua", "prefabs/merm_fx.lua", "components/playerspawner.lua", "components/combat.lua", "prefabs/skilltree_wormwood.lua", "recipes.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -109,3 +109,4 @@ end
 - [[reference/prefabs/armor_lunarplant_glow_fx|装备与帽饰跟随光效]]（荆棘茄甲／亮茄护甲的 glow 附属 FX）
 - [[reference/prefabs/wormwood_plant_fx|沃姆伍德开花植物特效]]（同角色 bloom 期的另一表现族）
 - 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

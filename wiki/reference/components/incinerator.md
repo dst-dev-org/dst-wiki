@@ -1,12 +1,12 @@
 ---
 title: "incinerator"
 created: "2026-10-24"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "按过滤器销毁容器槽内整堆物品，发送焚烧与杀生事件，并由炉具宿主管理动作、动画和开关。"
 aliases: ["incinerator", "容器焚烧", "批量销毁物品", "龙鳞火炉焚烧", "onincinerated"]
 tags: [component, item, callback, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/incinerator.lua", "components/container.lua", "prefabs/dragonfurnace.lua", "containers.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua"]
 reliability: verified
 validation: source-reviewed
@@ -68,3 +68,4 @@ status: active
 - 结构检查：本页格式、来源、本地链接及源码锚点严格检查通过；无新增完整 Lua 示例，导航登记由本批统一检查。
 - 游戏运行：未运行；多人并发、过滤器动态变化、整堆杀生统计、自定义声音与嵌套容器销毁未实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

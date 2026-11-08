@@ -1,12 +1,12 @@
 ---
 title: "werebeast"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "月圆变身组件：满月自动或触发计数达限后调用回调换形态并限时变回，保存剩余变身时间，供猪人类生物与自定义兽形态。"
 aliases: ["月圆变身", "兽形态切换", "werebeast"]
 tags: [component, state-machine, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: standard
 sources: ["components/werebeast.lua", "prefabs/pigman.lua", "components/kramped.lua", "prefabs/pighouse.lua"]
 reliability: verified
@@ -77,3 +77,4 @@ inst.components.werebeast:SetTriggerLimit(3) -- 可选：吃 3 次负益肉类�
 - 源码审阅：2026-10-28，steam-buildid:26230496。通读 components/werebeast.lua 全文（171 行）；核验 pigman.lua:681-683、681 附近 OnEat 触发链、kramped.lua:93-95、pighouse.lua:140-141/159-160、SGpig.lua:32 与 SGwerepig.lua:24 事件处理、scenarios/chest_terrarium_pigs.lua:5-7。未运行游戏。
 - 结构检查：validate_page.py / validate_source_links.py 通过（见批级自验）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

@@ -1,12 +1,12 @@
 ---
 title: "shadowdominance"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "装备级暗影压制组件：装备时给持有者加 shadowdominance 标签，使暗影生物不再将其视为敌对目标。"
 aliases: ["shadowdominance", "暗影压制", "骸骨帽压制", "shadowdominance标签"]
 tags: [component, item]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["components/shadowdominance.lua", "prefabs/hats.lua", "prefabs/king_cane.lua", "prefabs/nightmarecreature.lua", "prefabs/woodie.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
@@ -65,3 +65,4 @@ inst:AddComponent("shadowdominance")
 
 相关：[[reference/components/shadowsubmissive]] · [[reference/components/shadowlevel]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

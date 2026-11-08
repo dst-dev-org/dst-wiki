@@ -1,12 +1,12 @@
 ---
 title: 龙蝇火系与暗影斩击特效（firesplash_fx 等）
 created: 2026-10-31
-updated: 2026-10-31
+updated: 2026-11-08
 type: prefab
 summary: 熔炉（The Forge）资产出身、本体战斗复用的 6 个通用表 FX：龙蝇重击火环、三状态火焰（吐息代理由状态 onexit 移除）、麦斯威尔暗影突袭斩击二名随机选一；表现与伤害判定分属不同实体。
 aliases: ["firesplash_fx", "tauntfire_fx", "attackfire_fx", "vomitfire_fx", "shadowstrike_slash_fx", "shadowstrike_slash2_fx", "龙蝇", "龙蝇火焰特效", "蜻蜓龙", "蜻蜓龙火焰特效", "重击火环", "暗影斩击", "影袭斩击", "暗影突袭特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "stategraphs/SGdragonfly.lua", "components/groundpounder.lua", "prefabs/dragonfly.lua", "stategraphs/SGshadowwaxwell.lua", "prefabs/shadowwaxwell.lua", "prefabs/waxwell_shadowstriker.lua", "prefabs/willow_ember.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -85,3 +85,4 @@ inst.components.groundpounder:GroundPound()
 - 结构检查：validate_page、validate_source_links --strict 通过（结果见本批交付报告）。
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

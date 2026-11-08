@@ -1,12 +1,12 @@
 ---
 title: "boatphysics"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "服务端船体运动：把帆、桨、锚、磁力与碰撞合成为速度、舵向和每帧物理位移。"
 aliases: ["船的推进与转向", "船速与舵向", "锚与桅杆增删", "boatphysics"]
 tags: [component, lifecycle, state-machine, server-client, network-sync]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/boatphysics.lua", "components/boatdrag.lua", "components/anchor.lua", "components/mast.lua", "components/boatmagnet.lua", "components/hullhealth.lua", "components/walkableplatform.lua", "components/steeringwheeluser.lua", "components/oar.lua", "prefabs/boat.lua", "prefabs/yotd_boats.lua", "prefabs/boatrace_seastack.lua", "prefabs/anchor.lua", "prefabs/mast.lua", "prefabs/seastack.lua", "stategraphs/SGboat.lua", "tuning.lua", "modutil.lua", "mainfunctions.lua"]
 reliability: verified
 validation: source-reviewed
@@ -114,3 +114,4 @@ end)
 - [[reference/components/waterphysics]]：船对船反弹推力系数。
 - [[reference/components/boatdrifter]]：船漂移状态机。
 - [[reference/components/anchor]]：船锚状态机与 boatdrag 联动。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

@@ -1,13 +1,13 @@
 ---
 title: "玫瑰花瓣飘落（rose_petals_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "藤蔓救起死亡玩家时种下玫瑰的花瓣飘落动画：联网 FX 在落点播 fall，播完不走立即移除而是 ErodeAway 一秒腐蚀淡出；生成方把死亡音效挂在本实体上播放。"
 aliases: ["rose_petals_fx", "玫瑰花瓣", "花瓣飘落", "rose petals"]
 tags: [prefab, fx]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/rose_petals_fx.lua", "stategraphs/SGwilson.lua", "simutil.lua", "prefabs/winona.lua"]
 reliability: verified
 validation: source-reviewed
@@ -72,3 +72,4 @@ fx.SoundEmitter:PlaySound("dontstarve/common/deathpoof") -- 工厂自带 SoundEm
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

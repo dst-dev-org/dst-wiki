@@ -1,13 +1,13 @@
 ---
 title: "旺达怀表族（pocketwatch_heal、pocketwatch_warp 等 11 注册）"
 created: "2026-11-06"
-updated: "2026-11-06"
+updated: "2026-11-08"
 type: prefab
 summary: "旺达专属时间机制的工厂族：共享工厂 common_fn 注册的五只功能怀表（回春/复活/倒走/溯源/裂缝）、警钟武器、时间碎片、钟表匠工具、时间裂缝出入口与跨分片复活媒介，覆盖施法门禁、冷却、配方与拆解。"
 aliases: ["pocketwatch_heal", "pocketwatch_revive", "pocketwatch_revive_reviver", "pocketwatch_warp", "pocketwatch_recall", "pocketwatch_weapon", "pocketwatch_parts", "pocketwatch_dismantler", "pocketwatch_portal", "pocketwatch_portal_entrance", "pocketwatch_portal_exit", "不老表", "第二次机会表", "倒走表", "溯源表", "裂缝表", "警钟", "时间碎片", "钟表匠工具", "时间裂缝", "旺达怀表", "怀表族", "Ageless Watch", "Second Chance Watch", "Backstep Watch", "Backtrek Watch", "Rift Watch", "Alarming Clock", "Time Pieces", "Clockmaker's Tools", "Time Rift"]
 tags: [prefab, item, equipment]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/pocketwatch.lua", "prefabs/pocketwatch_common.lua", "prefabs/pocketwatch_weapon.lua", "prefabs/pocketwatch_parts.lua", "prefabs/pocketwatch_portal.lua", "prefabs/pocketwatch_dismantler.lua", "components/pocketwatch.lua", "components/pocketwatch_dismantler.lua", "components/recallmark.lua", "components/rechargeable.lua", "components/positionalwarp.lua", "components/equippable.lua", "components/weapon.lua", "components/oldager.lua", "components/builder.lua", "components/lootdropper.lua", "recipe.lua", "prefabs/wanda.lua", "prefabs/player_common_extensions.lua", "recipes.lua", "prefabs/staffcastfx.lua", "constants.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua", "fx.lua", "stringutil.lua", "tuning.lua", "strings.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -201,3 +201,4 @@ TUNING.POCKETWATCH_DEPLETED_DAMAGE = 34
 相关页面：[[reference/prefabs/pocketwatch_warp_marker|怀表与传送门附属表现 FX 族]]（同文件的 5 个 FX 注册）、[[reference/prefabs/pocketwatch_weapon_fx|警钟暗影微粒特效]]、[[reference/components/pocketwatch|pocketwatch 组件]]。
 
 返回 [[reference/prefabs/staffs-character-index|法杖与角色道具]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

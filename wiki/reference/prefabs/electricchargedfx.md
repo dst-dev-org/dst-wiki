@@ -1,13 +1,13 @@
 ---
 title: "电充闪光特效（electricchargedfx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "伏特羊肉冻的电攻击 buff 附加／续期时打出的充电标记：网络代理＋本地橙色光效与放电动画＋主模拟侧目标闪白；无玩法组件，带电攻击来自 buff 的 electricattacks 组件。"
 aliases: ["electricchargedfx", "electric_charged_fx", "电充特效", "充电特效", "伏特羊肉冻", "electric attack buff", "buff_electricattack"]
 tags: [prefab, fx, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/electric_charged_fx.lua", "prefabs/foodbuffs.lua", "preparedfoods_warly.lua", "components/colouradder.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -69,3 +69,4 @@ fx:SetTarget(victim)  -- 仅主模拟；客户端本地视觉自动生成
 - 结构检查：validate_page、链接 --strict、label-check 通过；本批依据见[[updates/build-26335394/index#wiki-沿用记录]]（批次-2）。
 
 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

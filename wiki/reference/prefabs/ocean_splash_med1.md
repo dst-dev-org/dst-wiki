@@ -1,12 +1,12 @@
 ---
 title: "海面水花特效族（ocean_splash_med1）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "八个通用表注册承载海面水花表现：med／small 两档带声水花、ripple 无声背景涟漪、swim 游泳划水尾流；海鱼破水、海钓浮标、玩家游泳、龙虾／水蜘蛛／暗影傀儡与蜜渍路径按各自门禁落点生成。"
 aliases: ["ocean_splash_med1", "ocean_splash_med2", "ocean_splash_small1", "ocean_splash_small2", "ocean_splash_ripple1", "ocean_splash_ripple2", "ocean_splash_swim1", "ocean_splash_swim2", "海面水花", "游泳水花", "水面涟漪", "海面涟漪"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwobster.lua", "stategraphs/SGspider_water.lua", "stategraphs/SGoceanfish.lua", "stategraphs/SGshadowwaxwell.lua", "stategraphs/SGshadow_trap.lua", "stategraphs/SGbeeguard.lua", "prefabs/oceanfishdef.lua", "prefabs/oceanfishingbobber.lua", "prefabs/player_common.lua", "prefabs/beequeen.lua", "prefabs/shrouden.lua", "prefabs/slingshotammo.lua", "prefabs/shadow_pillar.lua", "prefabs/waterprojectiles.lua", "prefabs/wobster.lua", "components/sharkboimanager.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -86,3 +86,4 @@ end
 - 结构检查：2026-11-01 validate_page 通过（standard 档内）；validate_source_links --strict 通过（0 错误 0 警告）；示例 Lua 经 parser_probe --syntax-only 解析通过。
 
 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

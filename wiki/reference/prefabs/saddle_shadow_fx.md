@@ -1,13 +1,13 @@
 ---
 title: "梦魇鞍具的跟随特效与暗影脚印（saddle_shadow_fx、saddle_shadow_footprint）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "梦魇鞍具装备后的网络代理 FX：服务端同步归属与颜色，各端用 3 枚本地帧跟随 swap_saddle；骑乘时按 3.5 距离门限生成并池化 4 脚印地面贴片，卸下／换主／移除各有清理。"
 aliases: ["saddle_shadow_fx", "saddle_shadow_footprint", "梦魇鞍具特效", "影鞍特效", "暗影脚印", "鞍具脚印", "外围 FX 族"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/saddle.lua", "prefabs/saddle_shadow_footprints.lua", "components/rideable.lua", "components/rider.lua", "components/colouradder.lua", "components/colouraddersync.lua", "components/updatelooper.lua", "components/highlightchild.lua", "mathutil.lua", "netvars.lua", "prefablist.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -25,14 +25,14 @@ status: active
 
 ## 注册与构造
 
-两个注册分居两个文件：`saddle.lua` 的返回同时注册 5 种鞍物品与 `saddle_shadow_fx`（[L406-L412](../../../raw/current/scripts/prefabs/saddle.lua#L406-L412)），脚印文件单独返回 `Prefab`（[L101](../../../raw/current/scripts/prefabs/saddle_shadow_footprints.lua#L101)）。`prefablist.lua` 的 `saddle_shadow_footprints` 是文件名条目（`PREFABFILES`），不是注册名（[L1077-L1078](../../../raw/current/scripts/prefablist.lua#L1077-L1078)）。
+两个注册分居两个文件：`saddle.lua` 的返回同时注册 5 种鞍物品与 `saddle_shadow_fx`（[L406-L412](../../../raw/current/scripts/prefabs/saddle.lua#L407-L413)），脚印文件单独返回 `Prefab`（[L101](../../../raw/current/scripts/prefabs/saddle_shadow_footprints.lua#L101)）。`prefablist.lua` 的 `saddle_shadow_footprints` 是文件名条目（`PREFABFILES`），不是注册名（[L1077-L1078](../../../raw/current/scripts/prefablist.lua#L1077-L1078)）。
 
 | 注册名／宿主文件 | 工厂与初始化分界 | 差异与证据 |
 |---|---|---|
 | `saddle_shadow_fx`（`prefabs/saddle.lua`） | `ShadowSaddleFx`：CreateEntity → Transform／Network → `FX` → `colouraddersync` → `net_event("saddle_shadow_fx.ownerevent")` → `SetPristine`；非主模拟只监听 `ownerevent` 后返回，主模拟导出 `SetOwner`、`persists=false`（[工厂 L214-L238](../../../raw/current/scripts/prefabs/saddle.lua#L214-L238)、[端分界 L228-L232](../../../raw/current/scripts/prefabs/saddle.lua#L228-L232)） | 壳无 AnimState；`SetOwner` 尝试解旧颜色子级（`DetachChild` 实参是帧表而非壳，实际不移除旧宿主登记，见陷阱）、`SetParent(owner.entity)`、挂新宿主 `colouradder` 子级、`ownerevent:push()`，非专用端再 `SpawnFxForOwner`（[L181-L204](../../../raw/current/scripts/prefabs/saddle.lua#L181-L204)）。本地帧：非网络实体，bank／build `saddle_shadow`、`swap_loop_1..3` 循环、`SetSymbolLightOverride("red", .5)`、`SetLightOverride(.1)`、`AddOverrideBuild("hat_voidcloth")`、`highlightchild`（[L57-L80](../../../raw/current/scripts/prefabs/saddle.lua#L57-L80)） |
 | `saddle_shadow_footprint`（`prefabs/saddle_shadow_footprints.lua`） | `fn`：CreateEntity → `FX`＋`NOCLICK` → `SetCanSleep(false)`、`persists=false` → Transform／AnimState → bank／build `saddle_shadow_tracks`、`ground` → `OnGround`＋`LAYER_BACKGROUND`＋`SetSortOrder(2)` → 隐藏 4×3 offset 符号 → `updatelooper`＋`animover`（[L63-L99](../../../raw/current/scripts/prefabs/saddle_shadow_footprints.lua#L63-L99)） | 非网络贴片；`RestartFX` 重播 `ground`、随机每枚脚印的 offset（3 选 1）与 art（`swap_footprint1..4`）、重新登记逐帧淡出（[L43-L59](../../../raw/current/scripts/prefabs/saddle_shadow_footprints.lua#L43-L59)）；`OnAnimOver` 优先回池、无池则 `Remove`（[L27-L37](../../../raw/current/scripts/prefabs/saddle_shadow_footprints.lua#L27-L37)） |
 
-名称：两个注册名在 `languages/chinese_s.po` 均无 `STRINGS.NAMES.*` 键；标题中的“跟随特效”“暗影脚印”是效果描述，不是官方译名。宿主物品 `saddle_shadow` 的简中名是 `STRINGS.NAMES.SADDLE_SHADOW`＝梦魇鞍具（[L348894-L348897](../../../raw/current/scripts/languages/chinese_s.po#L348894-L348897)），只用于定位宿主。`saddle_shadow_fx` 复用物品的 `saddle_shadow` 动画包，工厂自身无 assets 声明（[注册](../../../raw/current/scripts/prefabs/saddle.lua#L412)）。
+名称：两个注册名在 `languages/chinese_s.po` 均无 `STRINGS.NAMES.*` 键；标题中的“跟随特效”“暗影脚印”是效果描述，不是官方译名。宿主物品 `saddle_shadow` 的简中名是 `STRINGS.NAMES.SADDLE_SHADOW`＝梦魇鞍具（[L348894-L348897](../../../raw/current/scripts/languages/chinese_s.po#L348894-L348897)），只用于定位宿主。`saddle_shadow_fx` 复用物品的 `saddle_shadow` 动画包，工厂自身无 assets 声明（[注册](../../../raw/current/scripts/prefabs/saddle.lua#L413)）。
 
 ## 关联机制导航
 
@@ -65,7 +65,7 @@ status: active
 | `net_event` | `saddle_shadow_fx.ownerevent` 只做“归属已变”的一次性通知；客户端按 `GetParent()` 重建帧 | 主机分支不注册监听；晚加入是否收到首事件未运行核验 | [定义 L85-L99](../../../raw/current/scripts/netvars.lua#L85-L99)、[客户端回调 L206-L212](../../../raw/current/scripts/prefabs/saddle.lua#L206-L212) |
 | 引擎 Follower | 本地帧用 `FollowSymbol` 贴合宿主 `swap_saddle`；末位 `i-1` 区分同符号的三份跟随者 | 符号由鞍的 `saddler:SetSwaps` 与骑手态覆盖提供；这是引擎符号跟随，不是 Lua 的 follower 组件 | [帧跟随 L153](../../../raw/current/scripts/prefabs/saddle.lua#L153) |
 | 宿主组件 | `saddler` 提供 `swapbuild`／`swapsymbol`；`rideable` 推 equipped／unequipped；`rider` 在上／下鞍时改主 | 本页只覆盖 FX 侧调用 | [[reference/components/saddler]]、[[reference/components/rideable]]、[[reference/components/rider]] |
-| 关联物品：`saddle_shadow` | FX 的生成宿主与资源来源；`data.shadow.prefabs` 声明两个 FX 依赖 | 依赖声明不生成；物品页未建（Wiki 待建） | [数据 L364-L403](../../../raw/current/scripts/prefabs/saddle.lua#L364-L403) |
+| 关联物品：`saddle_shadow` | FX 的生成宿主与资源来源；`data.shadow.prefabs` 声明两个 FX 依赖 | 依赖声明不生成；物品页未建（Wiki 待建） | [数据 L364-L403](../../../raw/current/scripts/prefabs/saddle.lua#L365-L404) |
 | 资源 | 帧复用 `anim/saddle_shadow.zip`（物品资源）并 `AddOverrideBuild("hat_voidcloth")`；脚印用 `anim/saddle_shadow_tracks.zip` | 快照只含 `scripts/`，动画包实际内容／帧长未核验 | [物品资源 L257-L259](../../../raw/current/scripts/prefabs/saddle.lua#L257-L259)、[脚印资源 L1-L4](../../../raw/current/scripts/prefabs/saddle_shadow_footprints.lua#L1-L4) |
 
 ## 典型接入
@@ -118,3 +118,4 @@ end
 - [[reference/prefabs/fx-world-index|特效 Prefab 索引·生物与环境]]
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

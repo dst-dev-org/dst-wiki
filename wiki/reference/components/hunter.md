@@ -1,12 +1,12 @@
 ---
 title: "hunter"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级脚印狩猎组件：给每名玩家周期投放可疑土堆与兽踪，调查后按分数与季节/事件结算出考拉象、座狼、山羊等猎物。"
 aliases: ["狩猎管理", "脚印狩猎", "hunter"]
 tags: [component, creature]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/hunter.lua", "prefabs/dirtpile.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -53,3 +53,4 @@ status: active
 - 游戏运行：未运行。
 - 结构检查：validate_page、validate_source_links --strict、Lua 语法探测通过（见批级记录）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

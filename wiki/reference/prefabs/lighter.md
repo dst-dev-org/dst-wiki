@@ -1,12 +1,12 @@
 ---
 title: "薇洛的打火机（lighter）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版手持照明装备 lighter：HANDS 槽武器＋点火工具＋危险炊具，光照由 lighterfire 跟随 FX 提供，燃料在装备燃烧时计时消耗（雨中加速），烹饪另按门禁直接扣油，薇洛技能树解锁吸火灭火、扩大光圈与攻击必燃。"
 aliases: ["lighter", "薇洛的打火机", "打火机", "幸运打火机", "吸火"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/lighter.lua", "prefabs/lighterfire.lua", "prefabs/lighterfire_common.lua", "prefabs/lighterfire_glass.lua", "prefabs/lighterfire_haunteddoll.lua", "prefabs/lighterfire_heart.lua", "prefabs/lighterfire_old.lua", "prefabs/lighterfire_ragged.lua", "prefabs/lighterfire_rose.lua", "prefabs/skilltree_willow.lua", "prefabs/willow.lua", "prefabs/willow_ember.lua", "prefabs/player_common.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "components/weapon.lua", "components/lighter.lua", "components/equippable.lua", "components/fueled.lua", "components/cooker.lua", "components/burnable.lua", "components/channelcastable.lua", "components/wildfires.lua", "componentactions.lua", "actions.lua", "componentutil.lua", "standardcomponents.lua", "tuning.lua", "recipes.lua", "constants.lua", "mods.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -41,8 +41,8 @@ status: active
 | 雨中消耗增速 | `TUNING.LIGHTER_RAIN_RATE` | rate＝`1+该值×降水率`，满雨 2；持有者避雨或有 rainimmunity 组件则恒 1（[tuning.lua#L1723](../../../raw/current/scripts/tuning.lua#L1723)、[onupdatefueledraining](../../../raw/current/scripts/prefabs/lighter.lua#L241-L247)） |
 | 攻击点燃基础概率 | `TUNING.LIGHTER_ATTACK_IGNITE_PERCENT` | 0.5×目标 `burnable.flammability`，经幸运公式 `LighterIgniteOnAttack` 修正（[tuning.lua#L2670](../../../raw/current/scripts/tuning.lua#L2670)、[公式](../../../raw/current/scripts/componentutil.lua#L2150)） |
 | 光照默认参数 | lighterfire_common 硬编码 | 强度 0.75、颜色 (200,150,50)/255、衰减 0.5、半径 1（[CreateLight](../../../raw/current/scripts/prefabs/lighterfire_common.lua#L1-L19)） |
-| 光档表 | `TUNING.TORCH_RADIUS`／`TORCH_FALLOFF` | {2,3,4,5}／{0.5,0.6,0.75,0.9}；净变量档 1＝半径 2／衰减 0.5（[tuning.lua#L7043-L7055](../../../raw/current/scripts/tuning.lua#L7043-L7055)） |
-| 薇洛光圈技能档 | `TUNING.SKILLS.WILLOW_BRIGHTNESS_1/2` | 2.5／4，作为 `_lightrange` 净变量值写入（[tuning.lua#L7186-L7187](../../../raw/current/scripts/tuning.lua#L7186-L7187)） |
+| 光档表 | `TUNING.TORCH_RADIUS`／`TORCH_FALLOFF` | {2,3,4,5}／{0.5,0.6,0.75,0.9}；净变量档 1＝半径 2／衰减 0.5（[tuning.lua#L7043-L7055](../../../raw/current/scripts/tuning.lua#L7044-L7056)） |
+| 薇洛光圈技能档 | `TUNING.SKILLS.WILLOW_BRIGHTNESS_1/2` | 2.5／4，作为 `_lightrange` 净变量值写入（[tuning.lua#L7186-L7187](../../../raw/current/scripts/tuning.lua#L7187-L7188)） |
 
 获取途径与消费端：
 
@@ -86,7 +86,7 @@ status: active
 
 ### 攻击引燃（onattack）
 
-服务端执行序：combat → `weapon:OnAttack` → onattack。onattack（[lighter.lua#L231-L239](../../../raw/current/scripts/prefabs/lighter.lua#L231-L239)）：目标有效且有 burnable 时，攻击者激活 `willow_controlled_burn_1` 或 `TryLuckRoll(attacker, 0.5×目标 flammability, LighterIgniteOnAttack)` 成功则 `burnable:Ignite(nil, attacker)`（[掷点公式](../../../raw/current/scripts/componentutil.lua#L2150)、[TryLuckRoll](../../../raw/current/scripts/componentutil.lua#L2237-L2251)）。Ignite 的 source 带受控燃烧：`controlled_burn_2/3` 分别把生物燃烧时长×3／燃烧伤害×1.5（`CONTROLLED_BURN_DURATION_CREATURE_MULT`/`_DAMAGE_MULT`，[tuning.lua#L8119-L8120](../../../raw/current/scripts/tuning.lua#L8119-L8120)），非生物火标记 `stokeablefire` 可被 `STOKEFIRE` 拨旺（[burnable.lua#L353-L365](../../../raw/current/scripts/components/burnable.lua#L353-L365)）。攻击不耗耐久；燃料的计时消耗只随燃烧时间，烹饪则是另一个直接扣油入口（见下节），不要把"只随时间消耗"当成全部消耗路径。
+服务端执行序：combat → `weapon:OnAttack` → onattack。onattack（[lighter.lua#L231-L239](../../../raw/current/scripts/prefabs/lighter.lua#L231-L239)）：目标有效且有 burnable 时，攻击者激活 `willow_controlled_burn_1` 或 `TryLuckRoll(attacker, 0.5×目标 flammability, LighterIgniteOnAttack)` 成功则 `burnable:Ignite(nil, attacker)`（[掷点公式](../../../raw/current/scripts/componentutil.lua#L2150)、[TryLuckRoll](../../../raw/current/scripts/componentutil.lua#L2237-L2251)）。Ignite 的 source 带受控燃烧：`controlled_burn_2/3` 分别把生物燃烧时长×3／燃烧伤害×1.5（`CONTROLLED_BURN_DURATION_CREATURE_MULT`/`_DAMAGE_MULT`，[tuning.lua#L8119-L8120](../../../raw/current/scripts/tuning.lua#L8120-L8121)），非生物火标记 `stokeablefire` 可被 `STOKEFIRE` 拨旺（[burnable.lua#L353-L365](../../../raw/current/scripts/components/burnable.lua#L353-L365)）。攻击不耗耐久；燃料的计时消耗只随燃烧时间，烹饪则是另一个直接扣油入口（见下节），不要把"只随时间消耗"当成全部消耗路径。
 
 ### 烹饪（cooker）
 
@@ -126,3 +126,4 @@ end)
 - 结构检查：validate_page 通过
 
 返回 [[reference/prefabs/tools-field-index|工具与野外]]、[[reference/prefabs/index|Prefab]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

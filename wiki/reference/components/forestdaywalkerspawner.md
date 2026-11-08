@@ -1,12 +1,12 @@
 ---
 title: "forestdaywalkerspawner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "地表 daywalker（挖掘者）生成器：按天数倒计时在垃圾堆埋入 daywalker，记录击杀并提升下一轮强度。"
 aliases: ["地表挖掘者生成", "forestdaywalkerspawner", "垃圾堆 daywalker"]
 tags: [component, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/forestdaywalkerspawner.lua", "prefabs/forest.lua", "components/wagpunk_manager.lua", "prefabs/junk_pile_big.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -51,7 +51,7 @@ if sp ~= nil then
 end
 ```
 
-- 调整与验证：重生间隔与开关在 tuning（[调参](../../../raw/current/scripts/tuning.lua#L6913-L6915)），读档天数按当前 tuning 上限截断（[截断](../../../raw/current/scripts/components/forestdaywalkerspawner.lua#L135-L137)）。
+- 调整与验证：重生间隔与开关在 tuning（[调参](../../../raw/current/scripts/tuning.lua#L6914-L6916)），读档天数按当前 tuning 上限截断（[截断](../../../raw/current/scripts/components/forestdaywalkerspawner.lua#L135-L137)）。
 
 ## 常见陷阱与限制
 
@@ -63,6 +63,7 @@ end
 - 源码审阅：2026-10-28，steam-buildid:26230496，覆盖组件全文、forest 安装点、wagpunk_manager 与 junk_pile_big 消费链、相关 tuning；未运行游戏。
 - 结构检查：validate_page.py、validate_source_links.py 与 Lua 语法探针通过。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。
 
 ## 相关链接
 

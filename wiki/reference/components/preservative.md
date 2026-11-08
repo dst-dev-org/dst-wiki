@@ -1,13 +1,13 @@
 ---
 title: "preservative"
 created: "2026-10-22"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "配置盐等消耗品一次性恢复目标新鲜度的比例及目标堆叠分摊。"
 aliases: ["盐补新鲜度", "恢复食材新鲜度", "一次性防腐剂", "preservative"]
 tags: [component, item, food, server-client]
-dst_build: "steam-buildid:26335394"
-sources: ["components/preservative.lua", "actions.lua", "componentactions.lua", "prefabs/saltrock.lua", "tuning.lua", "modutil.lua"]
+dst_build: "steam-buildid:26474873"
+sources: ["components/preservative.lua", "components/perishable.lua", "components/repairable.lua", "actions.lua", "componentactions.lua", "prefabs/saltrock.lua", "tuning.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
 status: active
@@ -26,11 +26,11 @@ status: active
 
 | 字段／消费者 | 约定 | 条件、作用与证据 |
 |---|---|---|
-| `percent_increase` | 数值，默认 1 | 新鲜度比例增量，0.25 表示增加 25 个百分点；盐默认取 `TUNING.SALTROCK_PRESERVE_PERCENT_ADD = 0.5`。[默认字段](../../../raw/current/scripts/components/preservative.lua#L1-L7)、[盐配置](../../../raw/current/scripts/prefabs/saltrock.lua#L69-L70)、[调参](../../../raw/current/scripts/tuning.lua#L4114) |
+| `percent_increase` | 数值，默认 1 | 新鲜度比例增量，按**夹取前**的百分点理解：0.25 = +25 个百分点；盐默认取 `TUNING.SALTROCK_PRESERVE_PERCENT_ADD = 0.5`。目标越接近满鲜实得越少（90% + 0.5 被夹到 100%，只涨 10 个百分点），已经满鲜的目标仍可施用并扣件。[默认字段](../../../raw/current/scripts/components/preservative.lua#L1-L7)、[盐配置](../../../raw/current/scripts/prefabs/saltrock.lua#L69-L70)、[调参](../../../raw/current/scripts/tuning.lua#L4114)、[夹取](../../../raw/current/scripts/components/perishable.lua#L223-L232) |
 | `divide_effect_by_stack_size` | boolean，默认 true | 目标有 stackable 时，增量除以**目标**当前堆叠数量；false 或目标无堆叠则直接用增量。[计算入口](../../../raw/current/scripts/actions.lua#L4627-L4633) |
 | `ACTIONS.APPLYPRESERVATIVE` | 正常物品使用动作 | 服务端要求目标无 health，带 fresh／stale／spoiled 之一及 cookable，且无 deployable；动作候选另外排除 smallcreature。不能拿任意 perishable 物品作为可施用保证。[服务端门禁](../../../raw/current/scripts/actions.lua#L4620-L4625)、[客户端门禁](../../../raw/current/scripts/componentactions.lua#L1574-L1582) |
 
-最终比例由 [[reference/components/perishable#关键接口]] 的 `SetPercent` 夹在 0～1；拆取材料的默认单件和归属边界复用 [[reference/components/inventory#关键接口]]。本组件无独立方法、任务、保存或清理回调；配置由宿主工厂重建，而目标新鲜度保存归 perishable。[组件全文](../../../raw/current/scripts/components/preservative.lua#L1-L9)
+最终比例由 [[reference/components/perishable#关键接口]] 的 `SetPercent` 夹在 0～1；拆取材料的默认单件和归属边界复用 [[reference/components/inventory#关键接口]]。动作先 `SetPercent` 再 `RemoveItem`：取件失败时 `fn` 返回 false，但已写入的百分比**不回滚**；满鲜目标是否被扣件只看动作候选门禁，与舔盐块 `repairable` 的满值拒绝不是同一条路径。[动作顺序](../../../raw/current/scripts/actions.lua#L4627-L4641)、[满值拒绝](../../../raw/current/scripts/components/repairable.lua#L135-L142)。本组件无独立方法、任务、保存或清理回调；配置由宿主工厂重建，而目标新鲜度保存归 perishable。[组件全文](../../../raw/current/scripts/components/preservative.lua#L1-L9)
 
 ## 典型接入
 
@@ -62,5 +62,7 @@ end)
 
 - 源码审阅：2026-10-22，Steam buildid 25643519；覆盖两个配置字段、动作候选／执行门禁、目标堆叠分摊、扣料顺序、saltrock 注册及示例；新鲜度夹值与 inventory 拆取复用同版本页面。未审校全部可施用目标或其他模组动作改写。
 - 结构检查：定向页面校验通过；源码锚点 strict 校验无错误／警告；完整 modmain 示例通过 Full Moon Lua 5.1 语法检查，未执行游戏逻辑。
+- 外部检视修订（2026-11-10，R12）：接口说明补「夹取前百分点、满鲜目标仍扣件、先设新鲜度再取件且失败不回滚」，并区分舔盐块 `repairable` 的满值拒绝（[perishable.lua L223-L232](../../../raw/current/scripts/components/perishable.lua#L223-L232)、[repairable.lua L135-L142](../../../raw/current/scripts/components/repairable.lua#L135-L142)）；本节自验：validate_page 通过、validate_source_links 23 处引用 0 error／0 warning。
 - 游戏运行：未运行；多人施用、堆叠极值、存档重载和其他模组兼容待游戏验证。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

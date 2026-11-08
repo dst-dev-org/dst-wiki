@@ -1,12 +1,12 @@
 ---
 title: "reader"
 created: "2026-10-20"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "人物正式阅读／翻阅分派、精神罚值倍率与阅读后回调；角色标签、物品效果和 SG 各有职责。"
 aliases: ["麦斯威尔阅读精神倍率减半", "人物读书能力", "翻阅与正式阅读", "reader"]
 tags: [component, callback, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/reader.lua", "components/book.lua", "actions.lua", "componentactions.lua", "prefabs/waxwell.lua", "prefabs/wurt.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua"]
 reliability: verified
 validation: source-reviewed
@@ -64,3 +64,4 @@ end)
 - 结构检查：本批格式、来源、源码引用／行号、大小与登记通过；完整角色倍率例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；角色创建／重载、正式阅读／失败／翻阅、疯狂后回调及其他模组覆盖待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

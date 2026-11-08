@@ -1,12 +1,12 @@
 ---
 title: "foodmemory"
 created: "2026-10-22"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "记录同类料理的重复食用次数与遗忘任务，配置沃利重复进食的三维倍率和记忆时长。"
 aliases: ["食物记忆", "重复吃同一种料理", "沃利厌食", "沃利遗忘时间", "foodmemory"]
 tags: [component, food, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/foodmemory.lua", "components/eater.lua", "prefabs/warly.lua", "spicedfoods.lua", "tuning.lua", "entityscript.lua"]
 reliability: verified
 validation: source-reviewed
@@ -78,3 +78,4 @@ end)
 
 相关：[[reference/components/eater]]；[[reference/components/foodaffinity]]；[[reference/components/edible]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

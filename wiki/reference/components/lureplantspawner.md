@@ -1,12 +1,12 @@
 ---
 title: "lureplantspawner"
 created: 2026-10-26
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "在春季按活跃玩家轨迹和随机远点尝试生成食人花，说明生成间隔、幸运判定、地皮与空位限制及临时状态边界。"
 aliases: ["lureplantspawner", "食人花自然生成", "春季不刷食人花", "玩家轨迹刷食人花"]
 tags: [component, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/lureplantspawner.lua", "prefabs/forest.lua", "prefabs/world.lua", "tuning.lua", "worldsettings_overrides.lua", "componentutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -74,3 +74,4 @@ status: active
 
 相关：[[reference/components/butterflyspawner]] · [[reference/components/luckuser]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

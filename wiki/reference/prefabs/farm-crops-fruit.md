@@ -6,11 +6,12 @@ type: prefab
 summary: "六个农田蔬果与烤制形态共 12 个注册：三维与新鲜度、生熟堆叠 20／40、榴莲的料理分类、西瓜生食降温的速率与门禁、火龙果的万圣月变异，以及番茄的 Gorge 图标与农田来源。"
 aliases: ["eggplant", "durian", "pomegranate", "dragonfruit", "watermelon", "tomato", "eggplant_cooked", "durian_cooked", "pomegranate_cooked", "dragonfruit_cooked", "watermelon_cooked", "tomato_cooked", "茄子", "榴莲", "石榴", "火龙果", "西瓜", "番茄", "烤茄子", "超臭榴莲", "切片熟石榴", "熟火龙果", "烤西瓜", "烤番茄", "蔬果作物"]
 tags: [prefab, item, food]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/veggies.lua", "prefabs/farm_plants.lua", "prefabs/farm_plant_defs.lua", "map/layouts.lua", "map/rooms/forest/blockers.lua", "prefabs/fruitdragon.lua", "prefabs/halloweenpotion_moon.lua", "prefabs/quagmire_plantables.lua", "prefabs/seeds.lua", "prefabs/wobysmall.lua", "prefabs/wobybig.lua", "prefabs/polly_rogers.lua", "cooking.lua", "preparedfoods.lua", "components/halloweenmoonmutable.lua", "components/halloweenpotionmoon.lua", "components/edible.lua", "components/eater.lua", "components/temperature.lua", "components/perishable.lua", "components/stackable.lua", "components/cookable.lua", "components/inventoryitem.lua", "actions.lua", "componentactions.lua", "recipes.lua", "tuning.lua", "constants.lua", "entityscript.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
 status: active
+size_class: complex
 ---
 
 # 蔬果作物与熟食（eggplant、durian、pomegranate、dragonfruit、watermelon、tomato 及各自 _cooked）
@@ -20,7 +21,7 @@ status: active
 - 职责与适用：`prefabs/veggies.lua` 的 `VEGGIES` 表为每项生成生／熟两件可食物品。本页覆盖 `eggplant`、`durian`、`pomegranate`、`dragonfruit`、`watermelon`、`tomato` 及各自 `_cooked`，共 12 个 `inventoryitem` 食物注册。可借鉴：按名单点分支。[VEGGIES 表](../../../raw/current/scripts/prefabs/veggies.lua#L39-L155)、[注册循环](../../../raw/current/scripts/prefabs/veggies.lua#L1102-L1110)
 - 优先使用：查三维、新鲜度与堆叠取[生熟两态数值](#生熟两态数值)；生／熟的公共骨架、端分界、堆叠与新鲜度通则、食用与烹饪接线见 [[reference/prefabs/farm-crops-staple#共用工厂与生熟两态]]；农田来源与种子权重见[获得与种子权重](#获得与种子权重)；巨型形态见 [[reference/prefabs/giant-crops]]。
 - 重要副作用：生茄、生榴莲、生西瓜走 `stackable` 默认上限 20，其余 40；榴莲在锅里同时给 `fruit` 与 `monster`；西瓜生食带 −40／5 秒的体温项；生火龙果被月亮精华液选中会变成生物 `fruitdragon`；番茄生熟图标都换 Gorge 版。
-- 修改边界：不覆盖 `<name>_seeds`（另属种子注册）、三件 `<name>_oversized*`（见 [[reference/prefabs/giant-crops]]）与种植／生长（见 [[reference/components/crop]]、[[reference/components/farmplantable]]）；熟件没有 `cookable`，不能再烤一次。
+- 修改边界：不覆盖 `<name>_seeds`（见 [[reference/prefabs/farm-crop-seeds]]）、三件 `<name>_oversized*`（见 [[reference/prefabs/giant-crops]]）与种植／生长（见 [[reference/components/crop]]、[[reference/components/farmplantable]]）；熟件没有 `cookable`，不能再烤一次。
 
 ## 注册与构造
 
@@ -192,6 +193,7 @@ end)
 - 源码审阅：2026-11-08，Steam buildid 26335394。核对 `veggies.lua` 全文（`VEGGIES` 六键实参、`fn`／`fn_cooked`、图标替换、堆叠例外、降温、变异与导出循环）、`farm_plants.lua` 的选种与战利品、`farm_plant_defs.lua` 的字段与适种季节、`cooking.lua`／`preparedfoods.lua` 的食材分类与菜品判定、`halloweenmoonmutable`／`halloweenpotionmoon`／`fruitdragon.lua` 的变异链、`actions.lua`／`componentactions.lua` 的动作与喂食候选、`quagmire_plantables.lua` 的番茄注册、`seeds.lua` 的加权、`tuning.lua` 的基准与常量、`constants.lua` 的 `FOODTYPE`、`edible`／`eater`／`temperature`／`perishable`／`stackable`／`cookable`／`inventoryitem` 的相关分支、简中 12 个名称键。
   未覆盖：`fruitdragon` 的战斗与睡眠状态机、`fruit_dragon_ripe` 掉率的运行时表现、月亮精华液的活动门禁、`quagmire_event_server` 事件数据；其它生成点、动态选名与模组注入未穷举。
 - 游戏运行：未运行。三维、天数与秒数均为 tuning 推导（`CALORIES_TINY`＝75/8＝9.375、`PERISH_FAST`＝6×480 秒），降温是速率夹取推导，不是运行测量。
+- 分档：12 注册（6 键生熟）跨烹饪分类、体温、万圣变异、Gorge 图标与种子权重五条机制，需按族整体说明，取 `complex` 档（480 行／64 KiB）。
 - 结构检查：`validate_page.py` 通过（203 行／32,673 字节，standard 档内）；`validate_source_links.py --strict` 0 错 0 警（135 处锚点）。
 
 ## 相关链接
@@ -201,3 +203,4 @@ end)
 - 种植与生长：[[reference/components/crop]]、[[reference/components/farmplantable]]、[[reference/components/farming-manager]]
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

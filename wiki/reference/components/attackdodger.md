@@ -1,12 +1,12 @@
 ---
 title: "attackdodger"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "在 combat 受击流程中按回调或冷却资格闪避，将本次普通与特殊伤害清空。"
 aliases: ["attackdodger", "受击闪避", "周期闪避攻击", "伍迪鹅形态闪避", "闪避冷却"]
 tags: [component, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/attackdodger.lua", "components/combat.lua", "prefabs/woodie.lua", "prefabs/skilltree_woodie.lua", "prefabs/mermking_gear_buffs.lua", "prefabs/merm.lua", "stategraphs/SGmerm.lua", "tuning.lua", "modutil.lua", "entityscript.lua"]
 reliability: verified
 validation: source-reviewed
@@ -57,11 +57,11 @@ AddComponentPostInit("attackdodger", function(component, inst)
 end)
 ```
 
-倍率 `2` 使原版 5 秒配置成为 10 秒；只影响之后为该伍迪组件调用 setter 的数值，不缩放已经启动的剩余任务。不会授予技能，也不为其他形态创建组件；原版保留 `OnDodgeAttack` 特效回调，切换战斗形态时先移除旧组件并取消其任务。[原值](../../../raw/current/scripts/tuning.lua#L7121)、[特效](../../../raw/current/scripts/prefabs/woodie.lua#L916)、[切换清理](../../../raw/current/scripts/prefabs/woodie.lua#L923)。停用该段并重新加载世界恢复原版配置；不应手动移除伍迪的技能组件作为撤销。示例未进游戏运行。
+倍率 `2` 使原版 5 秒配置成为 10 秒；只影响之后为该伍迪组件调用 setter 的数值，不缩放已经启动的剩余任务。不会授予技能，也不为其他形态创建组件；原版保留 `OnDodgeAttack` 特效回调，切换战斗形态时先移除旧组件并取消其任务。[原值](../../../raw/current/scripts/tuning.lua#L7122)、[特效](../../../raw/current/scripts/prefabs/woodie.lua#L916)、[切换清理](../../../raw/current/scripts/prefabs/woodie.lua#L923)。停用该段并重新加载世界恢复原版配置；不应手动移除伍迪的技能组件作为撤销。示例未进游戏运行。
 
 ### 原版鱼人王冠 buff 的事件协作
 
-`mermking_buff_crown` 附着非玩家且有 `mermguard` 标签的实体时添加组件，配置冷却并在闪避回调中发送 `attackdodged`；buff 脱离时移除组件。原版 `mermguard` 的工厂指定 `SGmerm`，其监听事件进入 `dodge_attack`；动画／位移由状态图实现，组件本身没有 SG 动作接口。[buff 挂载及撤销](../../../raw/current/scripts/prefabs/mermking_gear_buffs.lua#L66)、[实际宿主注册](../../../raw/current/scripts/prefabs/merm.lua#L1774)、[宿主 SG](../../../raw/current/scripts/prefabs/merm.lua#L1303)、[SG 事件](../../../raw/current/scripts/stategraphs/SGmerm.lua#L118)、[状态](../../../raw/current/scripts/stategraphs/SGmerm.lua#L777)。
+`mermking_buff_crown` 附着非玩家且有 `mermguard` 标签的实体时添加组件，配置冷却并在闪避回调中发送 `attackdodged`；buff 脱离时移除组件。原版 `mermguard` 的工厂指定 `SGmerm`，其监听事件进入 `dodge_attack`；动画／位移由状态图实现，组件本身没有 SG 动作接口。[buff 挂载及撤销](../../../raw/current/scripts/prefabs/mermking_gear_buffs.lua#L66)、[实际宿主注册](../../../raw/current/scripts/prefabs/merm.lua#L1783)、[宿主 SG](../../../raw/current/scripts/prefabs/merm.lua#L1310)、[SG 事件](../../../raw/current/scripts/stategraphs/SGmerm.lua#L118)、[状态](../../../raw/current/scripts/stategraphs/SGmerm.lua#L777)。
 
 ## 常见陷阱与限制
 
@@ -81,3 +81,4 @@ end)
 
 相关：[[reference/components/combat]]、[[reference/components/health]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

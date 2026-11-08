@@ -1,13 +1,13 @@
 ---
 title: "潜伏梦魇穿地犄角突袭（ruinsnightmare_horn_attack）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "潜伏梦魇受击后隐去本体、从目标两侧各生成一只贴地犄角投射物；犄角以宿主 combat 真实结算伤害，命中点转为碰撞碎影并互删，宿主 1 秒后重新现身。"
 aliases: ["ruinsnightmare_horn_attack", "穿地犄角", "梦魇犄角突袭", "潜伏梦魇犄角", "双角夹击"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/ruinsnightmare_horn_attack.lua", "stategraphs/SGruinsnightmare.lua", "prefabs/nightmarecreature.lua", "components/combat.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -55,7 +55,7 @@ left:SetUp(inst, target)
 right:SetUp(inst, target, left)
 ```
 
-- **触发**：宿主收到 `attacked` 事件，且当前不在 `attack`／`hit`／`noattack` 状态、未死亡时，按 `TUNING.RUINSNIGHTMARE_HORNATTACK_CHANCE`（0.75）进入 `horn_attack`，否则走普通 `hit`。[事件](../../../raw/current/scripts/stategraphs/SGruinsnightmare.lua#L10-L16)、[调值](../../../raw/current/scripts/tuning.lua#L8382-L8382)
+- **触发**：宿主收到 `attacked` 事件，且当前不在 `attack`／`hit`／`noattack` 状态、未死亡时，按 `TUNING.RUINSNIGHTMARE_HORNATTACK_CHANCE`（0.75）进入 `horn_attack`，否则走普通 `hit`。[事件](../../../raw/current/scripts/stategraphs/SGruinsnightmare.lua#L10-L16)、[调值](../../../raw/current/scripts/tuning.lua#L8383-L8383)
 - **先传送再隐身**：`horn_attack` 播 `disappear`；`animover` 时先 `TryReappearingTeleport` 把宿主随机传送到附近可通行点，再生成双角并 `Hide()`＋加 `invisible` 标签。[状态](../../../raw/current/scripts/stategraphs/SGruinsnightmare.lua#L302-L329)、[传送](../../../raw/current/scripts/stategraphs/SGruinsnightmare.lua#L97-L112)
 - **重现**：角命中后对宿主 `DoTaskInTime(1, PushEvent, "reappear")`；宿主的 `reappear` 处理器要求自己处于 `invisible` 且未死，才 `Show()` 并进入 `appear`。[重现](../../../raw/current/scripts/stategraphs/SGruinsnightmare.lua#L24-L29)
 - **双角对称**：`SetUp` 以目标为圆心、在 10 距离处按 `45° × math.random(8)` 选一个方向落位并 `FacePoint` 目标；右角把左角的朝向再传回 `SetUp`，因此落在目标另一侧，形成夹击。[布置](../../../raw/current/scripts/prefabs/ruinsnightmare_horn_attack.lua#L127-L158)
@@ -87,7 +87,7 @@ right:SetUp(inst, target, left)
 | 普通态结算 | 只 `DoAttack(v)`，无击退 | [L111-L117](../../../raw/current/scripts/prefabs/ruinsnightmare_horn_attack.lua#L111-L117) |
 | 去重 | 命中后 `inst.targets[v] = true`，同角不再打同一目标 | [L117-L117](../../../raw/current/scripts/prefabs/ruinsnightmare_horn_attack.lua#L117-L117) |
 
-伤害归属是这段的核心：`DoAttack` 属于**宿主的 combat**，最终调用 `targ.components.combat:GetAttacked_Internal(self.inst, dmg, ...)`，`self.inst` 是潜伏梦魇而不是角。[结算](../../../raw/current/scripts/components/combat.lua#L1218-L1218) 因此角的伤害采用宿主的默认伤害（`TUNING.RUINSNIGHTMARE_DAMAGE`＝50，[调值](../../../raw/current/scripts/tuning.lua#L8378-L8379)）；裂隙态宿主另挂 `planardamage`（25），`DoAttack` 会把位面伤害一并送入结算。[宿主裂隙态](../../../raw/current/scripts/prefabs/nightmarecreature.lua#L141-L172)
+伤害归属是这段的核心：`DoAttack` 属于**宿主的 combat**，最终调用 `targ.components.combat:GetAttacked_Internal(self.inst, dmg, ...)`，`self.inst` 是潜伏梦魇而不是角。[结算](../../../raw/current/scripts/components/combat.lua#L1218-L1218) 因此角的伤害采用宿主的默认伤害（`TUNING.RUINSNIGHTMARE_DAMAGE`＝50，[调值](../../../raw/current/scripts/tuning.lua#L8379-L8380)）；裂隙态宿主另挂 `planardamage`（25），`DoAttack` 会把位面伤害一并送入结算。[宿主裂隙态](../../../raw/current/scripts/prefabs/nightmarecreature.lua#L141-L172)
 
 两个容易读错的点：
 
@@ -111,7 +111,7 @@ right:SetUp(inst, target, left)
 | `SG：SGruinsnightmare` | 受击反击状态机；生成双角、隐身、重现 | 仅 `ruinsnightmare` 数据项用该 SG；其它梦魇生物用 `SGshadowcreature` | [数据项](../../../raw/current/scripts/prefabs/nightmarecreature.lua#L301-L315)、[注册表](../../../raw/current/scripts/prefabs/nightmarecreature.lua#L301-L330) |
 | `组件：combat`（宿主） | `DoAttack` 的真实伤害、`CanTarget`、`ignorehitrange` 临时开关 | 角只在主模拟跑 `OnUpdate`；宿主无 combat 时角不结算 | [宿主挂载](../../../raw/current/scripts/prefabs/nightmarecreature.lua#L249-L251)、[角的调用](../../../raw/current/scripts/prefabs/ruinsnightmare_horn_attack.lua#L78-L122) |
 | `组件：planarentity`／`planardamage`（宿主） | 裂隙态的速度加成、红色符号、击退分支与 25 位面伤害 | 由 `RuinsNightmare_CheckRift` 在裂隙池变化时增删 | [裂隙检查](../../../raw/current/scripts/prefabs/nightmarecreature.lua#L141-L172) |
-| `常量：RUINSNIGHTMARE_HORNATTACK_CHANCE` | 受击时进入角击的概率 | 0.75；与 `RUINSNIGHTMARE_DAMAGE`／`_PLANAR_DAMAGE` 同段 | [tuning](../../../raw/current/scripts/tuning.lua#L8375-L8385) |
+| `常量：RUINSNIGHTMARE_HORNATTACK_CHANCE` | 受击时进入角击的概率 | 0.75；与 `RUINSNIGHTMARE_DAMAGE`／`_PLANAR_DAMAGE` 同段 | [tuning](../../../raw/current/scripts/tuning.lua#L8376-L8386) |
 | 关联 Prefab：`ruinsnightmare` | 宿主本体；角是它的攻击表现，不是独立生物 | 角由 SG 生成，不自然刷新 | [数据项](../../../raw/current/scripts/prefabs/nightmarecreature.lua#L301-L315) |
 | 关联页面：`stalker_shield1` | 同为"FX 实体借宿主／自身结算真实伤害"的外围表现，可对照伤害归属写法 | 骨盾是 FX 直接作 attacker；本页是宿主 combat 作 attacker | [[reference/prefabs/stalker_shield1|复活的骨架骨盾格挡]] |
 
@@ -159,3 +159,4 @@ end
 - [[reference/prefabs/stalker_shield1|复活的骨架骨盾格挡]]（同为外围 FX 的真实伤害归属对照）
 - [潜伏梦魇宿主工厂](../../../raw/current/scripts/prefabs/nightmarecreature.lua)（本体源码入口；Wiki 暂无专页）
 - 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]（潜伏梦魇）
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处，tuning.lua 常量段 +1 行；CRLF 页按原字节格式宿主编辑），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-01）。

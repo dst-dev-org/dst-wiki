@@ -1,12 +1,12 @@
 ---
 title: "灵魂跳跃出入场特效（wortox_portal_jumpin_fx／wortox_portal_jumpout_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "沃拓克斯灵魂跳跃（Soul Hop）在起跳点与落点生成的一次性门形动画：bank wilson／build wortox_portal，入场与出场两注册，跳跃位移与无敌由宿主状态图承担。"
 aliases: ["wortox_portal_fx", "wortox_portal_jumpin_fx", "wortox_portal_jumpout_fx", "灵魂跳跃特效", "灵魂回声", "Soul Hop", "soulhop"]
 tags: [prefab, fx, network-sync]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wortox_portal_fx.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "actions.lua", "prefabs/wortox.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ fx.AnimState:SetMultColour(0.6, 0.6, 0.6, 1) -- 模拟 shadow allegiance
 
 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

@@ -1,12 +1,12 @@
 ---
 title: "healer"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "治疗物品的当前生命恢复、自定义门禁与用后消耗，区分治疗倍率和真实恢复量。"
 aliases: ["治疗物品", "药膏回血", "治疗回调", "治疗失败", "healer"]
 tags: [component, item, callback, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/healer.lua", "components/health.lua", "components/health_replica.lua", "components/stackable.lua", "actions.lua", "componentactions.lua", "prefabs/healingsalve.lua", "tuning.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -72,3 +72,4 @@ end)
 
 相关：[[reference/components/health]]；[[reference/components/maxhealer]]；[[reference/components/stackable]]；[[reference/components/debuffable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

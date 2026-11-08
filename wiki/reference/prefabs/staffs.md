@@ -1,13 +1,13 @@
 ---
 title: "基础法杖族（staffs）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版宝石法杖的共用工厂与冰、火、传送、闪现、拆解五类施法效果的实现、消耗与修改入口。"
 aliases: ["staffs", "icestaff", "icestaff2", "icestaff3", "firestaff", "telestaff", "orangestaff", "greenstaff", "冰魔杖", "闪冻魔杖", "深冻魔杖", "火魔杖", "传送魔杖", "懒人魔杖", "拆解魔杖", "冰杖", "火杖", "传送杖", "懒人杖", "拆解杖", "Ice Staff", "Flash Freeze Staff", "Deep Freeze Staff", "Fire Staff", "Telelocator Staff", "The Lazy Explorer", "Deconstruction Staff"]
 tags: [prefab, item, equipment]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/staff.lua", "prefabs/staff_common.lua", "prefabs/staff_projectile.lua", "prefabs/telebase.lua", "prefabs/king_cane.lua", "prefabs/shellweaver.lua", "prefabskin.lua", "prefabskins.lua", "components/spellcaster.lua", "components/blinkstaff.lua", "components/weapon.lua", "components/projectile.lua", "components/combat.lua", "components/freezable.lua", "components/staffsanity.lua", "components/shadowlevel.lua", "components/quaker.lua", "components/weather.lua", "actions.lua", "stategraphs/SGwilson.lua", "componentutil.lua", "recipes.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -95,7 +95,7 @@ spellcaster 限定 `canonlyuseonrecipes`：CanCast 只放行 `AllRecipes[target.
 
 ### 复用与换装（kingcane）
 
-国王魔杖声明 `Asset("SCRIPT", "scripts/prefabs/staff_common.lua")`，合并 staff_common.prefabs 作依赖；玩家嵌入新宝石时按 `GetGemId(item.prefab)` 从 `stafffns` 查表调用对应分色函数（notinit=true）装载行为（含标签），并先把旧宝石返还给玩家；cleargemstaff 恢复手杖本体。本体无 finiteuses，挂 rechargeable：进入腐化态时 `dodischarge=true`（`OnCorruptedFn` 置位、`OnUncorruptedFn` 复位）使共用函数改走 `Discharge(KING_CANE_*_COOLDOWN)`（紫 90 秒、橙 10 秒、绿 120 秒，seg_time=30 推导值），未充能时加 `nomagiccast` 直接禁施法。[装载](../../../raw/current/scripts/prefabs/king_cane.lua#L148-L171)、[清除](../../../raw/current/scripts/prefabs/staff_common.lua#L887-L906)、[充能回调](../../../raw/current/scripts/prefabs/king_cane.lua#L118-L132)、[冷却常量](../../../raw/current/scripts/tuning.lua#L9758-L9763)
+国王魔杖声明 `Asset("SCRIPT", "scripts/prefabs/staff_common.lua")`，合并 staff_common.prefabs 作依赖；玩家嵌入新宝石时按 `GetGemId(item.prefab)` 从 `stafffns` 查表调用对应分色函数（notinit=true）装载行为（含标签），并先把旧宝石返还给玩家；cleargemstaff 恢复手杖本体。本体无 finiteuses，挂 rechargeable：进入腐化态时 `dodischarge=true`（`OnCorruptedFn` 置位、`OnUncorruptedFn` 复位）使共用函数改走 `Discharge(KING_CANE_*_COOLDOWN)`（紫 90 秒、橙 10 秒、绿 120 秒，seg_time=30 推导值），未充能时加 `nomagiccast` 直接禁施法。[装载](../../../raw/current/scripts/prefabs/king_cane.lua#L148-L171)、[清除](../../../raw/current/scripts/prefabs/staff_common.lua#L887-L906)、[充能回调](../../../raw/current/scripts/prefabs/king_cane.lua#L118-L132)、[冷却常量](../../../raw/current/scripts/tuning.lua#L9759-L9764)
 
 ## 典型接入
 
@@ -127,3 +127,4 @@ spellcaster 限定 `canonlyuseonrecipes`：CanCast 只放行 `AllRecipes[target.
 - 结构检查：validate_page.py 实测 129 行 / 26,983 字节左右（complex 档 480 行 / 64 KiB 内）；validate_source_links.py --strict 0 error 0 warning；validate_source_hashes.py check 通过（基线已由主代理 record）。
 
 返回 [[reference/prefabs/staffs-character-index|法杖与角色道具]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

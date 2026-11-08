@@ -1,12 +1,12 @@
 ---
 title: giftreceiver：私人礼物提示与开礼物流程
 created: 2026-10-27
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 追踪玩家私人礼物计数和可用机器，衔接 classified 提示、状态图与礼物弹窗。
 aliases: [giftreceiver, 私人礼物计数, 开礼物, 礼物机器]
 tags: [component, event, network-sync, ui, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/giftreceiver.lua, components/builder.lua, prefabs/player_common.lua, prefabs/player_classified.lua, prefabs/scienceprototyper.lua, stategraphs/SGwilson.lua, widgets/giftitemtoast.lua, networkclientrpc.lua, popupmanager.lua, screens/giftitempopup.lua]
 reliability: verified
 validation: source-reviewed
@@ -67,3 +67,4 @@ status: active
 
 相关机制：[[reference/components/builder]]、[[reference/components/prototyper]]、[[reference/components/wardrobe]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

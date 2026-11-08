@@ -1,12 +1,12 @@
 ---
 title: "deerclopsspawner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "森林世界按冬季次数调度独眼鹿（Deerclops）袭击：优先锁定建筑多的玩家、预警阶段提示、支持离场存档（storehassler）与天灾信标（megaflare）召唤。"
 aliases: ["deerclopsspawner", "独眼鹿", "deerclops", "冬季 boss 袭击", "deerclops spawner"]
 tags: [component, creature, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/deerclopsspawner.lua", "prefabs/forest.lua", "prefabs/deerclops.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -81,3 +81,4 @@ end
 - [[reference/components/beargerspawner]]：秋季破坏王调度器，事件协议与预警结构同源。
 - [[reference/components/worldsettingstimer]]：袭击计时器的宿主组件。
 - [[reference/components/moosespawner]]：春季驼鹿调度器。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

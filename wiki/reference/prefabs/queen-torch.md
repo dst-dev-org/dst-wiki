@@ -1,12 +1,12 @@
 ---
 title: "女王火炬（queen_torch）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-09"
 type: prefab
 summary: "原版女王火炬 queen_torch：HANDS 槽近战武器＋右键投掷抛射的永燃照明装备，光来自独立 queen_torchlight 光实体（蓝白光），16 单位内驱退暗影类生物并门控其生成；无燃料永不熄灭、不可被点燃、不防水；无配方，仅远古大门 Charlie 战败仪式落地生成，可选皮肤暗花火炬。"
-aliases: ["queen_torch", "女王火炬", "Queen's Torch", "Queen Torch", "queen_torch_fx", "queen_torchlight", "暗花火炬", "投掷照明火炬", "驱影火炬"]
+aliases: ["queen_torch", "女王火炬", "Queen's Torch", "Queen Torch", "暗花火炬", "投掷照明火炬", "驱影火炬"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/queen_torch.lua", "prefabs/atrium_gate.lua", "prefabs/wilson.lua", "prefabs/miasma_cloud_fx.lua", "prefabs/ruins_shadeling.lua", "prefabs/shadowskittish.lua", "prefabs/shadowhand.lua", "prefabs/nightmarerock.lua", "prefabs/waveyjones.lua", "prefabs/oceanshadowcreature.lua", "prefabs/charlie_boss_runner.lua", "prefabs/charlie_boss.lua", "prefabs/hats.lua", "prefabs/skinprefabs.lua", "prefabskins.lua", "components/hallucinations.lua", "components/equippable.lua", "components/weapon.lua", "components/burnable.lua", "components/complexprojectile.lua", "components/inventoryitem.lua", "components/inspectable.lua", "components/stalkerinspectable.lua", "components/skilltreeupdater.lua", "components/firedetector.lua", "components/playercontroller.lua", "stategraphs/SGwilson.lua", "brains/braincommon.lua", "brains/stalkerbrain.lua", "standardcomponents.lua", "constants.lua", "tuning.lua", "actions.lua", "componentactions.lua", "modutil.lua", "mods.lua", "screens/redux/scrapbookdata.lua", "strings.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -38,10 +38,10 @@ status: active
 
 | 项 | 键／配置 | 实际值 |
 |---|---|---|
-| 武器伤害 | `TUNING.TORCH_DAMAGE`＝`wilson_attack`×.5 | 17 生命值（源码推导，[tuning.lua#L361](../../../raw/current/scripts/tuning.lua#L361)、图鉴同值 [scrapbookdata.lua:1195](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1195)） |
+| 武器伤害 | `TUNING.TORCH_DAMAGE`＝`wilson_attack`×.5 | 17 生命值（源码推导，[tuning.lua#L361](../../../raw/current/scripts/tuning.lua#L361)、图鉴同值 [scrapbookdata.lua:1195](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1199)） |
 | 光初始参数 | torchlightfn 硬编码 | 强度 0.6／半径 6／衰减 0.8／颜色 (128,162,255)/255 蓝白（[L380-L383](../../../raw/current/scripts/prefabs/queen_torch.lua#L380-L383)） |
 | 装备态光半径 | `applyskillbrightness` 硬编码 `5×修正` | 基础 5；持有者激活 `wilson_torch_4/5/6` 时修正 8/6、10/6、12/6 → 约 6.67/8.33/10（[L45-L56](../../../raw/current/scripts/prefabs/queen_torch.lua#L45-L56)） |
-| 驱影判定半径 | `TUNING.QUEEN_TORCH_RADIUS`／`_SQ` | 16 单位（SQ=256；`_SQ` 为实际消费键，`_RADIUS` 无消费端，[tuning.lua#L9776-L9777](../../../raw/current/scripts/tuning.lua#L9776-L9777)） |
+| 驱影判定半径 | `TUNING.QUEEN_TORCH_RADIUS`／`_SQ` | 16 单位（SQ=256；`_SQ` 为实际消费键，`_RADIUS` 无消费端，[tuning.lua#L9776-L9777](../../../raw/current/scripts/tuning.lua#L9777-L9778)） |
 | 影类逃跑距离 | braincommon 常量 | 距 10 触发逃跑、距 15 停止（[braincommon.lua#L667-L671](../../../raw/current/scripts/brains/braincommon.lua#L667-L671)） |
 | 投掷参数 | complexprojectile 配置 | speed 15、gravity −35、出手偏移 (0.25, 1, 0)、默认高抛物线（[L284-L292](../../../raw/current/scripts/prefabs/queen_torch.lua#L284-L292)） |
 | 被偏转重掷 | OnDeflect 配置 | 暂用 speed 5／偏移 (0, 0.5, 0)／低抛掷向反方向 3 单位，随后恢复 speed 15／高抛（[L168-L182](../../../raw/current/scripts/prefabs/queen_torch.lua#L168-L182)） |
@@ -65,8 +65,8 @@ status: active
 | API／数据：`gestaltflame` 标签 | 地面点燃态（burning→`fire` 标签）被瘴气系统认作火焰源使瘴气消退；firedetector 的 NOTAGS 排除该标签实体 | 地面点燃态；瘴气按 FIRE_RADIUS 搜索 `fire`/`heatstar` 后逐个测试 | [TestFireFn](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L414-L418)、[消费](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L462-L469)、[firedetector](../../../raw/current/scripts/components/firedetector.lua#L1) |
 | API／数据：`FindClosestQueenTorch`（驱影） | 文件级全局函数在 `TORCHES` 光实体注册表上按 `QUEEN_TORCH_RADIUS_SQ` 找最近光（[L17-L41](../../../raw/current/scripts/prefabs/queen_torch.lua#L17-L41)）；逃跑入口 `BrainCommon.RunAwayFromQueenTorch` 距 10 逃、距 15 停（[braincommon.lua#L663-L672](../../../raw/current/scripts/brains/braincommon.lua#L663-L672)） | 双端可查（注册在 `SetPristine` 前）；7 个 Brain 挂逃跑节点（grep 核验行号：shadowcreaturebrain 88、nightmarecreaturebrain 46、nightmaremonkeybrain 27、oceanshadowcreaturebrain 96、shadow_leechbrain 35、hostedbrain 123、charlie_boss_runnerbrain 44）；modmain 须经 `GLOBAL.` 访问 | 本页源码入口如前；Brain 内部机制 Wiki 待建 |
 | API／数据：生成／行为门控（同函数消费端） | 幻觉不在光域生成（[hallucinations.lua#L145-L158](../../../raw/current/scripts/components/hallucinations.lua#L145-L158)）；shadeling 光域内直接 `Despawn`（[ruins_shadeling.lua#L72-L75](../../../raw/current/scripts/prefabs/ruins_shadeling.lua#L72-L75)）；Grim Harrier 不索敌/不保持目标（[charlie_boss_runner.lua#L26-L36](../../../raw/current/scripts/prefabs/charlie_boss_runner.lua#L26-L36)）；影 parasites 不保持目标（[hats.lua#L5565-L5567](../../../raw/current/scripts/prefabs/hats.lua#L5565-L5567)）；海影不传送登船（[oceanshadowcreature.lua#L44-L45](../../../raw/current/scripts/prefabs/oceanshadowcreature.lua#L44-L45)）；影之手消散（[shadowhand.lua#L152-L156](../../../raw/current/scripts/prefabs/shadowhand.lua#L152-L156)）；怕光影兽消失（[shadowskittish.lua#L15-L19](../../../raw/current/scripts/prefabs/shadowskittish.lua#L15-L19)）；噩梦岩柱休眠（[nightmarerock.lua#L156-L159](../../../raw/current/scripts/prefabs/nightmarerock.lua#L156-L159)）；Wavey Jones 恐惧逃离（[waveyjones.lua#L66-L74](../../../raw/current/scripts/prefabs/waveyjones.lua#L66-L74)） | 各自 Update/retarget/KeepTarget 时机，详见锚点 | 各源码入口如前；暗影生物 Wiki 待建 |
-| 关联 Prefab：`queen_torch_fx` | 装备时生成（[onequip](../../../raw/current/scripts/prefabs/queen_torch.lua#L92-L96)），`AttachToOwner`：SetParent＋`Follower:FollowSymbol(swap_object)`＋highlightchild/colouradder（[L315-L322](../../../raw/current/scripts/prefabs/queen_torch.lua#L315-L322)） | 装备态；卸下即 Remove；`persists=false` 不进存档 | [fxfn](../../../raw/current/scripts/prefabs/queen_torch.lua#L324-L351)；[[reference/components/highlightchild#关键接口]]、[[reference/components/colouradder#关键接口]] |
-| 关联 Prefab：`queen_torchlight` | 装备/点燃时生成并 `SetParent`（[L98-L101](../../../raw/current/scripts/prefabs/queen_torch.lua#L98-L101)、[IgniteTossed](../../../raw/current/scripts/prefabs/queen_torch.lua#L135-L146)）；`OnRemoveEntity` 从 TORCHES 注销 | 光域判定与驱动声音都在该实体；休眠时停 `queentorch_LP` 循环音（[L353-L361](../../../raw/current/scripts/prefabs/queen_torch.lua#L353-L361)）；`persists=false`，存档只记 `lit`/`thrower` 由 OnLoad 重建（[L212-L228](../../../raw/current/scripts/prefabs/queen_torch.lua#L212-L228)） | [torchlightfn](../../../raw/current/scripts/prefabs/queen_torch.lua#L370-L404) |
+| 关联 Prefab：`queen_torch_fx`（光／FX 参数总表归 [[reference/prefabs/wormlight#注册与构造|灯具光源族]]） | 装备时生成（[onequip](../../../raw/current/scripts/prefabs/queen_torch.lua#L92-L96)），`AttachToOwner`：SetParent＋`Follower:FollowSymbol(swap_object)`＋highlightchild/colouradder（[L315-L322](../../../raw/current/scripts/prefabs/queen_torch.lua#L315-L322)） | 装备态；卸下即 Remove；`persists=false` 不进存档 | [fxfn](../../../raw/current/scripts/prefabs/queen_torch.lua#L324-L351)；[[reference/components/highlightchild#关键接口]]、[[reference/components/colouradder#关键接口]] |
+| 关联 Prefab：`queen_torchlight`（光参数与 `TORCHES` 总表归 [[reference/prefabs/wormlight#组件同步与全局表|灯具光源族]]） | 装备/点燃时生成并 `SetParent`（[L98-L101](../../../raw/current/scripts/prefabs/queen_torch.lua#L98-L101)、[IgniteTossed](../../../raw/current/scripts/prefabs/queen_torch.lua#L135-L146)）；`OnRemoveEntity` 从 TORCHES 注销 | 光域判定与驱动声音都在该实体；休眠时停 `queentorch_LP` 循环音（[L353-L361](../../../raw/current/scripts/prefabs/queen_torch.lua#L353-L361)）；`persists=false`，存档只记 `lit`/`thrower` 由 OnLoad 重建（[L212-L228](../../../raw/current/scripts/prefabs/queen_torch.lua#L212-L228)） | [torchlightfn](../../../raw/current/scripts/prefabs/queen_torch.lua#L370-L404) |
 | 资源：anim／声音／皮肤 | `anim/queen_torch.zip`（bank/build，含 `swap_queen_torch` 持握符号、`spin_loop` 投掷动画）、`sound/common.fsb`、小地图 `queen_torch.png`；皮肤 `queen_torch_lotus`（暗花火炬 Dark Bloom Torch）经 `OverrideItemSkinSymbol` 与带皮肤 fx 生效 | 皮肤注册与名单：[skinprefabs.lua#L9830-L9835](../../../raw/current/scripts/prefabs/skinprefabs.lua#L9830-L9835)、[prefabskins.lua#L1518-L1521](../../../raw/current/scripts/prefabskins.lua#L1518-L1521)；中文名 [po SKIN_NAMES](../../../raw/current/scripts/languages/chinese_s.po#L406394-L406397)、描述 [po SKIN_DESCRIPTIONS](../../../raw/current/scripts/languages/chinese_s.po#L385669-L385672) | 资源本体不分发；皮肤换装写法见 [onequip](../../../raw/current/scripts/prefabs/queen_torch.lua#L82-L88) |
 
 ## 典型接入
@@ -105,3 +105,4 @@ AddRecipe2("queen_torch", {
 - 结构检查：2026-11-07 validate_page.py 0 issue（107 行 / 23362 字节，standard 档内）与 validate_source_links.py --strict 0 error 0 warning（89 处行引用、37 个源文件）。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]；同批照明对照 [[reference/prefabs/torch|火炬（torch）]]、[[reference/prefabs/lantern|提灯（lantern）]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

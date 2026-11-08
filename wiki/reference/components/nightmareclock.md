@@ -1,12 +1,12 @@
 ---
 title: "nightmareclock：洞穴梦魇周期时钟"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "洞穴世界专属相位时钟：calm/warn/wild/dawn 四相位按段长自动轮转，经网络变量同步全端，驱动世界状态变量与梦魇环境音。"
 aliases: [梦魇时钟, 噩梦周期, nightmareclock, 洞穴相位]
 tags: [component, state-machine, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/nightmareclock.lua", "prefabs/cave_network.lua", "components/worldstate.lua", "prefabs/atrium_gate.lua", "components/charliecutscene.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -66,3 +66,4 @@ end
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

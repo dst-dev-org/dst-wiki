@@ -1,12 +1,12 @@
 ---
 title: "instrument"
 created: "2026-10-20"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "演奏前／听众／结束回调与范围搜索；效果筛选、动画声音和按次消耗由原乐器／动作链协作。"
 aliases: ["排箫听众搜索半径扩大百分之五十", "乐器演奏范围", "instrument"]
 tags: [component, item, actions, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/instrument.lua", "prefabs/panflute.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -67,3 +67,4 @@ end)
 - 结构检查：本批格式、来源、源码引用／行号、大小与登记通过；完整范围配置例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；主机／远端、听众边界、PVP／骑乘／冻结、农作照料、技能免耗、耗尽与其他模组覆盖待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

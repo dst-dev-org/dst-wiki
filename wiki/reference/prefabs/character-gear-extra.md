@@ -1,13 +1,13 @@
 ---
 title: "角色专属装备补遗（伯尼／投泥带／电刑机）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 size_class: standard
 summary: "三组角色专属装备选例（不是全部角色专属装备）：Willow 的伯尼（inactive 才可装备、bernieowner 限装、fuel↔health 与腐坏）、Wurt 的影/月投泥带（rechargeable 全背包同步放电、地形改造与月态鱼人突变）、WX-78 的电刑机遥控（技能门禁、100 用、无人机与充电）。全部依赖角色标签或技能树，不是通用装备。"
 aliases: ["bernie_inactive", "bernie_active", "bernie_big", "wurt_swampitem_shadow", "wurt_swampitem_lunar", "wx78_drone_zap", "wx78_drone_zap_remote", "伯尼", "伯尼！", "投泥带", "绝望投泥带", "光芒投泥带", "电刑机", "电刑机控制器", "角色专属装备补遗", "角色装备选例"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/bernie_inactive.lua", "prefabs/bernie_active.lua", "prefabs/bernie_common.lua", "prefabs/willow.lua", "prefabs/wurt_terraform_item.lua", "prefabs/wx78_drone_zap.lua", "prefabs/skilltree_wx78.lua", "prefabs/wx78_possessedbody.lua", "brains/berniebrain.lua", "components/equippable.lua", "components/fueled.lua", "components/rechargeable.lua", "components/spellcaster.lua", "components/batteryuser.lua", "components/useableequippeditem.lua", "components/inventoryitem.lua", "recipes.lua", "tuning.lua", "constants.lua", "skins_defs_data.lua", "strings.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ OnUse 生成 `wx78_drone_zap` 并 SetOwner(doer)；监听 `ms_drone_zap_fired` �
 - 结构检查：validate_page 实测 78 行 / 13519 字节（standard 档 240 行／32 KiB 内）通过；strict 44 引用 0 错 0 警、37 唯一目标、9 源文件；record 后 22 组来源 unchanged。
 
 返回 [[reference/prefabs/staffs-character-index|法杖与角色道具]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

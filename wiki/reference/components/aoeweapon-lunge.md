@@ -1,12 +1,12 @@
 ---
 title: "aoeweapon_lunge"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "沿起终点线段与终点前方结算突刺命中、物品抛散和轨迹效果；位移由人物状态机完成。"
 aliases: ["aoeweapon_lunge", "突刺武器", "闪电长矛冲刺", "沿线范围攻击", "突刺宽度"]
 tags: [component, actions, callback, state-machine, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/aoeweapon_lunge.lua, components/aoeweapon_base.lua, components/combat.lua, prefabs/spear_wathgrithr.lua, prefabs/spear_gungnir.lua, stategraphs/SGwilson.lua, stategraphs/SGwilson_client.lua]
 reliability: verified
 validation: source-reviewed
@@ -83,3 +83,4 @@ AddPrefabPostInit("spear_wathgrithr_lightning_charged", ConfigureLunge)
 - 结构检查：本页已执行页面格式／本地链接及严格源码引用检查；上述完整 modmain 示例通过 Lua 5.1 syntax-only，不代表名称绑定或游戏效果验证。
 - 游戏运行：未运行；技能树／冷却、跨边缘位移、空距离、轨迹资源失败与其他模组叠加待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

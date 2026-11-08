@@ -1,13 +1,13 @@
 ---
 title: "枕头大战攻击碎屑与作物挖起表现族（attackfx_handpillow_petals 等 7 注册）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "两个共享工厂、互不相干宿主的 7 个联网一次性表现注册：pillow_equipment.lua 按 pillow_defs 四材质动态拼名的枕头攻击碎屑（零伤害武器的命中表现，击退结算在 pillow_common）、plant_normal.lua 的作物挖起三档尘土（挖起裁决在 workable 回调）；另记 plant_dug_small_fx 的骑枪冲锋与驼鹿冲撞两处清单外生成点。"
 aliases: ["attackfx_handpillow_petals", "attackfx_handpillow_kelp", "attackfx_handpillow_beefalowool", "attackfx_handpillow_steelwool", "plant_dug_small_fx", "plant_dug_medium_fx", "plant_dug_large_fx", "枕头大战", "yotr 枕头", "枕头攻击碎屑", "枕头命中特效", "作物挖起特效", "挖起尘土", "冲锋尘土", "驼鹿冲撞尘土"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/pillow_equipment.lua", "prefabs/pillow_defs.lua", "prefabs/pillow_common.lua", "prefabs/plant_normal.lua", "prefabs/veggies.lua", "prefabs/seeds.lua", "components/grower.lua", "components/crop.lua", "prefabs/player_common_extensions.lua", "stategraphs/SGwilson.lua", "prefabs/woodie.lua", "prefabs/cozy_bunnyman.lua", "brains/cozy_bunnymanbrain.lua", "prefabs/yotr_fightring.lua", "recipes.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 
 - 职责与适用：两个共享工厂、两个互不相干宿主的 **7 个联网一次性表现注册**。①`pillow_equipment.lua` 的 4 个枕头攻击碎屑 `attackfx_handpillow_petals`／`_kelp`／`_beefalowool`／`_steelwool`（按 `pillow_defs` 四材质动态拼名，yotr 2023 兔子年枕头大战的手持枕命中表现）；②`plant_normal.lua` 的 3 个作物挖起尘土 `plant_dug_small_fx`／`plant_dug_medium_fx`／`plant_dug_large_fx`（农作物与野生作物被铲挖起的三档表现）。注册行：[枕头 4 注册](../../../raw/current/scripts/prefabs/pillow_equipment.lua#L292-L297)、[挖起 3 注册](../../../raw/current/scripts/prefabs/plant_normal.lua#L321-L325)
 - 两种载体都是**联网动画壳、零玩法**：7 注册均 Transform／AnimState／Network＋`FX`／`NOCLICK` 标签＋`persists=false`，无 physics、无 combat。枕头碎屑寿命＝动画长度＋2 帧（`FX_EXTRA_TIME`）；挖起尘土监听 `animover` 走 `ErodeAway` 侵蚀。
-- 重要副作用：玩法结算都不在 FX 上——枕头命中是 **`TUNING.PILLOW_DAMAGE = 0` 的零伤害武器**（[tuning.lua](../../../raw/current/scripts/tuning.lua#L6909)），击退只在兔子人枕头大战小游戏里由 `pillow_common.DoKnockback` 推 `knockback` 事件，非小游戏目标只推 `damage = 0` 的 `attacked` 事件（仇恨）；挖起的产物掉落与本体移除在 workable 的 `OnDigUp` 与 `crop:Harvest`。
+- 重要副作用：玩法结算都不在 FX 上——枕头命中是 **`TUNING.PILLOW_DAMAGE = 0` 的零伤害武器**（[tuning.lua](../../../raw/current/scripts/tuning.lua#L6910)），击退只在兔子人枕头大战小游戏里由 `pillow_common.DoKnockback` 推 `knockback` 事件，非小游戏目标只推 `damage = 0` 的 `attacked` 事件（仇恨）；挖起的产物掉落与本体移除在 workable 的 `OnDigUp` 与 `crop:Harvest`。
 - 修改边界：只覆盖 7 注册的工厂、生成点、触发链、端模型与清理；枕头大战玩法（yotr_fightring 场地、兔人 AI、奖品结算）与农耕玩法（crop 生长、农场土壤）只在辨析内说明不展开。清单外发现：`plant_dug_small_fx` 另有两处生成点——yoth 骑枪冲锋（`player_common_extensions.lua` 的 `OnStartJoust`）与 Woodie 驼鹿形态冲撞（`SGwilson` 的 `tackle_start` 状态），已并入生成点表。
 - 名称：宿主官方名——手持枕 4 件 `HANDPILLOW_*`（"花朵枕头／海带枕头／皮弗娄牛毛枕头／钢丝绵枕头"）、身体枕 4 件 `BODYPILLOW_*`（"××枕头盔甲"）、`PLANT_NORMAL`＝"农作物"、`PLANT_NORMAL_GROUND`＝"野生作物"（锚点见[验证记录](#验证记录)）；7 个覆盖注册名自身在简中 `chinese_s.po` 均无 `STRINGS.NAMES.*` 键，标题与正文效果描述**非官方译名**。
 
@@ -138,3 +138,4 @@ end
 - [[reference/components/minigame|小游戏组件]]（枕头大战场地的玩法载体；参与资格判定即 FX 击退分流条件）
 - [[reference/components/workable|workable 组件]]（DIG 完成回调与本体移除的宿主协议）
 - 返回 [[reference/prefabs/fx-material-index|采集、制作、碎裂与生成烟]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

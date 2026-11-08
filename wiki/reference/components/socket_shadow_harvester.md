@@ -1,12 +1,12 @@
 ---
 title: "socket_shadow_harvester：WX-78 影子收割无人机调度"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "为 WX-78 影子插座收割形态调度 wx78_shadowdrone_harvester 宠物自动拾取周围可采物品，玩家手动采集也会触发补发调度。"
 aliases: [影子收割插座, 影子收割无人机调度, socket_shadow_harvester]
 tags: [component, callback, ai]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/socket_shadow_harvester.lua", "prefabs/wx78_common.lua", "brains/wx78_shadowdrone_harvesterbrain.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -52,7 +52,7 @@ harvester:SetHarvestRadius(TUNING.SKILLS.WX78.SHADOWDRONE_HARVESTER_FINDITEM_RAD
 inst:RemoveComponent("socket_shadow_harvester")
 ```
 
-- 调整与验证：半径调谐值见 ([tuning.lua:7574-7582](../../../raw/current/scripts/tuning.lua#L7574-L7582)（周期 1.5s、默认 6、强化 10、上限 2/4 只）；自制形态可传自定义半径。
+- 调整与验证：半径调谐值见 ([tuning.lua:7574-7582](../../../raw/current/scripts/tuning.lua#L7575-L7583)（周期 1.5s、默认 6、强化 10、上限 2/4 只）；自制形态可传自定义半径。
 
 ## 常见陷阱与限制
 
@@ -67,3 +67,4 @@ inst:RemoveComponent("socket_shadow_harvester")
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

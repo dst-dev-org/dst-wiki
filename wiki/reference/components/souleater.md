@@ -1,13 +1,13 @@
 ---
 title: "souleater"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "食魂者能力：EAT 灵魂物品时取出单件、推 oneatsoul 事件并回调宿主效果，随后删除灵魂；原版唯一宿主是沃拓克斯。"
 aliases: ["souleater", "食魂者", "食魂组件"]
 tags: [component, actions, callback]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/souleater.lua", "prefabs/wortox.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -61,3 +61,4 @@ end)
 - 结构检查：2026-10-28 validate_page.py 通过；validate_source_links.py --strict 锚点通过（见批级记录）。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

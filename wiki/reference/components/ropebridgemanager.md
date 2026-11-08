@@ -1,12 +1,12 @@
 ---
 title: "ropebridgemanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "洞穴世界绳桥瓦片管理器：把地皮换成 ROPE_BRIDGE 并维护血量/破坏/动画四张网格，处理地震按整桥伤害与 quake_blocker 保护。"
 aliases: ["ropebridgemanager", "绳桥管理器", "绳桥瓦片", "绳桥地震破坏"]
 tags: [component, mechanism, worldgen]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/ropebridgemanager.lua", "prefabs/rope_bridge.lua", "prefabs/dock_damage.lua", "prefabs/cave.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -27,7 +27,7 @@ status: active
 | 接口 | 条件、作用与证据 |
 |---|---|
 | `QueueCreateRopeBridgeAtPoint(x,y,z,data?)` | 预登记后按 `base_time+random*rand`（默认 0.5+0.3）延迟建格；data 可给 base_time/random_time/direction/icon_offset。已有数据的瓦片忽略（防重复排队）。[实现](../../../raw/current/scripts/components/ropebridgemanager.lua#L169-L184) |
-| `CreateRopeBridgeAtTile(tile_x,tile_y,x?,z?,direction,icon_offset?)` | `SetTile` 为 ROPE_BRIDGE（先记 undertile，源码注明顺序是绕过 SetTile 清 undertile 的 terraforming 回调），duration 网格写 `{ROPEBRIDGE_HEALTH(200), direction}`，生成 rope_bridge_fx（按 direction 定 0/180/±90 朝向）。[实现](../../../raw/current/scripts/components/ropebridgemanager.lua#L134-L167) [血量](../../../raw/current/scripts/tuning.lua#L8466-L8469) |
+| `CreateRopeBridgeAtTile(tile_x,tile_y,x?,z?,direction,icon_offset?)` | `SetTile` 为 ROPE_BRIDGE（先记 undertile，源码注明顺序是绕过 SetTile 清 undertile 的 terraforming 回调），duration 网格写 `{ROPEBRIDGE_HEALTH(200), direction}`，生成 rope_bridge_fx（按 direction 定 0/180/±90 朝向）。[实现](../../../raw/current/scripts/components/ropebridgemanager.lua#L134-L167) [血量](../../../raw/current/scripts/tuning.lua#L8467-L8470) |
 | `DamageRopeBridgeAtTile(tx,ty,damage)` | 血量钳制 [0,200] 后更新 dock_damage 贴片百分比；血量 0 时以 `DEFAULT_BREAKDATA`（3 秒特效、破坏 +70 帧）排破坏；无数据或已 0 返回 nil，否则返回新血量。[实现](../../../raw/current/scripts/components/ropebridgemanager.lua#L265-L287) [修复消费](../../../raw/current/scripts/prefabs/dock_damage.lua#L22-L41) |
 | `QueueDestroyForRopeBridgeAtPoint(x,y,z,data?)` | 标记 marked_for_delete，默认 2+70~80 帧后销毁并广播瓦片变更警告；quake 路径额外在 shaketime 抖动、fxtime 警告。[实现](../../../raw/current/scripts/components/ropebridgemanager.lua#L225-L258) |
 | `DestroyRopeBridgeAtPoint(x,y,z,data?)` | 非 ROPE_BRIDGE 瓦片返回 false；恢复 undertile 记录的原瓦片（无记录则 `IMPASSABLE`），清四张网格并 KillFX。[实现](../../../raw/current/scripts/components/ropebridgemanager.lua#L186-L223) |
@@ -63,3 +63,4 @@ TheWorld.components.ropebridgemanager:QueueCreateRopeBridgeAtPoint(
 
 相关：[[reference/components/caveins]]、[[reference/components/undertile]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

@@ -1,12 +1,12 @@
 ---
 title: fishable
 created: 2026-10-21
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 为鱼塘／绿洲湖宿主提供鱼量计数、上钩实体化、放生与定时刷新的服务端组件
 aliases: ["鱼塘鱼量", "pond 钓鱼", "上钩接口 HookFish", "鱼群刷新"]
 tags: [component, lifecycle, loot]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/fishable.lua", "components/fishingrod.lua", "prefabs/pond.lua", "prefabs/oasislake.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -93,3 +93,4 @@ AddPrefabPostInit("pond", TweakPond)
 - 游戏运行：未运行。
 - 结构检查：validate_page.py 本页 0 error／0 warning（93 行，低于 180 行／14 KiB 上限）；validate_source_links.py --strict 0 error／0 warning，本页源码引用 23 处（唯一目标 23 个，覆盖 5 个源文件）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

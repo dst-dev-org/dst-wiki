@@ -1,12 +1,12 @@
 ---
 title: "migrationpetowner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "轻量透传组件：让一个物品声明并查到寄养在自己身上的宠物，供跨世界迁移与虚拟房间重置逻辑保留／放行。"
 aliases: ["迁移宠物持有者", "随身宠物迁移", "migrationpetowner"]
 tags: [component, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["components/migrationpetowner.lua", "components/inventory.lua", "components/worldmigrator.lua", "components/virtualroomset.lua", "prefabs/beef_bell.lua", "prefabs/hats.lua"]
 reliability: verified
@@ -37,7 +37,7 @@ status: active
 
 - 前提与选择：宿主是有 inventoryitem 的物品；回调按需从 spawner／petleash 等来源解析宠物实体。消费方按 tag 与组件查询，不需要额外注册。
 - 生效与撤销：`components/inventory` 在迁移收集时把物品的全部宠物并入 `inst.migrationpets`（[L274-L281](../../../raw/current/scripts/components/inventory.lua#L274-L281)）；`worldmigrator` 用 `GetPet()` 禁止带宠物品单独迁移，并在放行前调 `item.OnStopUsing` 解除配对（牛铃场景，[L165-L183](../../../raw/current/scripts/components/worldmigrator.lua#L165-L183)）；`virtualroomset` 在虚拟房间重置时保留带宠物品（[L1008](../../../raw/current/scripts/components/virtualroomset.lua#L1008)、[L1017](../../../raw/current/scripts/components/virtualroomset.lua#L1017)）。
-- 原版依据：牛铃 `beef_bell.lua` 回调 `GetAliveBeefalo`（[L359-L360](../../../raw/current/scripts/prefabs/beef_bell.lua#L359-L360)）； Polly 罗杰帽两处与 Princess 帽各挂一个，注释都是 "Needed for pets being on the hat and not the player"（[hats.lua#L2644-L2645](../../../raw/current/scripts/prefabs/hats.lua#L2644-L2645)、[L6425-L6426](../../../raw/current/scripts/prefabs/hats.lua#L6428-L6429)）。
+- 原版依据：牛铃 `beef_bell.lua` 回调 `GetAliveBeefalo`（[L359-L360](../../../raw/current/scripts/prefabs/beef_bell.lua#L360-L361)）； Polly 罗杰帽两处与 Princess 帽各挂一个，注释都是 "Needed for pets being on the hat and not the player"（[hats.lua#L2644-L2645](../../../raw/current/scripts/prefabs/hats.lua#L2644-L2645)、[L6425-L6426](../../../raw/current/scripts/prefabs/hats.lua#L6428-L6429)）。
 
 ```lua
 AddPrefabPostInit("my_pet_carrier", function(inst)
@@ -63,3 +63,4 @@ end)
 ## 相关链接
 
 - [[reference/components/worldmigrator]]：跨分片迁移门户与宠物保留协议。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

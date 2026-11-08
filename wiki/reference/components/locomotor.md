@@ -1,12 +1,12 @@
 ---
 title: "locomotor"
 created: "2026-10-12"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "配置来源化移动倍率、目的地与动作衔接，区分停步、取消动作和玩家客户端预测。"
 aliases: ["生物移动加速", "移动倍率", "走到目标", "跟随移动", "取消移动动作", "locomotor"]
 tags: [component, creature, mechanism, lifecycle, server-client, network-sync]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/locomotor.lua", "prefabs/pigman.lua", "prefabs/player_common.lua", "stategraphs/SGpig.lua", "stategraphs/commonstates.lua", "behaviours/follow.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ source 使用当前猪人，key 改为目标模组唯一命名。1.2 是倍率�
 ## 相关链接
 
 - [[reference/components/platformhopdelay]]：船平台起跳延迟 ticks，取双侧最大值。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

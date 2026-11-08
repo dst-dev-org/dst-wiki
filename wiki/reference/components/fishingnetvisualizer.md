@@ -1,12 +1,12 @@
 ---
 title: fishingnetvisualizer
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "渔网的表现与捕获执行实体：抛收网运动、动画事件、溅水特效，以及把附近可拾取物卷入网中再撒回投掷者脚边。"
 aliases: ["渔网表现", "渔网视觉", "投网动画", "网捕获", "fishingnetvisualizer"]
 tags: [component, state-machine, network-sync]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/fishingnetvisualizer.lua", "components/fishingnet.lua", "prefabs/fishingnetvisualizer.lua", "prefabs/fishingnetvisualizerfx.lua", "prefabs/fishingnet.lua", "stategraphs/SGfishingnetvisualizer.lua", "stategraphs/SGwilson.lua", "stategraphs/SGantchovies.lua", "components/fishschool.lua", "prefabs/antchovies.lua", "prefabs/boatpatch.lua", "prefabs/player_common.lua", "tuning.lua", "vecutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -101,3 +101,4 @@ status: active
 
 相关：[[reference/components/fishingnet]]、[[reference/components/fishingrod]]、[[reference/components/fishable]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

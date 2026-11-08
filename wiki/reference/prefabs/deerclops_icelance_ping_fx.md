@@ -1,12 +1,12 @@
 ---
 title: "晶体独眼巨鹿冰圈特效组（deerclops_icelance_ping_fx 等同文件 4 注册）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "晶体独眼巨鹿四件套：冰枪落点标记环、带灭火／加冷／降温／昏沉的冰圈、足迹冰环与燃烧附火；冰圈是玩法实体，ping 与 spikefire 为表现层。"
 aliases: ["deerclops_icelance_ping_fx", "deerclops_impact_circle_fx", "deerclops_aura_circle_fx", "deerclops_spikefire_fx", "晶体独眼巨鹿冰圈", "冰枪落点标记", "ice lance fx", "mutated deerclops fx"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/deerclops_mutated_fx.lua", "stategraphs/SGdeerclops.lua", "prefabs/deerclops.lua", "components/freezable.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -36,7 +36,7 @@ status: active
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
 | 生成者：SGdeerclops "icelance" | 第 30 帧按目标方向预测落点（距离 clamp 进 `ICELANCE_RANGE 6-14`）生成 ping；第 60 帧 KillFX ping、落点生成 impact、设伤害 200 并三次 `DoIceLanceAOE` | 进入条件：`hasicelance`（突变体专属）且冰眼未烧毁、目标在最小射程外或自身燃烧 | [ping](../../../raw/current/scripts/stategraphs/SGdeerclops.lua#L1130-L1134)、[impact 与 AOE](../../../raw/current/scripts/stategraphs/SGdeerclops.lua#L1144-L1163)、[状态](../../../raw/current/scripts/stategraphs/SGdeerclops.lua#L1054-L1201)、[门槛](../../../raw/current/scripts/stategraphs/SGdeerclops.lua#L293-L301) |
-| 宿主伤害：DoIceLanceAOE | 与 FX 无读写：落点半径内 `combat:DoAttack`（每目标一次）；已冻结目标推 `knockback`；命中经宿主 OnHitOther 额外 AddColdness(`freezepower`，icelance 期间 99)——冻结来自这里而非冰圈 | [AOE](../../../raw/current/scripts/stategraphs/SGdeerclops.lua#L228-L249)、[OnHitOther](../../../raw/current/scripts/prefabs/deerclops.lua#L207-L215)、[freezepower](../../../raw/current/scripts/prefabs/deerclops.lua#L668-L673) | 数值 200／射程 [tuning](../../../raw/current/scripts/tuning.lua#L7926-L7927) |
+| 宿主伤害：DoIceLanceAOE | 与 FX 无读写：落点半径内 `combat:DoAttack`（每目标一次）；已冻结目标推 `knockback`；命中经宿主 OnHitOther 额外 AddColdness(`freezepower`，icelance 期间 99)——冻结来自这里而非冰圈 | [AOE](../../../raw/current/scripts/stategraphs/SGdeerclops.lua#L228-L249)、[OnHitOther](../../../raw/current/scripts/prefabs/deerclops.lua#L207-L215)、[freezepower](../../../raw/current/scripts/prefabs/deerclops.lua#L668-L673) | 数值 200／射程 [tuning](../../../raw/current/scripts/tuning.lua#L7927-L7928) |
 | 生成者：SGdeerclops "icegrow" 与脚步 | `icegrow` 第 9 帧在脚下生成 aura 并 GrowFX；此后 `DeerclopsFootstep` 每步 KillFX 旧环再生成新环（移动时前方 1.5 距离）；`death`／`stagger_pre` 等以 KillFX(true) 快速清除 | `hasiceaura` 且有战斗目标才生成；[脚步](../../../raw/current/scripts/stategraphs/SGdeerclops.lua#L348-L364)、[生成](../../../raw/current/scripts/stategraphs/SGdeerclops.lua#L1243-L1254)、[死亡清除](../../../raw/current/scripts/stategraphs/SGdeerclops.lua#L833-L835)、[踉跄清除](../../../raw/current/scripts/stategraphs/SGdeerclops.lua#L1556-L1558) | impact 半径为 5.5；aura 经 GrowFX 从 0.25 开始，按源码 `r*0.98+5.5+0.02` 一次更新即到 5.765，随后不再增长 |
 | 冰圈玩法作用：OnUpdateIceCircle | 灭火（burnable 且无 fueled）、加冷 0.1（coldness 低于 resistance×0.7 才加，`nofreeze=true` 不直接触发 Freeze，见 [[reference/components/freezable#关键流程]]）、高于 -2 时降温到 -2；未昏睡且 grog<0.1 时 AddGrogginess(0.1) | impact 与 aura 共用同一函数；`NOTAGS` 排除 ghost/limbo/deerclops/flight/invisible 与各类燃料标签 | [作用](../../../raw/current/scripts/prefabs/deerclops_mutated_fx.lua#L220-L248)、[nofreeze 语义](../../../raw/current/scripts/components/freezable.lua#L137-L158)、[数值](../../../raw/current/scripts/tuning.lua#L698-L699) |
 | 生成者：deerclops.lua Mutated_OnIgnite | 巨鹿被点燃（非全冰封）时生成 spikefire，Follower 跟随 `swap_fire_0/1/2` 符号；`Mutated_OnExtinguish` KillFX | 火焰只是燃烧表现；燃烧逻辑在宿主 burnable | [点燃](../../../raw/current/scripts/prefabs/deerclops.lua#L307-L315)、[熄灭](../../../raw/current/scripts/prefabs/deerclops.lua#L318-L321)、[依赖](../../../raw/current/scripts/prefabs/deerclops.lua#L37-L41) |
@@ -65,3 +65,4 @@ status: active
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

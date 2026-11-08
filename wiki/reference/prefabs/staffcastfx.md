@@ -1,12 +1,12 @@
 ---
 title: "施法与怀表回溯表现（staffcastfx）"
 created: "2026-11-02"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "法杖、抛币和怀表施法及回溯的八个联网动画注册，由玩家状态机选择、染色并管理。"
 aliases: ["staffcastfx", "staffcastfx_mount", "cointosscastfx", "cointosscastfx_mount", "pocketwatch_cast_fx", "pocketwatch_cast_fx_mount", "pocketwatch_warpback_fx", "pocketwatch_warpbackout_fx", "施法特效", "怀表回溯特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/staffcastfx.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "fx.lua", "prefabs/player_common.lua", "prefabs/pig_coin.lua", "prefabs/pocketwatch.lua"]
 reliability: verified
 validation: source-reviewed
@@ -63,3 +63,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

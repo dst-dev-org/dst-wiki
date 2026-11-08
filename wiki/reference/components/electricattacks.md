@@ -1,12 +1,12 @@
 ---
 title: "electricattacks"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "管理攻击者电击来源，让 combat 在未指定刺激类型时选用电击，并区分湿度增伤、免疫与清理。"
 aliases: ["electricattacks", "攻击带电", "电击来源", "电击湿度增伤"]
 tags: [component, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/electricattacks.lua", "util/sourcemodifierlist.lua", "components/combat.lua", "components/weapon.lua", "componentutil.lua", "entityscript.lua", "tuning.lua", "prefabs/foodbuffs.lua", "prefabs/lightninggoat.lua"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ end)
 
 相关：[[reference/components/combat]]；[[reference/components/weapon]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

@@ -1,13 +1,13 @@
 ---
 title: "海树波纹、根须、倒伏与落叶表现（oceantree FX 族）"
 created: "2026-11-04"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 size_class: complex
 summary: "海树（疙瘩树）、树干柱与大树干的 12 个表现子注册：三档水面涟漪／水下根影、倒伏树干、柱体涟漪／根影与柱体落叶、大树干涟漪／根影；逐项记录工厂、端、生成点、父挂与清理。"
 aliases: ["oceantree_ripples_short", "oceantree_ripples_normal", "oceantree_ripples_tall", "oceantree_roots_short", "oceantree_roots_normal", "oceantree_roots_tall", "oceantree_falling", "oceantree_pillar_ripples", "oceantree_pillar_roots", "oceantree_pillar_leaves", "watertree_pillar_ripples", "watertree_pillar_roots", "海树", "疙瘩树", "高出平均值的树干", "大树干", "海树波纹", "海树根须", "海树落叶", "倒伏树干"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/oceantree.lua", "prefabs/oceantree_pillar.lua", "prefabs/watertree_pillar.lua", "prefabs/waxed_plants.lua", "prefabs/waxed_plant_common.lua", "fx.lua", "entityscript.lua", "components/growable.lua", "componentactions.lua", "map/waterlog_worldgen.lua", "tuning.lua", "constants.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -109,3 +109,4 @@ return AttachOceanTreeFx
 - 2026-11-05 增补：并入 `prefabs/watertree_pillar.lua` 的 2 个注册 `watertree_pillar_ripples`／`watertree_pillar_roots`（注册 [L581/L582](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L580-L582)，生成点唯一：宿主 `fn` 末尾 [L509/L512](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L509-L513)）。本次完整读取 `watertree_pillar.lua` 全文并复读 `oceantree_pillar.lua` 的工厂／注册／生成／清理对照段；以完整名全域 grep 反查两名，除注册、宿主生成外无其他命中，`stategraphs/` 无命中。复核确认两 FX 与柱体两件同构，差异在 bank／build（`oceantree_pillar` 一代资源 vs 柱体 `oceantree_pillar_small`）、混色取 `TUNING.OCEAN_SHADER.EFFECT_TINT_AMOUNT`（0.6）与宿主无倒伏／烧毁手动清理路径；台账批 9"同 bank"的表述据此修正为"同名同动画、不同 bank"。`.po` 对两名定向检索 0 命中，`WATERTREE_PILLAR`＝"大树干"已核。页面注册数 10→12，aliases 增补两名与"大树干"，summary 同步扩充，`sources` 原已列 `watertree_pillar.lua`、新增 `map/waterlog_worldgen.lua`。未覆盖新增项：动画包帧数与视觉、宿主本体玩法（另页主题）、两 FX 在读档时的引擎级联回收；未运行游戏。
 
 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]；倒伏落水水花见 [[reference/prefabs/splash_green|海面绿花与冲滩水洼]]，海树叶飘落／砍伐叶响见 [[reference/prefabs/sugarwood_leaf_fx|特殊树叶与死亡烟]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

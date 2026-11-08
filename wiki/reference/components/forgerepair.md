@@ -1,12 +1,12 @@
 ---
 title: "forgerepair"
 created: "2026-10-26"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "修理包侧按护甲／次数／燃料优先分支补满目标，成功后消费材料并回调，经 REPAIR 动作匹配锻造材料标签。"
 aliases: ["锻造修理包", "亮茄修理包", "虚空修理包", "forgerepair"]
 tags: [component, item, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/forgerepair.lua", "components/forgerepairable.lua", "prefabs/forge_repair_kits.lua", "componentactions.lua", "actions.lua", "constants.lua", "recipes.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua"]
 reliability: verified
 validation: source-reviewed
@@ -73,3 +73,4 @@ forge_repair_kits 的 MakeKit 在主模拟添加 stackable、forgerepair，设�
 
 相关：[[reference/components/forgerepairable]]；普通材料修复见 [[reference/components/repairer]]；衣物缝补见 [[reference/components/sewing]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

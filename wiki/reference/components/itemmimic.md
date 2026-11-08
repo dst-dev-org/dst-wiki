@@ -1,12 +1,12 @@
 ---
 title: "itemmimic：拟态物品现形与 TurnEvil"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "把物品登记为拟态：按装备槽/持有状态监听使用事件，到点或自动到期时现形替换为 itemmimic_revealed 并惊吓掉落者。"
 aliases: [物品拟态, 拟态物品现形, itemmimic, 拟怪物品]
 tags: [component, callback, item, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/itemmimic.lua", "components/itemmimicconfig.lua", "componentutil.lua", "components/shadowthrall_mimics.lua", "components/builder.lua", "actions.lua", "components/trader.lua", "components/hauntable.lua", "components/pocketwatch_dismantler.lua", "prefabs/staff_common.lua", "prefabs/wx78_mimicspawner.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -58,7 +58,7 @@ inst.components.itemmimic:SetNoLoot(true)  -- 现形怪不掉该物品承载的�
 inst:RemoveComponent("itemmimic")
 ```
 
-- 调整与验证：自动现形周期为 `ITEMMIMIC_AUTO_REVEAL_BASE + rand×RAND`（各一天，[调谐](../../../raw/current/scripts/tuning.lua#L8518-L8519)）；现形实体与惊吓表现由 `itemmimic_revealed` prefab 决定，本页未核验。
+- 调整与验证：自动现形周期为 `ITEMMIMIC_AUTO_REVEAL_BASE + rand×RAND`（各一天，[调谐](../../../raw/current/scripts/tuning.lua#L8519-L8520)）；现形实体与惊吓表现由 `itemmimic_revealed` prefab 决定，本页未核验。
 
 ## 常见陷阱与限制
 
@@ -74,3 +74,4 @@ inst:RemoveComponent("itemmimic")
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

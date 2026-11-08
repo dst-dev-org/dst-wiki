@@ -1,12 +1,12 @@
 ---
 title: "钓鱼与水上工具族（桨／淡水钓竿／海钓竿／渔网）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-10"
 type: prefab
 summary: "四个源码文件注册的手持水上工具：船桨（ROW 动作推动船）、淡水钓竿（对鱼群 FISH/REEL）、海钓竿（浮子＋鱼饵的海洋钓鱼系统）与渔网（CAST_NET 拖网），覆盖注册清单、动作链、耐久、饵具附属与获取途径。"
 aliases: ["oar", "oar_driftwood", "malbatross_beak", "oar_monkey", "yotd_oar", "fishingrod", "oceanfishingrod", "fishingnet", "桨", "船桨", "浮木桨", "战桨", "邪天翁喙", "利爪船桨", "淡水钓竿", "海钓竿", "渔网", "鱼竿", "钓竿", "划桨", "钓鱼工具", "船桨耐久", "海洋钓鱼", "拖网"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/oar.lua", "prefabs/fishingrod.lua", "prefabs/oceanfishingrod.lua", "prefabs/fishingnet.lua", "debugcommands.lua", "prefabs/oceanfishingbobber.lua", "prefabs/oceanfishinglure.lua", "prefabs/fishingnetvisualizer.lua", "prefabs/hats.lua", "prefabs/malbatross.lua", "components/oar.lua", "components/fishingrod.lua", "components/oceanfishingrod.lua", "components/fishingnet.lua", "components/fishingnetvisualizer.lua", "components/oceanfishable.lua", "components/oceanfishinghook.lua", "components/equippable.lua", "components/piratespawner.lua", "components/playercontroller.lua", "components/playeractionpicker.lua", "containers.lua", "componentactions.lua", "actions.lua", "tuning.lua", "recipes.lua", "constants.lua", "prefabskins.lua", "modutil.lua", "mods.lua", "componentutil.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -21,7 +21,7 @@ size_class: complex
 - 职责与适用：四个 prefab 文件各自注册的手持水上工具，均为可拾取装备（HANDS 槽，[equippable 默认](../../../raw/current/scripts/components/equippable.lua#L29)）。`oar.lua` 五个船桨（ROW／ROW_FAIL／ROW_CONTROLLER 推动所在船）；`fishingrod.lua` 淡水钓竿（对 `fishable` 目标 FISH／REEL）；`oceanfishingrod.lua` 海钓竿（容器装浮子＋鱼饵，OCEAN_FISHING_CAST 抛投、收线张力系统）；`fishingnet.lua` 渔网（CAST_NET 生成拖网实体收集漂浮物品）。[桨注册](../../../raw/current/scripts/prefabs/oar.lua#L181-L185)、[钓竿注册](../../../raw/current/scripts/prefabs/fishingrod.lua#L103)、[海钓竿注册](../../../raw/current/scripts/prefabs/oceanfishingrod.lua#L213)、[渔网注册](../../../raw/current/scripts/prefabs/fishingnet.lua#L83)
 - 优先使用：改船桨推力／速度查[数值表](#注册与构造)与 oar 组件（[[reference/components/oar]]）；复刻淡水钓鱼链用 fishingrod 组件（[[reference/components/fishingrod]]）；海洋钓鱼系统查[海钓竿机制索引](#海钓竿海洋钓鱼链)；造同类手持工具查 [[cookbook/equipment/hand]]。
 - 重要副作用：船桨 RowFail 按磨损扣耐久并淋湿周围实体；海钓竿抛投/中鱼会打湿容器内饵具、断线销毁全部饵具；渔网拖网会把收集物丢在收网者脚下。[RowFail](../../../raw/current/scripts/components/oar.lua#L35-L51)、[断线销毁](../../../raw/current/scripts/prefabs/oceanfishingrod.lua#L108-L116)、[拖网收集](../../../raw/current/scripts/components/fishingnetvisualizer.lua#L100-L114)
-- 修改边界：公共端打标签与漂浮外观，组件在主模拟挂载；`fishingrod` 在 quagmire 游戏模式走 event_server_data 替换（无武器/耐久）；渔网 `fishingnet` 无配方、常规玩法无生成链（仅调试上架清单收录，见[陷阱](#常见陷阱与限制)）；海钓竿附属饵具本页只给注册清单与机制索引，鱼群 AI／charm 细节 Wiki 待建。[quagmire 分支](../../../raw/current/scripts/prefabs/fishingrod.lua#L77-L89)
+- 修改边界：公共端打标签与漂浮外观，组件在主模拟挂载；`fishingrod` 在 quagmire 游戏模式走 event_server_data 替换（无武器/耐久）；渔网 `fishingnet` 无配方、常规玩法无生成链（仅调试上架清单收录，见[陷阱](#常见陷阱与限制)）；海钓竿附属饵具本页只给注册清单与机制索引，鱼群 AI／charm 细节见 [[reference/prefabs/ocean-fish]]。[quagmire 分支](../../../raw/current/scripts/prefabs/fishingrod.lua#L77-L89)
 
 ## 注册与构造
 
@@ -50,7 +50,7 @@ size_class: complex
 | `oar_monkey` | HANDS | 0.6 | 3 | 500 | 1 | 25 | 51（×1.5） | 5 |
 | `yotd_oar` | HANDS | 0.5 | 3.5 | 400 | 1 | 25 | 17 | 25 |
 
-装备 `master_crewman` 标签（猴子小帽授予，[hats.lua#L2778-L2786](../../../raw/current/scripts/prefabs/hats.lua#L2778-L2786)）时每次划桨消耗 ×`MASTER_CREWMAN_MULT.OAR_CONSUMPTION`=0.5（[修改函数](../../../raw/current/scripts/prefabs/oar.lua#L57-L63)、[调参](../../../raw/current/scripts/tuning.lua#L6751-L6757)）。
+装备 `master_crewman` 标签（猴子小帽授予，[hats.lua#L2778-L2786](../../../raw/current/scripts/prefabs/hats.lua#L2778-L2786)）时每次划桨消耗 ×`MASTER_CREWMAN_MULT.OAR_CONSUMPTION`=0.5（[修改函数](../../../raw/current/scripts/prefabs/oar.lua#L57-L63)、[调参](../../../raw/current/scripts/tuning.lua#L6752-L6758)）。
 
 钓竿/渔网耐久：`fishingrod` 9（[FISHINGROD_USES](../../../raw/current/scripts/tuning.lua#L170)）、`fishingnet` 22（[FISHING_NET_USES](../../../raw/current/scripts/tuning.lua#L4048)）、`oceanfishingrod` 无使用耐久（仅攻击磨损 4，无 finiteuses，[组件区](../../../raw/current/scripts/prefabs/oceanfishingrod.lua#L188-L190)）。武器伤害三竿同值 `FISHINGROD_DAMAGE`=`wilson_attack`×0.125=4.25（[调参](../../../raw/current/scripts/tuning.lua#L371)）。
 
@@ -59,7 +59,7 @@ size_class: complex
 | 注册名 | 配方与科技 | 其他生成点 |
 |---|---|---|
 | `oar` | 原木 1，`TECH.NONE`（[L614](../../../raw/current/scripts/recipes.lua#L614)） | — |
-| `oar_driftwood` | 浮木 1，`TECH.NONE`（[L615](../../../raw/current/scripts/recipes.lua#L615)） | — |
+| `oar_driftwood` | 浮木 1（[[reference/prefabs/driftwood-livinglog]]），`TECH.NONE`（[L615](../../../raw/current/scripts/recipes.lua#L615)） | — |
 | `oar_monkey` | 无配方 | 海盗船生成时 SpawnPrefab（[piratespawner.lua#L306](../../../raw/current/scripts/components/piratespawner.lua#L306)） |
 | `malbatross_beak` | 无配方 | 邪天翁战利品表 100%（[malbatross.lua#L405](../../../raw/current/scripts/prefabs/malbatross.lua#L405)） |
 | `yotd_oar` | 金块 1，`TECH.DRAGONOFFERING_THREE`＋`nounlock`＋`actionstr="PERDOFFERING"`（蜻蜓年活动供奉，[L1107](../../../raw/current/scripts/recipes.lua#L1107)） | — |
@@ -107,8 +107,8 @@ size_class: complex
 | `Replica／同步：oceanfishingrod` | 客户端读 GetMaxCastDist 与目标；target/line_tension 经 netvar 同步（组件 setter 调 replica `_SetTarget` 等） | 注册于组件构造 | [setter](../../../raw/current/scripts/components/oceanfishingrod.lua#L4-L43)、[UpdateClientMaxCastDistance](../../../raw/current/scripts/components/oceanfishingrod.lua#L129-L137) |
 | `API／数据：ACTIONS.OCEAN_FISHING_CAST/REEL/STOP/CATCH` | 两条门禁不同：首次抛竿在竿的 target 为 nil 时只要求海面点（`CanCastFishingNetAtPoint`，距离 >2，[L4-L11](../../../raw/current/scripts/componentactions.lua#L4-L11)、[右键分支](../../../raw/current/scripts/componentactions.lua#L2160-L2175)）；已有 target 后才由 `GetFishingAction` 读持有者 `fishing_idle` 标签，按目标是否为投射物／`oceanfishing_catchable` 选 REEL／STOP／CATCH（[L86-L100](../../../raw/current/scripts/componentactions.lua#L86-L100)）。REEL 调 `oceanfishingrod:Reel`；STOP/CATCH 进 SG 状态后调 StopFishing("reeledin")/CatchFish | 服务端执行；`partiallyhooked` 目标显示 SETHOOK 文案 | [CAST.fn](../../../raw/current/scripts/actions.lua#L1398-L1406)、[REEL.fn](../../../raw/current/scripts/actions.lua#L1415-L1420)、[STOP.fn](../../../raw/current/scripts/actions.lua#L1422-L1430)、[CATCH.fn](../../../raw/current/scripts/actions.lua#L1432-L1440)、[候选 GetFishingAction](../../../raw/current/scripts/componentactions.lua#L86-L100) |
 | `API／数据：钩饵数据流` | GetTackle 读容器槽 1/2 → Cast 缓存 → 浮子落水后 `oceanfishinghook:SetLureData`（charm×时段×天气×鱼偏好）；target 变化回调 OnHookedSomething：新目标为浮子（有 oceanfishinghook）则湿化饵具（OCEAN_WETNESS=75），为鱼等非投射物则移除一次性饵具 | 主模拟；itemget/itemlose 事件触发 UpdateClientMaxCastDistance | [GetTackle](../../../raw/current/scripts/prefabs/oceanfishingrod.lua#L55-L68)、[OnHookedSomething](../../../raw/current/scripts/prefabs/oceanfishingrod.lua#L118-L136)、[SetLureData 调用点](../../../raw/current/scripts/prefabs/oceanfishingbobber.lua#L52-L55) |
-| `关联 Prefab：oceanfishingbobber_*` | 投射物 complexprojectile 飞行，落海生成 floater（oceanfishable+oceanfishinghook），floater 经 `SetRod` 反向成为竿的 target；鱼吃浮子时经 ACTIONS.EAT 把 rod 移交给鱼 | 浮子鱼饵行为页 Wiki 待建；TACKLE 调参表见 [tuning.lua#L263-L282](../../../raw/current/scripts/tuning.lua#L263-L282) | [OnProjectileLand](../../../raw/current/scripts/prefabs/oceanfishingbobber.lua#L36-L78)、[EAT 移交](../../../raw/current/scripts/actions.lua#L799-L807)、[[reference/components/oceanfishinghook]]、[[reference/components/oceanfishable]] |
-| `关联 Prefab：oceanfish` 等 | 鱼群脑以 `fishinghook` 标签找浮子并积累兴趣（charm），执行 EAT 上钩 | 鱼类页 Wiki 待建 | [鱼脑寻食](../../../raw/current/scripts/brains/oceanfishbrain.lua#L91-L134) |
+| `关联 Prefab：oceanfishingbobber_*` | 投射物 complexprojectile 飞行，落海生成 floater（oceanfishable+oceanfishinghook），floater 经 `SetRod` 反向成为竿的 target；鱼吃浮子时经 ACTIONS.EAT 把 rod 移交给鱼 | 浮子鱼饵机制见 [[reference/components/oceanfishinghook]] 与 [[reference/prefabs/ocean-fish]]；TACKLE 调参表见 [tuning.lua#L263-L282](../../../raw/current/scripts/tuning.lua#L263-L282) | [OnProjectileLand](../../../raw/current/scripts/prefabs/oceanfishingbobber.lua#L36-L78)、[EAT 移交](../../../raw/current/scripts/actions.lua#L799-L807)、[[reference/components/oceanfishinghook]]、[[reference/components/oceanfishable]] |
+| `关联 Prefab：oceanfish` 等 | 鱼群脑以 `fishinghook` 标签找浮子并积累兴趣（charm），执行 EAT 上钩 | [[reference/prefabs/ocean-fish]] | [鱼脑寻食](../../../raw/current/scripts/brains/oceanfishbrain.lua#L91-L134) |
 
 ### 拖网链（fishingnet 组件）
 
@@ -163,3 +163,4 @@ end)
 - 结构检查：validate_page.py 通过，实测 163 行／30662 字节（复杂档上限 480 行／48 KiB）；validate_source_links.py --strict 0 error 0 warning（130 条引用）；validate_source_hashes.py check 通过（基线已由主代理 record）。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

@@ -1,12 +1,12 @@
 ---
 title: "bloomness"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "绽放等级状态机（Wormwood 专用）：0..max 级随计时升落，施肥延长满级或加速绽放，等级变化回调驱动外观。"
 aliases: ["绽放度", "bloomness", "沃姆伍德绽放"]
 tags: [component, state-machine, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/bloomness.lua", "prefabs/wormwood.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -62,3 +62,4 @@ bloomness:Fertilize(1) -- 从 0 级催到 1 级并进入绽放
 - 源码审阅：2026-10-28，Steam buildid 26230496；组件全文、wormwood 挂接与施肥路径、tuning.lua 数值（tuning.lua:4586-4587）、skilltree_wormwood 读点。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

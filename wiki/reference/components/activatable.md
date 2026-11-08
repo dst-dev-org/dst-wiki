@@ -1,12 +1,12 @@
 ---
 title: "activatable"
 created: "2026-10-19"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "实体激活资格与回调桥接；inactive 标签、执行返回和 onactivated 通知分开，重复可用由宿主恢复。"
 aliases: ["栅栏门拒绝非玩家激活", "激活回调返回nil", "activatable"]
 tags: [component, actions, callback, event, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/activatable.lua", "componentactions.lua", "actions.lua", "prefabs/fence.lua", "stategraphs/SGwilson_client.lua"]
 reliability: verified
 validation: source-reviewed
@@ -75,3 +75,4 @@ end)
 - 结构检查：本批格式、来源、链接／行号、大小及登记通过；完整非玩家门禁例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；玩家开关、非玩家测试、nil／失败回调、门状态存读及其他模组绕过／覆盖待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

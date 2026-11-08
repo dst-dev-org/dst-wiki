@@ -1,12 +1,12 @@
 ---
 title: "nonslipgritpool"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "定义地面防滑砂池的覆盖几何，供 slipperyfeet 跑动累计时查询；原版强化砂铺出半径 3 的限时防滑区域。"
 aliases: ["nonslipgritpool", "防滑池", "地面防滑砂", "防滑区域", "强化砂地面覆盖"]
 tags: [component, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/nonslipgritpool.lua", "components/slipperyfeet.lua", "prefabs/nonslipgrit.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -43,7 +43,7 @@ status: active
 
 1. `nonslipgritboosted` 与普通砂共用物品工厂，但 source 消耗回调选择 `OnDelta_Boosted`；每次回调在砂物品当前世界位置生成池并随机旋转，扣 `100 / NUMBER_OF_POOLS` 燃料。何时回调和多砂消耗问题见 [[reference/components/nonslipgritsource]]，不由池自行推动。[铺池回调](../../../raw/current/scripts/prefabs/nonslipgrit.lua#L22-L29) [选择回调](../../../raw/current/scripts/prefabs/nonslipgrit.lua#L69-L74) [Prefab 注册](../../../raw/current/scripts/prefabs/nonslipgrit.lua#L377-L379)
 2. `fn_pool` 创建 Transform、AnimState、SoundEmitter、Network，播放贴地的 `pool_pre → pool_idle`，加 `NOCLICK` 和池标签；服务端添加本组件并覆盖几何为 `distsq(center, point) <= 3 * 3`。原版没有 Physics，若漏掉回调，将永远返回 false。[表现构造](../../../raw/current/scripts/prefabs/nonslipgrit.lua#L111-L130) [几何回调](../../../raw/current/scripts/prefabs/nonslipgrit.lua#L96-L99) [服务端接线](../../../raw/current/scripts/prefabs/nonslipgrit.lua#L132-L141)
-3. timer 启动 `dissolve`，时长取 `TUNING.NONSLIPGRITBOOSTED_POOL_TIME`；到期设 `persists = false`、播放声音／`pool_pst`，等 `animover` 才删实体。期间未移除组件或标签，因而不是 timer 到点立刻停止防滑（源码推导，未运行）。[启动计时](../../../raw/current/scripts/prefabs/nonslipgrit.lua#L139-L141) [到期处理](../../../raw/current/scripts/prefabs/nonslipgrit.lua#L87-L92) [时长定义](../../../raw/current/scripts/tuning.lua#L9118)
+3. timer 启动 `dissolve`，时长取 `TUNING.NONSLIPGRITBOOSTED_POOL_TIME`；到期设 `persists = false`、播放声音／`pool_pst`，等 `animover` 才删实体。期间未移除组件或标签，因而不是 timer 到点立刻停止防滑（源码推导，未运行）。[启动计时](../../../raw/current/scripts/prefabs/nonslipgrit.lua#L139-L141) [到期处理](../../../raw/current/scripts/prefabs/nonslipgrit.lua#L87-L92) [时长定义](../../../raw/current/scripts/tuning.lua#L9119)
 
 ### 自定义区域应改哪里
 
@@ -70,3 +70,4 @@ status: active
 
 相关：[[reference/components/slipperyfeet]]；[[reference/components/nonslipgritsource]]；[[reference/components/nonslipgrituser]]；[[reference/components/timer]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

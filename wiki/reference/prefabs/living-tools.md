@@ -1,12 +1,12 @@
 ---
 title: "生活工具族（bugnet／brush／wateringcan／pitchfork／minifan）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-10"
 type: prefab
 summary: "五文件八注册的手持生活工具原版参照：捕虫网 NET 捕捉、刷子 BRUSH 梳理、浇水壶装水浇灌与空壶转燃料、干草叉 TERRAFORM 铲地（非 DIG）、小风扇装备制冷（移动才耗油）。"
 aliases: ["bugnet", "thulecitebugnet", "brush", "wateringcan", "premiumwateringcan", "pitchfork", "goldenpitchfork", "minifan", "捕虫网", "铥矿捕虫网", "刷子", "浇水壶", "空浇水壶", "空鸟嘴壶", "鸟嘴壶", "黄金干草叉", "干草叉", "旋转的风扇", "生活工具"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/bugnet.lua", "prefabs/brush.lua", "prefabs/wateringcan.lua", "prefabs/pitchfork.lua", "prefabs/minifan.lua", "prefabs/fan_wheel.lua", "prefabs/beefalo.lua", "prefabs/wortox_nabbag.lua", "components/tool.lua", "components/weapon.lua", "components/finiteuses.lua", "components/equippable.lua", "components/brushable.lua", "components/brush.lua", "components/wateryprotection.lua", "components/fillable.lua", "components/heater.lua", "components/fueled.lua", "components/temperature.lua", "components/terraformer.lua", "components/watersource.lua", "components/nabbag.lua", "components/witherable.lua", "components/playercontroller.lua", "actions.lua", "componentactions.lua", "componentutil.lua", "bufferedaction.lua", "constants.lua", "tuning.lua", "recipes.lua", "strings.lua", "standardcomponents.lua", "mods.lua", "prefabskins.lua", "languages/chinese_s.po"]
 size_class: complex
 reliability: verified
@@ -38,7 +38,7 @@ status: active
 
 名称键核验（[chinese_s.po](../../../raw/current/scripts/languages/chinese_s.po)，`STRINGS.NAMES.*`）：`BRUSH`="刷子"、`BUGNET`="捕虫网"（Bug Net）两键相邻 [L339964-L339972](../../../raw/current/scripts/languages/chinese_s.po#L339964-L339972)；`GOLDENPITCHFORK`="黄金干草叉"（Snazzy Pitchfork）[L343364-L343367](../../../raw/current/scripts/languages/chinese_s.po#L343364-L343367)；`MINIFAN`="旋转的风扇"（Whirly Fan）[L345449-L345452](../../../raw/current/scripts/languages/chinese_s.po#L345449-L345452)；`PITCHFORK`="干草叉" [L346979-L346982](../../../raw/current/scripts/languages/chinese_s.po#L346979-L346982)；`PREMIUMWATERINGCAN`="空鸟嘴壶"／`_NOT_EMPTY`="鸟嘴壶"（Waterfowl Can）[L347279-L347287](../../../raw/current/scripts/languages/chinese_s.po#L347279-L347287)；`THULECITEBUGNET`="铥矿捕虫网" [L350379-L350382](../../../raw/current/scripts/languages/chinese_s.po#L350379-L350382)；`WATERINGCAN`="空浇水壶"／`_NOT_EMPTY`="浇水壶"（Watering Can）[L351789-L351797](../../../raw/current/scripts/languages/chinese_s.po#L351789-L351797)。浇水壶显示名经 `displaynamefn` 按有无水切键（[wateringcan.lua:75-77](../../../raw/current/scripts/prefabs/wateringcan.lua#L75-L77)）。
 
-配方（[recipes.lua](../../../raw/current/scripts/recipes.lua)，均无附加数据）：`bugnet` 树枝4＋丝绢2＋绳索1（科学1档）、`thulecitebugnet` 铥矿2＋精尘1（远古档）[L399-L400](../../../raw/current/scripts/recipes.lua#L399-L400)；`pitchfork` 树枝2＋燧石2（科学1档）、`goldenpitchfork` 树枝4＋金块2（科学2档）[L402-L403](../../../raw/current/scripts/recipes.lua#L402-L403)；`wateringcan` 木板2＋绳索1（科学1档）、`premiumwateringcan` 浮木桩2＋绳索1＋邪天翁喙1（科学2档）[L442-L443](../../../raw/current/scripts/recipes.lua#L442-L443)；`minifan` 树枝3＋花瓣1（0 档）[L523](../../../raw/current/scripts/recipes.lua#L523)；`brush` 钢丝绒1＋海象长牙1＋金块2（科学2档）[L685](../../../raw/current/scripts/recipes.lua#L685)。反向消费：`gestalt_cage` 以 `thulecitebugnet` 为原料（[L1016](../../../raw/current/scripts/recipes.lua#L1016)）。
+配方（[recipes.lua](../../../raw/current/scripts/recipes.lua)，均无附加数据）：`bugnet` 树枝4＋丝绢2＋绳索1（科学1档）、`thulecitebugnet` 铥矿2＋精尘1（远古档）[L399-L400](../../../raw/current/scripts/recipes.lua#L399-L400)；`pitchfork` 树枝2＋燧石2（科学1档）、`goldenpitchfork` 树枝4＋金块2（科学2档）[L402-L403](../../../raw/current/scripts/recipes.lua#L402-L403)；`wateringcan` 木板2＋绳索1（科学1档）、`premiumwateringcan` 浮木桩2＋绳索1＋邪天翁喙1（科学2档）[L442-L443](../../../raw/current/scripts/recipes.lua#L442-L443)；`minifan` 树枝3＋花瓣1（0 档）[L523](../../../raw/current/scripts/recipes.lua#L523)；`brush` 钢丝绵1＋海象长牙1＋金块2（科学2档）[L685](../../../raw/current/scripts/recipes.lua#L685)。反向消费：`gestalt_cage` 以 `thulecitebugnet` 为原料（[L1016](../../../raw/current/scripts/recipes.lua#L1016)）。
 
 皮肤（[prefabskins.lua](../../../raw/current/scripts/prefabskins.lua)，仅登记清单，实体定义端未核验）：`bugnet` 5 款 [L379-L385](../../../raw/current/scripts/prefabskins.lua#L379-L385)、`pitchfork` 3 款 [L1447-L1451](../../../raw/current/scripts/prefabskins.lua#L1447-L1451)、`goldenpitchfork` 1 款 [L933-L935](../../../raw/current/scripts/prefabskins.lua#L933-L935)、`wateringcan` 2 款 [L2247-L2250](../../../raw/current/scripts/prefabskins.lua#L2247-L2250)、`premiumwateringcan` 1 款 [L1504-L1506](../../../raw/current/scripts/prefabskins.lua#L1504-L1506)；`brush`／`minifan`／`thulecitebugnet` 无条目。
 
@@ -58,7 +58,7 @@ status: active
 | 组件：`tool` | `SetAction(ACTIONS.NET)` 写入 `NET_tool` 标签，效率 1 | 两注册同；未 `AddInherentAction` | [[reference/components/tool#关键接口]]；[登记](../../../raw/current/scripts/prefabs/bugnet.lua#L61-L62)、[标签写入](../../../raw/current/scripts/components/tool.lua#L41-L45)、[TOOLACTIONS](../../../raw/current/scripts/constants.lua#L2187-L2196) |
 | 动作：`ACTIONS.NET` | 提供走 componentactions `tool` 处理器；`fn` 要求目标 `workable` 工作动作==NET、可工作、非死亡，持 `NET_tool` 豁免 `grabbable` 检查，成功 `WorkedBy` | 官方名"捕捉"（[strings.lua:596](../../../raw/current/scripts/strings.lua#L596)、[.po L1364-L1367](../../../raw/current/scripts/languages/chinese_s.po#L1364-L1367)）；canforce | [[reference/components/workable#关键接口]]；[处理器](../../../raw/current/scripts/componentactions.lua#L2507-L2520)、[fn](../../../raw/current/scripts/actions.lua#L1859-L1878) |
 | 消费端：NET 目标 | 蜜蜂／蝴蝶／萤火虫／蚊子等把 `workable` 工作动作设为 NET | 目标端资格归 workable；仅抽样，全量未核验 | [butterfly.lua:166](../../../raw/current/scripts/prefabs/butterfly.lua#L166)（bee/fireflies/mosquito 同型已 grep） |
-| 关联 Prefab：`wortox_nabbag` | NET `fn` 对带 `nabbag` 组件的持有物触发 `ReplicateNetFromAct` 锥形复制 | 强抢袋经沃拓克斯技能当捕网，`NABBAG_USES_AS_BUGNET`=20 折算 | [[reference/prefabs/wortox-nabbag]]；[复制](../../../raw/current/scripts/components/nabbag.lua#L12-L45)、[折算](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L209-L217)、[TUNING](../../../raw/current/scripts/tuning.lua#L7435) |
+| 关联 Prefab：`wortox_nabbag` | NET `fn` 对带 `nabbag` 组件的持有物触发 `ReplicateNetFromAct` 锥形复制 | 强抢袋经沃拓克斯技能当捕网，`NABBAG_USES_AS_BUGNET`=20 折算 | [[reference/prefabs/wortox-nabbag]]；[复制](../../../raw/current/scripts/components/nabbag.lua#L12-L45)、[折算](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L209-L217)、[TUNING](../../../raw/current/scripts/tuning.lua#L7436) |
 
 ### 刷子（brush）
 
@@ -146,3 +146,4 @@ end)
 - 结构检查：validate_page.py 与 validate_source_links.py 已实际运行（结果见交付说明）；validate_page 实测 147 行／27296 字节（补 minifan 注册行后），`complex` 档（48 KiB／480 行）——按"快速判断"所记的多变体族结构选档，非字节触发；validate_source_links --strict 121 条引用 0 error 0 warning。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

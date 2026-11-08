@@ -1,12 +1,12 @@
 ---
 title: "acidinfusible"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "酸雨灌注组件：酸雨且无雨 immunity 时自动灌注生物，按来源键统一加成伤害/承伤/移速并挂烟雾特效。"
 aliases: ["酸液灌注", "acidinfusible", "酸雨强化", "灌注状态"]
 tags: [component]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/acidinfusible.lua", "prefabs/bat_boss.lua", "prefabs/spider.lua", "prefabs/monkey.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -60,3 +60,4 @@ inst.components.acidinfusible:SetOnInfuseFn(function(inst) inst.AnimState:SetMul
 - 源码审阅：2026-10-28，steam-buildid:26230496，覆盖组件全文与 bat_boss、spider、monkey、bishop、cave_vent_mite 挂载及 batbrain/bat_bossbrain/spiderbrain 读取点；未运行游戏。
 - 结构检查：validate_page.py、validate_source_links.py 与 Lua 语法探针通过。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

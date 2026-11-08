@@ -1,12 +1,12 @@
 ---
 title: "暗影主教羽群、裂隙门粒子与墨荒替身／附体特效（shadow_bishop_fx 等 4 注册）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "暗影 Boss 与裂隙生物系的 4 个联网 FX：暗影主教的攻击羽群（继承宿主缩放与透明度）、暗影裂隙门的分阶段粒子层（宿主单槽引用管生灭）、墨荒巨口的跳跃替身（带物理的攻城壳）、虚空面具附体死亡的复活演出（animover 后给宿主发面具）。"
 aliases: ["shadow_bishop_fx", "shadowrift_portal_fx", "shadowthrall_mouth_dupe_fx", "shadowthrall_parasite_fx", "暗影主教羽群", "裂隙门粒子", "墨荒替身", "巨口跳跃特效", "虚空面具复活特效", "暗影棋子特效", "暗影裂隙特效"]
 tags: [prefab, fx, creature, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/shadowchesspieces.lua", "stategraphs/SGshadow_bishop.lua", "prefabs/shadowrift_portal.lua", "prefabs/lunarrift_portal.lua", "components/riftspawner.lua", "prefabs/shadowthrall_mouth.lua", "stategraphs/SGshadowthrall_mouth.lua", "components/shadowthrallmanager.lua", "prefabs/shadowthrall_parasite.lua", "components/shadowparasitemanager.lua", "components/corruption.lua", "prefabs/clockwork_common.lua", "entityscript.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -42,10 +42,10 @@ status: active
 | `SGshadow_bishop` `attack_loop` 状态 | `shadow_bishop_fx` | 主模拟；同状态内 `DoPeriodicTask(1.2, DoSwarmFX, .5)` 反复绽放，主教向目标推进并按 `ATTACK_TICK`(0.5) 群体判定 | [循环任务](../../../raw/current/scripts/stategraphs/SGshadow_bishop.lua#L96-L99)、[调值](../../../raw/current/scripts/tuning.lua#L1607-L1608) |
 | `shadowrift_portal` 工厂（`CreateParticleFx`） | `shadowrift_portal_fx` | **工厂内生点位于 SetPristine 之前的共享段——两端各执行一次**，并登记 `highlightchildren`；主模拟 `OnPortalWake` 另有补建（睡眠时已删） | [工厂生成](../../../raw/current/scripts/prefabs/shadowrift_portal.lua#L393-L395)、[唤醒补建](../../../raw/current/scripts/prefabs/shadowrift_portal.lua#L238-L247) |
 | `shadowthrall_mouth` 工厂 | `shadowthrall_mouth_dupe_fx` | 主模拟；巨口组装时生成，随即 `RemoveFromScene` 收起、写 `dupe.main = inst` 回指宿主 | [生成与收起](../../../raw/current/scripts/prefabs/shadowthrall_mouth.lua#L273-L275) |
-| `SGshadowthrall_mouth` `leap` 状态 | `shadowthrall_mouth_dupe_fx` | 主模拟；巨口 `Hide`＋关碰撞，替身 `ReturnToScene` 传送到宿主位、播 `leap`、按目标距离定速度冲出；`dupe_animover` 回调切 `land`，onexit 再 `RemoveFromScene` 收回 | [leap 使用](../../../raw/current/scripts/stategraphs/SGshadowthrall_mouth.lua#L558-L600)、[跳冷却](../../../raw/current/scripts/tuning.lua#L7725) |
+| `SGshadowthrall_mouth` `leap` 状态 | `shadowthrall_mouth_dupe_fx` | 主模拟；巨口 `Hide`＋关碰撞，替身 `ReturnToScene` 传送到宿主位、播 `leap`、按目标距离定速度冲出；`dupe_animover` 回调切 `land`，onexit 再 `RemoveFromScene` 收回 | [leap 使用](../../../raw/current/scripts/stategraphs/SGshadowthrall_mouth.lua#L558-L600)、[跳冷却](../../../raw/current/scripts/tuning.lua#L7726) |
 | `shadowparasitemanager:ReviveHosted` | `shadowthrall_parasite_fx` | 主模拟；被面具附体的宿主死亡后，其死亡状态调本方法：在尸体位生成 FX 并写 `fx.target = 宿主` | [ReviveHosted](../../../raw/current/scripts/components/shadowparasitemanager.lua#L378-L399) |
 
-`shadowrift_portal_fx` 的阶段驱动全部由裂隙门发起：`TryStageUp` 调 `PlayStage(next_stage)` 换档（1→3 级，每级约 4 天＋随机，[升级](../../../raw/current/scripts/prefabs/shadowrift_portal.lua#L127-L129)、[调值](../../../raw/current/scripts/tuning.lua#L7778-L7782)）；`ClosePortal`（15 天到期）先让粒子 `Disappear`、再按消失动画时长排 `be_removed` 计时删门（[关门](../../../raw/current/scripts/prefabs/shadowrift_portal.lua#L166-L181)）；读档按存档阶段直接 `PlayStage(stage, true)` 或播消失（[读档](../../../raw/current/scripts/prefabs/shadowrift_portal.lua#L271-L281)）。
+`shadowrift_portal_fx` 的阶段驱动全部由裂隙门发起：`TryStageUp` 调 `PlayStage(next_stage)` 换档（1→3 级，每级约 4 天＋随机，[升级](../../../raw/current/scripts/prefabs/shadowrift_portal.lua#L127-L129)、[调值](../../../raw/current/scripts/tuning.lua#L7779-L7783)）；`ClosePortal`（15 天到期）先让粒子 `Disappear`、再按消失动画时长排 `be_removed` 计时删门（[关门](../../../raw/current/scripts/prefabs/shadowrift_portal.lua#L166-L181)）；读档按存档阶段直接 `PlayStage(stage, true)` 或播消失（[读档](../../../raw/current/scripts/prefabs/shadowrift_portal.lua#L271-L281)）。
 
 ### 宿主链辨析（各自怎么走到 FX）
 
@@ -108,3 +108,4 @@ inst.dupe.Physics:SetMotorVelOverride(dist / inst.dupe.AnimState:GetCurrentAnima
 - [[reference/prefabs/shadowthrall_projectile_fx|墨荒弹幕投射物]]（同一墨荒宿主系的攻击 FX，对照"伤害留在弹体"的写法）
 - [[reference/prefabs/shadow_pillar|暗影囚牢·影柱法术体系]]（巨口被 root 的来源方；rooted 组件见 [[reference/components/rooted]]）
 - 返回 [[reference/prefabs/fx-shadow-index|暗影生物、裂隙生物与附着]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

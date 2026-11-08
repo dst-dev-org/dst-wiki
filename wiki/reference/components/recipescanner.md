@@ -1,12 +1,12 @@
 ---
 title: "recipescanner"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "从扫描目标反查配方并交给操作者学习，区分配方重定向、目标事件与扫描器自身消耗。"
 aliases: ["扫描学习配方", "薇诺娜配方扫描器", "扫描目标配方重定向", "SCANNABLE_RECIPENAME", "recipescanner"]
 tags: [component, recipe, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/recipescanner.lua", "components/builder.lua", "prefabs/winona_holoitems.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -77,3 +77,4 @@ end)
 - 结构检查：本页元数据、链接、大小与源码引用定向检查通过；完整 modmain 示例经现有 Full Moon／Lua 5.1 语法检查。
 - 游戏运行：未运行；目标提示与执行差异、实际解锁／双端显示、目标与工具消费及其他模组联动待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

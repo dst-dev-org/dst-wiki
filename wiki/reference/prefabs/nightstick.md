@@ -1,12 +1,12 @@
 ---
 title: "晨星锤（nightstick）"
 created: "2026-11-06"
-updated: "2026-11-06"
+updated: "2026-11-08"
 type: prefab
 summary: "原版手持电击装备 nightstick（官方中文名晨星锤）：HANDS 槽电属性近战武器，装备时由 nightstickfire 跟随 FX 提供照明并按 fueled 计时耗电，耗尽整件销毁，可在 Winona 电池／避雷针等 battery 电源上 CHARGE_FROM 回充燃料。"
 aliases: ["nightstick", "晨星锤", "Morning Star", "光杖", "电击照明武器", "电池充电武器"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/nightstick.lua", "prefabs/nightstickfire.lua", "prefabs/sparks.lua", "prefabs/player_common.lua", "prefabskins.lua", "prefabs/skinprefabs.lua", "prefabs/winona_battery_high.lua", "prefabs/winona_battery_low.lua", "prefabs/lightningrod.lua", "prefabs/scienceprototyper.lua", "components/weapon.lua", "components/equippable.lua", "components/fueled.lua", "components/burnable.lua", "components/batteryuser.lua", "components/battery.lua", "components/inspectable.lua", "components/inventoryitem.lua", "components/inventory.lua", "components/combat.lua", "components/wildfires.lua", "componentutil.lua", "componentactions.lua", "actions.lua", "standardcomponents.lua", "mainfunctions.lua", "entityscript.lua", "tuning.lua", "recipes.lua", "constants.lua", "mods.lua", "skin_strings.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -102,3 +102,4 @@ end)
 - 结构检查：2026-11-06 validate_page.py 0 error（104 行／20120 字节，standard）与 validate_source_links.py --strict 0 error 0 warning（74 条源码引用、28 个来源文件）通过。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]；同批照明对照 [[reference/prefabs/torch|火炬]]、[[reference/prefabs/lighter|薇洛的打火机]]；充电机制详见 [[reference/components/batteryuser]]、[[reference/components/battery]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

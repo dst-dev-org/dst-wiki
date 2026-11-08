@@ -1,12 +1,12 @@
 ---
 title: "wagpunk_manager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级垃圾场事件组件：月裂开启后循环刷瓦斯塔夫机械与提示 NPC，把玩家引向垃圾场废料，支持 hint 计时与围栏布景一次性生成。"
 aliases: ["瓦冈朋克管理", "wagpunk_manager"]
 tags: [component, creature]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/wagpunk_manager.lua", "components/riftspawner.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -27,7 +27,7 @@ status: active
 | 接口／字段 | 签名或已核验类型 | 条件、作用与证据 |
 |---|---|---|
 | `Enable()` / `Disable()` / `IsEnabled()` | — | 启动投放计时或清空状态； riftspawner 在月裂开启时 Enable、世界设置 "never" 时 Disable（[L116-L140](../../../raw/current/scripts/components/wagpunk_manager.lua#L116-L140)、[riftspawner](../../../raw/current/scripts/components/riftspawner.lua#L227-L235)）。 |
-| `StartSpawnMachinesTimer(timeoverride)` / `StartHintTimer(timeoverride)` | 秒 | 投放计时 4 天 ±3 天随机；提示计时按 hintcount 在 1~15 天间 Lerp；两计时互斥并驱动组件更新（[L144-L168](../../../raw/current/scripts/components/wagpunk_manager.lua#L144-L168)、[tuning](../../../raw/current/scripts/tuning.lua#L8050-L8053)）。 |
+| `StartSpawnMachinesTimer(timeoverride)` / `StartHintTimer(timeoverride)` | 秒 | 投放计时 4 天 ±3 天随机；提示计时按 hintcount 在 1~15 天间 Lerp；两计时互斥并驱动组件更新（[L144-L168](../../../raw/current/scripts/components/wagpunk_manager.lua#L144-L168)、[tuning](../../../raw/current/scripts/tuning.lua#L8051-L8054)）。 |
 | `SpawnMachines(force)` | — | 无机械（或强制）时选址、按需生成围栏与变异笔记、绕点放 3 台机械，然后转提示计时（[L506-L529](../../../raw/current/scripts/components/wagpunk_manager.lua#L506-L529)、[常量](../../../raw/current/scripts/components/wagpunk_manager.lua#L3-L4)）。 |
 | `FindSpotForMachines()` | → pos, at_setpiece | 优先布景机械标记点（玩家在一屏内且"猪人当班"不成立时改为刷垃圾场 NPC 寻物线索）；否则随机拓扑节点且离上次位置 >300 距离、玩家视野外（[L333-L389](../../../raw/current/scripts/components/wagpunk_manager.lua#L333-L389)、[视野](../../../raw/current/scripts/components/wagpunk_manager.lua#L21-L25)）。 |
 | `TryHinting()` | — | 随机在线玩家旁 15 距离、朝向机械 ±30 度放 `wagstaff_npc_wagpunk`；hintcount 上限 10，满或选址失败 30 秒后重试（[L411-L462](../../../raw/current/scripts/components/wagpunk_manager.lua#L411-L462)、[L3](../../../raw/current/scripts/components/wagpunk_manager.lua#L3)）。 |
@@ -57,3 +57,4 @@ status: active
 - 游戏运行：未运行。
 - 结构检查：validate_page、validate_source_links --strict、Lua 语法探测通过（见批级记录）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

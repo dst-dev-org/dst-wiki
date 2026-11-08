@@ -1,13 +1,13 @@
 ---
 title: "冬季盛宴餐桌食物枯竭特效（winters_feast_depletefood 等）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "冬季盛宴餐桌开餐期间与食物耗尽时的一次性枯竭表现：depletefood 为每名进食者 30% 概率的随机闪粒，food_depleted 为食物耐久耗尽的终局 burst；两名仅餐桌一处生成。"
 aliases: ["winters_feast_depletefood", "winters_feast_food_depleted", "冬季盛宴食物枯竭特效", "盛宴餐桌特效", "食物耗尽特效", "winters feast 枯竭特效"]
 tags: [prefab, fx, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "prefabs/table_winters_feast.lua", "components/wintersfeasttable.lua", "components/feasts.lua", "stategraphs/SGwilson.lua", "prefabs/wintersfeastcookedfoods.lua"]
 reliability: verified
 validation: source-reviewed
@@ -71,3 +71,4 @@ burst.Transform:SetPosition(table_inst.Transform:GetWorldPosition())
 - 结构检查：validate_page 与 validate_source_links --strict 通过（结果见本批交付报告）。
 
 返回 [[reference/prefabs/fx-event-index|节庆、小游戏与事件模式]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

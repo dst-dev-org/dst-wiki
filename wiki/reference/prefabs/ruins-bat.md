@@ -1,12 +1,12 @@
 ---
 title: "铥矿棒（ruins_bat）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版远古手持武器 ruins_bat：伤害 59.5、耐久 200 仅攻击磨损、装备移速 +10%；命中按 20%（幸运加成）掷点在目标旁生成暗影触手（shadowtentacle），影子等级 2；单注册无蓄力／AoE，可借鉴“攻击掷点召唤”与远古站配方接入。"
 aliases: ["ruins_bat", "铥矿棒", "Thulecite Club", "图勒棍棒"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/ruins_bat.lua", "components/weapon.lua", "components/finiteuses.lua", "components/equippable.lua", "components/inspectable.lua", "components/inventoryitem.lua", "components/shadowlevel.lua", "components/combat.lua", "componentutil.lua", "simutil.lua", "prefabs/shadowtentacle.lua", "prefabs/altar_prototyper.lua", "prefabs/minotaur.lua", "stategraphs/SGminotaur.lua", "stategraphs/SGshadowwaxwell.lua", "stringutil.lua", "standardcomponents.lua", "recipes.lua", "recipes_filter.lua", "strings.lua", "tuning.lua", "constants.lua", "mods.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "prefabskins.lua", "scenarios/chest_minotaur.lua", "prefabs/treasurechest.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -42,7 +42,7 @@ status: active
 | 耐久上限 | `TUNING.RUINS_BAT_USES` | 200（[tuning.lua#L186](../../../raw/current/scripts/tuning.lua#L186)） |
 | 装备移速倍率 | `TUNING.RUINS_BAT_SPEED_MULT` | 1.1（[tuning.lua#L419](../../../raw/current/scripts/tuning.lua#L419)） |
 | 影子等级 | `TUNING.RUINS_BAT_SHADOW_LEVEL` | 2（[tuning.lua#L2871](../../../raw/current/scripts/tuning.lua#L2871)） |
-| 触手掷点基础概率 | `TUNING.SHADOW_TENTACLE_RUINS_BAT_CHANCE` | 0.2（[tuning.lua#L9330](../../../raw/current/scripts/tuning.lua#L9330)） |
+| 触手掷点基础概率 | `TUNING.SHADOW_TENTACLE_RUINS_BAT_CHANCE` | 0.2（[tuning.lua#L9330](../../../raw/current/scripts/tuning.lua#L9331)） |
 | 每次攻击磨损 | weapon `attackwear`（从未赋值） | 1 耐久点/次，且为唯一消耗路径（无 tool、无 `SetConsumption`；[OnAttack 结算](../../../raw/current/scripts/components/weapon.lua#L111-L120)） |
 | 触手属性 | `TUNING.TENTACLE_HEALTH`／`TENTACLE_DAMAGE`／`TENTACLE_ATTACK_PERIOD` | 500 血／34 伤害／2 秒攻击间隔（[tuning.lua#L1180-L1184](../../../raw/current/scripts/tuning.lua#L1180-L1184)） |
 
@@ -162,3 +162,4 @@ end)
 - 结构检查：validate_page.py（0 error，164 行／21320 字节，standard 档）与 validate_source_links.py --strict（80 条源码引用、26 个源文件，0 error 0 warning）实际执行通过。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

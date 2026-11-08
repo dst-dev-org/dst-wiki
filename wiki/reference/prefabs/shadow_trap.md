@@ -1,13 +1,13 @@
 ---
 title: "暗影陷阱与减速表现（shadow_trap）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "暗影秘典“暗影陷阱”法术的两个注册：玩法陷阱 shadow_trap 与目标减速贴片 shadow_trap_debuff_fx；核验工厂、端、生成点、父挂与清理。"
 aliases: ["shadow_trap", "shadow_trap_debuff_fx", "暗影陷阱", "影陷阱", "Shadow Sneak", "陷阱减速贴片"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/shadow_trap.lua", "stategraphs/SGshadow_trap.lua", "prefabs/waxwelljournal.lua", "prefabs/reticuleaoe.lua", "prefabs/shadow_pillar.lua", "prefabs/shadowwaxwell.lua", "prefabs/rabbit.lua", "prefabs/bunnyman.lua", "prefabs/monkey.lua", "prefablist.lua", "tuning.lua", "components/locomotor.lua", "components/hauntable.lua", "components/timer.lua", "components/map.lua", "scrapbook_prefabs.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -36,7 +36,7 @@ status: active
 
 ### 生成点与清理
 
-- `shadow_trap`：唯一生成点是 `waxwelljournal.lua` 的 `TrapSpellFn`（平台落点移除 `ignorewalkableplatforms`）。`prefablist`／`prefabs` 表只是加载／预载声明；`scrapbook` 条目被注释，兔子／兔人／猴子只留注释，`magic_pumpkin` 只播同名音效。[施法](../../../raw/current/scripts/prefabs/waxwelljournal.lua#L56-L68)、[预载](../../../raw/current/scripts/prefabs/waxwelljournal.lua#L10-L20)、[注释](../../../raw/current/scripts/scrapbook_prefabs.lua#L2186-L2186)
+- `shadow_trap`：唯一生成点是 `waxwelljournal.lua` 的 `TrapSpellFn`（平台落点移除 `ignorewalkableplatforms`）。`prefablist`／`prefabs` 表只是加载／预载声明；`scrapbook` 条目被注释，兔子／兔人／猴子只留注释，`magic_pumpkin` 只播同名音效。[施法](../../../raw/current/scripts/prefabs/waxwelljournal.lua#L56-L68)、[预载](../../../raw/current/scripts/prefabs/waxwelljournal.lua#L10-L20)、[注释](../../../raw/current/scripts/scrapbook_prefabs.lua#L2193-L2193)
 - `shadow_trap_debuff_fx`：唯一生成点在同文件 `TryTrapTarget`，父挂目标后立即 `OnSetTarget`；同文件 `prefabs` 表预载。[生成](../../../raw/current/scripts/prefabs/shadow_trap.lua#L171-L179)
 - 父挂：柱底贴片、目标圈、冲击波父挂陷阱（:327-328、:104-105、:296）；贴片父挂目标（:175）；`shadow_despawn` 命中时随目标平台、驱散时父挂陷阱（:150-158、SG :199）；`shadow_glob_fx` 平台父挂平台。[父挂](../../../raw/current/scripts/prefabs/shadow_trap.lua#L327-L330)、[平台脱钩](../../../raw/current/scripts/prefabs/shadow_trap.lua#L150-L158)
 - 清理（陷阱）：`lifetime` 到期 → `DispellTrap`：睡着直接 Remove，否则 `GoToState("dispell")` 后 1 秒 Remove；触发态关目标圈、`base:KillFX()`、`TriggerTrap`，扫描 0.75 秒停、0.5 秒关地面痕、1.2 秒＋10 帧 Remove；触发后 `DispellTrap` 直接返回。[驱散](../../../raw/current/scripts/prefabs/shadow_trap.lua#L209-L224)、[扫描收尾](../../../raw/current/scripts/prefabs/shadow_trap.lua#L190-L207)、[SG 驱散](../../../raw/current/scripts/stategraphs/SGshadow_trap.lua#L189-L231)
@@ -50,7 +50,7 @@ status: active
 | `组件：hauntable／locomotor（目标侧）` | 读 `panicable` 判可恐慌；`Panic(12)` 后设 2/3 外部移速，12 秒后移除。 | 主模拟；贴片与减速只在目标有 locomotor 时挂。 | [[reference/components/hauntable]]、[[reference/components/locomotor]]；[结算](../../../raw/current/scripts/prefabs/shadow_trap.lua#L168-L180) |
 | `组件：rooted` | **未使用**：陷阱只减速＋恐慌，不定身；定身对照 [[reference/prefabs/shadow_pillar]]。 | — | [[reference/components/rooted]]；[对照](../../../raw/current/scripts/prefabs/shadow_trap.lua#L168-L180) |
 | `SG／状态标签` | 工厂暴露 `base` 与 `TriggerTrap`／`EnableTargetFX`／`EnableGroundFX`；陷阱 Lua 读 `canactivate`／`candetect`／`near`／`activated` 并调 `GoToState`。 | 主模拟；`activate`／`activating_loop`／`trigger`／`dispell` 带 `activated`。 | [SG](../../../raw/current/scripts/stategraphs/SGshadow_trap.lua#L97-L231) |
-| `事件：ms_forcenightmarestate` | 对 `has_nightmare_state` 目标推该事件（时长 480 秒＋随机）；兔子、兔人、猴子监听并变形。 | 主模拟；与恐慌／减速互斥。 | [推送](../../../raw/current/scripts/prefabs/shadow_trap.lua#L162-L164)、[兔子](../../../raw/current/scripts/prefabs/rabbit.lua#L436-L437)、[兔人](../../../raw/current/scripts/prefabs/bunnyman.lua#L676-L677)、[猴子](../../../raw/current/scripts/prefabs/monkey.lua#L514-L515) |
+| `事件：ms_forcenightmarestate` | 对 `has_nightmare_state` 目标推该事件（时长 480 秒＋随机）；兔子、兔人、猴子监听并变形。 | 主模拟；与恐慌／减速互斥。 | [推送](../../../raw/current/scripts/prefabs/shadow_trap.lua#L162-L164)、[兔子](../../../raw/current/scripts/prefabs/rabbit.lua#L436-L437)、[兔人](../../../raw/current/scripts/prefabs/bunnyman.lua#L688-L689)、[猴子](../../../raw/current/scripts/prefabs/monkey.lua#L514-L515) |
 | `关联 FX：shadow_pillar_base_fx` | 生成、父挂并缩放 0.7；`trigger` 态 `KillFX`，`collidewithboat` 时直接 `Remove`。 | 联网 FX；工厂与降下表现归影柱页。 | [[reference/prefabs/shadow_pillar]]；[生成](../../../raw/current/scripts/prefabs/shadow_trap.lua#L327-L330) |
 | `关联 FX：reticuleaoeshadowtarget_6` | `EnableTargetFX(true)` 生成并父挂陷阱，关闭时 `KillFX`；黑色 `idle_target_6` 目标圈。 | 联网 target FX；`trigger` 态关闭。 | [[reference/prefabs/reticuleaoe]]；[开关](../../../raw/current/scripts/prefabs/shadow_trap.lua#L101-L111) |
 | `关联 FX：shadow_glob_fx` | 激活期间每帧按环状偏移尝试（26 点），0.7 内无 `shadowtrail` 才落痕；触发／非撞船驱散时各一枚。 | 主模拟；平台父挂平台，海面无平台开涟漪。 | [[reference/prefabs/shadow_glob_fx]]；[地面痕](../../../raw/current/scripts/prefabs/shadow_trap.lua#L28-L97) |
@@ -97,7 +97,7 @@ end
 
 ## 常见陷阱与限制
 
-- **误区：`prefablist` 登记名字不等于会生成**：该表登记要加载的文件，实际生成点只有 waxwelljournal 的 `TrapSpellFn`；`scrapbook_prefabs` 条目被注释，其余命中只是注释或音效名。[生成](../../../raw/current/scripts/prefabs/waxwelljournal.lua#L56-L68)、[注释](../../../raw/current/scripts/scrapbook_prefabs.lua#L2186-L2186)
+- **误区：`prefablist` 登记名字不等于会生成**：该表登记要加载的文件，实际生成点只有 waxwelljournal 的 `TrapSpellFn`；`scrapbook_prefabs` 条目被注释，其余命中只是注释或音效名。[生成](../../../raw/current/scripts/prefabs/waxwelljournal.lua#L56-L68)、[注释](../../../raw/current/scripts/scrapbook_prefabs.lua#L2193-L2193)
 - **误区：陷阱是纯视觉或“地雷”组件**：源码注释明确不用 `mine`，自建探测、激活与结算；本体无生命／战斗／物理，伤害为 0。[注释](../../../raw/current/scripts/prefabs/shadow_trap.lua#L23-L23)、[结算](../../../raw/current/scripts/prefabs/shadow_trap.lua#L140-L184)
 - **边界：探测半径与命中半径不同，实体 `noattack` 标签与 SG 的 `noattack` 状态也不是同一条件**：3 距离激活、6 距离结算；实体 `noattack` 标签只在探测排除表中，爆炸命中表不排除，带该标签仍可被命中；命中后是否跳过 0 伤害 `attacked`，另由目标是否有 SG 且当前带 `noattack` 状态标签判定（无 SG 时不跳过）。[常量](../../../raw/current/scripts/prefabs/shadow_trap.lua#L115-L123)、[命中](../../../raw/current/scripts/prefabs/shadow_trap.lua#L162-L179)
 - **边界：噩梦生物走另一条分支**：带 `has_nightmare_state` 的兔子／兔人／猴子不进入恐慌／减速分支，改为被推噩梦状态；`CanPanic` 也认该字段。[判定](../../../raw/current/scripts/prefabs/shadow_trap.lua#L125-L129)、[分支](../../../raw/current/scripts/prefabs/shadow_trap.lua#L162-L180)
@@ -112,3 +112,4 @@ end
 - 未覆盖：动画包内容与时序、客户端观感、专服／晚加入、读档中途、多目标实际帧序、秘典物品页 UI。
 
 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]、[[reference/prefabs/index|Prefab 索引]]；其他外围表现见 [[reference/prefabs/fx-index|FX 主题总索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

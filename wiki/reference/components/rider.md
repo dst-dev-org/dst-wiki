@@ -1,12 +1,12 @@
 ---
 title: "rider"
 created: "2026-10-19"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "管理骑手侧上下骑转换、坐骑隐藏与恢复、鞍跟踪和保存，提供 mounted／dismounted 接入点。"
 aliases: ["骑乘时每分钟加三点精神", "玩家下骑", "骑手状态", "rider"]
 tags: [component, creature, event, network, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/rider.lua", "prefabs/player_common.lua", "stategraphs/SGwilson.lua", "actions.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ end)
 - 结构检查：本批格式、来源、链接／行号、大小和登记通过；完整事件例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；上下骑动画、拒绝／甩落、精神模式／速率、自动保存／重进、死亡与多模组事件变更待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

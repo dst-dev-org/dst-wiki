@@ -1,12 +1,12 @@
 ---
 title: "clientpickupsoundsuppressor"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "短暂把物品的 pickupsound 置为 NONE 并经 net_bool 同步到客户端，抑制复制／转移时的拾取音效。"
 aliases: ["拾取音效抑制", "静音拾取", "clientpickupsoundsuppressor"]
 tags: [component, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["components/clientpickupsoundsuppressor.lua", "actions.lua", "prefabs/player_common.lua", "prefabs/slingshot.lua", "prefabs/slingshotparts.lua", "prefabs/willow_ember.lua"]
 reliability: verified
@@ -47,3 +47,4 @@ status: active
 - 游戏运行：未运行。
 - 结构检查：validate_page.py 通过（0 issue；48 行、4956 字节，simple 档内）；validate_source_links.py --strict 通过（14 处源码引用，0 error／0 warning）；本页无完整 Lua 代码块。
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

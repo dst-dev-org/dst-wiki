@@ -1,12 +1,12 @@
 ---
 title: "mightiness"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "Wolfgang 专属体格值系统：管理 wimpy／normal／mighty 三态切换及其皮肤、体型、伤害、保温、工作与划船等属性联动。"
 aliases: ["mightiness", "体格值", "沃尔夫冈体格", "wimpy", "mighty", "强弱值"]
 tags: [component, state-machine]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/mightiness.lua", "prefabs/wolfgang.lua", "prefabs/skilltree_wolfgang.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -26,16 +26,16 @@ status: active
 
 | 接口／字段 | 签名或已核验类型 | 条件、作用与证据 |
 |---|---|---|
-| `current`／`max` | number（默认 100） | 0≤current≤max；经 player_classified 同步为 0-255 百分比（`currentmightiness`）。[同步](../../../raw/current/scripts/components/mightiness.lua#L67-L73) [上限常量](../../../raw/current/scripts/tuning.lua#L6451-L6452) |
+| `current`／`max` | number（默认 100） | 0≤current≤max；经 player_classified 同步为 0-255 百分比（`currentmightiness`）。[同步](../../../raw/current/scripts/components/mightiness.lua#L67-L73) [上限常量](../../../raw/current/scripts/tuning.lua#L6452-L6453) |
 | `DoDelta(delta, force_update?, delay_skin?, forcesound?, fromgym?)` | — | 正增量上限 clamp 到 max，`fromgym=true` 时允许到 `max + GetOverMax()`（健身房超上限）；负增量下限 0；正增量顺带 DelayDrain(4s)。[实现](../../../raw/current/scripts/components/mightiness.lua#L202-L237) [延迟](../../../raw/current/scripts/tuning.lua#L6508 |
 | `GetOverMax()`／`SetOverMax(amount)` | number | 超上限容量，由 Wolfgang 技能树 `OVERBUFF` 技能设置；仅健身房路径能用到。[接口](../../../raw/current/scripts/components/mightiness.lua#L194-L200) [技能树](../../../raw/current/scripts/prefabs/skilltree_wolfgang.lua#L156-L158) |
 | `GetState()`／`GetScale()`／`GetSkinMode()` | string / number | 当前态与该态体型缩放（0.9/1/1.2）、皮肤模式名；`IsMighty/IsNormal/IsWimpy` 是便捷判断（IsMighty 对 "over" 也真）。[读取](../../../raw/current/scripts/components/mightiness.lua#L136-L154) [状态表](../../../raw/current/scripts/components/mightiness.lua#L1-L65) |
 | `DoDec(dt, ignore_damage?)` | 内部 | 每秒 tick：非暂停且非无敌时按 `rate(0.2) × drain_multiplier × ratemodifiers:Get()` 下降；移动中持有 dumbbell 标签装备改为 DelayDrain(2)。[消耗](../../../raw/current/scripts/components/mightiness.lua#L248-L256) |
 | `Pause()`／`Resume()`／`IsPaused()` | — | 停/恢复自然下降；wolfgang 变鬼时暂停、复活恢复，携带 heavy 装备期间也暂停。[开关](../../../raw/current/scripts/components/mightiness.lua#L160-L170) [消费](../../../raw/current/scripts/prefabs/wolfgang.lua#L113-L120) [heavy 装备](../../../raw/current/scripts/prefabs/wolfgang.lua#L142-L157) |
-| `OnHungerDelta`（监听 hungerdelta） | 内部 | 按饥饿百分比切 drain_multiplier：≥0.75→0.5、≥0.5→1、≥0.25→2、>0→3、断粮→8。[饥饿联动的分档](../../../raw/current/scripts/components/mightiness.lua#L376-L391) [常量](../../../raw/current/scripts/tuning.lua#L6454-L6458) |
+| `OnHungerDelta`（监听 hungerdelta） | 内部 | 按饥饿百分比切 drain_multiplier：≥0.75→0.5、≥0.5→1、≥0.25→2、>0→3、断粮→8。[饥饿联动的分档](../../../raw/current/scripts/components/mightiness.lua#L376-L391) [常量](../../../raw/current/scripts/tuning.lua#L6455-L6459) |
 | `BecomeState(state, ...)` | 内部 | 三态切换总入口：换皮肤（可延迟）、同步健身房皮肤、播报/音效、combat.externaldamagemultipliers、temperature 保温、hunger.burnrate、expertsailor 参数、workmultiplier/efficientuser 的 CHOP/MINE/HAMMER 倍率、体型、标签、talk/hurt 音源，最后推 `mightiness_statechange {previous_state, state}`。[切换](../../../raw/current/scripts/components/mightiness.lua#L288-L374) |
 | `CanTransform(state)` | → bool | nomorph 状态标签、playerghost、死亡或同态时拒绝。[门禁](../../../raw/current/scripts/components/mightiness.lua#L262-L267) |
-| 阈值与速率 | TUNING | `MIGHTY_THRESHOLD=75`、`WIMPY_THRESHOLD=25`、`MIGHTINESS_DRAIN_RATE=0.2/s`、`WOLFGANG_MIGHTINESS_DRAIN_DELAY=4`。[常量](../../../raw/current/scripts/tuning.lua#L6451-L6461) |
+| 阈值与速率 | TUNING | `MIGHTY_THRESHOLD=75`、`WIMPY_THRESHOLD=25`、`MIGHTINESS_DRAIN_RATE=0.2/s`、`WOLFGANG_MIGHTINESS_DRAIN_DELAY=4`。[常量](../../../raw/current/scripts/tuning.lua#L6452-L6462) |
 
 ### 三态状态表（STATE_DATA 摘要）
 
@@ -95,3 +95,4 @@ end
 - [[reference/components/strongman]]：健身房会话与本组件的状态联动。
 - [[reference/components/dumbbelllifter]]：举铁动作的体格收益。
 - [[reference/components/coach]]：换态时被禁用的教练组件。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

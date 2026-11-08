@@ -1,12 +1,12 @@
 ---
 title: equippable
 created: "2026-10-11"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "管理装备状态和回调，配置装备槽、移动倍率、精神速率及穿戴限制。"
 aliases: ["装备回调", "穿戴与卸下", "入袋回调", "装备加速", "装备回精神", "equippable"]
 tags: [component, item, equipment, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/equippable.lua", "components/equippable_replica.lua", "components/inventoryitem_replica.lua", "components/inventory.lua", "components/linkeditem.lua", "components/locomotor.lua", "components/sanity.lua", "class.lua", "entityscript.lua", "constants.lua", "equipslotutil.lua", "tuning.lua", "prefabs/cane.lua", "prefabs/torch.lua", "prefabs/hats.lua", "modutil.lua", "mainfunctions.lua"]
 reliability: verified
 validation: source-reviewed
@@ -79,3 +79,4 @@ end)
 
 相关：[[reference/components/sanity#给人物增加每分钟三点精神贡献|独立精神来源]]；[[reference/components/health#装备手杖每十秒回复一点生命|装备再生与撤销]]；[[reference/components/inventoryitem#生命周期|持有者变化]]；[[reference/components/inventory#携带范围的选择|装备与主栏范围]]；[[reference/components/finiteuses|按次消耗]]；[[reference/components/waterproofer|防雨]]；[[reference/components/insulator|温度保温]]；[[reference/components/armor|护甲]]；[[reference/components/locomotor#关键接口|独立移动倍率]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

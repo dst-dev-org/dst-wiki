@@ -1,12 +1,12 @@
 ---
 title: "book"
 created: "2026-10-20"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "技能书的阅读／翻阅效果、成功后按次消费与精神结算；保留读者分支、回调返回和原书效果。"
 aliases: ["睡前故事阅读精神消耗减半", "技能书阅读效果", "book"]
 tags: [component, item, callback, actions]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/book.lua", "components/reader.lua", "prefabs/books.lua", "actions.lua", "componentactions.lua"]
 reliability: verified
 validation: source-reviewed
@@ -28,10 +28,10 @@ status: active
 |---|---|
 | `SetOnRead(fn)`／`SetOnPeruse(fn)` | fn(book,reader) 返回 success,reason；OnRead 透传二者，OnPeruse 只返回 success。函数命名相近不表示两条效果相同。[交互](../../../raw/current/scripts/components/book.lua#L32-L52) [正式阅读](../../../raw/current/scripts/components/book.lua#L61-L80) |
 | `SetReadSanity(delta)`／`SetPeruseSanity(delta)` | 单次精神增量，负值扣除、正值增加，未设置按 0；正式阅读依赖 reader:GetSanityPenaltyMultiplier()。不是每秒速率。[数值](../../../raw/current/scripts/components/book.lua#L45-L59) |
-| `ConsumeUse()` | 有 finiteuses 时 Use(1)，不是所有 READ 动作自动扣次数；原书把耗尽回调设为移除实体。[消费](../../../raw/current/scripts/components/book.lua#L26-L30) [原挂载](../../../raw/current/scripts/prefabs/books.lua#L1023-L1036) |
+| `ConsumeUse()` | 有 finiteuses 时 Use(1)，不是所有 READ 动作自动扣次数；原书把耗尽回调设为移除实体。[消费](../../../raw/current/scripts/components/book.lua#L26-L30) [原挂载](../../../raw/current/scripts/prefabs/books.lua#L1024-L1037) |
 | `SetFx(fx,fxmount)` | 骑乘 FX 未提供时回落普通 FX；正式阅读按骑乘选择、定位／旋转，骑乘时转 SixFaced。无 sanity 的读者不走这段默认 FX。[配置](../../../raw/current/scripts/components/book.lua#L21-L24) [消费](../../../raw/current/scripts/components/book.lua#L61-L80) |
 
-原书在 pristine 前加 book 标签，服务端按 def 配组件、回调、数值及有限次数；组件构造本身不补客户端标签。地面候选检查 reader 标签和 fire／smolder，库存候选只检查 reader；直接调用不继承这些候选门禁。[工厂](../../../raw/current/scripts/prefabs/books.lua#L1008-L1036) [地面](../../../raw/current/scripts/componentactions.lua#L228-L232) [库存](../../../raw/current/scripts/componentactions.lua#L2583-L2587)
+原书在 pristine 前加 book 标签，服务端按 def 配组件、回调、数值及有限次数；组件构造本身不补客户端标签。地面候选检查 reader 标签和 fire／smolder，库存候选只检查 reader；直接调用不继承这些候选门禁。[工厂](../../../raw/current/scripts/prefabs/books.lua#L1009-L1037) [地面](../../../raw/current/scripts/componentactions.lua#L228-L232) [库存](../../../raw/current/scripts/componentactions.lua#L2583-L2587)
 
 ## 典型接入
 
@@ -55,7 +55,7 @@ end)
 
 - **回调完成效果但没 return true**：Interact 得 nil，默认成功消费／精神／FX 不发生，而回调副作用未回滚；明确约定成功和失败。[顺序](../../../raw/current/scripts/components/book.lua#L32-L43)
 - **SetReadSanity(10) 表示消耗十点**：这里是传给 DoDelta 的有符号增量，默认正值增加；负消耗与读者倍率分别设计。[结算](../../../raw/current/scripts/components/book.lua#L55-L59)
-- **只加 book 就复现完整阅读**：客户端候选、reader、实际 SG、资源与物品宿主仍需接入；本例只修改现成原书，不交付新技能书工程。[动作](../../../raw/current/scripts/actions.lua#L1328-L1339) [工厂](../../../raw/current/scripts/prefabs/books.lua#L1008-L1036)
+- **只加 book 就复现完整阅读**：客户端候选、reader、实际 SG、资源与物品宿主仍需接入；本例只修改现成原书，不交付新技能书工程。[动作](../../../raw/current/scripts/actions.lua#L1328-L1339) [工厂](../../../raw/current/scripts/prefabs/books.lua#L1009-L1037)
 
 ## 验证记录
 
@@ -67,3 +67,4 @@ end)
 
 相关：[[reference/components/finiteuses]]；[[reference/components/sanity]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

@@ -1,12 +1,12 @@
 ---
 title: "坎普斯背包（krampus_sack）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版十四格大容量身体槽背包：坎普斯 1% 与克劳斯袋 10% 掉落、无配方；穿脱开关容器与普通背包同源，本体不吸湿但不提供防水。"
 aliases: ["krampus_sack", "坎普斯背包", "小偷背包", "Krampus Sack", "十四格背包"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/krampus_sack.lua", "prefabs/krampus.lua", "containers.lua", "components/lootdropper.lua", "components/klaussackloot.lua", "prefabs/klaus_sack.lua", "prefabs/world.lua", "components/waterproofer.lua", "components/inventory.lua", "components/acidlevel.lua", "brains/beargerbrain.lua", "stategraphs/SGwilson.lua", "standardcomponents.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "prefabskins.lua", "languages/chinese_s.po", "constants.lua"]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ GLOBAL.SetSharedLootTable("krampus",
 - 结构检查：`validate_page.py`（含 `--check-indexes`）通过；standard 档上限 240 行 / 32768 字节。
 
 返回 [[reference/prefabs/storage-heavy-index|背包收纳与重物搬运]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

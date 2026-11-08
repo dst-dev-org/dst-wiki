@@ -1,13 +1,13 @@
 ---
 title: "道具拟态怪影尾粒子（itemmimic_revealed_shadow）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "拟态蠕虫（itemmimic_revealed）脚下的影子尾迹：无 AnimState 的纯 VFXEffect＋EmitterManager 粒子层，由宿主工厂在共享段 AddChild，非联网、persists=false，本体死亡与跳跃状态经 net_event 推 _disabled 开关；兼做本体脚影（宿主无 DynamicShadow）。"
 aliases: ["itemmimic_revealed_shadow", "拟态蠕虫影子", "道具拟态怪影子", "拟态蠕虫尾迹", "itemmimic影子"]
 tags: [prefab, fx, creature, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/itemmimic_revealed.lua", "stategraphs/SGitemmimic_revealed.lua", "brains/itemmimic_revealedbrain.lua", "components/itemmimic.lua", "components/shadowthrall_mimics.lua", "prefabs/cave.lua", "prefabs/forest.lua", "entityscript.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -62,7 +62,7 @@ status: active
 ### itemmimic_revealed 本体辨析
 
 - **传染链**：世界的 `shadowthrall_mimics` 组件（挂在 [cave.lua:572](../../../raw/current/scripts/prefabs/cave.lua#L572)、[forest.lua:726](../../../raw/current/scripts/prefabs/forest.lua#L726)）克隆一件地面物品（连存档数据与皮肤）并挂 `itemmimic` 组件（[克隆](../../../raw/current/scripts/components/shadowthrall_mimics.lua#L57-L65)）；玩家拾取后，非装备物品 8＋0~4 秒必爆（[on_put_in_inventory](../../../raw/current/scripts/components/itemmimic.lua#L59-L69)）、装备品在使用（攻击／工作／佩戴者受击）时 5 帧后爆（[使用触发](../../../raw/current/scripts/components/itemmimic.lua#L123-L132)）、耐久变动也会触发（[percentusedchange](../../../raw/current/scripts/components/itemmimic.lua#L110)），`TurnEvil` 丢弃物品并 ReplacePrefab 成拟态蠕虫，落地即跳（`jump` 事件起 5 秒 `recently_spawned` 免近计时）。
-- **本体组件**：health 100（`SHADOW_LEECH_HEALTH`）／locomotor 跑速 6／playerprox(1.0, 2.5)（延迟 35 帧后启用踩踏即死 `DisperseFromBeingSteppedOn`）／sanityaura 小幅降理智／loot nightmarefuel（[组件装配](../../../raw/current/scripts/prefabs/itemmimic_revealed.lua#L141-L176)、[调值](../../../raw/current/scripts/tuning.lua#L6973-L6974)）；`SetNoLoot` 可关掉掉落并存档（WX78 拟态心脏玩法用）。
+- **本体组件**：health 100（`SHADOW_LEECH_HEALTH`）／locomotor 跑速 6／playerprox(1.0, 2.5)（延迟 35 帧后启用踩踏即死 `DisperseFromBeingSteppedOn`）／sanityaura 小幅降理智／loot nightmarefuel（[组件装配](../../../raw/current/scripts/prefabs/itemmimic_revealed.lua#L141-L176)、[调值](../../../raw/current/scripts/tuning.lua#L6974-L6975)）；`SetNoLoot` 可关掉掉落并存档（WX78 拟态心脏玩法用）。
 - **行为**：Brain 让它远离玩家、并在 15 格内寻找可模仿目标发起 `NUZZLE` 动作（`try_mimic` 状态跳扑，[Brain](../../../raw/current/scripts/brains/itemmimic_revealedbrain.lua#L59-L76)）；"眼睛"弹出／缩回由 Brain 推 `eye_up`／`eye_down` 驱动本体动画。这些玩法链不在本页展开。
 
 ## 典型接入
@@ -130,3 +130,4 @@ end
 - [[reference/prefabs/wx78_big_spark|WX78 外围表现族]]（同为 AddChild 挂接的本地表现层，含"代理无 AnimState"辨析）
 - [[reference/prefabs/shadow_bishop_fx|暗影主教羽群与暗影裂隙散件]]（共享段生成粒子层的同款结构对照）
 - 返回 [[reference/prefabs/fx-shadow-index|暗影生物、裂隙生物与附着]]（道具拟态怪）
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

@@ -6,7 +6,7 @@ type: prefab
 summary: "四个农田辛香作物与烤制形态共 8 个注册：三维与新鲜度取值、onion 的 Gorge 图标替换、asparagus／pepper 的雪人装饰接线、40 上限堆叠、简中名称键，以及农田收获与种子权重给出的获得路径。"
 aliases: ["asparagus", "asparagus_cooked", "onion", "onion_cooked", "garlic", "garlic_cooked", "pepper", "pepper_cooked", "芦笋", "烤芦笋", "洋葱", "烤洋葱", "大蒜", "烤大蒜", "辣椒", "烤辣椒", "辛香作物", "农田蔬菜"]
 tags: [prefab, item, food]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/veggies.lua", "tuning.lua", "components/edible.lua", "components/eater.lua", "components/stackable.lua", "components/inventoryitem.lua", "components/pickable.lua", "components/snowmandecoratable.lua", "componentactions.lua", "entityscript.lua", "standardcomponents.lua", "prefabs/farm_plants.lua", "prefabs/birdcage.lua", "prefabs/farm_plant_defs.lua", "prefabs/snowman.lua", "prefabs/warly.lua", "prefabs/pigking.lua", "prefabs/quagmire_plantables.lua", "cooking.lua", "preparedfoods.lua", "recipes.lua", "languages/loc.lua", "languages/chinese_s.po", "languages/strings.pot"]
 reliability: verified
 validation: source-reviewed
@@ -146,7 +146,7 @@ end)
 - **边界：熟形态不是生形态的超集**：`<name>_cooked` 没有 `cookable`（不能再烤）、没有 `weighable`、没有 `snowmandecor`，两态的组件集合要分开核对。[熟工厂](../../../raw/current/scripts/prefabs/veggies.lua#L740-L776)
 - **误区：onion 的 Gorge 图标不是活动模式分支**：`QUAGMIRE_PORTS` 是硬编码名字表（tomato、onion），任何模式、任何季节都换；换的是 `inventoryitem.imagename`（背包／容器／拖拽图标），世界动画仍是 `onion` 的 bank／build。[名字表](../../../raw/current/scripts/prefabs/veggies.lua#L33-L37)、[替换](../../../raw/current/scripts/prefabs/veggies.lua#L641-L643)
 - **边界：光挂 `snowmandecor` 不能装饰雪人**：装饰外观与可放置性来自 `snowmandecoratable` 的本地 `ITEM_DATA` 表（按名字 hash 建表，不对外暴露），而候选还要求目标带 `heavy` 标签且非 `waxedplant`；雪人（带 `heavy`）才符合，可抛雪球不符合。[候选](../../../raw/current/scripts/componentactions.lua#L1745-L1756)、[数据表](../../../raw/current/scripts/components/snowmandecoratable.lua#L44-L49)、[雪人 heavy](../../../raw/current/scripts/prefabs/snowman.lua#L639)
-- **边界：装饰件会消耗并从背包扣除**：放置时按雪人尺寸的装饰上限校验，并从背包按名字扣数；雪人被锤到破坏、或中途敲掉已有装饰时，`DropAllDecor` 再按 `ITEM_DATA` 把物品掉回地面。[校验与扣除](../../../raw/current/scripts/components/snowmandecoratable.lua#L244-L296)、[掉回](../../../raw/current/scripts/components/snowmandecoratable.lua#L722-L751)、[破坏与拆装饰分支](../../../raw/current/scripts/prefabs/snowman.lua#L531-L544)、[装饰上限](../../../raw/current/scripts/tuning.lua#L8558)
+- **边界：装饰件会消耗并从背包扣除**：放置时按雪人尺寸的装饰上限校验，并从背包按名字扣数；雪人被锤到破坏、或中途敲掉已有装饰时，`DropAllDecor` 再按 `ITEM_DATA` 把物品掉回地面。[校验与扣除](../../../raw/current/scripts/components/snowmandecoratable.lua#L244-L296)、[掉回](../../../raw/current/scripts/components/snowmandecoratable.lua#L722-L751)、[破坏与拆装饰分支](../../../raw/current/scripts/prefabs/snowman.lua#L531-L544)、[装饰上限](../../../raw/current/scripts/tuning.lua#L8559)
 - **边界：挂 `tradable` 不等于猪王收货**：四键都未设 `goldvalue`，猪王只在 `goldvalue > 0`（或节日糖果、`pig_token`）时接受。[AcceptTest](../../../raw/current/scripts/prefabs/pigking.lua#L598-L606)
 - **误区：用 `strings.pot` 判断简中缺译**：模板全表 `msgstr` 为空，据此会得出"所有条目都缺"的错误结论；本页八键在 `chinese_s.po` 均有译文，`pepper_cooked` 是「烤辣椒」。[PEPPER_COOKED 简中](../../../raw/current/scripts/languages/chinese_s.po#L346780-L346782)、[模板](../../../raw/current/scripts/languages/strings.pot#L346776-L346779)
 
@@ -163,3 +163,4 @@ end)
 - 种植与生长：[[reference/components/crop]]、[[reference/components/farmplantable]]、[[reference/components/farming-manager]]
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

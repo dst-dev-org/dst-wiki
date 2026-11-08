@@ -1,12 +1,12 @@
 ---
 title: "裂隙三护甲族（armordreadstone、armor_voidcloth、armor_lunarplant）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "裂隙版本三件 BODY 槽护甲与荆棘茄甲：planardefense＋damagetyperesist＋setbonus 新系装配骨架之上，绝望石理智驱动自愈、虚空长袍负光环免疫与破损双态、亮茄甲位面反伤与 Wormwood 根须/荆棘协作，覆盖配方（绝望石蓝图/双熔炉）与暗影/月亮阵营交互，供模组参照原版做带阵营与自愈机制的护甲。"
 aliases: ["armordreadstone", "绝望石盔甲", "armor_voidcloth", "虚空长袍", "armor_lunarplant", "亮茄盔甲", "armor_lunarplant_husk", "荆棘茄甲", "恐惧石甲", "暗影碎布甲", "brightshade armor", "voidcloth armor", "dreadstone armor", "裂隙护甲", "月亮裂缝护甲"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/armor_dreadstone.lua", "prefabs/armor_voidcloth.lua", "prefabs/armor_lunarplant.lua", "prefabs/hats.lua", "prefabs/daywalker.lua", "prefabs/forge_repair_kits.lua", "prefabs/wormwood_vined_debuff.lua", "prefabs/bramblefx.lua", "prefabs/skilltree_wortox.lua", "prefabs/skilltree_wormwood.lua", "prefabs/waxwell.lua", "prefabs/wanda.lua", "prefabs/gestalt.lua", "prefabs/gestalt_guard.lua", "prefabs/gestalt_guard_evolved.lua", "prefabs/shadow_forge.lua", "prefabs/lunar_forge.lua", "prefabs/tree_rocks.lua", "prefabs/armor_skeleton.lua", "components/armor.lua", "components/setbonus.lua", "components/damagetyperesist.lua", "components/planardefense.lua", "components/damagereflect.lua", "components/forgerepairable.lua", "components/forgerepair.lua", "components/resistance.lua", "components/sanity.lua", "components/inventory.lua", "components/combat.lua", "components/equippable.lua", "components/shadowlevel.lua", "standardcomponents.lua", "componentutil.lua", "stategraphs/SGwagdrone_rolling.lua", "stategraphs/SGshadowwaxwell.lua", "util/sourcemodifierlist.lua", "tuning.lua", "recipes.lua", "constants.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -58,8 +58,8 @@ FX 注册 3 个（`armor_voidcloth_fx`、`armor_lunarplant_glow_fx`、`armor_lun
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
 | `事件："blocked"`（持有者） | armordreadstone 播受击音；armor_lunarplant/husk 播仙人掌音并作为荆棘/根须触发源之一 | 完全格挡时由 combat 推送（含武器/stimuli data） | [blocked 推送](../../../raw/current/scripts/components/combat.lua#L730)、[dreadstone OnBlocked](../../../raw/current/scripts/prefabs/armor_dreadstone.lua#L6-L8)、[lunarplant OnBlocked](../../../raw/current/scripts/prefabs/armor_lunarplant.lua#L43-L47) |
-| `事件："attacked"/"blocked" → OnHit_Vines` | armor_lunarplant 对 plantkin 持有者监听两事件：攻击者挂 `wormwood_vined_debuff`（rooted 定身 6 秒＋10 伤害），需持有者激活技能 `wormwood_allegiance_lunar_plant_gear_1`；排除自己攻击/重定向/无 locomotor/已死 | 仅 Wormwood（`plantkin`）；技能定义见 [skilltree_wormwood#L174](../../../raw/current/scripts/prefabs/skilltree_wormwood.lua#L174) | [OnHit_Vines](../../../raw/current/scripts/prefabs/armor_lunarplant.lua#L26-L41)、[debuff 定身](../../../raw/current/scripts/prefabs/wormwood_vined_debuff.lua#L12-L43)、[时长/伤害调值](../../../raw/current/scripts/tuning.lua#L7845-L7846) |
-| `事件："onattackother" → OnAttackOther` | husk 对 plantkin 监听持有者攻击：技能 `wormwood_armor_bramble` 下累计 3 击触发 `DoThorns`；本体 armor_lunarplant 无此链 | 仅 armor_lunarplant_husk；技能定义见 [skilltree_wormwood#L373](../../../raw/current/scripts/prefabs/skilltree_wormwood.lua#L373) | [OnAttackOther](../../../raw/current/scripts/prefabs/armor_lunarplant.lua#L270-L283)、[DoThorns](../../../raw/current/scripts/prefabs/armor_lunarplant.lua#L255-L268)、[命中数调值](../../../raw/current/scripts/tuning.lua#L7848) |
+| `事件："attacked"/"blocked" → OnHit_Vines` | armor_lunarplant 对 plantkin 持有者监听两事件：攻击者挂 `wormwood_vined_debuff`（rooted 定身 6 秒＋10 伤害），需持有者激活技能 `wormwood_allegiance_lunar_plant_gear_1`；排除自己攻击/重定向/无 locomotor/已死 | 仅 Wormwood（`plantkin`）；技能定义见 [skilltree_wormwood#L174](../../../raw/current/scripts/prefabs/skilltree_wormwood.lua#L174) | [OnHit_Vines](../../../raw/current/scripts/prefabs/armor_lunarplant.lua#L26-L41)、[debuff 定身](../../../raw/current/scripts/prefabs/wormwood_vined_debuff.lua#L12-L43)、[时长/伤害调值](../../../raw/current/scripts/tuning.lua#L7846-L7847) |
+| `事件："onattackother" → OnAttackOther` | husk 对 plantkin 监听持有者攻击：技能 `wormwood_armor_bramble` 下累计 3 击触发 `DoThorns`；本体 armor_lunarplant 无此链 | 仅 armor_lunarplant_husk；技能定义见 [skilltree_wormwood#L373](../../../raw/current/scripts/prefabs/skilltree_wormwood.lua#L373) | [OnAttackOther](../../../raw/current/scripts/prefabs/armor_lunarplant.lua#L270-L283)、[DoThorns](../../../raw/current/scripts/prefabs/armor_lunarplant.lua#L255-L268)、[命中数调值](../../../raw/current/scripts/tuning.lua#L7849) |
 | `数据：armor 命中音效标签` | `lunarplant`/`dreadstone`/`cloth` 标签被 `GetArmorImpactSound` 选中对应受击音 | 标签在 three 文件构造段写入 | [标签选音](../../../raw/current/scripts/componentutil.lua#L1624-L1644) |
 | `数据：TUNING 调值` | 全部耐久/吸收/抗性/反射/自愈常量集中在 tuning 的裂隙三段 | 推导值见[注册与构造](#注册与构造)与[典型接入](#典型接入) | [dreadstone 段](../../../raw/current/scripts/tuning.lua#L1877-L1888)、[lunarplant 段](../../../raw/current/scripts/tuning.lua#L1891-L1900)、[voidcloth 段](../../../raw/current/scripts/tuning.lua#L1903-L1914) |
 
@@ -199,3 +199,4 @@ end)
 - [[reference/components/armor|armor 组件]]、[[reference/components/setbonus|setbonus 组件]]、[[reference/components/damagetyperesist|damagetyperesist 组件]]、[[reference/components/damagereflect|damagereflect 组件]]、[[reference/components/planardefense|planardefense 组件]]、[[reference/components/shadowlevel|shadowlevel 组件]]、[[reference/components/forgerepairable|forgerepairable 组件]]（本页各机制的组件主页面）
 
 返回 [[reference/prefabs/wearables-index|穿戴防具与饰品]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

@@ -1,13 +1,13 @@
 ---
 title: "暗影收割者（voidcloth_scythe）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版裂隙暗影武器 voidcloth_scythe：HANDS 槽近战＋右键 SCYTHE 群体采收植物，位面伤害、耐尽残破可修复、对影阵营持有者说话，Wortox 影契下攻击可耗灵魂触发范围打击；同文件注册持握跟随 FX，独立文件 classified 说话代理。"
 aliases: ["voidcloth_scythe", "暗影收割者", "Shadow Reaper", "虚布镰刀"]
 tags: [prefab, item, equipment]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/voidcloth_scythe.lua", "prefabs/voidcloth_scythe_classified.lua", "prefabs/wortox.lua", "prefabs/skilltree_wortox.lua", "prefabs/gestalt_guard.lua", "prefabs/hats.lua", "prefabs/skinprefabs.lua", "components/weapon.lua", "components/equippable.lua", "components/finiteuses.lua", "components/planardamage.lua", "components/damagetypebonus.lua", "components/talker.lua", "components/combat.lua", "components/tool.lua", "components/socket_shadow_harvester.lua", "componentactions.lua", "componentutil.lua", "bufferedaction.lua", "actions.lua", "constants.lua", "standardcomponents.lua", "tuning.lua", "recipes.lua", "recipes_filter.lua", "mods.lua", "strings.lua", "stringutil.lua", "widgets/itemtile.lua", "screens/redux/scrapbookdata.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -49,11 +49,11 @@ status: active
 
 ### 数值
 
-（tuning 键＋实际值；`wilson_attack`＝34×倍率 1，[tuning.lua#L31-L37](../../../raw/current/scripts/tuning.lua#L31-L37)；键域 [L7809-L7819](../../../raw/current/scripts/tuning.lua#L7809-L7819)）
+（tuning 键＋实际值；`wilson_attack`＝34×倍率 1，[tuning.lua#L31-L37](../../../raw/current/scripts/tuning.lua#L31-L37)；键域 [L7809-L7819](../../../raw/current/scripts/tuning.lua#L7810-L7820)）
 
 | 项 | 键 | 实际值 |
 |---|---|---|
-| 武器伤害 | `VOIDCLOTH_SCYTHE_DAMAGE`＝`wilson_attack`×2−30 | 38 生命值（源码推导；图鉴 weapondamage=38 交叉印证，[scrapbookdata](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1667)） |
+| 武器伤害 | `VOIDCLOTH_SCYTHE_DAMAGE`＝`wilson_attack`×2−30 | 38 生命值（源码推导；图鉴 weapondamage=38 交叉印证，[scrapbookdata](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1672)） |
 | 位面伤害 | `VOIDCLOTH_SCYTHE_PLANAR_DAMAGE` | 18（图鉴同值） |
 | 耐久上限 | `VOIDCLOTH_SCYTHE_USES` | 200；收割 1/次＋攻击 1/次（weapon 默认磨损） |
 | 收割半径 | `VOIDCLOTH_SCYTHE_HARVEST_RADIUS` | 4（每次执行时读表） |
@@ -63,7 +63,7 @@ status: active
 | 装备理智 | `dapperness`＝−`DAPPERNESS_MED`（[tuning.lua#L2215](../../../raw/current/scripts/tuning.lua#L2215)） | ≈−0.056/秒（约 −26.7/游戏天）；`is_magic_dapperness`＝true |
 | 影子等级 | `VOIDCLOTH_SCYTHE_SHADOW_LEVEL` | 3（[tuning.lua#L2881](../../../raw/current/scripts/tuning.lua#L2881)） |
 | 说话间隔 | `TALK_INITIAL_INTERVAL`／`TALK_INTERVAL` | 3 秒首句／30 秒周期 |
-| AoE 范围 | `SKILLS.WORTOX.VOIDCLOTHSCYTHE_AOE_RANGE` | 2.5（[tuning.lua#L7465](../../../raw/current/scripts/tuning.lua#L7465)） |
+| AoE 范围 | `SKILLS.WORTOX.VOIDCLOTHSCYTHE_AOE_RANGE` | 2.5（[tuning.lua#L7465](../../../raw/current/scripts/tuning.lua#L7466)） |
 
 ### 收割动作（SCYTHE）
 
@@ -168,3 +168,4 @@ end)
 - 结构检查：validate_page.py 与 strict 均通过；本次修改的 Lua 示例经 parser_probe 语法通过。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

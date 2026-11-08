@@ -1,12 +1,12 @@
 ---
 title: "tacklesketch"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "识别渔具图纸交给工作站的旧组件路径；当前原版图纸实际使用 teacher，不能按同名 Prefab 假定挂载。"
 aliases: ["tacklesketch", "渔具图纸", "海钓图纸", "GIVE_TACKLESKETCH", "渔具工作台教学"]
 tags: [component, recipe, actions, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/tacklesketch.lua, prefabs/tacklesketch.lua, prefabs/tacklestation.lua, components/craftingstation.lua, components/teacher.lua, actions.lua, componentactions.lua, stategraphs/SGwilson.lua, stategraphs/SGwilson_client.lua]
 reliability: verified
 validation: source-reviewed
@@ -66,3 +66,4 @@ status: active
 - 结构检查：本页元数据、链接、大小与源码引用定向检查通过；没有新增完整 Lua 示例。
 - 游戏运行：未运行；旧模组兼容、图纸存档迁移及当前人物学习的实际联机表现未实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

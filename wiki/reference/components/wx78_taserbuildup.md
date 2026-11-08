@@ -1,12 +1,12 @@
 ---
 title: "wx78_taserbuildup"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "WX-78 电击技能积攒组件：受击/格挡充能、闲置漏电，满值或主动释放触发电爆，按模块数动态挂载与调参。"
 aliases: ["WX78电击积攒", "wx78_taserbuildup", "泰瑟积攒", "电爆积攒"]
 tags: [component, energy]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/wx78_taserbuildup.lua", "wx78_moduledefs.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -62,3 +62,4 @@ wx.components.wx78_taserbuildup:ReleaseBuildup(1)     -- 1 秒后电爆
 - 源码审阅：2026-10-28，steam-buildid:26230496，覆盖组件全文与 wx78_moduledefs 激活/停用/调参链、TUNING.SKILLS.WX78 常量；未运行游戏。
 - 结构检查：validate_page.py、validate_source_links.py 与 Lua 语法探针通过。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

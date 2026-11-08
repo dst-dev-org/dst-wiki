@@ -1,12 +1,12 @@
 ---
 title: "cursable"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "玩家侧猴子诅咒计数、强制收纳、解除与死亡转移；与诅咒物品追踪及变身工具协作。"
 aliases: ["服务端净化一枚猴子代币", "玩家猴子诅咒", "诅咒物品强制收纳", "cursable"]
 tags: [component, item, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/cursable.lua", "components/curseditem.lua", "curse_monkey_util.lua", "prefabs/cursed_monkey_token.lua", "prefabs/player_common.lua", "stategraphs/SGwilson.lua", "stategraphs/SGmonkeyqueen.lua"]
 reliability: verified
 validation: source-reviewed
@@ -78,3 +78,4 @@ end)
 - 结构检查：本批格式、来源、链接／锚点、大小与登记；完整单枚净化例经已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；单枚／整堆、满库存／手持、局部猴化／已变身、死亡／换人／重载与其他模组计数差异待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

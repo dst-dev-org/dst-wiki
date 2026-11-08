@@ -1,12 +1,12 @@
 ---
 title: "寄居蟹隐士迁移、传送门与涟漪特效（hermitcrab_fx_small 等）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "寄居蟹隐士迁移三档、导弹爆炸、岩树碎屑、宝库与中庭传送门和首领涟漪的九种通用表表现。"
 aliases: ["hermitcrab_fx_small", "hermitcrab_fx_med", "hermitcrab_fx_tall", "missile_explosion_fx", "tree_rock_chop", "tree_rock_fall", "vault_portal_fx", "atrium_portal_fx", "boss_ripple_fx", "寄居蟹隐士迁移特效", "宝库传送特效", "中庭传送特效", "首领涟漪"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "components/hermitcrab_relocation_manager.lua", "prefabs/hermitcrab_shell.lua", "prefabs/hermitcrab_teashop.lua", "prefabs/lantern_posts_defs.lua", "prefabs/meatrack2.lua", "stategraphs/SGhermitcrab.lua", "prefabs/forest.lua", "prefabs/wagboss_missile.lua", "prefabs/tree_rocks.lua", "prefabs/vault_markers.lua", "prefabs/atrium_markers.lua", "prefabs/vault_orb_refined.lua", "prefabs/vault_teleporter.lua", "prefabs/charliearena_teleporter.lua", "prefabs/staff_common.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilsonghost.lua", "stategraphs/SGmalbatross.lua", "stategraphs/SGeyeofterror.lua", "prefabs/malbatross.lua", "prefabs/eyeofterror.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -57,3 +57,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

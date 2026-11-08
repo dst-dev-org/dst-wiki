@@ -1,13 +1,13 @@
 ---
 title: "重型障碍持握族（glassspike 五注册＋oceantreenut）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 size_class: standard
 summary: "六个 BODY heavy 注册的两条生命周期：玻璃尖刺/玻璃城堡由沙刺点燃玻璃化生成，靠 heavyobstaclephysics 在障碍与物品两态间切换，可锤毁但不掉材料；疙瘩树果从大树干撞落，沉入 underwater_salvageable 后按 1.2～2.7 天计时长成疙瘩树，船/树遮挡则每 60 秒重试。"
 aliases: ["glassspike", "glassspike_short", "glassspike_med", "glassspike_tall", "glassblock", "oceantreenut", "玻璃尖刺", "玻璃城堡", "疙瘩树果", "Glass Spike", "Glass Castle", "Knobbly Tree Nut", "重型障碍", "重型持握物"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/glass_spike.lua", "prefabs/sand_spike.lua", "prefabs/oceantreenut.lua", "prefabs/watertree_pillar.lua", "prefabs/oceantree.lua", "prefabs/underwater_salvageable.lua", "components/equippable.lua", "components/inventoryitem.lua", "components/heavyobstaclephysics.lua", "components/submersible.lua", "components/symbolswapdata.lua", "standardcomponents.lua", "entityscript.lua", "simutil.lua", "constants.lua", "tuning.lua", "strings.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -62,11 +62,11 @@ status: active
 
 获取入口是大树干（`watertree_pillar`，官方名 Great Tree Trunk）被船撞击：`OnCollide` 要求 `hit_velocity>0.8`，且距上次掉落满 1.5 天；`generate_items_to_drop` 在 `num_oceantreenuts>0` 时加入一个果，再配 10～14 个小物品。`DropItems` 在距树干 8～20、高度 10 生成；heavy 果至多检查 5 个候选点（每次重掷距离与角度，`ATTEMPT_DROP_OCEANTREENUT_RADIUS=6` 内查 `tree`），**找不到无树点也接受最后一次随机位置**，再由 `make_heavy_object_falling` 抛落。初始 1 个、上限 2 个；掉落后按 480＋rand×240 秒补回，满 2 个即停。
 
-[撞落](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L238-L264)、[抛落](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L101-L123)、[掉落](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L126-L172)、[掉落清单](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L174-L185)、[补回](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L266-L277)、[常量](../../../raw/current/scripts/tuning.lua#L6338-L6340)
+[撞落](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L238-L264)、[抛落](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L101-L123)、[掉落](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L126-L172)、[掉落清单](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L174-L185)、[补回](../../../raw/current/scripts/prefabs/watertree_pillar.lua#L266-L277)、[常量](../../../raw/current/scripts/tuning.lua#L6339-L6341)
 
 果只有在**真的沉水**、收到 `on_submerge` 之后才起表：`Submerge` 被挤时只有走 `move_to_land`（挪上岸）才跳过沉水、不发事件；换到附近可用水点后仍会 `MakeSunken` 发 `on_submerge`。`OnSubmerge` 只在**没有** `grow` 计时时新建（抽 576＋rand×720 秒＝9.6～21.6 分钟），已有计时则 `ResumeTimer` 沿用剩余时间，若 `should_attempt_grow` 已置位则同时开 60 秒周期重试；该重试任务在实体睡眠时取消、唤醒时按标记恢复。`OnTimerDone` 到点先试 `CanGrow`：先从 `submersible:GetUnderwaterObject()` 取沉水容器，再要求点位是海、2 格内无 `tree` 标签，且以容器为圆心 0.85 格 8 个方向都没有 `GetPlatformAtPoint`（船/平台）；不满足就置 `should_attempt_grow=true` 并等下一次 60 秒重试。
 
-[沉水回调](../../../raw/current/scripts/prefabs/oceantreenut.lua#L90-L100)、[生长判定](../../../raw/current/scripts/prefabs/oceantreenut.lua#L61-L72)、[长成](../../../raw/current/scripts/prefabs/oceantreenut.lua#L74-L82)、[重试](../../../raw/current/scripts/prefabs/oceantreenut.lua#L113-L123)、[计时常量](../../../raw/current/scripts/tuning.lua#L6360-L6361)
+[沉水回调](../../../raw/current/scripts/prefabs/oceantreenut.lua#L90-L100)、[生长判定](../../../raw/current/scripts/prefabs/oceantreenut.lua#L61-L72)、[长成](../../../raw/current/scripts/prefabs/oceantreenut.lua#L74-L82)、[重试](../../../raw/current/scripts/prefabs/oceantreenut.lua#L113-L123)、[计时常量](../../../raw/current/scripts/tuning.lua#L6361-L6362)
 
 `Grow` 在沉水容器位置 Spawn `oceantree_short`，调 `sproutfn()`，再删果；容器监听 `itemlose`，下一帧自删。读档时 `OnSave` 只写 `should_attempt_grow`，`OnLoadPostPass` 在无沉水容器时把 y 归零，有容器且待重试时恢复周期任务；`on_salvaged` 事件到达时停表并取消任务（[OnSalvaged](../../../raw/current/scripts/prefabs/oceantreenut.lua#L102-L111)）。锤毁走 `OnWorkedFinished`：先 `DropLoot`（twigs×1、twigs 50%、spoiled_fish_small 1%；走 `SetChanceLootTable('oceantreenut')`，两条非必掉由 `GetChance` 按有效击杀者/最后工作者的幸运修正），再在同点 Spawn `collapse_small`（material stone）并 `Remove`，不回果。
 
@@ -102,3 +102,4 @@ status: active
 - 结构检查：`validate_page.py`（含 `--check-indexes`）通过；standard 档上限 240 行／32768 字节；`validate_source_links.py --strict` 0 error 0 warning。
 
 返回 [[reference/prefabs/storage-heavy-index|背包收纳与重物搬运]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

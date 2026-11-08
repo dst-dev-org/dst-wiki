@@ -1,12 +1,12 @@
 ---
 title: "鹅形态水花与羽毛（weregoose_splash）"
 created: "2026-10-31"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "十个通用表注册承载鹅形态水上移动表现：三档水花（run／step／walk）与羽毛拖尾由 SGwilson 三个 helper 按水陆分流，非扑翼状态另有周期涟漪，起飞羽毛沿轨迹落点；海猴划船复用本名水花。全部父挂取位即解挂，不持续跟随。"
 aliases: ["weregoose_splash", "weregoose_splash_med1", "weregoose_splash_med2", "weregoose_splash_less1", "weregoose_splash_less2", "weregoose_ripple1", "weregoose_ripple2", "weregoose_feathers1", "weregoose_feathers2", "weregoose_feathers3", "鹅形态水花", "水上羽毛", "涟漪特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "stategraphs/SGwilson.lua", "prefabs/woodie.lua", "stategraphs/SGpowdermonkey.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ end
 
 返回 [[reference/prefabs/fx-transition-index|变身、召唤、传送与退场]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

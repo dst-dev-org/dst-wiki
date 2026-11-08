@@ -1,12 +1,12 @@
 ---
 title: "teleporter"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "管理虫洞类入口的目标、激活与接收流程，区分瞬移坐标、人物 SG 和跨分片迁移。"
 aliases: ["虫洞传送", "传送门配对", "传送落点偏移", "teleporter"]
 tags: [component, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/teleporter.lua", "prefabs/wormhole.lua", "stategraphs/SGwilson.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -81,3 +81,4 @@ end)
 - 结构与语法：本批执行格式、登记、链接／源码锚点检查及完整示例 Lua 5.1 语法检查；结果见本批交付报告。
 - 游戏运行：未运行；多人拥挤、水陆／平台、跳入中断、接收中读档、出口移除、跨分片及专服待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

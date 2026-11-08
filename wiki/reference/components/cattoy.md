@@ -1,13 +1,13 @@
 ---
 title: "cattoy"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "猫玩具交互组件：定义猫狸/小猫狸逗玩物品时的回调与空中玩具豁免，配合 cattoy 标签被猫脑检索。"
 aliases: ["猫玩具", "cattoy", "逗猫交互"]
 tags: [component, ai, actions]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/cattoy.lua", "actions.lua", "brains/catcoonbrain.lua", "brains/kitcoonbrain.lua", "prefabs/kitcoondecor.lua", "prefabs/wx78_scanner.lua"]
 reliability: verified
 validation: source-reviewed
@@ -36,7 +36,7 @@ status: active
 
 ### 让自定义物品成为猫玩具（原版参照）
 
-- 前提与选择：服务端；同时加标签与组件。原版挂组件的先例：kitcoondecor 装饰品（([kitcoondecor.lua:144-145](../../../raw/current/scripts/prefabs/kitcoondecor.lua#L144-L145)）、WX-78 扫描器与收割无人机（([wx78_scanner.lua:947-949](../../../raw/current/scripts/prefabs/wx78_scanner.lua#L947-L949)，均置 BypassLastAirTime）。[挂组件](../../../raw/current/scripts/prefabs/kitcoondecor.lua#L144-L145)
+- 前提与选择：服务端；同时加标签与组件。原版挂组件的先例：kitcoondecor 装饰品（([kitcoondecor.lua:144-145](../../../raw/current/scripts/prefabs/kitcoondecor.lua#L144-L145)）、WX-78 扫描器与收割无人机（([wx78_scanner.lua:947-949](../../../raw/current/scripts/prefabs/wx78_scanner.lua#L949-L951)，均置 BypassLastAirTime）。[挂组件](../../../raw/current/scripts/prefabs/kitcoondecor.lua#L144-L145)
 - 生效与撤销：kitcoon 选定目标后会先摘标签预留 30 秒防抢（([kitcoonbrain.lua:217-219](../../../raw/current/scripts/brains/kitcoonbrain.lua#L217-L219)）；动作执行时按目标是否有 cattoy 组件分发 Play，无组件回退 poppable/攻击/拾取分支。[动作分发](../../../raw/current/scripts/actions.lua#L3884-L3887)
 - 原版依据：只加标签的物品（papyrus、rope、foliage、鹅毛、饰品、鱼漂等十余种）逗玩时走猫脑默认分支，不触发自定义回调——组件与标签职责不同。
 
@@ -67,3 +67,4 @@ end)
 
 相关：[[reference/components/kitcoon]]
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

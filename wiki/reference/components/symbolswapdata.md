@@ -1,12 +1,12 @@
 ---
 title: "symbolswapdata"
 created: 2026-10-26
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "在物品上被动记录build、symbol和皮肤标志，供健身器等消费者决定如何在另一个AnimState显示该物品。"
 aliases: ["symbolswapdata", "物品换符号数据", "重物显示资源", "build symbol is_skinned"]
 tags: [component, data]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/symbolswapdata.lua", "prefabs/cavein_boulder.lua", "prefabskin.lua", "components/mightygym.lua"]
 reliability: verified
 validation: source-reviewed
@@ -58,3 +58,4 @@ UnloadWeight由健身器自己清swap_item／swap_item2覆盖并移除附加特�
 - 游戏运行：未运行；未测换皮肤后已加载物品重绘、资源缺失、各客户端外观或读档重建。未展开绞盘等其他消费者、完整皮肤系统或健身器全状态机。
 - 结构检查：`validate_page.py`通过；两页合并执行`validate_source_links.py --strict`，41个行号引用、0错误／0警告。本页无新增Lua示例；机械检查不代替游戏测试。
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

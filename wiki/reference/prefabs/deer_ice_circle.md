@@ -1,12 +1,12 @@
 ---
 title: "无眼鹿冰火法阵（deer_ice_circle）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "宝石无眼鹿施法落地的持续法阵：冰圈冻结锁定＋减速＋降温，火圈积热点燃＋升温＋propagator 真实传播火焰；同文件另有充能角饰与子效共 9 个注册。"
 aliases: ["deer_ice_circle", "deer_fire_circle", "deer_ice_fx", "deer_ice_burst", "deer_ice_flakes", "deer_ice_charge", "deer_fire_burst", "deer_fire_flakes", "deer_fire_charge", "deer_fx", "无眼鹿法阵", "冰火法阵", "克劳斯鹿法阵"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/deer_fx.lua", "prefabs/deer.lua", "stategraphs/SGdeer.lua", "prefabs/deerclops_mutated_fx.lua", "prefabs/deerclopseyeball_sentryward.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -100,3 +100,4 @@ fx:DoTaskInTime(6, fx.KillFX)               -- 原版冰圈 castduration=6
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

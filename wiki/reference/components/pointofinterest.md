@@ -1,12 +1,12 @@
 ---
 title: "pointofinterest"
 created: "2026-10-27"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "依据本地 Scrapbook 认识等级显示兴趣点世界标记与 HUD 方向提示，并在已检查后播放移除脉冲。"
 aliases: ["兴趣点问号提示", "图鉴未检查地点标记", "pointofinterest"]
 tags: [component, ui, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/pointofinterest.lua", "scrapbookpartitions.lua", "screens/redux/scrapbookdata.lua", "screens/playerhud.lua", "widgets/targetindicator.lua", "playerprofile.lua", "tuning.lua", "prefabs/pigking.lua"]
 reliability: verified
 validation: source-reviewed
@@ -55,7 +55,7 @@ status: active
 
 ### 猪王保留小地图图标并增加本地图鉴提示
 
-`prefabs/pigking.lua` 的 fn 分别设置 `MiniMapEntity` 图标，再在 `not TheNet:IsDedicated()` 分支添加 pointofinterest、设置高度 70；该分支位于 `SetPristine` 与非 master 返回之前，因此覆盖普通客户端及本地主机。数据集已有 pigking 的 POI 条目，正常启动依旧要求当地等级 `< 2`。[小地图与宿主组装](../../../raw/current/scripts/prefabs/pigking.lua#L629-L684) [图鉴条目](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1116)
+`prefabs/pigking.lua` 的 fn 分别设置 `MiniMapEntity` 图标，再在 `not TheNet:IsDedicated()` 分支添加 pointofinterest、设置高度 70；该分支位于 `SetPristine` 与非 master 返回之前，因此覆盖普通客户端及本地主机。数据集已有 pigking 的 POI 条目，正常启动依旧要求当地等级 `< 2`。[小地图与宿主组装](../../../raw/current/scripts/prefabs/pigking.lua#L629-L684) [图鉴条目](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1120)
 
 这说明两个表现入口独立：修改组件高度影响其符号跟随偏移；不改变猪王小地图图标、图鉴内容或服务端交易。撤掉组件走自身清理；只调用 `RemoveEverything` 后若还需继续表现，应通过既有启动条件恢复更新，不能把它当仅隐藏接口。[世界标记](../../../raw/current/scripts/components/pointofinterest.lua#L120-L132) [组件移除](../../../raw/current/scripts/components/pointofinterest.lua#L280-L285)
 
@@ -71,3 +71,4 @@ status: active
 - 游戏运行：未运行；未验证实际画面、HUD 重建、联机流入／流出或休眠残留的可见表现。源码中的非统一清理按实记录，不据此声称已复现游戏故障。
 - 结构检查：页面校验通过；严格源码链接校验通过，0 错误、0 警告。无 Lua 示例，未执行语法探针。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处，scrapbookdata.lua 表内 pigking 行前插 4 行图鉴条目、行号 1116→1120，行内容未变），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-01）。

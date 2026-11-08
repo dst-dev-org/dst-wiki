@@ -1,12 +1,12 @@
 ---
 title: "simplemagicgrower：连续推进到指定成长阶段"
 created: 2026-10-26
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "调用 growable 的自然成长路径并短延迟重试，达到配置阶段后恢复自然计时并清魔法成长标签。"
 aliases: [simplemagicgrower, 连续魔法催熟, 树木魔法成长, magicgrowth 标签残留]
 tags: [component, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/simplemagicgrower.lua, components/growable.lua, prefabs/evergreens.lua, prefabs/books.lua]
 reliability: verified
 validation: source-reviewed
@@ -63,3 +63,4 @@ DoGrowth 的 true 不保证 stage 增加：growonly 可跳过 SetStage，末阶�
 
 - 版本沿用：2026-10-28 批量沿用-70（哈希等价升版），见 [[updates/build-26230496/index#wiki-沿用记录]]；本批依据见[[updates/build-26335394/index#wiki-沿用记录]]（批次-2）。
 相关：[[reference/components/growable]]、[[reference/components/book]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

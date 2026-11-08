@@ -1,12 +1,12 @@
 ---
 title: "sheltered"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "服务端逐帧判定实体是否处于庇护，驱动庇护副本、sheltered 事件与雨天防水贡献。"
 aliases: ["庇护", "树荫庇护", "避雨判定", "庇护等级", "sheltered"]
 tags: [component, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/sheltered.lua", "components/sheltered_replica.lua", "components/moisture.lua", "components/rider.lua", "components/lunarhailmanager.lua", "prefabs/player_common.lua", "prefabs/wx78_possessedbody.lua", "prefabs/wx78_backupbody.lua", "prefabs/player_common_extensions.lua", "prefabs/oceantree_pillar.lua", "prefabs/torch.lua", "entityreplica.lua", "entityscript.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -87,3 +87,4 @@ status: active
 
 相关：[[reference/components/moisture]]；[[reference/components/rider]]；[[reference/components/rainimmunity]]；[[reference/components/talker]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

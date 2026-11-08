@@ -1,13 +1,13 @@
 ---
 title: "暗影囚牢·影柱法术体系（shadow_pillar）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "麦斯威尔暗影秘典“暗影囚牢”法术的四个注册：玩法柱、柱底地面贴片、非联网定身辅助与 CLASSIFIED 扫描实体的工厂、端、父挂、生成点和清理。"
 aliases: ["shadow_pillar", "shadow_pillar_base_fx", "shadow_pillar_target", "shadow_pillar_spell", "暗影囚牢", "Shadow Prison", "影柱", "暗影柱", "影柱法术", "暗影柱法术", "影柱地面贴片"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/shadow_pillar.lua", "prefabs/waxwelljournal.lua", "prefabs/shadow_trap.lua", "prefabs/trap_vines.lua", "prefablist.lua", "components/rooted.lua", "stategraphs/SGshadow_trap.lua", "stategraphs/SGshrouden.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -107,3 +107,4 @@ inst.base:DoTaskInTime(2 * FRAMES, inst.base.KillFX)
 - 未覆盖：动画 zip 内容与时长、客户端实际观感、专服与晚加入、读档中途表现、法术周期内实际扫描次数与客户端涟漪帧对齐、秘典 UI 与图标。
 
 返回 [[reference/prefabs/fx-shadow-index|暗影生物、裂隙生物与附着]]、[[reference/prefabs/index|Prefab 索引]]；其他生物演出见 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

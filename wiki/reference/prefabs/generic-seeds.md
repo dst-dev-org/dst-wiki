@@ -1,12 +1,12 @@
 ---
 title: "通用种子与烤种子（seeds、seeds_cooked 与放置预览 seeds_placer）"
 created: "2026-11-08"
-updated: "2026-11-08"
+updated: "2026-11-09"
 type: prefab
 summary: "prefabs/seeds.lua 的三件注册：seeds 是可烤、可钓、可当诱饵的随机种子，现代种植先生成 farm_plant_randomseed，出苗替换为作物或杂草，识别可提前定种；seeds_cooked 可食、可当雪人装饰，不可播种或作拟饵；seeds_placer 用 tile_outline 预览可耕地块。"
 aliases: ["seeds", "seeds_cooked", "seeds_placer", "种子", "烤种子", "随机种子", "通用种子"]
 tags: [prefab, item, food]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/seeds.lua", "prefabs/veggies.lua", "prefabs/farm_plants.lua", "prefabs/farm_plant_defs.lua", "prefabs/weed_defs.lua", "prefabs/birdcage.lua", "prefabs/birds.lua", "prefabs/fruitfly.lua", "prefabs/tumbleweed.lua", "prefabs/bundle.lua", "components/farmplantable.lua", "components/plantable.lua", "components/grower.lua", "components/cookable.lua", "components/cooker.lua", "components/edible.lua", "components/perishable.lua", "components/stackable.lua", "components/bait.lua", "components/floater.lua", "components/oceanfishingtackle.lua", "components/deployable.lua", "components/inventoryitem_replica.lua", "containers.lua", "prefabutil.lua", "util.lua", "standardcomponents.lua", "actions.lua", "componentactions.lua", "tuning.lua", "constants.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -19,7 +19,7 @@ status: active
 
 - 职责与适用：`prefabs/seeds.lua` 一次返回三件注册——`seeds`（通用种子，简中「种子」）、`seeds_cooked`（烤种子）、`seeds_placer`（部署预览）。经 `PLANTSOIL` 播种或 Wormwood 直接部署都会先生成 `farm_plant_randomseed`。出苗时替换为作物或杂草，识别可提前锁定结果。旧农田走 `plantable.product`。可借鉴：一件物品同时承担播种、烤制、拟饵与「随机结果延迟抽取」。[导出](../../../raw/current/scripts/prefabs/seeds.lua#L216-L218)、[随机株两段生长](../../../raw/current/scripts/prefabs/farm_plants.lua#L412-L436)
 - 优先使用：改可食与保质看[数值、保质与烤制](#数值保质与烤制)；改「种出什么」看[随机种植与随机株](#随机种植与随机株)；作物专用种子看 [[reference/prefabs/farm-crop-seeds]]。
-- 重要副作用：`PLANTSOIL` 播种会把脚下的 `farm_soil` 换成 `farm_plant_randomseed`（耕地被消耗；Wormwood 直接部署无需预先锄地，但同样会 `CollapseSoilAtPoint` 处理附近土堆）；随机株的 `lootdropper` 没有赋表，挖掉或烧掉**不返还种子**。[Plant](../../../raw/current/scripts/components/farmplantable.lua#L7-L30)、[SetupLoot](../../../raw/current/scripts/prefabs/farm_plants.lua#L344-L362)
+- 重要副作用：`PLANTSOIL` 播种会把脚下的 `farm_soil` 换成 `farm_plant_randomseed`（耕地被消耗；Wormwood 直接部署无需预先锄地，但同样会 `CollapseSoilAtPoint` 处理附近土堆）；随机株没有 `full`／`rotten`，`SetupLoot` 只在成熟（`pickable`）或腐烂（`farm_plant_killjoy`）时赋表，随机株两段都不命中，`loot` 保持为空，挖掉或烧掉**不返还种子**。[Plant](../../../raw/current/scripts/components/farmplantable.lua#L7-L30)、[SetupLoot](../../../raw/current/scripts/prefabs/farm_plants.lua#L344-L362)
 - 修改边界：14 种作物专用种子、农田压力与再生、`farm_plant_randomseed` 之外的植株行为不在本页；`seeds_placer` 只写接线，预览用图标资源不属本页。
 
 ## 注册与构造
@@ -65,20 +65,22 @@ status: active
 
 ### 随机种植与随机株
 
+植株侧的完整阶段、压力与巨型判定见 [[reference/prefabs/farm-plants]]；本节只保留从种子出发需要的接线。
+
 - `farmplantable.plant` 存的是**函数** `pickfarmplant`，`FarmPlantable:Plant` 用 `FunctionOrValue(self.plant, self.inst)` 以种子实例调用，返回常量 `"farm_plant_randomseed"`；作物专用种子这里存的是字符串。[Plant](../../../raw/current/scripts/components/farmplantable.lua#L7-L21)、[函数](../../../raw/current/scripts/prefabs/seeds.lua#L60-L62)、[定义](../../../raw/current/scripts/util.lua#L1718-L1724)
 - 该植株由 `PLANT_DEFS.randomseed` 生成：`build`／`bank` 都是 `farm_soil`，`seed = "seeds"`、`plant_type_tag = "farm_plant_randomseed"`、`family_min_count = 0`、`nutrient_consumption = {0,0,0}`、`is_randomseed = true`；没有 `product`／`product_oversized`／`loot_oversized_rot`。[定义](../../../raw/current/scripts/prefabs/farm_plant_defs.lua#L5-L5)、[随机分支](../../../raw/current/scripts/prefabs/farm_plant_defs.lua#L260-L263)、[零消耗](../../../raw/current/scripts/prefabs/farm_plant_defs.lua#L107-L107)
 - 生长只有两段：`seed` 段发芽 `12–16 × SEG_TIME`＝360–480 秒，秋／春（`good_seasons`）减半为 180–240 秒；`sprout` 段的 `fn` 直接 `ReplaceWithPlant`，不再进入 `small`／`med`／`full`。[发芽时长](../../../raw/current/scripts/prefabs/farm_plant_defs.lua#L40-L40)、[阶段表](../../../raw/current/scripts/prefabs/farm_plants.lua#L412-L436)、[发芽计算](../../../raw/current/scripts/prefabs/farm_plants.lua#L364-L368)
-- `ReplaceWithPlant`：优先用已识别的注册名，否则由此文件的 `pickfarmplant` 抽取，再 `SpawnPrefab`；复制 `farmsoildrinker`／`farmplantstress`、置 `no_oversized = true`、`long_life` 继承、`DoGrowth()` 与贴图覆盖都只在 `plant.plant_def ~= nil` 内执行，抽到杂草时只做生成、定位与替换。[替换](../../../raw/current/scripts/prefabs/farm_plants.lua#L151-L167)
-- 抽取规则：先掷 `FARM_PLANT_RANDOMSEED_WEED_CHANCE`＝0.20 决定出杂草（按 `WEIGHTED_SEED_TABLE`：`weed_forgetmelots` 5、另三种各 0.5）；否则按 `VEGGIES[k].seed_weight × (PLANT_DEFS[k].good_seasons[season] and SEED_WEIGHT_SEASON_MOD or 1)` 抽作物。[抽取](../../../raw/current/scripts/prefabs/farm_plants.lua#L134-L149)、[杂草权重](../../../raw/current/scripts/prefabs/weed_defs.lua#L43-L46)、[权重表](../../../raw/current/scripts/prefabs/weed_defs.lua#L336-L341)
+- `ReplaceWithPlant` 分两支：先按已识别的注册名或 `pickfarmplant` 抽出目标，再 `SpawnPrefab`、定位；抽到作物（`plant.plant_def ~= nil`）时另置 `no_oversized = true`、继承 `long_life`、把 `farmsoildrinker`／`farmplantstress` 状态 `CopyFrom` 过来、`growable:DoGrowth()` 推进一步并覆盖种子贴图；抽到杂草时只做生成、定位与替换，不复制状态、不置 `no_oversized`。两支最后都写 `inst.grew_into` 再 `Remove` 旧株。[替换](../../../raw/current/scripts/prefabs/farm_plants.lua#L151-L167)
+- 抽取规则：先掷 `FARM_PLANT_RANDOMSEED_WEED_CHANCE`＝0.20 决定出杂草（按 `WEIGHTED_SEED_TABLE`：`weed_forgetmelots` 5、另三种各 0.5；杂草产物见 [[reference/prefabs/weeds]]）；否则按 `VEGGIES[k].seed_weight × (PLANT_DEFS[k].good_seasons[season] and SEED_WEIGHT_SEASON_MOD or 1)` 抽作物。[抽取](../../../raw/current/scripts/prefabs/farm_plants.lua#L134-L149)、[杂草权重](../../../raw/current/scripts/prefabs/weed_defs.lua#L43-L46)、[权重表](../../../raw/current/scripts/prefabs/weed_defs.lua#L336-L341)
 - 权重：`SEED_CHANCE_COMMON` 2.5（胡萝卜／玉米／番茄／土豆）、`UNCOMMON` 1（南瓜／茄子／西瓜／芦笋）、`RARE` 0.5（榴莲／石榴／火龙果／洋葱／大蒜／辣椒），14 项合计 17；`SEEDLESS` 的 6 项为 0，永不抽出；`SEED_WEIGHT_SEASON_MOD`＝2。[常量](../../../raw/current/scripts/tuning.lua#L97-L102)、[每键权重](../../../raw/current/scripts/prefabs/veggies.lua#L39-L155)
 - 识别：带 `farmplantidentifier` 的玩家查看随机株时会经 `RandomSeedDescriptionFn` 调 `inst:BeIdentified(viewer)`，提前定种并推 `idplantseed`、去掉 `israndomseed` tag；本快照里 `BeIdentified` 只有这一处调用。存档里的 `identified_plant_type` 读档后同样去 tag。[定种](../../../raw/current/scripts/prefabs/farm_plants.lua#L700-L717)、[读档](../../../raw/current/scripts/prefabs/farm_plants.lua#L754-L757)
-- 掉落：`lootdropper.lootsetupfn = SetupLoot`，而 `SetupLoot` 只在 `farm_plant_killjoy`（腐烂株）或 `pickable ~= nil`（成熟株）时赋表；随机株两段都不命中，`loot` 保持初始空表，挖掉与烧掉都不返还种子。[两段分支](../../../raw/current/scripts/prefabs/farm_plants.lua#L344-L362)、[挂载](../../../raw/current/scripts/prefabs/farm_plants.lua#L873-L874)
+- 掉落：`lootdropper.lootsetupfn = SetupLoot`，而 `SetupLoot` 只在 `farm_plant_killjoy`（腐烂株）或 `pickable ~= nil`（成熟株）时赋表；随机株两段都不命中，`loot` 保持为空，挖掉与烧掉都不返还种子。[两段分支](../../../raw/current/scripts/prefabs/farm_plants.lua#L344-L362)、[挂载](../../../raw/current/scripts/prefabs/farm_plants.lua#L873-L874)
 
 ## 获得路径
 
 | 路径 | 产出与条件 | 证据 |
 |---|---|---|
-| 鸟笼喂食 | 只适用于普通鸟：喂 `seeds` 或这批 14 种作物专用种子时 `DigestFood` 拼 `<prefab>_seeds` 找不到注册，落到 `FEED_BIRD_POOP_CHANCE`＝0.33 的 `guano`（幸运修正前的基值）；肉质另给蛋。`bird_mutant` 对非肉食物改掉 `spoiled_food`，`bird_mutant_rift` 只收月亮碎片类。可喂判定先过食性／注册，再排除 `invalid_foods`（蛋与 `woby_treat`） | [消化](../../../raw/current/scripts/prefabs/birdcage.lua#L132-L147)、[可喂判定](../../../raw/current/scripts/prefabs/birdcage.lua#L155-L181)、[拒收表](../../../raw/current/scripts/prefabs/birdcage.lua#L30-L39)、[概率](../../../raw/current/scripts/tuning.lua#L9350) |
+| 鸟笼喂食 | 只适用于普通鸟：喂 `seeds` 或这批 14 种作物专用种子时 `DigestFood` 拼 `<prefab>_seeds` 找不到注册，落到 `FEED_BIRD_POOP_CHANCE`＝0.33 的 `guano`（幸运修正前的基值）；肉质另给蛋。`bird_mutant` 对非肉食物改掉 `spoiled_food`，`bird_mutant_rift` 只收月亮碎片类。可喂判定先过食性／注册，再排除 `invalid_foods`（蛋与 `woby_treat`） | [消化](../../../raw/current/scripts/prefabs/birdcage.lua#L132-L147)、[可喂判定](../../../raw/current/scripts/prefabs/birdcage.lua#L155-L181)、[拒收表](../../../raw/current/scripts/prefabs/birdcage.lua#L30-L39)、[概率](../../../raw/current/scripts/tuning.lua#L9351) |
 | 小果蝇 | 死亡掉落 10% `seeds` | [战利品](../../../raw/current/scripts/prefabs/fruitfly.lua#L292-L295)、[挂载](../../../raw/current/scripts/prefabs/fruitfly.lua#L348-L349) |
 | 风滚草 | 权重 `2` 的条目（表中干草与树枝各 40），每次风滚草按权重抽 3 件 | [条目](../../../raw/current/scripts/prefabs/tumbleweed.lua#L147-L156)、[抽取](../../../raw/current/scripts/prefabs/tumbleweed.lua#L213-L227) |
 | 活动种子包 | `yotc_seedpacket` 的 `lootfn` 固定 2 件 `seeds`＋1 件 set1 随机种子 | [lootfn](../../../raw/current/scripts/prefabs/bundle.lua#L529-L537)、[注册](../../../raw/current/scripts/prefabs/bundle.lua#L693-L695) |
@@ -132,7 +134,7 @@ end)
 
 ## 常见陷阱与限制
 
-- **误区：随机株能挖回种子**：`SetupLoot` 对随机株既没有 killjoy 分支也没有 `pickable`，`lootdropper` 保持空表；想回收只能等它出苗后按作物处理。[SetupLoot](../../../raw/current/scripts/prefabs/farm_plants.lua#L344-L362)
+- **误区：随机株能挖回种子**：`SetupLoot` 对随机株既没有 killjoy 分支也没有 `pickable`，`loot` 保持为空；想回收只能等它出苗后按作物处理。[SetupLoot](../../../raw/current/scripts/prefabs/farm_plants.lua#L344-L362)
 - **边界：`pickproduct` 的 `or 1` 对 0 权重不生效**：`v.seed_weight or 1` 中 `0` 在 Lua 里为真，所以 6 个 `SEEDLESS` 项权重是 0、不会被抽到（只有 `nil` 才回落 1，本表没有 `nil`）；该函数只服务已废弃的 `plantable`／旧农田。[实现](../../../raw/current/scripts/prefabs/seeds.lua#L43-L58)
 - **边界：`seeds_cooked` 除了吃与装饰雪人没有别的用途**：没有 `cookable`、`farmplantable`、`deployable`、`bait` 与 `oceanfishing_lure` tag，既不能种也不能钓。[common](../../../raw/current/scripts/prefabs/seeds.lua#L64-L129)
 - **边界：通用种子不是「弱化版作物种子」**：饥饿只有 4.6875（作物种子 9.375）、生命 0（作物种子 0.5），但两者烤制后都是同一件 `seeds_cooked`（生命 1）。[对照](../../../raw/current/scripts/prefabs/veggies.lua#L501-L502)
@@ -140,7 +142,7 @@ end)
 
 ## 验证记录
 
-- 源码审阅：2026-11-08，Steam buildid 26335394。核对 `seeds.lua` 全文（`common`／`raw`／`cooked`／`OnDeploy`／`can_plant_seed`／`pickproduct`／`pickfarmplant`／`seeds_placer` 与三个返回值）、`veggies.lua` 的 `VEGGIES` 权重与对照数值、`farm_plants.lua` 的 `pickfarmplant`／`ReplaceWithPlant`／`GROWTH_STAGES_RANDOMSEED`／`SetupLoot`／定种与读档、`farm_plant_defs.lua` 的 `randomseed` 字段、`weed_defs.lua` 的权重表、`birdcage.lua` 的 `DigestFood`／`ShouldAcceptItem`／`invalid_foods`、`birds.lua` 的 `ChooseSeeds`、`fruitfly.lua` 的小果蝇战利品、`tumbleweed.lua` 的权重与三件抽取、`bundle.lua` 的 `yotc_seedpacket`、`farmplantable`／`plantable`／`grower`／`cookable`／`cooker`／`edible`／`perishable`／`stackable`／`bait`／`floater`／`oceanfishingtackle`／`deployable` 的相关分支、`actions` 的 `PLANTSOIL`／`COOK`、`componentactions` 的候选、`containers` 的种子袋与海钓竿过滤、`prefabutil` 的 `MakePlacer` 签名、`util` 的 `FunctionOrValue`、`standardcomponents` 两个 helper、`tuning` 的基准与 `CALORIES_*`／`PERISH_*`／`SEED_CHANCE_*`／`SEED_WEIGHT_SEASON_MOD`／`FARM_PLANT_RANDOMSEED_WEED_CHANCE`／`SMALL_BURNTIME`／`SEEDS_GROW_TIME`、`constants` 的 `FOODTYPE`。
+- 源码审阅：2026-11-08，Steam buildid 26335394（2026-11-09 在 26474873 源码复检随机株两分支与 `SetupLoot`）。核对 `seeds.lua` 全文（`common`／`raw`／`cooked`／`OnDeploy`／`can_plant_seed`／`pickproduct`／`pickfarmplant`／`seeds_placer` 与三个返回值）、`veggies.lua` 的 `VEGGIES` 权重与对照数值、`farm_plants.lua` 的 `pickfarmplant`／`ReplaceWithPlant`／`GROWTH_STAGES_RANDOMSEED`／`SetupLoot`／定种与读档、`farm_plant_defs.lua` 的 `randomseed` 字段、`weed_defs.lua` 的权重表、`birdcage.lua` 的 `DigestFood`／`ShouldAcceptItem`／`invalid_foods`、`birds.lua` 的 `ChooseSeeds`、`fruitfly.lua` 的小果蝇战利品、`tumbleweed.lua` 的权重与三件抽取、`bundle.lua` 的 `yotc_seedpacket`、`farmplantable`／`plantable`／`grower`／`cookable`／`cooker`／`edible`／`perishable`／`stackable`／`bait`／`floater`／`oceanfishingtackle`／`deployable` 的相关分支、`actions` 的 `PLANTSOIL`／`COOK`、`componentactions` 的候选、`containers` 的种子袋与海钓竿过滤、`prefabutil` 的 `MakePlacer` 签名、`util` 的 `FunctionOrValue`、`standardcomponents` 两个 helper、`tuning` 的基准与 `CALORIES_*`／`PERISH_*`／`SEED_CHANCE_*`／`SEED_WEIGHT_SEASON_MOD`／`FARM_PLANT_RANDOMSEED_WEED_CHANCE`／`SMALL_BURNTIME`／`SEEDS_GROW_TIME`、`constants` 的 `FOODTYPE`。
   名称核验：`NAMES.SEEDS`=种子、`NAMES.SEEDS_COOKED`=烤种子；植物侧拼名用 `NAMES.FARM_PLANT_SEED`=「种下的{seed}」。两件物品都没有 `displaynamefn`，显示名按注册名大写取值。[SEEDS](../../../raw/current/scripts/languages/chinese_s.po#L349085-L349087)、[SEEDS_COOKED](../../../raw/current/scripts/languages/chinese_s.po#L349090-L349092)、[FARM_PLANT_SEED](../../../raw/current/scripts/languages/chinese_s.po#L342615-L342617)
   未覆盖：`seeds_placer` 的图标与资源表现、鸟类新手掉落的完整幸运分支、`farm_plant_randomseed` 之外的田间生长与压力、14 种作物专用种子（见 [[reference/prefabs/farm-crop-seeds]]）。
 - 游戏运行：未运行。4.6875／1／19200 秒／4800 秒／7.5 秒与 20% 杂草率均为常量与工厂推导，非运行测量。
@@ -153,3 +155,4 @@ end)
 - 种植与生长：[[reference/components/farmplantable]]、[[reference/components/crop]]、[[reference/components/farming-manager]]
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

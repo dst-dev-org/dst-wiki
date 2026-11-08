@@ -1,12 +1,12 @@
 ---
 title: "piratespawner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级猴子海盗组件：需猴女王在场才按玩家出海距离分区加权掷骰刷海盗船，管战利品藏匿点（pirate_stash）与船员登记。"
 aliases: ["海盗刷怪", "猴子海盗", "piratespawner"]
 tags: [component, creature]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/piratespawner.lua", "prefabs/stash_map.lua", "tuning.lua", "worldsettings_overrides.lua"]
 reliability: verified
 validation: source-reviewed
@@ -29,8 +29,8 @@ status: active
 | `shipdatas` / `SaveShipData(shipdata)` / `RemoveShipData(ship)` | `{boat, captain, crew[]}` | 在场船队登记；onremove 监听自动清员（[L124-L155](../../../raw/current/scripts/components/piratespawner.lua#L124-L155)、[L758-L773](../../../raw/current/scripts/components/piratespawner.lua#L758-L773)）。 |
 | `GetCurrentStash()` / `ClearCurrentStash()` | → `pirate_stash` 实体 | 懒生成：`FindStashLocation` 选拓扑节点外缘、距玩家 ≥40 的临水点，生成后按平均玩家天数填随机战利品（[L516-L630](../../../raw/current/scripts/components/piratespawner.lua#L516-L630)、[ loot 表](../../../raw/current/scripts/components/piratespawner.lua#L553-L618)）。 |
 | `StashLoot(ent)` | — | 把实体（或其容器/背包内容）送进当前藏匿点：`irreplaceable` 只掉不收，`personal_possession`／`cursed`／不可拾取物直接删除（[L21-L73](../../../raw/current/scripts/components/piratespawner.lua#L21-L73)、[L549-L551](../../../raw/current/scripts/components/piratespawner.lua#L549-L551)）。 |
-| `SpawnPiratesForPlayer(player, nodelivery, forcedelivery)` | → bool | 在玩家所乘平台 38 距离外找全水且无玩家/杂物的落点刷船；`forcedelivery` 或 35% 概率走"送货"变体（boatcrew status=delivery、丢漂流瓶宝、带船炮）（[L396-L431](../../../raw/current/scripts/components/piratespawner.lua#L396-L431)、[TUNING](../../../raw/current/scripts/tuning.lua#L8219)）。 |
-| `OnUpdate(dt)`（含 LongUpdate） | — | 玩家出海满 10s 宽限（GRACETIME）后按其与猴女王距离分带（INNER≤300/MID≤600/OUTTER≤800），倒计时到 0 时按带权重抽一名玩家 `TryLuckRoll(chance * PIRATE_RAIDS_CHANCE_MODIFIER)` 决定是否刷（[L649-L715](../../../raw/current/scripts/components/piratespawner.lua#L649-L715)、[分带](../../../raw/current/scripts/components/piratespawner.lua#L202-L218)、[tuning](../../../raw/current/scripts/tuning.lua#L6771-L6790)）。 |
+| `SpawnPiratesForPlayer(player, nodelivery, forcedelivery)` | → bool | 在玩家所乘平台 38 距离外找全水且无玩家/杂物的落点刷船；`forcedelivery` 或 35% 概率走"送货"变体（boatcrew status=delivery、丢漂流瓶宝、带船炮）（[L396-L431](../../../raw/current/scripts/components/piratespawner.lua#L396-L431)、[TUNING](../../../raw/current/scripts/tuning.lua#L8220)）。 |
+| `OnUpdate(dt)`（含 LongUpdate） | — | 玩家出海满 10s 宽限（GRACETIME）后按其与猴女王距离分带（INNER≤300/MID≤600/OUTTER≤800），倒计时到 0 时按带权重抽一名玩家 `TryLuckRoll(chance * PIRATE_RAIDS_CHANCE_MODIFIER)` 决定是否刷（[L649-L715](../../../raw/current/scripts/components/piratespawner.lua#L649-L715)、[分带](../../../raw/current/scripts/components/piratespawner.lua#L202-L218)、[tuning](../../../raw/current/scripts/tuning.lua#L6772-L6791)）。 |
 | OnSave/OnLoad/LoadPostPass | shipdatas GUID、nextpiratechance、currentstash | LoadPostPass 重建船组件/船长/船员绑定（[L775-L855](../../../raw/current/scripts/components/piratespawner.lua#L775-L855)）。 |
 
 ## 关键流程
@@ -46,7 +46,7 @@ status: active
 - **无猴女王即静默**：组件仍在更新循环但 `OnUpdate` 开头直接返回，世界设置关闭海盗时更不会启动（[L655-L657](../../../raw/current/scripts/components/piratespawner.lua#L655-L657)、[L265-L267](../../../raw/current/scripts/components/piratespawner.lua#L265-L267)）。
 - **玩家必须真在海上**：`IsVisualGroundAtPoint` 为假才计时；回陆即清计数（[L659-L679](../../../raw/current/scripts/components/piratespawner.lua#L659-L679)）。
 - **藏匿点不持久化位置逻辑**：pirate_stash 实体随 GUID 存档重绑，但 `FindStashLocation` 是无限循环找点（极端地图形态可能卡主端，源码无重试上限，[L521-L544](../../../raw/current/scripts/components/piratespawner.lua#L521-L544)）。
-- **世界设置只改频率**：`pirate_raids` 难度经 worldsettings_overrides 只改 `PIRATE_RAIDS_CHANCE_MODIFIER`（0.5~5），门槛仍是猴女王（[overrides](../../../raw/current/scripts/worldsettings_overrides.lua#L1293-L1304)（本 build 起该表档位键 `few`/`many` 更名 `rare`/`often`，updates/build-26335394 R-7））。
+- **世界设置只改频率**：`pirate_raids` 难度经 worldsettings_overrides 只改 `PIRATE_RAIDS_CHANCE_MODIFIER`（0.5~5），门槛仍是猴女王（[overrides](../../../raw/current/scripts/worldsettings_overrides.lua#L1298-L1309)（本 build 起该表档位键 `few`/`many` 更名 `rare`/`often`，updates/build-26335394 R-7））。
 
 ## 验证记录
 
@@ -55,3 +55,4 @@ status: active
 - 结构检查：validate_page、validate_source_links --strict、Lua 语法探测通过（见批级记录）。
 - 2026-11-01 build 26335394：worldsettings_overrides 全表档位改名 few→rare／many→often（R-7），pirate_raids 覆盖块行号未变（1:1 键名替换）；组件本体未变。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

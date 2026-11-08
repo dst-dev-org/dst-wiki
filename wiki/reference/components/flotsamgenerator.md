@@ -1,12 +1,12 @@
 ---
 title: "flotsamgenerator"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "服务端 forest 世界的海面漂浮物生成器：按玩家船速周期刷残骸、3–4 天沉没，并提供手动刷点与沉没计时接口。"
 aliases: ["漂浮物生成", "海上残骸", "海面漂浮物", "flotsamgenerator"]
 tags: [component, lifecycle, worldgen]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/flotsamgenerator.lua", "prefabs/forest.lua", "prefabs/world.lua", "map/locations.lua", "components/map.lua", "components/periodicspawner.lua", "prefabs/oceanfishableflotsam.lua", "simutil.lua", "tuning.lua", "entityscript.lua"]
 reliability: verified
 validation: source-reviewed
@@ -105,3 +105,4 @@ end)
 - 2026-10-28 build 26230496：forest.lua 挂载 leafpilemanager 使注册行下移；oceanfishableflotsam 活动分支重排锚点随移。flotsamgenerator 组件逻辑未变。
 相关：[[reference/components/boatleak]]、[[reference/components/boatphysics]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

@@ -1,12 +1,12 @@
 ---
 title: oceanfishingrod
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "海钓竿的服务端抛竿、目标切换、线长张力、收线与捕获，含 tackle／lure 装配与客户端预测。"
 aliases: ["海钓竿", "海钓", "抛竿", "收线", "鱼线张力", "浮标", "鱼饵"]
 tags: [component, item, equipment, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/oceanfishingrod.lua", "components/oceanfishingrod_replica.lua", "components/oceanfishable.lua", "components/oceanfishinghook.lua", "components/oceanfishingtackle.lua", "prefabs/oceanfishingrod.lua", "prefabs/oceanfishingbobber.lua", "prefabs/oceanfishinglure.lua", "prefabs/oceanfish.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua", "tuning.lua", "stats.lua", "class.lua"]
 reliability: verified
 validation: source-reviewed
@@ -112,3 +112,4 @@ end)
 - 游戏运行：未运行；多人同步、断线／重连、实际落点分布与统计上报未覆盖；本批依据见[[updates/build-26335394/index#wiki-沿用记录]]（批次-2）。
 
 相关：[[reference/components/fishingrod|池塘钓竿]]；[[reference/components/complexprojectile|抛射物]]；[[reference/components/reticule|瞄准圈]]；[[reference/components/container|容器槽位]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 0 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09）。

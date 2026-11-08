@@ -1,12 +1,12 @@
 ---
 title: "joustsource"
 created: "2026-10-26"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "给骑枪物品配置冲刺参数并执行前方线段命中检测，区分普通攻击、异向冲刺相撞与 SG 实际移动。"
 aliases: ["骑枪冲刺命中", "冲刺来源物品", "骑枪相撞", "joustsource"]
 tags: [component, callback, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/joustsource.lua", "prefabs/yoth_lance.lua", "stategraphs/SGwilson.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -73,3 +73,4 @@ targets 中无记录或距记录时间**超过** 0.75 秒才继续几何检查�
 
 相关：[[reference/components/joustuser]]；[[reference/components/combat]]；[[reference/components/weapon]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

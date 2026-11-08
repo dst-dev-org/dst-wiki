@@ -1,12 +1,12 @@
 ---
 title: "月矿采掘、旧冰刺与雕像转变（icespike_fx_1 族）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "三种月矿及水晶采掘、四个旧冰刺和两种雕像转变 FX 的通用表配置与生成入口。"
 aliases: ["mining_moonglass_fx", "mining_charged_moonglass_fx", "mining_crystal_fx", "icespike_fx_1", "icespike_fx_2", "icespike_fx_3", "icespike_fx_4", "statue_transition", "statue_transition_2", "月矿采掘特效", "旧冰刺", "雕像转变特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "stategraphs/commonstates.lua", "stategraphs/SGalterguardian_phase1.lua", "stategraphs/SGalterguardian_phase2.lua", "stategraphs/SGbird.lua", "components/lunarhailmanager.lua", "prefabs/lunarrift_crystals.lua", "prefabs/gestalt_guard_evolved.lua", "prefabs/atrium_statue.lua", "prefabs/statueruins.lua", "prefabs/minotaur.lua", "prefabs/monkey.lua", "prefabs/rabbit.lua", "prefabs/bunnyman.lua", "prefabs/clockwork_common.lua", "scenarios/magic_pumpkin.lua", "scenarios/chestfunctions.lua", "prefabs/shadowrift_portal.lua", "prefabs/sacred_chest.lua", "stategraphs/SGshadowwaxwell.lua", "components/grottowarmanager.lua", "stategraphs/SGdeerclops.lua", "prefabs/antlion_sinkhole.lua", "prefabs/eyeofterror_sinkhole.lua", "stategraphs/SGhermitcrab.lua", "stategraphs/SGmerm.lua", "stategraphs/SGwagdrone_rolling.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwobybig.lua", "stategraphs/SGwx78_common.lua", "stategraphs/SGwx78_possessedbody.lua"]
 reliability: verified
 validation: source-reviewed
@@ -56,3 +56,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-material-index|采集、制作、碎裂与生成烟]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

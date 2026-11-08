@@ -1,12 +1,12 @@
 ---
 title: "mutatedbuzzardcircler"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "月雹变异秃鹫的影子盘旋组件：绕目标玩家循环飞行，找尸体降落投下真身，信号弹命中可击落，睡眠/失效回收入迁徒群。"
 aliases: ["mutatedbuzzardcircler", "变异秃鹫盘旋", "月雹秃鹫影子", "circlingbuzzard_lunar"]
 tags: [component, creature, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/mutatedbuzzardcircler.lua", "prefabs/circlingbuzzard.lua", "components/mutatedbuzzardmanager.lua", "prefabs/corpses.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -33,7 +33,7 @@ status: active
 | `FindCorpse(target)` | 目标 25 半径内随机取一个合格尸体：`creaturecorpse` 标签、非 NOCLICK、非秃鹫应忽略（[全局判定](../../../raw/current/scripts/brains/buzzardbrain.lua#L206)）、不会变异（[WillMutate](../../../raw/current/scripts/prefabs/corpses.lua#L388)）、无灵体将至（[HasGestaltArriving](../../../raw/current/scripts/prefabs/corpses.lua#L25)）。前置要求世界有 corpsepersistmanager 且存在任意尸体。[实现](../../../raw/current/scripts/components/mutatedbuzzardcircler.lua#L182-L198) |
 | `LandOnCorpse(corpse)` | 尸体旁找可行走非海洋落点，把真秃鹫传送到 y=30 进 `glide` 状态、延迟一拍 `SetOwnCorpse(corpse)`，随后 KillShadow+Stop。成功返回 true。[实现](../../../raw/current/scripts/components/mutatedbuzzardcircler.lua#L200-L227) |
 | `DropBuzzard()` | 在影子与目标中点生成 `buzzardcorpse`（继承秃鹫 build，10～15 秒淡出），秃鹫移出人口组后 Remove。[实现](../../../raw/current/scripts/components/mutatedbuzzardcircler.lua#L229-L255) |
-| `miniflare_detonated`／`megaflare_detonated`（世界事件） | 信号弹爆炸命中判定：影子距爆点 ≤25（`TUNING.BUZZARDSPAWNER_FLARE_HIT_DIST_SQ`）且未超配额（小型 1 只、大型 5 只）时延迟 0.2～1 秒投放秃鹫进 `fall` 状态并 KillShadow。[监听](../../../raw/current/scripts/components/mutatedbuzzardcircler.lua#L28-L57) [调参](../../../raw/current/scripts/tuning.lua#L9075) |
+| `miniflare_detonated`／`megaflare_detonated`（世界事件） | 信号弹爆炸命中判定：影子距爆点 ≤25（`TUNING.BUZZARDSPAWNER_FLARE_HIT_DIST_SQ`）且未超配额（小型 1 只、大型 5 只）时延迟 0.2～1 秒投放秃鹫进 `fall` 状态并 KillShadow。[监听](../../../raw/current/scripts/components/mutatedbuzzardcircler.lua#L28-L57) [调参](../../../raw/current/scripts/tuning.lua#L9076) |
 
 ### 盘旋更新与回收
 
@@ -71,3 +71,4 @@ end
 
 相关：[[reference/components/circler]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

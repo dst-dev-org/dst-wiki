@@ -1,12 +1,12 @@
 ---
 title: "fuelmaster"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "配置添燃料者提供的补充量倍率，按燃料与目标计算，并区分补充收益和持续消耗率。"
 aliases: ["添燃料加成", "人物燃料效率", "薇洛添火倍率", "补充燃料倍率", "fuelmaster"]
 tags: [component, energy, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/fuelmaster.lua", "components/fueled.lua", "prefabs/willow.lua", "prefabs/campfire.lua", "actions.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -88,3 +88,4 @@ end)
 
 相关：[[reference/components/fueled]]；[[reference/components/fuel]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

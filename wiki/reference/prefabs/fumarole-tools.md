@@ -1,12 +1,12 @@
 ---
 title: "气孔工具族（fumaroleaxe、fumarolepickaxe、fumaroleshovel、fumarolehammer、fumarole_farm_hoe）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "气孔温度工具族：五件手持工具共用 MakeFumaroleTool 工厂协议接入物品温度档位——使用降温、冷却自毁、重热自修、分档外观与效率、对冻结目标增伤，攻击与工作均不磨损。"
 aliases: ["fumaroleaxe", "fumarolepickaxe", "fumaroleshovel", "fumarolehammer", "fumarole_farm_hoe", "炽热斧", "烈焰鹤嘴锄", "呲啦铲", "炎头锤", "烧灼园艺锄", "气孔工具", "气孔斧", "气孔镐", "气孔铲", "气孔锤", "气孔园艺锄", "Fumarole Tool", "热工具", "温度工具"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: complex
 sources: ["standardcomponents.lua", "prefabs/axe.lua", "prefabs/pickaxe.lua", "prefabs/shovel.lua", "prefabs/hammer.lua", "prefabs/farm_hoe.lua", "components/fumaroletool.lua", "components/inventoryitem.lua", "components/inventoryitemtemperature.lua", "components/heater.lua", "components/temperature.lua", "components/damagetypebonus.lua", "components/finiteuses.lua", "components/weapon.lua", "components/tool.lua", "components/equippable.lua", "components/inspectable.lua", "components/floater.lua", "components/trapfumaroleburning.lua", "components/temperatureoverrider.lua", "prefabs/trap_fumarole.lua", "componentutil.lua", "actions.lua", "bufferedaction.lua", "entityscript.lua", "widgets/itemtile.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwx78_common.lua", "stringutil.lua", "tuning.lua", "recipes.lua", "languages/chinese_s.po"]
 reliability: verified
@@ -57,7 +57,7 @@ status: active
 
 - 动画 `idle_1`..`idle_4`、手持换装符号 `swap_fumaroleaxe_1`..`_4`（各文件同构，[axe.lua:254-279](../../../raw/current/scripts/prefabs/axe.lua#L254-L279)）；`AnimState` 亮度覆盖取 `FUMAROLETOOL_LIGHTOVERRIDES = { 0, 0, .15, .35 }`。
 - 图标 `ChangeImageName(<基础名>_2/_3/_4)`，档 1 无后缀；基础名前三件与注册名同名，锄为 `fumarole_farm_hoe`（贴图 build 却是 `fumarolehoe`）（[axe.lua:260-261](../../../raw/current/scripts/prefabs/axe.lua#L254-L279)、[farm_hoe.lua:226-227](../../../raw/current/scripts/prefabs/farm_hoe.lua#L220-L244)）。
-- 工作效率：斧 `CHOP`、镐 `MINE`、铲 `DIG`、锤 `HAMMER` 每次档位变化重设为 `FUMAROLE<工具>_EFFECTIVENESS = { 1, 1, 1.25, 1.5 }`，实际做功量在动作侧按 `tool:GetEffectiveness` 结算（[DoToolWork](../../../raw/current/scripts/actions.lua#L1703-L1717)）；园艺锄无 tool、无效率概念（[tuning.lua:9499](../../../raw/current/scripts/tuning.lua#L9495-L9499) 注释），锄地只降温不加速。
+- 工作效率：斧 `CHOP`、镐 `MINE`、铲 `DIG`、锤 `HAMMER` 每次档位变化重设为 `FUMAROLE<工具>_EFFECTIVENESS = { 1, 1, 1.25, 1.5 }`，实际做功量在动作侧按 `tool:GetEffectiveness` 结算（[DoToolWork](../../../raw/current/scripts/actions.lua#L1703-L1717)）；园艺锄无 tool、无效率概念（[tuning.lua:9499](../../../raw/current/scripts/tuning.lua#L9496-L9500) 注释），锄地只降温不加速。
 - 浮动换装帧：斧／镐／锤 `SetBankSwapOnFloat(true, -11, ...)`（负=left 帧 11）、铲 `(true, 7, ...)`（right 帧 7）、锄 `(true, -7, { bank = "fumarolehoe", ... })`；破损时各设 `(false, nil, FUMAROLE_SWAP_DATA_BROKEN)` 关闭换装（[floater 语义](../../../raw/current/scripts/components/floater.lua#L123-L143)）。
 - 破损回调差异：斧镐铲锤移除 `equippable`＋`tool`＋`weapon`；锄移除 `equippable`＋`RemoveInherentAction(TILL)`＋`farmtiller`＋`weapon`（[axe.lua:247-252](../../../raw/current/scripts/prefabs/axe.lua#L245-L252)、[farm_hoe.lua:212-218](../../../raw/current/scripts/prefabs/farm_hoe.lua#L210-L218)）。
 
@@ -78,7 +78,7 @@ status: active
 | UI：`itemtile`（show_broken_ui） | 库存格复用腐败表盘显示温度百分比；`broken` 标签时表盘归零 | 客户端读 pristine 标签与 net 化 `broken` 标签 | [表盘](../../../raw/current/scripts/widgets/itemtile.lua#L101-L112)、[破损置零](../../../raw/current/scripts/widgets/itemtile.lua#L943-L962) |
 | 关联 Prefab：`heatrocklight` | fumaroletool 组件构造时生成灯光子实体，跟随 grand owner，入包维度容器／掩埋时隐藏 | 五注册共用；主模拟生成 | [[reference/components/fumaroletool]]；[生成](../../../raw/current/scripts/components/fumaroletool.lua#L47-L48) |
 | 关联 Prefab：`trap_fumarole`（气孔陷阱） | 踩上活跃陷阱的实体被加 `trapfumaroleburning`，按 `TRAP_FUMAROLE_TEMPERATURE_RATE(3°/s)` 对物品 `AddTemperature`——是可靠的重热／修复途径 | 陷阱部署后 AOE 扫描（含地上物品） | [扫描加组件](../../../raw/current/scripts/prefabs/trap_fumarole.lua#L45-L73)、[升温](../../../raw/current/scripts/components/trapfumaroleburning.lua#L133)、[[reference/components/trapfumaroleburning]] |
-| API／数据：TUNING `FUMAROLETOOL_*`／`FUMAROLE<工具>_*` | 温度档、倍率、灯效、heatonuse 等全部取值见下文验证记录 | 五注册共用 | [tuning.lua:9467-9499](../../../raw/current/scripts/tuning.lua#L9467-L9499) |
+| API／数据：TUNING `FUMAROLETOOL_*`／`FUMAROLE<工具>_*` | 温度档、倍率、灯效、heatonuse 等全部取值见下文验证记录 | 五注册共用 | [tuning.lua:9467-9499](../../../raw/current/scripts/tuning.lua#L9468-L9500) |
 | 资源：ANIM `fumaroleaxe/fumarolepickaxe/fumaroleshovel/fumarolehammer/fumarolehoe.zip` | 各文件 `fumarole_assets` 声明；动画 `idle_1..4`、`broken`、`broken_reheating_pre/loop/pst`、`repair` | 档位动画名在回调中拼接 | [axe 资源](../../../raw/current/scripts/prefabs/axe.lua#L19-L25) |
 | 资源：INV_IMAGE `<基础名>_2/_3/_4` | 仅声明 2~4 档图；档 1 用无后缀基础名，其图集条目未在本文件声明（快照无资源目录，未验证） | 图标随档位 ChangeImageName | [axe 资源](../../../raw/current/scripts/prefabs/axe.lua#L19-L25) |
 
@@ -110,7 +110,7 @@ status: active
         加热来源: 附近 HASHEATER 火源(10 距离内扫描), 或气孔陷阱 3°/s (tuning.lua:9511)
 ```
 
-- 调整与验证：阈值在 `FUMAROLETOOL_TEMPS = { 0, 20, 40, 60 }`（[tuning.lua:9473](../../../raw/current/scripts/tuning.lua#L9467-L9478)）；1~59 度仍是破损态；修复判定用 `data.new >= 60`，档位显示用严格 `> 60`，所以恰好 60 度会修复但档位可能仍停在 3。
+- 调整与验证：阈值在 `FUMAROLETOOL_TEMPS = { 0, 20, 40, 60 }`（[tuning.lua:9473](../../../raw/current/scripts/tuning.lua#L9468-L9479)）；1~59 度仍是破损态；修复判定用 `data.new >= 60`，档位显示用严格 `> 60`，所以恰好 60 度会修复但档位可能仍停在 3。
 
 ### 使用与消耗语义（攻击／工作只降温不磨损）
 
@@ -218,3 +218,4 @@ end
 相关：[[reference/components/fumaroletool|fumaroletool 组件]]、[[reference/components/inventoryitemtemperature]]、[[reference/components/heater]]、[[reference/components/damagetypebonus]]、[[reference/components/trapfumaroleburning]]、[[reference/components/fumarolelocaltemperature]]、[[reference/prefabs/axe|斧头族]]、[[reference/prefabs/pickaxe|鹤嘴锄]]、[[reference/prefabs/shovel|铲子]]、[[reference/prefabs/hammer|锤子]]、[[reference/prefabs/farm-hoe|园艺锄]]
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

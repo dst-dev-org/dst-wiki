@@ -1,12 +1,12 @@
 ---
 title: "伍迪麋鹿形态重击特效（weremoose_smash_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "伍迪麋鹿形态三连击终结拍地动画：前景／背景双层、本地预测副本隐藏网络副本，无玩法组件，伤害由宿主攻击状态结算。"
 aliases: ["weremoose_smash_fx", "麋鹿重击特效", "人形麋鹿拍地特效", "moose slam fx"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/weremoose_smash_fx.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "prefabs/skilltree_woodie.lua", "prefabs/woodie.lua", "tuning.lua", "languages/chinese_s.po"]
 size_class: simple
 reliability: verified
@@ -35,7 +35,7 @@ status: active
 |---|---|---|---|
 | 生成者：SGwilson "attack" | 第 7 帧在宿主脚下生成并按宿主朝向旋转，`_owner:set(inst)` | 仅 `ismoosesmash` 分支：麋鹿形态第三段 `punch_b` 且有 `weremoosecombo` 标签时播 `moose_slam` | [生成](../../../raw/current/scripts/stategraphs/SGwilson.lua#L11022-L11029)、[组合拳门槛](../../../raw/current/scripts/stategraphs/SGwilson.lua#L10940-L10956) |
 | 生成者：SGwilson_client "attack" | 客户端第 7 帧本地生成同名 FX（预测／表现路径），不设 `_owner` | 本地玩家移动预测时执行；远端玩家的客户端表现未核验 | [客户端生成](../../../raw/current/scripts/stategraphs/SGwilson_client.lua#L5263-L5270) |
-| 宿主伤害：AOE 结算 | 与 FX 无读写关系：宿主以自身前方 1 距离、半径 2（+3 padding）查 `_combat`（排除 wall/companion 等），临时把 defaultdamage 设为 `SKILLS.WOODIE.MOOSE_SMASH_DAMAGE` 逐个 `DoAttack` | 目标带 planarentity 时临时 AddBonus 位面 80 再移除；命中后恢复 `WEREMOOSE_DAMAGE` | [AOE](../../../raw/current/scripts/stategraphs/SGwilson.lua#L11031-L11059)、[伤害常量](../../../raw/current/scripts/tuning.lua#L7118-L7119) |
+| 宿主伤害：AOE 结算 | 与 FX 无读写关系：宿主以自身前方 1 距离、半径 2（+3 padding）查 `_combat`（排除 wall/companion 等），临时把 defaultdamage 设为 `SKILLS.WOODIE.MOOSE_SMASH_DAMAGE` 逐个 `DoAttack` | 目标带 planarentity 时临时 AddBonus 位面 80 再移除；命中后恢复 `WEREMOOSE_DAMAGE` | [AOE](../../../raw/current/scripts/stategraphs/SGwilson.lua#L11031-L11059)、[伤害常量](../../../raw/current/scripts/tuning.lua#L7119-L7120) |
 | 技能门槛：weremoosecombo | Woodie 技能树 curse 组技能激活时 AddTag，决定第三段是否变为重击 | [技能](../../../raw/current/scripts/prefabs/skilltree_woodie.lua#L277-L287) | 依赖声明 [woodie.lua](../../../raw/current/scripts/prefabs/woodie.lua#L72) |
 | 资源：weremoose_attacks.zip | bank `weremoose`、build `weremoose_build`；循环参数未显式传，实际是否重复未核验 | [assets](../../../raw/current/scripts/prefabs/weremoose_smash_fx.lua#L1-L4) | 内容未解包 |
 
@@ -53,3 +53,4 @@ status: active
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

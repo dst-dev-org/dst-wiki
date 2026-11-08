@@ -1,12 +1,12 @@
 ---
 title: "pumpkincarvable"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "巨型蔬菜南瓜雕刻组件：承接雕刻弹窗会话，校验并压缩存储雕刻数据，按 net 变量在客户端重建切割 FX 并随昼夜变化发光。"
 aliases: ["南瓜雕刻", "雕刻数据", "pumpkincarvable 组件"]
 tags: [component, network-sync]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: standard
 sources: ["components/pumpkincarvable.lua", "prefabs/veggies.lua", "actions.lua", "tuning.lua"]
 reliability: verified
@@ -80,3 +80,4 @@ end
 
 - [[reference/components/pumpkinhatcarvable]]
 - [[reference/components/pumpkincarver]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

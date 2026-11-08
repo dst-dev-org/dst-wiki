@@ -1,13 +1,13 @@
 ---
 title: "一次性碎裂与爆裂表现族（shatter、splash_spiderweb 等 8 注册）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "8 个源文件里的 8 个一次性表现注册：冻结碎裂（shatter 的等级壳＋本地动画双端代理）、蛛网溅落（脚本层无生成点）、贝壳小生物、木牌碎裂、南瓜炸弹爆裂（含确定性 PRNG 本地碎块）、风滚草破碎、工具损坏代理与亮茄炸弹爆裂；宿主破坏／爆炸回调生成、animover 自删为主。"
 aliases: ["shatter", "splash_spiderweb", "singingshell_critterfx", "propsignshatterfx", "pumpkin_bomb_explode_fx", "tumbleweedbreakfx", "brokentool", "bomb_lunarplant_explode_fx", "碎裂特效", "冻结碎裂", "爆裂表现", "蛛网溅落", "工具损坏", "风滚草破碎", "南瓜炸弹", "亮茄炸弹"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/shatter.lua", "components/shatterfx.lua", "components/freezable.lua", "standardcomponents.lua", "prefabs/slingshotammo.lua", "prefabs/staff_projectile.lua", "prefabs/staff_common.lua", "prefabs/splash_spiderweb.lua", "prefabs/spider_web_spit.lua", "prefabs/singingshell.lua", "fx.lua", "prefablist.lua", "prefabs/propsign.lua", "prefabs/pigking.lua", "prefabs/pumpkin_bomb.lua", "prefabs/tumbleweed.lua", "prefabs/tumbleweedspawner.lua", "prefabs/brokentool.lua", "components/pocketwatch_dismantler.lua", "prefabs/pocketwatch.lua", "stategraphs/SGwilson.lua", "stategraphs/SGhermitcrab.lua", "stategraphs/SGwx78_possessedbody.lua", "prefabs/bomb_lunarplant.lua", "components/explosive.lua", "stategraphs/SGworm_boss_head.lua", "prefabs/merm.lua", "prefabs/amulet.lua", "prefabs/hound.lua", "prefabs/deerclops.lua", "prefabs/crabking.lua", "prefabs/daywalker2.lua", "components/pinnable.lua", "widgets/werebadge.lua", "simutil.lua", "tuning.lua", "recipes.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -65,7 +65,7 @@ status: active
 
 ### shatter 的等级系统与 freezable 消费链
 
-注册方在 `standardcomponents.lua` 的 `shatterfx.character = "shatter"`（[表](../../../raw/current/scripts/standardcomponents.lua#L323-L326)）被 5 个 `Make*FreezableCharacter` helper（tiny／small／medium／large／huge，对应 FX 等级 1–5）写入 freezable 组件的 `fxdata`（[helper 区](../../../raw/current/scripts/standardcomponents.lua#L328-L369)、[登记](../../../raw/current/scripts/components/freezable.lua#L81-L83)）。`SpawnShatterFX` 逐条生成 `shatter`：带跟随符号的走 `Follower:FollowSymbol`，否则 `AddChild` 挂为宿主 Lua 子实体再定位，最后调壳的 shatterfx 组件 `SetLevel(宿主等级)`（[分发](../../../raw/current/scripts/components/freezable.lua#L96-L113)）。调用点（消费文件）：解冻（[freezable.lua#L290](../../../raw/current/scripts/components/freezable.lua#L290-L290)）、被钉住时受击与拔钉（[pinnable.lua#L40](../../../raw/current/scripts/components/pinnable.lua#L35-L43)、[pinnable.lua#L166](../../../raw/current/scripts/components/pinnable.lua#L162-L168)）、蓝护符受击／格挡 proc 与作祟群冻（[amulet.lua#L68](../../../raw/current/scripts/prefabs/amulet.lua#L65-L71)、[amulet.lua#L461](../../../raw/current/scripts/prefabs/amulet.lua#L455-L463)）、冰杖命中（[staff_common.lua#L202](../../../raw/current/scripts/prefabs/staff_common.lua#L199-L204)）、冰弹命中可冻结目标（[slingshotammo.lua#L285](../../../raw/current/scripts/prefabs/slingshotammo.lua#L283-L290)）、蟹王冰弹命中（[crabking.lua#L1941](../../../raw/current/scripts/prefabs/crabking.lua#L1940-L1942)）、冰猎犬死亡寒爆（[hound.lua#L678](../../../raw/current/scripts/prefabs/hound.lua#L669-L679)，death 事件驱动 [L708](../../../raw/current/scripts/prefabs/hound.lua#L708-L708)）、独眼巨鹿寒息波及（[deerclops.lua#L218](../../../raw/current/scripts/prefabs/deerclops.lua#L217-L219)）、暗影中分体移除状态组件时的余寒（[daywalker2.lua#L735](../../../raw/current/scripts/prefabs/daywalker2.lua#L733-L737)）。
+注册方在 `standardcomponents.lua` 的 `shatterfx.character = "shatter"`（[表](../../../raw/current/scripts/standardcomponents.lua#L323-L326)）被 5 个 `Make*FreezableCharacter` helper（tiny／small／medium／large／huge，对应 FX 等级 1–5）写入 freezable 组件的 `fxdata`（[helper 区](../../../raw/current/scripts/standardcomponents.lua#L328-L369)、[登记](../../../raw/current/scripts/components/freezable.lua#L81-L83)）。`SpawnShatterFX` 逐条生成 `shatter`：带跟随符号的走 `Follower:FollowSymbol`，否则 `AddChild` 挂为宿主 Lua 子实体再定位，最后调壳的 shatterfx 组件 `SetLevel(宿主等级)`（[分发](../../../raw/current/scripts/components/freezable.lua#L96-L113)）。调用点（消费文件）：解冻（[freezable.lua#L290](../../../raw/current/scripts/components/freezable.lua#L290-L290)）、被钉住时受击与拔钉（[pinnable.lua#L40](../../../raw/current/scripts/components/pinnable.lua#L35-L43)、[pinnable.lua#L166](../../../raw/current/scripts/components/pinnable.lua#L162-L168)）、蓝护符受击／格挡 proc 与作祟群冻（[amulet.lua#L68](../../../raw/current/scripts/prefabs/amulet.lua#L65-L71)、[amulet.lua#L461](../../../raw/current/scripts/prefabs/amulet.lua#L456-L464)）、冰杖命中（[staff_common.lua#L202](../../../raw/current/scripts/prefabs/staff_common.lua#L199-L204)）、冰弹命中可冻结目标（[slingshotammo.lua#L285](../../../raw/current/scripts/prefabs/slingshotammo.lua#L283-L290)）、蟹王冰弹命中（[crabking.lua#L1941](../../../raw/current/scripts/prefabs/crabking.lua#L1940-L1942)）、冰猎犬死亡寒爆（[hound.lua#L678](../../../raw/current/scripts/prefabs/hound.lua#L669-L679)，death 事件驱动 [L708](../../../raw/current/scripts/prefabs/hound.lua#L708-L708)）、独眼巨鹿寒息波及（[deerclops.lua#L218](../../../raw/current/scripts/prefabs/deerclops.lua#L217-L219)）、暗影中分体移除状态组件时的余寒（[daywalker2.lua#L735](../../../raw/current/scripts/prefabs/daywalker2.lua#L733-L737)）。
 
 ### 层、父子与端模型
 
@@ -93,7 +93,7 @@ status: active
 
 8 个注册自身都没有 combat／explosive／weapon 等玩法组件；表现背后的结算位置：
 
-- **南瓜／亮茄炸弹**：爆炸伤害在宿主临时装配的 explosive 组件里结算——`Explosive:OnBurnt` 做屏幕闪光＋震屏、逐目标 `GetAttacked`／击退、按 stack 结算建筑伤害，最后 `self.inst:Remove()`（[explosive.lua#L31-L157](../../../raw/current/scripts/components/explosive.lua#L31-L157)）。南瓜炸弹：范围伤害 50、建筑 4、10% 掉南瓜种子（[调参](../../../raw/current/scripts/tuning.lua#L9805-L9809)、[装配](../../../raw/current/scripts/prefabs/pumpkin_bomb.lua#L23-L42)）；亮茄炸弹：`explosivedamage = 0`，伤害全走临时 planardamage 200＋对 `shadow_aligned` 1.1 倍增伤（[装配](../../../raw/current/scripts/prefabs/bomb_lunarplant.lua#L15-L35)、[调参](../../../raw/current/scripts/tuning.lua#L398-L399)）。FX 都在爆炸结算并自删本体**之后**才生成。
+- **南瓜／亮茄炸弹**：爆炸伤害在宿主临时装配的 explosive 组件里结算——`Explosive:OnBurnt` 做屏幕闪光＋震屏、逐目标 `GetAttacked`／击退、按 stack 结算建筑伤害，最后 `self.inst:Remove()`（[explosive.lua#L31-L157](../../../raw/current/scripts/components/explosive.lua#L31-L157)）。南瓜炸弹：范围伤害 50、建筑 4、10% 掉南瓜种子（[调参](../../../raw/current/scripts/tuning.lua#L9806-L9810)、[装配](../../../raw/current/scripts/prefabs/pumpkin_bomb.lua#L23-L42)）；亮茄炸弹：`explosivedamage = 0`，伤害全走临时 planardamage 200＋对 `shadow_aligned` 1.1 倍增伤（[装配](../../../raw/current/scripts/prefabs/bomb_lunarplant.lua#L15-L35)、[调参](../../../raw/current/scripts/tuning.lua#L398-L399)）。FX 都在爆炸结算并自删本体**之后**才生成。
 - **shatter**：冻结数值由冰源直接调 `AddColdness`（freezable 系统），碎裂只是寒冷值跨过阈值后的视觉余韵；FX 壳与本地动画零结算。
 - **propsign（本体）**：1 点武器伤害在木牌自己的 weapon 组件（[装备武器](../../../raw/current/scripts/prefabs/propsign.lua#L168-L170)）；碎裂 FX 与伤害无关。
 - **brokentool**：出现的场合（工具用坏／怀表拆解／作祟成功）伴随的工具损耗由宿主侧 inventoryitem／配方逻辑处理，代理只是"坏掉的样子"。
@@ -147,3 +147,4 @@ end
 - [[reference/prefabs/groundpoundring_fx|冲击环、爆点与碎块表现特效]]（同族碎块与爆点）
 - [[reference/prefabs/grasspartfx|小型一次性外围 FX 族]]（同为一次性短命 FX 的宿主回调生成模式）
 - 返回 [[reference/prefabs/fx-material-index|采集、制作、碎裂与生成烟]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

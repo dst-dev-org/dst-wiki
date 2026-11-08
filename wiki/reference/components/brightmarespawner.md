@@ -1,12 +1,12 @@
 ---
 title: "brightmarespawner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "月狂（lunacy）状态下 gestalt（Brightmare 影灵）人口的世界宿主组件：按玩家理智百分比映射档位掷运生成与迁移点，Boss 竞技场内禁生成，击败 Wagstaff 员工后生成翻倍。"
 aliases: ["brightmarespawner", "月狂影灵生成器", "gestalt 人口管理", "Brightmare spawner"]
 tags: [component, ai, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/brightmarespawner.lua", "prefabs/forest.lua", "prefabs/cave.lua", "prefabs/gestalt.lua", "tuning.lua", "componentutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -40,7 +40,7 @@ status: active
 
 - 前提与选择：覆盖 `TUNING.GESTALT_*`／`BRIGHTMARE_SPAWN_INC_CHANCES`／`GESTALT_POPULATION_LEVEL` 即可整调节奏；组件在 forest 与 cave 都挂载（[forest.lua:662](../../../raw/current/scripts/prefabs/forest.lua#L662)、[cave.lua:522](../../../raw/current/scripts/prefabs/cave.lua#L522），地表洞穴各自运行。
 - 生效与撤销：调谐在下次档位/概率读取时生效（除构造捕获项外多为逐次读取）；玩家退出月狂即停止该玩家参与。
-- 原版依据：档位与概率结构见 ([tuning.lua:3944-3982](../../../raw/current/scripts/tuning.lua#L3944-L3982)、([tuning.lua:9394](../../../raw/current/scripts/tuning.lua#L9394)。
+- 原版依据：档位与概率结构见 ([tuning.lua:3944-3982](../../../raw/current/scripts/tuning.lua#L3944-L3982)、([tuning.lua:9394](../../../raw/current/scripts/tuning.lua#L9395)。
 
 ```lua
 -- 在 modmain/tuning override 中（示例：更激进的生成概率档）
@@ -68,3 +68,4 @@ status: active
 
 相关链接：[[reference/components/sanity]]、[[reference/components/shard_wagbossinfo]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

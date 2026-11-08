@@ -1,12 +1,12 @@
 ---
 title: "drownable"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "判定实体是否位于海面或虚空并推送落水事件；下沉、伤害与清理由状态图和平台管理器分工完成。"
 aliases: ["落水判定", "溺水与下沉", "落水传送", "drownable"]
 tags: [component, lifecycle, state-machine, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/drownable.lua", "components/locomotor.lua", "components/walkableplatform.lua", "components/walkableplatformplayer.lua", "components/boatphysics.lua", "componentutil.lua", "constants.lua", "stategraphs/SGwilson.lua", "stategraphs/commonstates.lua", "stategraphs/SGBeefalo.lua", "stategraphs/SGboat.lua", "prefabs/player_common.lua", "prefabs/beefalo.lua", "prefabs/woodie.lua", "prefabs/carrat.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -72,7 +72,7 @@ status: active
 
 - 前提与选择：prefab 在主模拟段 `AddComponent("drownable")`；SG 注册 `CommonStates.AddSinkAndWashAshoreStates(states)`，并在 `events` 里写 `onsink` handler。[beefalo](../../../raw/current/scripts/prefabs/beefalo.lua#L1265)、[SGBeefalo](../../../raw/current/scripts/stategraphs/SGBeefalo.lua#L1003)
 - 生效与撤销：组件存在即参与判定；`enabled=false` 可临时关闭（woodie 切到 `WEREMODES.GOOSE` 时改写），`carrat` 则直接 `RemoveComponent("drownable")` 后再加回。[woodie](../../../raw/current/scripts/prefabs/woodie.lua#L740-L755)、[carrat](../../../raw/current/scripts/prefabs/carrat.lua#L226)
-- 数值与单位：默认玩家 `HEALTH/HUNGER/SANITY=25`、`WETNESS=100`，浅水惩罚 ×1/3，掉落分组 7（浅水）/5（普通）。[tuning](../../../raw/current/scripts/tuning.lua#L4311-L4326)、[drop tuning](../../../raw/current/scripts/tuning.lua#L8646-L8649)
+- 数值与单位：默认玩家 `HEALTH/HUNGER/SANITY=25`、`WETNESS=100`，浅水惩罚 ×1/3，掉落分组 7（浅水）/5（普通）。[tuning](../../../raw/current/scripts/tuning.lua#L4311-L4326)、[drop tuning](../../../raw/current/scripts/tuning.lua#L8647-L8650)
 
 ```lua
 -- 放进生物 SG 的 events 表；状态仍需 AddSinkAndWashAshoreStates 注册
@@ -106,3 +106,4 @@ end)
 
 相关：[[reference/components/flotationdevice]]、[[reference/components/walkableplatform]]、[[reference/components/boatphysics]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

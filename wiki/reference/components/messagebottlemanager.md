@@ -1,12 +1,12 @@
 ---
 title: "messagebottlemanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "漂流瓶寻宝调度：按地图边缘环形布点在远海生成宝藏，管理隐士蟹指引与活跃寻宝上限，按 userid 记录玩家进度。"
 aliases: ["漂流瓶寻宝", "宝藏投放", "messagebottlemanager"]
 tags: [component, worldgen]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/messagebottlemanager.lua", "prefabs/forest.lua", "prefabs/messagebottle.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -53,3 +53,4 @@ status: active
 
 相关：[[reference/components/treasuremarked]]（水下标记）、[[reference/components/bottler]]（瓶子打捞端）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

@@ -1,12 +1,12 @@
 ---
 title: "soul"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "灵魂物品标记：构造加 soul 标签供双端判定，EAT 食魂链路按组件识别；原版唯一宿主是 wortox_soul。"
 aliases: ["沃拓克斯的灵魂", "灵魂物品标记", "食魂目标", "soul"]
 tags: [component, item, actions]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/soul.lua", "prefabs/wortox_soul.lua", "components/souleater.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua", "containers.lua"]
 reliability: verified
 validation: source-reviewed
@@ -58,3 +58,4 @@ end)
 ## 相关链接
 
 - [[reference/components/souleater]]：食魂者：EatSoul 消费与事件结算。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

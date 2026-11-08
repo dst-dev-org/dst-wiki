@@ -1,12 +1,12 @@
 ---
 title: "upgrademoduleremover"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "WX-78 拆卸工具的空能力标记；候选、检视面板、玩家状态机和模块拔出分属其他入口。"
 aliases: ["服务端结束拆卸工具持有者检视", "WX78模块拆卸工具", "upgrademoduleremover"]
 tags: [component, item, state-machine, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/upgrademoduleremover.lua", "components/upgrademoduleowner.lua", "prefabs/wx78_moduleremover.lua", "prefabs/wx78.lua", "prefabs/wx78_classified.lua", "componentactions.lua", "actions.lua", "networkclientrpc.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -81,3 +81,4 @@ end)
 - 结构检查：本批格式、来源、链接／锚点、大小与登记；完整停止请求例经已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；鼠标／手柄、自身与备份身体、检视中切物／移动、拔出中请求停止、库存归还和远程 HUD 待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

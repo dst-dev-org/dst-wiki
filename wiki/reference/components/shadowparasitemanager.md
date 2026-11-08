@@ -1,12 +1,12 @@
 ---
 title: "shadowparasitemanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "洞穴世界暗影裂隙的寄生体波次管理器：裂隙入池积累波次，按权重宿主生成寄生体小队，拦截凝胶blob玩家并孵化被寄生玩家替身。"
 aliases: ["shadowparasitemanager", "寄生体", "shadow parasite", "暗影寄生波次", "parasite mask"]
 tags: [component, creature, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/shadowparasitemanager.lua", "prefabs/cave.lua", "components/gelblobspawner.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -29,7 +29,7 @@ status: active
 | `_WEIGHTED_HOSTS_TABLE` | {prefab=权重} | 宿主概率：bunnyman 0.40、rocky 0.20、spider 0.20、spider_dropper 0.12、spider_warrior 0.08；构造时按 `HOST_CAN_SPAWN_TEST` 的世界设置（RABBITHOUSE_ENABLED 等）剔除不可用宿主。[权重表](../../../raw/current/scripts/components/shadowparasitemanager.lua#L7-L22) [裁剪](../../../raw/current/scripts/components/shadowparasitemanager.lua#L95-L101) |
 | `OverrideBlobSpawn(player)` | → bool | gelblobspawner 生成 blob 前调用：有暗影裂隙、宿主池非空、num_waves>0 且通过运气掷骰（基数 `SHADOWTHRALL_PARASITE_BLOBOVERRIDE=0.2`）时返回 true——blob 被替换为寄生流程，玩家记入目标集并触发波次。[拦截](../../../raw/current/scripts/components/shadowparasitemanager.lua#L338-L356) [blob 侧](../../../raw/current/scripts/components/gelblobspawner.lua#L121-L124) |
 | `OnRiftAddedToPool()`（ms_riftaddedtopool） | 内部 | 非加载期（非 POPULATING）每加入一个裂隙 num_waves+1；这是波次"预算"的唯一来源。[入池计数](../../../raw/current/scripts/components/shadowparasitemanager.lua#L208-L214) |
-| `BeginParasiteWave()` | 内部 | num_waves-1 后二选一：裂隙处 `PLAYER_REVEAL_RADIUS` 内有玩家→在裂隙位置分批（≤5s 随机延迟）生成 `SHADOWTHRALL_PARASITE_WAVE_MIN(6)+random(6)` 个浮体；无人→直接对全部目标玩家各生成小队。[波次](../../../raw/current/scripts/components/shadowparasitemanager.lua#L313-L334) [常量](../../../raw/current/scripts/tuning.lua#L8552-L8553) |
+| `BeginParasiteWave()` | 内部 | num_waves-1 后二选一：裂隙处 `PLAYER_REVEAL_RADIUS` 内有玩家→在裂隙位置分批（≤5s 随机延迟）生成 `SHADOWTHRALL_PARASITE_WAVE_MIN(6)+random(6)` 个浮体；无人→直接对全部目标玩家各生成小队。[波次](../../../raw/current/scripts/components/shadowparasitemanager.lua#L313-L334) [常量](../../../raw/current/scripts/tuning.lua#L8553-L8554) |
 | `SpawnParasiteWaveForPlayer(player, joining?)` | 内部 | 5+random(3) 只宿主，绕玩家 `PLAYER_CAMERA_SEE_DISTANCE+0~12` 距离的可走点分布；joining=true 时延迟 3 秒 SuggestTarget（换线玩家回归场景），否则立即仇恨玩家。[小队](../../../raw/current/scripts/components/shadowparasitemanager.lua#L179-L206) |
 | `SpawnHostCreature()`／`AddParasiteToHost(host)` | 内部 | 按权重抽宿主 SpawnPrefab、塞面具、淡入；AddParasiteToHost 返回宿主与面具（供 mods）。[宿主](../../../raw/current/scripts/components/shadowparasitemanager.lua#L147-L165) |
 | `SpawnHostedPlayer(inst)`／`ReviveHosted(inst)` | 内部 | 宿主化玩家的骷髅复活：生成 player_hosted、复制皮肤与 userid、播 intro（SGwilson 消费）；ReviveHosted 由各宿主 SG 在醒来时调用（脱战、停跟随、出特效）。[替身](../../../raw/current/scripts/components/shadowparasitemanager.lua#L358-L376) [SG 消费](../../../raw/current/scripts/stategraphs/SGspider.lua#L144-L145) |
@@ -83,3 +83,4 @@ end)
 
 - [[reference/components/riftspawner]]：暗影裂隙的生成与入池事件源。
 - [[reference/components/gelblobspawner]]：blob 生成拦截的调用方。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

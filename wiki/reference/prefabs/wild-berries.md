@@ -1,12 +1,12 @@
 ---
 title: "浆果与多汁浆果的生熟两态（berries、berries_juicy 与各自 _cooked）"
 created: "2026-11-08"
-updated: "2026-11-08"
+updated: "2026-11-09"
 type: prefab
 summary: "veggies.lua 的 4 个无种子浆果注册：生熟三维、6／3 天与 2／1 天保质、BERRY 次级食性、可作一次性海钓拟饵，以及三种浆果丛的采摘、撞落与采后再生差异。"
-aliases: ["berries", "berries_cooked", "berries_juicy", "berries_juicy_cooked", "浆果", "烤浆果", "多汁浆果", "烤多汁浆果", "浆果丛", "多汁浆果丛"]
+aliases: ["berries", "berries_cooked", "berries_juicy", "berries_juicy_cooked", "浆果", "烤浆果", "多汁浆果", "烤多汁浆果"]
 tags: [prefab, item, food]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/veggies.lua", "prefabs/berrybush.lua", "prefabs/tumbleweed.lua", "prefabs/oceanfishingrod.lua", "prefabs/oceanfish.lua", "prefabs/oceanfishdef.lua", "prefabs/smallbird.lua", "containers.lua", "cooking.lua", "standardcomponents.lua", "components/pickable.lua", "components/edible.lua", "components/eater.lua", "components/perishable.lua", "components/stackable.lua", "components/cookable.lua", "components/bait.lua", "components/oceanfishingtackle.lua", "components/oceanfishingrod.lua", "components/snowmandecoratable.lua", "stategraphs/SGwilson.lua", "map/forest_map.lua", "map/customize.lua", "tuning.lua", "constants.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 - 职责与适用：`prefabs/veggies.lua` 的 `MakeVeggie` 为 `VEGGIES` 每项生成生／熟两件物品；本页覆盖 `berries`、`berries_juicy` 及各自 `_cooked` 共 4 个可食物品注册，来自 `SEEDLESS` 表内的两个 `VEGGIES` 键；因此没有种子、巨型与称重导出。[表项](../../../raw/current/scripts/prefabs/veggies.lua#L85-L101)、[SEEDLESS](../../../raw/current/scripts/prefabs/veggies.lua#L160-L168)、[注册循环](../../../raw/current/scripts/prefabs/veggies.lua#L1102-L1108)
 - 优先使用：端分界、生熟公共组件集合、`cookable` 接线与堆叠／新鲜度通则见 [[reference/prefabs/farm-crops-staple#共用工厂与生熟两态]]；本页只写四键差异、获得路径与拟饵字段。三维与保质见[生熟两态数值](#生熟两态数值)。
 - 重要副作用：两键都写 `secondaryfoodtype = FOODTYPE.BERRY`，生熟都带 `edible_BERRY` 次级标签；生件带 `oceanfishing_lure` tag 与 `oceanfishingtackle`，可装进海钓杆鱼饵格，中鱼后按 `single_use` 销毁；`berries_juicy` 采摘是抛出 3 颗而不是一叠入包。[写入](../../../raw/current/scripts/prefabs/veggies.lua#L595-L600)、[拟饵 tag](../../../raw/current/scripts/prefabs/veggies.lua#L585-L587)、[抛落](../../../raw/current/scripts/prefabs/berrybush.lua#L353-L360)
-- 修改边界：不含种子注册、巨型／打蜡变体与农田生长，也不含烹饪锅食谱；浆果丛实体的施肥、枯萎与雪覆盖只写与采摘有关的分支。
+- 修改边界：不含种子注册、巨型／打蜡变体与农田生长，也不含烹饪锅食谱；浆果丛实体的施肥、枯萎与雪覆盖只写与采摘有关的分支（丛本体、挖起与回种见 [[reference/prefabs/berry-bushes]]）。同为无种子的野外采集食物，香蕉／无花果／仙人掌肉见 [[reference/prefabs/tropical-gathered-fruits]]。
 
 ## 注册与构造
 
@@ -146,3 +146,4 @@ retune("berries_juicy_cooked", nil, 3 * GLOBAL.TUNING.TOTAL_DAY_TIME)
 - 海钓与装饰：[[reference/components/oceanfishingtackle]]、[[reference/components/snowmandecor]]
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

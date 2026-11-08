@@ -1,12 +1,12 @@
 ---
 title: "亮茄魔杖辉光弹（brilliance_projectile_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "亮茄魔杖的远程弹体与命中闪爆：直线飞行、按目标偏好选择后续目标，最多命中 5／7 次（戴亮茄头盔 +2），伤害由持杖者武器结算，命中目标被 colouradder 加色闪一下。"
 aliases: ["brilliance_projectile_fx", "brilliance_projectile_blast_fx", "亮茄魔杖辉光弹", "亮茄弹体", "辉光弹", "brightshade staff projectile"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/brilliance_projectile_fx.lua", "prefabs/staff_lunarplant.lua", "components/weapon.lua", "components/projectile.lua", "components/combat.lua", "components/colouradder.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -68,3 +68,4 @@ status: active
 
 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

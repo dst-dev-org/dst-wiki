@@ -1,12 +1,12 @@
 ---
 title: "大霜鲨攻击冰面特效族（sharkboi_swipe_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "大霜鲨（Frostjaw）攻击的五件套冰面表现：挥击地面动画、鱼雷冰犁、冰面砸痕、入水/出水冲击与冰洞；全族无玩法组件，伤害由宿主 SG 的 AOE 结算。"
 aliases: ["sharkboi_swipe_fx", "sharkboi_iceplow_fx", "sharkboi_iceimpact_fx", "sharkboi_icetrail_fx", "sharkboi_icehole_fx", "大霜鲨特效", "冰犁特效", "冰面裂纹特效", "sharkboi fx"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/sharkboi_fx.lua", "stategraphs/SGsharkboi.lua", "prefabs/sharkboi.lua", "prefabs/sharkboi_icespike.lua", "prefabs/crabking_icewall.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -38,7 +38,7 @@ status: active
 
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
-| swipe 生成：attack1／2／3 三连 | SpawnSwipeFX 父挂宿主、前向偏移 2，attack2 传 reverse；注释：提前 3 帧生成防网络丢帧 | 同态 FrameEvent(16) DoArcAttack(SWIPE_OFFSET 2, RADIUS 3.5, ARC 240°) 用宿主 combat 结算（默认伤害 75） | [常量](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L383-L385)、[attack1](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L849-L863)、[attack2 反手](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L914-L924)、[attack3](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L1050-L1058)、[伤害值](../../../raw/current/scripts/tuning.lua#L6980)、[combat 设值](../../../raw/current/scripts/prefabs/sharkboi.lua#L761) |
+| swipe 生成：attack1／2／3 三连 | SpawnSwipeFX 父挂宿主、前向偏移 2，attack2 传 reverse；注释：提前 3 帧生成防网络丢帧 | 同态 FrameEvent(16) DoArcAttack(SWIPE_OFFSET 2, RADIUS 3.5, ARC 240°) 用宿主 combat 结算（默认伤害 75） | [常量](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L383-L385)、[attack1](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L849-L863)、[attack2 反手](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L914-L924)、[attack3](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L1050-L1058)、[伤害值](../../../raw/current/scripts/tuning.lua#L6981)、[combat 设值](../../../raw/current/scripts/prefabs/sharkboi.lua#L761) |
 | iceplow 生成：torpedo 鱼雷 | torpedo onupdate 每 3 帧在身体两侧 ±2 落两只冰犁，另每 2 帧落拖尾 | 冲刺期间持续 AOE 攻击＋掘地（DoAOEAttackAndDig） | [鱼雷 onupdate](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L1306-L1324)、[AOE](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L1306) |
 | icetrail 生成 | torpedo 每 2-3 帧（traildelay 计数）落一枚，旋转复制宿主朝向 | 鱼雷路径视觉拖尾 | [SpawnIceTrailFX](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L428-L433)、[计数](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L1319-L1324) |
 | iceimpact 生成 | dive_jump_pre 出水第 3 帧落点冲击；dive_dig_pre 入水时再落一次 | 配合 DoJumpOutShake／DoImpactShake 屏震 | [出水](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L1655-L1667)、[入水](../../../raw/current/scripts/stategraphs/SGsharkboi.lua#L1763-L1769) |
@@ -65,3 +65,4 @@ status: active
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

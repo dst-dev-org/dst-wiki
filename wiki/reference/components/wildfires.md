@@ -1,12 +1,12 @@
 ---
 title: "wildfires"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "夏季白天高温干燥时按在线玩家逐个掷运点燃可燃物的世界宿主组件；全部逻辑为事件驱动的私有闭包，无公开方法，频率由世界设置 wildfires 难度档调节。"
 aliases: ["wildfires", "野火", "夏季自燃", "森林野火管理器"]
 tags: [component, callback, event]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/wildfires.lua", "prefabs/forest.lua", "worldsettings_overrides.lua", "tuning.lua", "componentutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -18,7 +18,7 @@ status: active
 ## 快速判断
 
 - 职责与适用：挂在 forest 世界实体的服务端组件（构造即断言 mastersim）；夏季＋白天＋世界温度高于 `WILDFIRE_THRESHOLD`＋地面无湿无雪＋`_chance > 0` 时进入活跃态，给每个在线玩家排定时任务掷运点燃。[构造与状态](../../../raw/current/scripts/components/wildfires.lua#L7-L27) [激活条件](../../../raw/current/scripts/components/wildfires.lua#L33-L35)
-- 优先使用：调频率走世界生成 `wildfires` 难度档（never／rare／often／always 覆盖 `TUNING.WILDFIRE_CHANCE`）；保护单个实体加 `wildfireprotected` 或 `fireimmune` tag。[难度档](../../../raw/current/scripts/worldsettings_overrides.lua#L2805-L2826)
+- 优先使用：调频率走世界生成 `wildfires` 难度档（never／rare／often／always 覆盖 `TUNING.WILDFIRE_CHANCE`）；保护单个实体加 `wildfireprotected` 或 `fireimmune` tag。[难度档](../../../raw/current/scripts/worldsettings_overrides.lua#L2810-L2831)
 - 重要副作用：活跃时每玩家每 `TUNING.WILDFIRE_RETRY_TIME`（默认 1.5 个时段）掷一次 `TryLuckRoll`，成功则在玩家 25 半径内随机点燃一个通过校验的 `burnable`；沙暴中的玩家被豁免。[点火](../../../raw/current/scripts/components/wildfires.lua#L74-L104)
 - 修改边界：仅 forest 世界挂载（cave 无此组件）；`never` 档把 `_chance` 置 -1 使激活条件恒 false；无任何公开方法，模组只能经调谐、tag 与事件（`ms_lightwildfireforplayer`）介入。[挂载](../../../raw/current/scripts/prefabs/forest.lua#L663)
 
@@ -30,7 +30,7 @@ status: active
 | 世界事件监听 | 7 个事件 | `seasontick`／`weathertick`／`temperaturetick`／`phasechanged` 更新标记并 `ToggleUpdate` 启停任务；`ms_playerjoined`／`ms_playerleft` 维护玩家表；`ms_lightwildfireforplayer` 立即对指定玩家点火。[监听](../../../raw/current/scripts/components/wildfires.lua#L198-L204) [强制点火](../../../raw/current/scripts/components/wildfires.lua#L159-L164) |
 | 逐玩家调度 | 闭包 `ScheduleSpawn`／`CancelSpawn` | 每玩家一个 `DoTaskInTime(WILDFIRE_RETRY_TIME)` 任务，点火后自续；玩家退出活跃态时统一取消。([wildfires.lua:106-117-L117](../../../raw/current/scripts/components/wildfires.lua#L106-L117) |
 | `CheckValidWildfireStarter(obj)` | 选点校验闭包 | 拒绝：无效实体、`fireimmune`、树冠遮阴内、`witherable:IsProtected()`、点位世界温度 ≤ `WILDFIRE_THRESHOLD`(80)。候选：野生 `pickable:IsWildfireStarter()` 植物、无 `crop`/`growable` 的非植物、蔫掉的农作物、可 CHOP 的树。([wildfires.lua:51-72-L72](../../../raw/current/scripts/components/wildfires.lua#L51-L72) |
-| 树冠遮阴检查 | 闭包 `checkforcanopyshade` | 点位 `SHADE_CANOPY_RANGE`(28) 内有 `shadecanopy` tag 或 `SHADE_CANOPY_RANGE_SMALL`(22) 内有 `shadecanopysmall` tag 即拒绝。([wildfires.lua:37-49-L49](../../../raw/current/scripts/components/wildfires.lua#L37-L49) [调谐](../../../raw/current/scripts/tuning.lua#L6334-L6335) |
+| 树冠遮阴检查 | 闭包 `checkforcanopyshade` | 点位 `SHADE_CANOPY_RANGE`(28) 内有 `shadecanopy` tag 或 `SHADE_CANOPY_RANGE_SMALL`(22) 内有 `shadecanopysmall` tag 即拒绝。([wildfires.lua:37-49-L49](../../../raw/current/scripts/components/wildfires.lua#L37-L49) [调谐](../../../raw/current/scripts/tuning.lua#L6335-L6336) |
 | `TryLuckRoll` 掷运 | componentutil | `_chance` 经 `LuckFormulas.WildFireIgnition` 结合玩家幸运值修正。([wildfires.lua:77-79](../../../raw/current/scripts/components/wildfires.lua#L77-L79) [公式](../../../raw/current/scripts/componentutil.lua#L2178 |
 
 ## 典型接入
@@ -65,3 +65,4 @@ inst:AddTag("wildfireprotected")    -- 搜索阶段直接排除（wildfires.lua:
 
 相关链接：[[reference/components/burnable]]、[[reference/components/witherable]]、[[reference/components/pickable]]、[[reference/components/sandstorms]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

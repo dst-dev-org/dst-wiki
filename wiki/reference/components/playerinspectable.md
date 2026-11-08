@@ -1,13 +1,13 @@
 ---
 title: "playerinspectable"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "玩家外观检查组件：把玩家装备皮肤与技能选择写进引擎网络变量，供头像弹窗等远端界面读取玩家形象。"
 aliases: ["玩家检查", "playerinspectable", "头像弹窗数据"]
 tags: [component, network]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/playerinspectable.lua", "prefabs/player_common.lua", "prefabs/slingshot.lua"]
 reliability: verified
 validation: source-reviewed
@@ -29,7 +29,7 @@ status: active
 |---|---|---|
 | `equip` / `unequip`（监听） | `data: {eslot, item}` | 装备时 `SetPlayerEquip(EquipSlot.ToID(data.eslot), 皮肤名 or item.playerinspectable_override or item.prefab)`；卸下时写空串。[OnEquip](../../../raw/current/scripts/components/playerinspectable.lua#L3-L9) |
 | `onactivateskill_server` / `ondeactivateskill_server` / `onsetskillselection_server`（监听） | `data`（未使用） | 有 `skilltreeupdater` 时取 `GetPlayerSkillSelection()` 全量写入网络变量；无 updater 直接返回。[OnSkillSelectionUpdated](../../../raw/current/scripts/components/playerinspectable.lua#L11-L18) |
-| `item.playerinspectable_override` | `string \| nil`（物品侧字段） | 物品可声明覆盖名替代 prefab 名上报；原版使用者是 slingshot 的三个变体。[覆盖示例](../../../raw/current/scripts/prefabs/slingshot.lua#L647) |
+| `item.playerinspectable_override` | `string \| nil`（物品侧字段） | 物品可声明覆盖名替代 prefab 名上报；原版使用者是 slingshot 的三个变体。[覆盖示例](../../../raw/current/scripts/prefabs/slingshot.lua#L648) |
 
 ## 典型接入
 
@@ -37,7 +37,7 @@ status: active
 
 - 前提与选择：服务端；装备物品侧设置 `playerinspectable_override` 字段即可，无需改玩家侧代码；同源模型的不同皮肤/变体用它归并显示名。[优先级](../../../raw/current/scripts/components/playerinspectable.lua#L4)
 - 生效与撤销：字段在每次 equip 事件时读取，改值后需重新穿脱装备才生效；卸下装备该槽位上报空串。
-- 原版依据：slingshot 在多个构造分支统一设 `inst.playerinspectable_override = "slingshot"`（([slingshot.lua:645-647](../../../raw/current/scripts/prefabs/slingshot.lua#L645-L647)，另见 743/767 行），保证三变体在弹窗里同名。
+- 原版依据：slingshot 在多个构造分支统一设 `inst.playerinspectable_override = "slingshot"`（([slingshot.lua:645-647](../../../raw/current/scripts/prefabs/slingshot.lua#L646-L648)，另见 743/767 行），保证三变体在弹窗里同名。
 
 ```lua
 -- 服务端：物品构造时声明覆盖名
@@ -59,3 +59,4 @@ inst.playerinspectable_override = "my_custom_armor"
 
 相关：[[reference/components/inspectable]]
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

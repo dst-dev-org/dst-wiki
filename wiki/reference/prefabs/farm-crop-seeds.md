@@ -1,12 +1,12 @@
 ---
 title: "农田作物专用种子（14 个 <作物>_seeds）"
 created: "2026-11-08"
-updated: "2026-11-08"
+updated: "2026-11-09"
 type: prefab
 summary: "veggies.lua 的 fn_seeds 为 14 个可种作物各产出一件专用种子：共用 farm_plant_seeds 动画与 SEEDS 食性、40 堆叠与 40 天保质、烤制后统一变成通用 seeds_cooked，既是陷阱诱饵也是海钓拟饵，播种经 farmplantable 与 Wormwood 自定义部署两条链。"
 aliases: ["carrot_seeds", "corn_seeds", "pumpkin_seeds", "eggplant_seeds", "durian_seeds", "pomegranate_seeds", "dragonfruit_seeds", "watermelon_seeds", "tomato_seeds", "potato_seeds", "asparagus_seeds", "onion_seeds", "garlic_seeds", "pepper_seeds", "椭圆形种子", "簇状种子", "尖种子", "漩涡种子", "脆籽荚", "风刮来的种子", "球茎状种子", "方形种子", "带刺的种子", "毛茸茸的种子", "筒状种子", "尖形种子", "种子荚", "块状种子", "胡萝卜种子", "玉米种子", "南瓜种子", "茄子种子", "榴莲种子", "石榴种子", "火龙果种子", "西瓜种子", "番茄种子", "土豆种子", "芦笋种子", "洋葱种子", "大蒜种子", "辣椒种子", "农田种子", "作物种子"]
 tags: [prefab, item, food]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/veggies.lua", "prefabs/farm_plant_defs.lua", "prefabs/farm_plants.lua", "prefabs/farm_soil.lua", "prefabs/seeds.lua", "prefabs/birdcage.lua", "prefabs/fruitfly.lua", "prefabs/catcoon.lua", "prefabs/bundle.lua", "prefabs/wormwood.lua", "prefabs/oceanfishingrod.lua", "components/farmplantable.lua", "components/farmtiller.lua", "components/deployable.lua", "components/plantable.lua", "components/grower.lua", "components/cookable.lua", "components/cooker.lua", "components/edible.lua", "components/perishable.lua", "components/stackable.lua", "components/bait.lua", "components/trap.lua", "components/oceanfishingtackle.lua", "components/inventoryitem_replica.lua", "actions.lua", "componentactions.lua", "containers.lua", "standardcomponents.lua", "util.lua", "entityscript.lua", "tuning.lua", "constants.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 - 职责与适用：`MakeVeggie(name, has_seeds)` 在 `has_seeds` 为真时额外导出一件 `<name>_seeds`，工厂是独立的 `fn_seeds`。本页覆盖 14 件（名单见[十四注册与名称](#十四注册与名称)）。可借鉴：一件物品兼具播种、烤制、诱饵、拟饵四职。[种子工厂](../../../raw/current/scripts/prefabs/veggies.lua#L453-L537)、[SEEDLESS](../../../raw/current/scripts/prefabs/veggies.lua#L160-L168)
 - 优先使用：改数值看[种子数值与堆叠](#种子数值与堆叠)；改「种下去长成什么」看[播种与种植路径](#播种与种植路径)；烤制与拟饵看[烤制与钓具](#烤制与钓具)。共用工厂的 `MakeVegStats` 位序、导出顺序与端分界见 [[reference/prefabs/farm-crops-staple#共用工厂与生熟两态]]，本页不重复。
 - 重要副作用：14 种种子烤制后都是同一件 `seeds_cooked`，作物身份不保留；`PLANTSOIL` 先移除目标土堆，再生成植株，动作仅在 `Plant` 正常返回失败时尝试交回种子。[烤制](#烤制与钓具)、[Plant](../../../raw/current/scripts/components/farmplantable.lua#L7-L25)、[动作回交](../../../raw/current/scripts/actions.lua#L4727-L4745)
-- 修改边界：通用种子 `seeds`／`seeds_cooked`／`seeds_placer` 见 [[reference/prefabs/generic-seeds]]；6 个 `SEEDLESS` 作物不产种子；`_oversized` 三件见 [[reference/prefabs/giant-crops]]；田间生长、压力与再生见 [[reference/components/crop]]、[[reference/components/farming-manager]]。本页只讲物品形态与其直接接线。
+- 修改边界：通用种子 `seeds`／`seeds_cooked`／`seeds_placer` 见 [[reference/prefabs/generic-seeds]]；6 个 `SEEDLESS` 作物不产种子；`_oversized` 三件见 [[reference/prefabs/giant-crops]]；田间生长、压力与再生见 [[reference/prefabs/farm-plants]]，机制细节见 [[reference/components/crop]]、[[reference/components/farming-manager]]。本页只讲物品形态与其直接接线。
 
 ## 注册与构造
 
@@ -191,3 +191,4 @@ end
 - 种植与生长：[[reference/components/farmplantable]]、[[reference/components/crop]]、[[reference/components/farming-manager]]
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

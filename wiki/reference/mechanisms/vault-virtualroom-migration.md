@@ -1,12 +1,12 @@
 ---
 title: "vault→virtualroom 迁移（build 26148036）"
 created: "2026-10-24"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: mechanism
 summary: "build 26148036 把金库（vault）专用判定重构为通用虚拟房间体系：map 新查询入口、暗影手/指南针/守卫等消费者的接入方式、vault_teleport 泛化与存档 5.25 自动迁移，附模组迁移判断。"
 aliases: ["金库虚拟房间迁移", "vaultroommanager 替换", "vault virtualroom migration"]
 tags: [mechanism, worldgen, data, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/map.lua", "components/shadowhandspawner.lua", "prefabs/vault_compass.lua", "stategraphs/SGvault_pillar_guard.lua", "map/static_layouts/vault_lobby.lua", "savefileupgrades.lua", "constants.lua", "prefabs/cave.lua", "prefabs/vault_pillar_guard.lua", "brains/vault_pillar_guardbrain.lua", "stategraphs/SGwilson.lua", "prefabs/archive_chandelier.lua", "prefabs/shadowcreature.lua"]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ status: active
 - 2026-10-28 build 26230496：map.lua 新增 GetVirtualRoomSetNameAtPoint 与 constants.lua 新增 VRS 哈希表使包装/常量锚点下移（本页语义未受影响：IsPointInWalledOffVRS 为新增全局见报告 R-3）；ATRIUM 路径注册回调新增 lobby 豁免（报告 P-15）。
 相关：[[reference/components/virtualroommanager]]、[[reference/components/virtualroomset]]、[[reference/components/virtualroomteleporter]]、[[reference/components/teleporter]]、[[reference/components/sanityaura]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

@@ -1,12 +1,12 @@
 ---
 title: "oldager：旺达自然老化与剩余寿命"
 created: "2026-10-27"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "将旺达剩余寿命映射到 health，按时间结算自然老化、受伤加速与回春恢复。"
 aliases: ["旺达", "Wanda", "旺达生命值流逝", "自然老化", "衰老", "剩余寿命", "回春表", "oldager"]
 tags: [component, lifecycle, callback, mechanism, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/oldager.lua", "components/health.lua", "prefabs/wanda.lua", "prefabs/pocketwatch.lua", "prefabs/player_classified.lua", "widgets/wandaagebadge.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -77,3 +77,4 @@ Wanda 的服务端添加 oldager，登记 pocketwatch_heal／debug_key 治疗 ca
 - 版本沿用：2026-10-28 原始哈希等价批量沿用-70（26148036→26230496，本页 sources 所列文件原始字节全部未变），页内未决项零标记、符号反查无命中、严格链接通过；批次依据见 [[updates/build-26230496/index#wiki-沿用记录]]。
 相关：[[reference/components/health]]；[[reference/components/positionalwarp]]；[[reference/components/staffsanity]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

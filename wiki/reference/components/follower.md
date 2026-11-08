@@ -1,12 +1,12 @@
 ---
 title: "follower"
 created: "2026-10-12"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "设置随从主人和忠诚期限，区分归属、战斗目标共享、实际跟随及关系清理。"
 aliases: ["随从归属", "忠诚时间", "跟随主人", "不共享战斗目标", "follower"]
 tags: [component, creature, mechanism, lifecycle, network-sync]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/follower.lua", "components/leader.lua", "prefabs/pigman.lua", "brains/pigbrain.lua", "behaviours/follow.lua", "entityscript.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -77,3 +77,4 @@ end)
 
 相关：[[reference/components/leader#关键接口]]；[[reference/components/locomotor#移动与动作边界]]；[[reference/components/trader#关键接口]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

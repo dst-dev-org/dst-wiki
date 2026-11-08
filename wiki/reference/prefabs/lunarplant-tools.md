@@ -1,12 +1,12 @@
 ---
 title: "亮茄工具族（pickaxe_lunarplant／shovel_lunarplant）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "亮茄镐与亮茄锄铲两注册的同构组装参照：动作工具加武器位面伤害、亮茄头盔套装加成监听、破损循环与修补套件修理、幸运触手协战。"
 aliases: ["pickaxe_lunarplant", "shovel_lunarplant", "亮茄粉碎者", "亮茄锄铲", "Brightshade Smasher", "Brightshade Shoevel", "亮茄工具", "月晶工具", "月亮植物工具"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/pickaxe_lunarplant.lua", "prefabs/shovel_lunarplant.lua", "prefabs/sword_lunarplant.lua", "prefabs/staff_lunarplant.lua", "prefabs/forge_repair_kits.lua", "prefabs/lunar_forge.lua", "prefabs/lunarplanttentacle.lua", "prefabs/skilltree_wormwood.lua", "prefabs/hats.lua", "prefabs/lunarrift_crystals.lua", "components/lunarplant_tentacle_weapon.lua", "components/planardamage.lua", "components/damagetypebonus.lua", "components/spdamageutil.lua", "components/combat.lua", "components/weapon.lua", "components/tool.lua", "components/equippable.lua", "components/finiteuses.lua", "components/forgerepairable.lua", "components/forgerepair.lua", "components/farmtiller.lua", "components/workable.lua", "components/setbonus.lua", "standardcomponents.lua", "constants.lua", "tuning.lua", "recipes.lua", "componentactions.lua", "actions.lua", "componentutil.lua", "widgets/itemtile.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -141,3 +141,4 @@ end)
 相关：[[reference/prefabs/index|Prefab 索引]]；[[reference/prefabs/pickaxe|鹤嘴锄（基础镐族参照）]]；[[reference/prefabs/shovel|铁铲（基础铲族参照）]]；[[reference/components/forgerepairable|锻造修理目标侧]]。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

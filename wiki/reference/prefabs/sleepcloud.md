@@ -1,13 +1,13 @@
 ---
 title: "睡眠云与孢子云（sleepcloud 与 sporecloud 两族五注册）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "两族同构云实体：sleepcloud／sleepcloud_lunar 持续范围催眠，sporecloud 持续范围伤害并加速腐败；各由本地底座、7 片 overlay 与 net_tinybyte 状态组成，逐注册核验生成点、端、父挂与清理。"
 aliases: ["sleepcloud", "sleepcloud_lunar", "sleepcloud_overlay", "sporecloud", "sporecloud_overlay", "睡眠云", "孢子云", "睡眠云特效", "孢子云特效"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/sleepcloud.lua", "prefabs/sporecloud.lua", "prefabs/sleepbomb.lua", "prefabs/moon_mushroom.lua", "prefabs/sporebomb.lua", "prefabs/mushroomsprout.lua", "prefabs/toadstool.lua", "stategraphs/SGtoadstool.lua", "components/aura.lua", "components/combat.lua", "components/perishable.lua", "widgets/fumeover.lua", "widgets/countdownbeta.lua", "prefablist.lua", "fx.lua", "prefabs/alterguardian_phase4_lunarrift.lua", "prefabs/bomb_lunarplant.lua", "prefabs/charliearena_spike.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -119,3 +119,4 @@ end
 - 游戏运行：未运行；动画包内容与时长、父子实体移除的实际时机、睡眠／伤害／腐败在游戏内的表现均未实测。未覆盖：模组侧接入未验证，多语言名称未逐一检索。
 
 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]；相邻条目：[[reference/prefabs/glass_fx|睡眠炸弹爆裂与玻璃化 FX]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

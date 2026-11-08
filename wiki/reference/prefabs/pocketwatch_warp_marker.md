@@ -1,13 +1,13 @@
 ---
 title: "怀表与传送门附属表现 FX 族（pocketwatch_warp_marker 等 5 注册）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "两个宿主文件里的五个 FX 子注册：倒走表历史标记与溯源表标记，以及时间裂缝入口的前／地下叠层和到达落地表现；逐项核验工厂、端分界、全部生成点、父挂与清理。"
 aliases: ["pocketwatch_warp_marker", "pocketwatch_recall_marker", "pocketwatch_portal_entrance_overlay", "pocketwatch_portal_entrance_underlay", "pocketwatch_portal_exit_fx", "怀表与传送门附属表现", "时间裂缝传送门表现", "怀表标记特效", "传送门落地特效"]
 tags: [prefab, fx, network-sync, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/pocketwatch.lua", "prefabs/pocketwatch_portal.lua", "prefabs/pocketwatch_common.lua", "prefabs/wanda.lua", "components/positionalwarp.lua", "components/teleporter.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilsonghost.lua", "entityscript.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -112,3 +112,4 @@ end
 相关页面：[[reference/prefabs/impact|命中与落点伤害表现及传送门投影 FX 族]]（父挂式传送门投影对照）。
 
 返回 [[reference/prefabs/fx-transition-index|变身、召唤、传送与退场]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

@@ -1,12 +1,12 @@
 ---
 title: "sanity"
 created: "2026-10-12"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "修改精神值与上限、持续精神贡献和启蒙状态，区分装备贡献、额外速率与净增长。"
 aliases: ["精神值", "精神上限", "回精神", "精神每分钟提升三点", "持续精神恢复", "启蒙", "sanity"]
 tags: [component, lifecycle, mechanism, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/sanity.lua", "components/equippable.lua", "components/health.lua", "prefabs/player_common.lua", "prefabs/wintersfeastbuff.lua", "util/sourcemodifierlist.lua", "modutil.lua", "entityscript.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -84,3 +84,4 @@ end)
 
 相关：[[reference/components/hunger]]；[[reference/components/eater]]；[[reference/components/equippable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

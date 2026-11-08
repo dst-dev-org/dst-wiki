@@ -1,12 +1,12 @@
 ---
 title: "hull"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "船体附属数据与挂接：登记船半径，挂接船唇、跳板与燃烧定位器，并处理下水动画与跳板皮肤存档。"
 aliases: ["船唇挂接", "跳板挂接", "船体半径", "hull"]
 tags: [component, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/hull.lua", "prefabs/boat.lua", "prefabs/yotd_boats.lua", "entityscript.lua", "components/boatmagnet.lua", "brains/waveyjoneshandbrain.lua", "brains/crabkingclawbrain.lua", "components/shadowhandspawner.lua", "stategraphs/SGgnarwail.lua", "tuning.lua", "components/boatringdata.lua"]
 reliability: verified
 validation: source-reviewed
@@ -39,7 +39,7 @@ status: active
 ### 原版宿主：木船与龙舟的 hull 装配
 
 - 前提与选择：目标文件 `prefabs/boat.lua` 的 `create_master_pst`（在所有变体的主模拟段调用），以及 `prefabs/yotd_boats.lua` 的 `dragonboat_server`；加组件必须在 `SetPristine` 与服务端门槛之后，此时 `radius` 已从船数据算出。[木船调用点](../../../raw/current/scripts/prefabs/boat.lua#L777)、[龙舟调用点](../../../raw/current/scripts/prefabs/yotd_boats.lua#L403-L404)
-- 端与单位：仅服务端；`radius` 是世界单位（木船 4、草船 3、水獭巢 3.75、远古 4、冰船 1.6、龙舟 3），跳板偏移在其基础上加 `PLANK_EDGE_OFFSET`（-0.05）。[半径值](../../../raw/current/scripts/prefabs/boat.lua#L758)、[冰船半径](../../../raw/current/scripts/tuning.lua#L8136)、[龙舟半径](../../../raw/current/scripts/tuning.lua#L8142)、[跳板偏移](../../../raw/current/scripts/prefabs/boat.lua#L518-L543)
+- 端与单位：仅服务端；`radius` 是世界单位（木船 4、草船 3、水獭巢 3.75、远古 4、冰船 1.6、龙舟 3），跳板偏移在其基础上加 `PLANK_EDGE_OFFSET`（-0.05）。[半径值](../../../raw/current/scripts/prefabs/boat.lua#L758)、[冰船半径](../../../raw/current/scripts/tuning.lua#L8137)、[龙舟半径](../../../raw/current/scripts/tuning.lua#L8143)、[跳板偏移](../../../raw/current/scripts/prefabs/boat.lua#L518-L543)
 - 生效与撤销：这段装配在船生成时执行，船唇／跳板随之生成并跟随；从 kit 部署船时 `ondeploy` 调 `hull:OnDeployed()` 播下水动画。撤销即改回 prefab；已生成的船需重建，运行期不要 `RemoveComponent`。[部署调用](../../../raw/current/scripts/prefabs/boat.lua#L722-L744)、[龙舟部署](../../../raw/current/scripts/prefabs/yotd_boats.lua#L638-L656)
 - 原版依据：龙舟的跳板放在 `0.75π` 方向、`radius + 0.05` 处，说明偏移与角度由宿主决定，`hull` 只负责挂接；船唇与跳板 prefab 由船数据传入（有的船只有船唇，如海盗船）。[龙舟跳板](../../../raw/current/scripts/prefabs/yotd_boats.lua#L411-L420)
 
@@ -81,3 +81,4 @@ end
 
 相关：[[reference/components/boatring]]、[[reference/components/boatrotator]]、[[reference/components/boatringdata]]、[[reference/components/walkableplatform]]、[[reference/components/boatphysics]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

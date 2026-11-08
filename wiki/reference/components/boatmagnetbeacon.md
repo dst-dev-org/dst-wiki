@@ -1,12 +1,12 @@
 ---
 title: "boatmagnetbeacon"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "磁铁信标：登记配对磁铁与开关状态、随拾取或放置切换跟随目标，本身不产生牵引力。"
 aliases: ["磁铁信标", "船用信标", "自动航行信标", "boatmagnetbeacon"]
 tags: [component, lifecycle, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/boatmagnetbeacon.lua", "components/boatmagnet.lua", "components/boatphysics.lua", "prefabs/boat_magnet_beacon.lua", "prefabs/boat_magnet.lua", "stategraphs/SGboatmagnetbeacon.lua", "actions.lua", "componentactions.lua", "tuning.lua", "entityscript.lua", "recipes.lua"]
 reliability: verified
 validation: source-reviewed
@@ -89,3 +89,4 @@ status: active
 
 相关：[[reference/components/boatmagnet]]、[[reference/components/boatphysics]]、[[reference/components/hull]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

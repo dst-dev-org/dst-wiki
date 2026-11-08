@@ -1,12 +1,12 @@
 ---
 title: "bathingpool"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "泡澡池占用协议组件：管理实体（玩家/寄居蟹等）入池占位、池边定位与离开，配合 SG 状态标记 occupying_bathingpool 生效。"
 aliases: ["泡澡池", "bathingpool", "温泉泡澡", "入池协议"]
 tags: [component, state-machine, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/bathingpool.lua", "prefabs/hermithotspring.lua", "prefabs/hotspring.lua", "actions.lua", "componentactions.lua", "components/moisture.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -70,3 +70,4 @@ end
 
 相关：[[reference/components/moisture]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

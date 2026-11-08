@@ -1,12 +1,12 @@
 ---
 title: "变身切换烟（werebeaver_transform_fx）"
 created: "2026-10-31"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "八个通用表注册承载三类形态切换烟团：伍迪三形态变身（含鹿形态中断补烟与鹅毛色覆写）、露西斧收编与还原（possessedaxe 两字段），以及被全玩家接住抛射物复用的 lucy_transform_fx；切斯特／哈奇形态切换烟同为死亡烟资源。"
 aliases: ["werebeaver_transform_fx", "weremoose_transform_fx", "weremoose_transform2_fx", "weremoose_revert_fx", "weregoose_transform_fx", "lucy_transform_fx", "lucy_ground_transform_fx", "chester_transform_fx", "变身烟", "变形特效", "接住烟", "形态切换特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "stategraphs/SGwilson.lua", "prefabs/woodie.lua", "components/possessedaxe.lua", "prefabs/lucy.lua", "prefabs/chester.lua", "stategraphs/SGchester.lua", "prefabs/hutch.lua", "stategraphs/SGhermitcrab.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -87,3 +87,4 @@ end
 
 返回 [[reference/prefabs/fx-transition-index|变身、召唤、传送与退场]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

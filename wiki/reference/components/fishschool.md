@@ -36,7 +36,7 @@ status: active
 
 ### 自定义鱼群实体
 
-- 前提与选择：宿主是带 AnimState 的群体实体；鱼的"被捕获"表现由鱼 prefab 自己的 `on_caught_in_net` 处理（鳀鱼状态图转 caught_in_net）。[SGantchovies.lua:16](../../../raw/current/scripts/stategraphs/SGantchovies.lua#L16
+- 前提与选择：宿主是带 AnimState 的群体实体；鱼的"被捕获"表现可由自定义鱼自己的状态图监听 `on_caught_in_net` 实现；原版鳀鱼**没有**挂状态图——`prefabs/antchovies.lua:37` 与 `prefabs/antchovies_group.lua:34` 的 `SetStateGraph` 都被注释，所以原版不会消费该事件。[SGantchovies.lua:16](../../../raw/current/scripts/stategraphs/SGantchovies.lua#L16)
 
 ```lua
 inst:AddComponent("fishschool")

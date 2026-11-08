@@ -1,12 +1,12 @@
 ---
 title: "背包（backpack）"
 created: "2026-10-29"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "原版普通背包的身体槽装备、八格容器、穿脱开关、燃烧掉物与皮肤跟随特效接线入口。"
 aliases: ["backpack", "背包", "普通背包", "Backpack", "背包格子", "背包放冰箱", "穿戴开包", "backpack_swap_fx"]
 tags: [prefab, item, equipment, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/backpack.lua", "containers.lua", "components/container.lua", "components/container_replica.lua", "components/inventory.lua", "standardcomponents.lua", "entityscript.lua", "languages/chinese_s.po", "prefabskin.lua", "prefabs/skinprefabs.lua"]
 reliability: verified
 validation: source-reviewed
@@ -89,3 +89,4 @@ onignite／onextinguish 分别置 canbeopened=false／true，onburnt 掉出内�
 
 返回 [[reference/prefabs/storage-heavy-index|背包收纳与重物搬运]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

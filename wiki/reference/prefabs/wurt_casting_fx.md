@@ -1,12 +1,12 @@
 ---
 title: "沃特施法特效（purebrilliance_castfx／horrorfuel_castfx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "纯粹辉煌／纯粹恐惧物品施放（mermbuffcast）时挂在施放者身上的施法动画：普通与骑乘四注册，恐惧燃料变体在客户端再挂非联网顶部子实体；消耗与随从 buff 由物品 spellcaster 完成。"
 aliases: ["wurt_casting_fx", "purebrilliance_castfx", "purebrilliance_castfx_mount", "horrorfuel_castfx", "horrorfuel_castfx_mount", "沃特施法特效", "施法特效"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wurt_casting_fx.lua", "stategraphs/SGwilson.lua", "prefabs/purebrilliance.lua", "prefabs/horrorfuel.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -78,3 +78,4 @@ inst.lightcolour = { 53/255, 132/255, 148/255 }
 
 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

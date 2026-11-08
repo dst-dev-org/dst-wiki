@@ -1,12 +1,12 @@
 ---
 title: "Boss 与特殊护甲族（armor_bramble、armordragonfly 等 4 注册）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "四个独立文件注册的 BODY 槽特殊护甲（荆棘外壳、鳞甲、W.A.R.B.I.S.盔甲、镀金骑士胸甲）：注册名与文件名差异、反伤尖刺／火免反燃／追踪提速／套装标签四套专属机制、配方与 Boss 掉落获取链、官方名与消费端标签，供模组参照原版做 Boss 级与特殊机制护甲。"
 aliases: ["armor_bramble", "荆棘外壳", "荆棘甲", "armordragonfly", "鳞甲", "armorwagpunk", "W.A.R.B.I.S.盔甲", "armor_yoth_knight", "镀金骑士胸甲", "Gilded Knight's Chest Plate", "Boss 护甲", "特殊护甲族", "身体护甲"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/armor_bramble.lua", "prefabs/armor_dragonfly.lua", "prefabs/armor_wagpunk.lua", "prefabs/armor_yoth_knight.lua", "prefabs/bramblefx.lua", "prefabs/knight.lua", "prefabs/dragonfly.lua", "prefabs/beequeen.lua", "prefabs/daywalker2.lua", "prefabs/wagstaff_machinery.lua", "prefabs/armor_lunarplant.lua", "prefabs/flower.lua", "prefabs/cactus.lua", "prefabs/hedgehound_bush.lua", "prefabs/skilltree_wormwood.lua", "prefabs/wormwood.lua", "fx.lua", "components/armor.lua", "components/setbonus.lua", "components/health.lua", "components/targettracker.lua", "components/playerlightningtarget.lua", "components/yoth_knightmanager.lua", "componentutil.lua", "standardcomponents.lua", "stategraphs/SGwagdrone_rolling.lua", "stategraphs/SGwilson.lua", "tuning.lua", "recipes.lua", "constants.lua", "strings.lua", "skins_defs_data.lua", "languages/chinese_s.po", "mods.lua", "widgets/itemtile.lua"]
 reliability: verified
 validation: source-reviewed
@@ -28,10 +28,10 @@ status: active
 
 | 注册名（官方名） | armor：耐久×吸收 | 附加组件与标签 | 获取 | 证据 |
 |---|---|---|---|---|
-| `armor_bramble`（荆棘外壳） | 525×0.8＋弱点 beaver 17 | fuel LARGE_FUEL＋小可燃＋可蔓延；`bramble_resistant` | 沃姆伍德配方：活木头2＋针刺4（`builder_tag="plantkin"`） | [fn](../../../raw/current/scripts/prefabs/armor_bramble.lua#L84-L138)、[调值](../../../raw/current/scripts/tuning.lua#L4562-L4566)、[配方](../../../raw/current/scripts/recipes.lua#L339) |
+| `armor_bramble`（荆棘外壳） | 525×0.8＋弱点 beaver 17 | fuel LARGE_FUEL＋小可燃＋可蔓延；`bramble_resistant` | 沃姆伍德配方：活木头2＋针刺4（`builder_tag="plantkin"`） | [fn](../../../raw/current/scripts/prefabs/armor_bramble.lua#L84-L139)、[调值](../../../raw/current/scripts/tuning.lua#L4562-L4566)、[配方](../../../raw/current/scripts/recipes.lua#L339) |
 | `armordragonfly`（鳞甲） | 945×0.7 | dapperness `DAPPERNESS_MED`≈26.7 理智/天；无标签 | 配方：鳞片1＋木甲1＋猪皮3（SCIENCE_TWO） | [fn](../../../raw/current/scripts/prefabs/armor_dragonfly.lua#L58-L96)、[调值](../../../raw/current/scripts/tuning.lua#L1843-L1845)、[配方](../../../raw/current/scripts/recipes.lua#L498) |
 | `armorwagpunk`（W.A.R.B.I.S.盔甲） | 730×0.85＋planar 5 | `targettracker` 提速；`equippable.insulated`；`metal`/`hardarmor`/`show_broken_ui`；破损可修（废料重建） | 配方：废料8＋晶体管3＋启迪碎片1（TECH.LOST，蓝图学习） | [fn](../../../raw/current/scripts/prefabs/armor_wagpunk.lua#L337-L400)、[破损/修复](../../../raw/current/scripts/prefabs/armor_wagpunk.lua#L317-L335)、[配方](../../../raw/current/scripts/recipes.lua#L862) |
-| `armor_yoth_knight`（镀金骑士胸甲） | 840×0.9 | `setbonus`（YOTH_KNIGHT）启用加 `luckysource`；`metal`/`hardarmor`；无配方、拆解金6＋蛛丝4 | 最后一骑 `knight_yoth` 100% 掉落 | [fn](../../../raw/current/scripts/prefabs/armor_yoth_knight.lua#L40-L86)、[调值](../../../raw/current/scripts/tuning.lua#L9282-L9283)、[掉落](../../../raw/current/scripts/prefabs/knight.lua#L262-L288) |
+| `armor_yoth_knight`（镀金骑士胸甲） | 840×0.9 | `setbonus`（YOTH_KNIGHT）启用加 `luckysource`；`metal`/`hardarmor`；无配方、拆解金6＋蛛丝4 | 最后一骑 `knight_yoth` 100% 掉落 | [fn](../../../raw/current/scripts/prefabs/armor_yoth_knight.lua#L40-L86)、[调值](../../../raw/current/scripts/tuning.lua#L9283-L9284)、[掉落](../../../raw/current/scripts/prefabs/knight.lua#L262-L288) |
 
 皮肤：`armor_bramble_ancient` 受限 build 注册在案（[skins_defs_data.lua#L63](../../../raw/current/scripts/skins_defs_data.lua#L63)），其余三件未见皮肤注册；换装协议四件同帽族（`GetSkinBuild` → `OverrideItemSkinSymbol`＋`equipskinneditem`，[armor_bramble.lua#L51-L58](../../../raw/current/scripts/prefabs/armor_bramble.lua#L51-L58)）。
 
@@ -39,7 +39,7 @@ status: active
 
 ### 荆棘外壳：反伤尖刺（无穿戴自伤）
 
-- 两条触发路径（[DoThorns](../../../raw/current/scripts/prefabs/armor_bramble.lua#L15-L28)、[OnAttackOther](../../../raw/current/scripts/prefabs/armor_bramble.lua#L36-L49)）：①**通用受击反伤**——任何穿戴者的 `attacked`/`blocked`＋`ShouldProcOnAttackedOrBlocked`（排除重定向与自身来源）＋0.3 秒冷却就触发，与角色无关；②**沃姆伍德专属主动连击**——只有持有者带 `plantkin`（[wormwood.lua#L754](../../../raw/current/scripts/prefabs/wormwood.lua#L754)）时才额外监听 `onattackother`，回调内再查技能 `wormwood_armor_bramble` 与冷却，通过则 `_hitcount + 1`，累计到 3（[tuning.lua#L7848](../../../raw/current/scripts/tuning.lua#L7848)）释放尖刺并清零；**只有门禁不通过（冷却中／技能未激活）才清零，未到 3 时计数保留**。另注意 `onattackother` 在伤害结算之前发出，这 3 次是"对目标发起的攻击次数"，不是"已造成 3 次伤害"。
+- 两条触发路径（[DoThorns](../../../raw/current/scripts/prefabs/armor_bramble.lua#L15-L28)、[OnAttackOther](../../../raw/current/scripts/prefabs/armor_bramble.lua#L36-L49)）：①**通用受击反伤**——任何穿戴者的 `attacked`/`blocked`＋`ShouldProcOnAttackedOrBlocked`（排除重定向与自身来源）＋0.3 秒冷却就触发，与角色无关；②**沃姆伍德专属主动连击**——只有持有者带 `plantkin`（[wormwood.lua#L754](../../../raw/current/scripts/prefabs/wormwood.lua#L754)）时才额外监听 `onattackother`，回调内再查技能 `wormwood_armor_bramble` 与冷却，通过则 `_hitcount + 1`，累计到 3（[tuning.lua#L7848](../../../raw/current/scripts/tuning.lua#L7849)）释放尖刺并清零；**只有门禁不通过（冷却中／技能未激活）才清零，未到 3 时计数保留**。另注意 `onattackother` 在伤害结算之前发出，这 3 次是"对目标发起的攻击次数"，不是"已造成 3 次伤害"。
 - `DoThorns` 生成 `bramblefx_armor` 尖刺环（≈22.7 伤害，攻击者记穿戴者名下）＋仙人掌音效；结算与免疫归 [[reference/prefabs/bramblefx_armor|bramblefx_armor 页]]。
 - 边界：尖刺只打周围目标，不伤穿戴者（owner 在 FX 的 `ignore` 表、甲自身 `bramble_resistant` 被尖刺免疫排除）——"穿戴自伤"在源码中不存在。技能节点连接自 `wormwood_blooming_trapbramble`（[skilltree_wormwood.lua#L360-L380](../../../raw/current/scripts/prefabs/skilltree_wormwood.lua#L360-L380)）。
 
@@ -50,7 +50,7 @@ status: active
 
 ### W.A.R.B.I.S.盔甲：追踪提速与破损修复
 
-- 提速链：持有者 `onattackother` → 目标 2 秒待定（[OnAttack](../../../raw/current/scripts/prefabs/armor_wagpunk.lua#L128-L158)）→ `SetNewTarget` 锁定 → 移速 1.10（STAGE0）＋蒸汽 FX；追踪时间逐帧累计（[TimeCheck](../../../raw/current/scripts/prefabs/armor_wagpunk.lua#L161-L210)），过 10/16/20 秒逐档升 1.15/1.20/1.30（[tuning.lua#L8025-L8032](../../../raw/current/scripts/tuning.lua#L8025-L8032)）。目标死亡或超范围（`WAGPUNK_MAXRANGE=16`＋WX78 雷达模块每个 +6，[componentutil.lua#L2367-L2380](../../../raw/current/scripts/componentutil.lua#L2367-L2380)）→ `StopTracking` → [ResetBuff](../../../raw/current/scripts/prefabs/armor_wagpunk.lua#L62-L82) 还原移速 1、关环境音、FX 归 1 级。
+- 提速链：持有者 `onattackother` → 目标 2 秒待定（[OnAttack](../../../raw/current/scripts/prefabs/armor_wagpunk.lua#L128-L158)）→ `SetNewTarget` 锁定 → 移速 1.10（STAGE0）＋蒸汽 FX；追踪时间逐帧累计（[TimeCheck](../../../raw/current/scripts/prefabs/armor_wagpunk.lua#L161-L210)），过 10/16/20 秒逐档升 1.15/1.20/1.30（[tuning.lua#L8025-L8032](../../../raw/current/scripts/tuning.lua#L8026-L8033)）。目标死亡或超范围（`WAGPUNK_MAXRANGE=16`＋WX78 雷达模块每个 +6，[componentutil.lua#L2367-L2380](../../../raw/current/scripts/componentutil.lua#L2367-L2380)）→ `StopTracking` → [ResetBuff](../../../raw/current/scripts/prefabs/armor_wagpunk.lua#L62-L82) 还原移速 1、关环境音、FX 归 1 级。
 - 与同装帽互认：装备时 `CloneTargetFrom(hat, WAGPUNK_SYNC_TIME=3)` 克隆帽目标；`SetNewTarget` 反哺无目标的帽（[L111-L115](../../../raw/current/scripts/prefabs/armor_wagpunk.lua#L111-L115)）；恢复时取帽/甲追踪时间较大值。
 - 破损与修复：`MakeForgeRepairable`（材料 wagpunk_bits，[standardcomponents.lua#L1851-L1884](../../../raw/current/scripts/standardcomponents.lua#L1851-L1884)）把耐久尽销毁替换为 [OnBroken](../../../raw/current/scripts/prefabs/armor_wagpunk.lua#L317-L325)：卸回背包、移除 `equippable`、`broken` 标签；[OnRepaired](../../../raw/current/scripts/prefabs/armor_wagpunk.lua#L327-L335) 重建组件。
 - `equippable.insulated=true`：雷击走 `inventory:IsInsulated` 免伤分支（[playerlightningtarget.lua#L3-L9](../../../raw/current/scripts/components/playerlightningtarget.lua#L3-L9)）。
@@ -177,3 +177,4 @@ end)
 - [[reference/components/armor|armor 组件]]、[[reference/components/setbonus|setbonus 组件]]、[[reference/components/targettracker|targettracker 组件]]（受击协议、套装互认、追踪提速）
 
 返回 [[reference/prefabs/wearables-index|穿戴防具与饰品]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 4 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

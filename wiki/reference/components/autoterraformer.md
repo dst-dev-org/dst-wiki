@@ -1,12 +1,12 @@
 ---
 title: "autoterraformer"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "让带容器的实体随位置自动铲地或铺设槽内地皮，区分下层地块、耗材补槽与装备启停。"
 aliases: ["自动铺地皮", "蚁狮帽铲地", "走路换地皮", "自动整地", "autoterraformer"]
 tags: [component, equipment, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/autoterraformer.lua", "components/container.lua", "components/finiteuses.lua", "prefabs/hats.lua", "containers.lua", "entityscript.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -28,7 +28,7 @@ status: active
 |---|---|---|
 | `StartTerraforming()` | 无返回约定 | 清空上次格坐标和重复延迟，注册组件更新；并非立即铲地。[实现](../../../raw/current/scripts/components/autoterraformer.lua#L106-L108) |
 | `StopTerraforming()` | 无返回约定 | 停止组件更新；不回滚地块、不关闭容器。[实现](../../../raw/current/scripts/components/autoterraformer.lua#L111-L112) |
-| `repeat_tile_delay` | 秒；默认 0.25 | 仅一次铲地露出下层时，在同格等待后重试；不是每格操作的通用冷却。[初始化](../../../raw/current/scripts/components/autoterraformer.lua#L5)、[默认值](../../../raw/current/scripts/tuning.lua#L6853)、[更新条件](../../../raw/current/scripts/components/autoterraformer.lua#L119-L131) |
+| `repeat_tile_delay` | 秒；默认 0.25 | 仅一次铲地露出下层时，在同格等待后重试；不是每格操作的通用冷却。[初始化](../../../raw/current/scripts/components/autoterraformer.lua#L5)、[默认值](../../../raw/current/scripts/tuning.lua#L6854)、[更新条件](../../../raw/current/scripts/components/autoterraformer.lua#L119-L131) |
 | `DoTerraform(px, py, pz, x, y)` | 前三参世界坐标，后两参地图格坐标 | 处理一次，露出下层成功返回 true；其他成功／无操作通常返回 nil，不能用返回值判断总体成功。[完整分支](../../../raw/current/scripts/components/autoterraformer.lua#L57-L103) |
 | `onfinishterraformingfn` | `fn(inst, world_x, world_y, world_z)` | 地图已改、事件和耐久已处理后调用；返回值被忽略。[实现](../../../raw/current/scripts/components/autoterraformer.lua#L12-L20) |
 | `container` | 构造时缓存的组件实例 | 不是每次读取 `inst.components.container`；运行中替换容器组件不会自动重绑。[缓存与取物](../../../raw/current/scripts/components/autoterraformer.lua#L2-L9)、[使用](../../../raw/current/scripts/components/autoterraformer.lua#L61) |
@@ -67,6 +67,7 @@ status: active
 
 相关：[[reference/components/terraformer]]；[[reference/components/container]]；[[reference/components/finiteuses]]；[[reference/components/equippable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。
 
 ## 相关链接
 

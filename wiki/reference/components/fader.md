@@ -1,12 +1,12 @@
 ---
 title: "fader"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "通用数值渐变器：注册起点到终点的回调式补间，逐帧驱动 setter，可挂结束回调，常用于透明度与音量。"
 aliases: ["fader", "数值渐变", "透明度渐变", "补间组件"]
 tags: [component]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["components/fader.lua", "prefabs/marionette_fx.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
@@ -61,3 +61,4 @@ end)
 - 游戏运行：未运行；未核对音量渐变（grottowaterfallsoundcontroller）实际听感。
 - 结构检查：validate_page.py 通过；validate_source_links.py --strict 通过（本批 16 页合并执行）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

@@ -1,12 +1,12 @@
 ---
 title: "wintersurprisespawner：冬日盛宴惊喜树生成"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "冬日盛宴活动专属世界组件：冬季内在鹿群刷新点附近放置装满装饰与礼物的 winter_tree 惊喜树，单季限量并受世界设置计时器约束。"
 aliases: [惊喜树生成器, 冬日盛宴惊喜, wintersurprisespawner, 惊喜圣诞树]
 tags: [component, lifecycle, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/wintersurprisespawner.lua", "prefabs/forest.lua", "prefabs/deerspawningground.lua", "components/klaussackspawner.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -18,7 +18,7 @@ status: active
 ## 快速判断
 
 - 职责与适用：仅冬日盛宴（Winters Feast）活动开启时挂载（([forest.lua:684-687](../../../raw/current/scripts/prefabs/forest.lua#L684-L687)）的服务端世界组件。监听 `ms_registerdeerspawningground`（由 [deerspawningground.lua:12](../../../raw/current/scripts/prefabs/deerspawningground.lua#L12 推送）收集候选点，冬季内经 [[reference/components/worldsettingstimer]] 计时在远离玩家的候选点旁生成 `winter_tree` 并填满礼物（[放置](../../../raw/current/scripts/components/wintersurprisespawner.lua#L188-L214)）。
-- 优先使用：调数量与间隔 → 调谐 `WINTERSURPRISE_SPAWN_DELAY`(2 天±1 天)、`WINTERSURPRISE_MAX_SPAWNS`(3)（([tuning.lua:9244-9247](../../../raw/current/scripts/tuning.lua#L9244-L9247)）；组件无公开强制生成接口。
+- 优先使用：调数量与间隔 → 调谐 `WINTERSURPRISE_SPAWN_DELAY`(2 天±1 天)、`WINTERSURPRISE_MAX_SPAWNS`(3)（([tuning.lua:9244-9247](../../../raw/current/scripts/tuning.lua#L9245-L9248)）；组件无公开强制生成接口。
 - 重要副作用：与克劳斯袋子联动——候选点须与袋子同分区（topology task_id），且不在袋子 10 单位内（[克袋避让](../../../raw/current/scripts/components/wintersurprisespawner.lua#L50-L64)）；礼物内的惊喜怪由 hounded 逃逸等级决定（[礼物配置](../../../raw/current/scripts/components/wintersurprisespawner.lua#L101-L104)）。
 - 修改边界：冬季结束停表并清空当季计数（[季节切换](../../../raw/current/scripts/components/wintersurprisespawner.lua#L266-L275)）；活动未开启则组件不存在，相关行为整体缺席。
 
@@ -69,3 +69,4 @@ end)
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

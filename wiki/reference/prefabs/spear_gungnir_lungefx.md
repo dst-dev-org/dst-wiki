@@ -1,12 +1,12 @@
 ---
 title: "突刺与装备跟随电光（spear_gungnir_lungefx、spear_wathgrithr_lightning_lunge_fx 等 3 注册）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "两把突刺长矛文件的 3 个 FX 注册：尖齿矛（熔炉事件包本体）的突刺烟（快照内 0 生成点的诚实缺口，FastForward 快进接口在）、奔雷矛突刺的一次性八向落点光（aoeweapon_lunge → SGwilson combat_lunge 链生成）与充能奔雷矛的装备跟随光层（本体持有、SetFxOwner 换绑）。"
 aliases: ["spear_gungnir_lungefx", "spear_wathgrithr_lightning_lunge_fx", "spear_wathgrithr_lightning_fx", "尖齿矛", "奔雷矛", "充能奔雷矛", "突刺特效", "突刺烟", "装备跟随电光", "沃特格里斯长矛", "战场女武神长矛"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/spear_gungnir.lua", "prefabs/spear_wathgrithr.lua", "prefabs/lavaarena.lua", "components/aoeweapon_lunge.lua", "stategraphs/SGwilson.lua", "componentutil.lua", "entityscript.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -35,7 +35,7 @@ status: active
 
 工厂 `LungueTrailFxFn`（[L600-L645](../../../raw/current/scripts/prefabs/spear_wathgrithr.lua#L600-L645)）：Transform／AnimState／Network／**Light**（半径 3.5、衰减 1.5、初始强度 0.9、色 237,237,209），标签 `FX`／`NOCLICK`，`SetEightFaced()` 八向（[L617](../../../raw/current/scripts/prefabs/spear_wathgrithr.lua#L617-L617)）；bank／build `elec_lunge_fx`、播 `fx`、泛光＋LightOverride 1。主模拟随机缩放 1.4–1.7、`persists=false`，并以 1/20 秒周期跑 `FX_OnUpdate`（[L578-L589](../../../raw/current/scripts/prefabs/spear_wathgrithr.lua#L578-L589)）：光强按 `i = i - dt*2` 线性衰减到 0。退场是**双路协同**（[FX_OnAnimOver](../../../raw/current/scripts/prefabs/spear_wathgrithr.lua#L591-L598)）：`animover` 先到时若更新任务还在则只置 `killfx=true`，由更新循环在光强归零后 `Remove`；更新先结束则由 `animover` 直接删。
 
-生成链（[Lightning_OnLunged](../../../raw/current/scripts/prefabs/spear_wathgrithr.lua#L174-L182)）：`SpawnPrefab` 落在突刺目标点 `targetpos`、`SetRotation(施放者朝向)`、`rechargeable:Discharge` 进冷却——挂接在 `aoeweapon_lunge` 组件的 `SetOnLungedFn`（[L486](../../../raw/current/scripts/prefabs/spear_wathgrithr.lua#L481-L490)），普通／充能两把奔雷矛共用。冷却 3 秒／充能 1.5 秒（[tuning](../../../raw/current/scripts/tuning.lua#L8057-L8070)）。
+生成链（[Lightning_OnLunged](../../../raw/current/scripts/prefabs/spear_wathgrithr.lua#L174-L182)）：`SpawnPrefab` 落在突刺目标点 `targetpos`、`SetRotation(施放者朝向)`、`rechargeable:Discharge` 进冷却——挂接在 `aoeweapon_lunge` 组件的 `SetOnLungedFn`（[L486](../../../raw/current/scripts/prefabs/spear_wathgrithr.lua#L481-L490)），普通／充能两把奔雷矛共用。冷却 3 秒／充能 1.5 秒（[tuning](../../../raw/current/scripts/tuning.lua#L8058-L8071)）。
 
 ### spear_wathgrithr_lightning_fx（充能矛的装备跟随电光层）
 
@@ -121,3 +121,4 @@ end
 - [[reference/prefabs/electrocute_fx|电击表现与连锁闪电]]（奔雷矛命中触发的 electrichitsparks 与 electrocute 表现）
 - [[reference/prefabs/hitsparks_fx|命中火花特效]]（同属战斗反馈的命中类 FX）
 - 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

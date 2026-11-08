@@ -1,12 +1,12 @@
 ---
 title: "forestpetrification：森林石化周期"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级森林石化：冷却若干年后从随机一棵可石化树洪泛搜索相连林区，区内树少于阈值时整体石化，再进入下一轮冷却。"
 aliases: [森林石化, 石化周期, forestpetrification, 树木石化事件]
 tags: [component, worldgen, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/forestpetrification.lua", "components/petrifiable.lua", "prefabs/forest.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -61,3 +61,4 @@ inst:AddComponent("petrifiable")  -- 注册进森林石化与石化的世界跟�
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

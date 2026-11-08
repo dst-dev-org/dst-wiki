@@ -1,13 +1,13 @@
 ---
 title: "带翅膀的火盆添柴烟焰（firepit_firebird_puff_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "火盆皮肤 firepit_firebird（官方名带翅膀的火盆）添柴时的一次性火蓬：网络代理由主模拟写入 fuel 等级 netvar，各端本地生成非联网子实体按 puff1/2/3 播一次；皮肤符号覆写自 dynamic 资源。"
 aliases: ["firepit_firebird_puff_fx", "带翅膀的火盆", "火盆皮肤特效", "firepit firebird skin", "Winged Brazier"]
 tags: [prefab, fx, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/firepit_firebird_puff_fx.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -81,3 +81,4 @@ end
 
 返回 [[reference/prefabs/fx-light-index|灯光、火焰与音效代理]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

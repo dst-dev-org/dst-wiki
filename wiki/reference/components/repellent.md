@@ -1,12 +1,12 @@
 ---
 title: repellent：解散随从与清除附近战斗目标
 created: 2026-10-23
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 配置驱散工具的随从标签、附近搜索与耐久消耗，区分解除跟随和一次性清战斗目标。
 aliases: [repellent, 蜘蛛驱散器, 解散蜘蛛随从, 清除附近攻击目标]
 tags: [component, item, ai, actions, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/repellent.lua, components/follower.lua, componentactions.lua, actions.lua, stategraphs/SGwilson.lua, prefabs/spider_repellent.lua, prefabs/player_common.lua, prefabs/webber.lua, modutil.lua]
 reliability: verified
 validation: source-reviewed
@@ -68,3 +68,4 @@ end)
 - 结构检查：本页格式、链接、源码锚点与示例 Lua 5.1 语法检查通过。
 - 游戏运行：未运行；永久随从、附近重选敌、读档与其他模组重配字段、多人动画与耐久表现待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

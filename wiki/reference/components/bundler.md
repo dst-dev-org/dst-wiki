@@ -1,12 +1,12 @@
 ---
 title: "bundler"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "管理人物的临时打包容器、两阶段完成、取消返还与中途存档恢复。"
 aliases: ["人物打包", "每包至少两格", "取消打包返还", "bundler"]
 tags: [component, item, lifecycle, state-machine]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/bundler.lua", "components/bundlemaker.lua", "prefabs/bundle.lua", "prefabs/player_common.lua", "actions.lua", "stategraphs/SGwilson.lua", "containers.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -87,3 +87,4 @@ OnSave 保存材料／成品名、成品皮肤与非空临时容器记录；不�
 - 结构／示例检查：本批格式、来源文件、链接／行锚点、导航登记及完整 Lua 5.1 示例语法检查通过。
 - 游戏运行：未运行；UI 提示、多人／专服、动画中断、保存／迁移与模组方法叠加需验证。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

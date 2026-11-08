@@ -1,12 +1,12 @@
 ---
 title: "crittertraits"
 created: "2026-10-19"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "领养小宠物的四类性格分数、周期选主导与锁定；行为积分由宠物／主人事件及 SG 协作。"
 aliases: ["小猫正向玩耍性格收益翻倍", "宠物主导性格", "crittertraits"]
 tags: [component, creature, event, callback, lifecycle, data]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/crittertraits.lua", "prefabs/critters.lua", "stategraphs/SGcritter_common.lua", "actions.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ end)
 - 结构检查：本批格式、来源、链接／行号、大小及登记通过；完整正向倍率例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；普通／窗口抚摸、上限／并列选择、GOODIES 锁定、存读、转交和多模组覆盖待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

@@ -1,12 +1,12 @@
 ---
 title: "暖石（heatrock）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "原版暖石的温差分档、携带与地面换热、耐久和随持有者移动的灯光接线入口。"
 aliases: ["heatrock", "暖石", "Thermal Stone", "暖石发光", "暖石耐久", "携带取暖", "暖石降温"]
 tags: [prefab, item, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/heatrock.lua", "components/heater.lua", "components/temperature.lua", "components/inventory.lua", "standardcomponents.lua", "tuning.lua", "entityscript.lua", "languages/chinese_s.po", "prefabskin.lua", "prefabs/skinprefabs.lua"]
 reliability: verified
 validation: source-reviewed
@@ -95,3 +95,4 @@ TemperatureChange 在最冷／最热档记录 lowTemp／highTemp，变档后需 
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

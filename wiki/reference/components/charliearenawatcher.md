@@ -1,12 +1,12 @@
 ---
 title: "charliearenawatcher"
 created: "2026-10-24"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: "component"
 summary: "查理Boss竞技场 FX 实体上的双端观察器：每帧检测玩家进出竞技场并广播 changearea，同时管理画面渐隐高度与粒子清理；判定本身委托 Map:IsPointInCharlieBossArena。"
 aliases: ["查理竞技场进出检测", "竞技场 changearea 广播", "charliearenawatcher"]
 tags: ["component", "server-client", "ui"]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/charliearenawatcher.lua", "prefabs/charlie_boss_trial.lua", "components/map.lua", "entityscript.lua", "components/hounded.lua", "components/shadowcreaturespawner.lua", "components/areaaware.lua", "components/playervision.lua", "tuning.lua"]
 reliability: "verified"
 validation: "source-reviewed"
@@ -86,3 +86,4 @@ end)
 
 相关：[[reference/components/charlie_tracker]]、[[reference/components/shard_charlieinfo]]（同属查理Boss战线的世界级组件）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

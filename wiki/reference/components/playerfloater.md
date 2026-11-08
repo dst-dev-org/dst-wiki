@@ -1,12 +1,12 @@
 ---
 title: "playerfloater"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "玩家漂浮物品组件：让手部物品（原版游泳圈）在玩家落水时被 SGwilson float 状态自动装备，回岸或加载时重置。"
 aliases: ["游泳圈", "漂浮装备", "playerfloater"]
 tags: [component, item, equipment, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/playerfloater.lua", "prefabs/flotationcushion.lua", "stategraphs/SGwilson.lua", "prefabs/player_common.lua", "actions.lua"]
 reliability: verified
 validation: source-reviewed
@@ -63,3 +63,4 @@ inst.components.playerfloater:SetOnUnequip(OnUnequip)
 - 结构检查：本批 validate_page、validate_source_links 及示例 lua 语法探测（见批级记录）。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

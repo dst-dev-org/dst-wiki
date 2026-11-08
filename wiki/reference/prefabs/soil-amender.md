@@ -6,7 +6,7 @@ type: prefab
 summary: "原版园艺肥料族参照：soil_amender 用 perishable 作 3 游戏日发酵计时并按三态分档肥力，到时替换为独立构造的 soil_amender_fermented（finiteuses 5 次，替换物尝试回填原位置／持有格）；两态部署到可耕土壤按养分表加地块养分（也可走普通 FERTILIZE 动作），施用完返还空瓶子，全程不可堆叠、不可食用。"
 aliases: ["soil_amender", "soil_amender_fermented", "催长剂起子", "超级催长剂", "已发酵催长剂", "正在发酵的催长剂", "发酵计时", "Growth Formula Starter", "Super Growth Formula"]
 tags: [prefab, item]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/soil_amender.lua", "prefabs/fertilizer_nutrient_defs.lua", "prefabs/wormwood.lua", "components/perishable.lua", "components/fertilizer.lua", "components/finiteuses.lua", "components/inventoryitem.lua", "components/farming_manager.lua", "components/pickable.lua", "components/crop.lua", "components/grower.lua", "standardcomponents.lua", "widgets/itemtile.lua", "componentactions.lua", "mainfunctions.lua", "entityscript.lua", "actions.lua", "recipes.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 - 职责与适用：`prefabs/soil_amender.lua` 同文件注册的两个物品类肥料（[注册](../../../raw/current/scripts/prefabs/soil_amender.lua#L251-L252)）：`soil_amender`（催长剂起子）挂 `perishable` 当 3 游戏日的发酵计时用，按 fresh／stale／spoiled 三态给出低／中／高三档肥力，计时结束后替换为独立构造、无新鲜度的 `soil_amender_fermented`（超级催长剂，5 次施用；替换物尝试回填原位置／持有格）；两态都不可堆叠、不可食用，主用途是部署到可耕土壤给农田地块加养分，也可经普通 FERTILIZE 动作喂给符合条件的旧目标（未成熟作物、贫瘠采集物等）或自肥者（沃姆伍德挂 `fertilizable` 组件，[wormwood.lua#L845-L846](../../../raw/current/scripts/prefabs/wormwood.lua#L845-L846)）。
 - 优先使用：给农田补养分、复刻"物品随时间发酵升级"或"施用返还容器"时参照本页；改发酵时长与替换物读[注册与构造](#注册与构造)与[典型接入](#典型接入)；肥料数值如何被消费见 [[reference/components/fertilizer]]。
 - 重要副作用：每次施用完成都触发 `bottlereturnfn`，最后一次施用移除本体并返还 1 个 `messagebottleempty`——优先交给有物品栏组件的使用者，否则在目标或物品位置生成（[返还](../../../raw/current/scripts/prefabs/soil_amender.lua#L41-L53)、[消费](../../../raw/current/scripts/components/fertilizer.lua#L30-L48)）；soil_amender 的"spoiled"态只是三档中肥力最高的一档，不会产生腐烂食物。
-- 修改边界：本页覆盖两注册的工厂、三态发酵链、部署施肥与返还链；farm_plant 作物生长消费、堆肥桶转化等下游设施只给入口不展开；客户端只读 `fertilizer_index` 净变量与标签，施肥结算全在服务端（[部署](../../../raw/current/scripts/standardcomponents.lua#L1797-L1810)）。
+- 修改边界：本页覆盖两注册的工厂、三态发酵链、部署施肥与返还链；farm_plant 作物生长消费、堆肥桶转化等下游设施只给入口不展开（作物侧数值见 [[reference/prefabs/farm-crops-staple]]、种子侧见 [[reference/prefabs/farm-crop-seeds]]）；客户端只读 `fertilizer_index` 净变量与标签，施肥结算全在服务端（[部署](../../../raw/current/scripts/standardcomponents.lua#L1797-L1810)）。
 
 ## 注册与构造
 
@@ -117,3 +117,4 @@ end)
 - 外部复检修订：2026-11-08（docs/reports/w05/prefab-inventory-review-b01-20261108，主代理逐项回源码核实采纳）：典型接入"生效与撤销"按读档顺序重写——SpawnSaveRecord 先 SpawnPrefab 跑 postinit、随后 SetPersistData 逐组件 OnLoad 把存档剩余秒数与暂停态覆盖回 perishable（mainfunctions.lua:394-503、entityscript.lua:2002-2008、perishable.lua:337-348），存量实例为"上限取 postinit 新值、剩余秒数取存档值"，既不清回起子态也不保比例，`SetNewMaxPerishTime` 同样被 OnLoad 覆盖；"只经部署施肥"扩展为部署＋FERTILIZE 动作双路径（补收集器 componentactions.lua:1241-1254 与自肥者沃姆伍德 wormwood.lua:845-846）；还瓶表述改为"优先交给有物品栏组件的使用者，否则在目标或物品位置生成"；"原位替换／优先回填原持有格"统一改为"尝试回填、落点由收纳规则决定"；腐坏条归属改准为仅 soil_amender 起子（fermented 无 perishable、栏内显示耐久）；frontmatter sources 补 prefabs/wormwood.lua、componentactions.lua、mainfunctions.lua、entityscript.lua。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

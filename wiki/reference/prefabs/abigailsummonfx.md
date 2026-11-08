@@ -1,12 +1,12 @@
 ---
 title: "阿比盖尔之花召唤、收回与升级特效（abigailsummonfx 等）"
 created: "2026-11-02"
-updated: "2026-11-02"
+updated: "2026-11-08"
 type: prefab
 summary: "阿比盖尔之花召唤与收回按骑乘选用的四种动画，以及幽灵等级变化和惊吓复用的花形动画。"
 aliases: ["abigailsummonfx", "abigailsummonfx_mount", "abigailunsummonfx", "abigailunsummonfx_mount", "abigaillevelupfx", "阿比盖尔召唤特效", "阿比盖尔收回特效", "阿比盖尔升级特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/abigail_flower.lua", "prefabs/abigail.lua", "prefabs/wendy.lua", "prefabs/ghostcommand_defs.lua", "stategraphs/SGwilson.lua", "stategraphs/SGabigail.lua", "actions.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -57,3 +57,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-transition-index|变身、召唤、传送与退场]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

@@ -1,12 +1,12 @@
 ---
 title: "compostingbin"
 created: "2026-10-22"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "配置绿料与棕料堆肥周期，连接投料判定、计时和宿主产物回调。"
 aliases: ["堆肥桶", "堆肥速度", "绿料棕料", "compostingbin"]
 tags: [component, building, food, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/compostingbin.lua", "prefabs/compostingbin.lua", "actions.lua", "componentactions.lua", "tuning.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -70,3 +70,4 @@ end)
 - 结构检查：定向页面校验通过；源码锚点 strict 校验无错误／警告；完整 modmain 示例通过 Full Moon Lua 5.1 语法检查，未执行游戏逻辑。
 - 游戏运行：未运行；追加投料、读档剩余时间、烧毁及多人采收待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

@@ -1,12 +1,12 @@
 ---
 title: "moosespawner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "春季驼鹿(Moose)生成调度世界组件：进入春季且过了新手保护期后，按密度抽样驼鹿巢并经软/硬两条路径生成 moose 与 mooseegg。"
 aliases: ["驼鹿生成调度", "春季驼鹿刷新", "moosespawner"]
 tags: [component, creature]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["components/moosespawner.lua", "prefabs/forest.lua", "prefabs/mooseegg.lua", "tuning.lua"]
 reliability: verified
@@ -51,3 +51,4 @@ status: active
 - 源码审阅：2026-10-28，steam-buildid:26230496，通读组件全部 108 行，核验挂载（forest.lua:657）与仅有的两个外部调用点（mooseegg.lua:171/178）；MOOSE_DENSITY、NO_BOSS_TIME 取值经 tuning.lua 核对。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

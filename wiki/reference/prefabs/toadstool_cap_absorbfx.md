@@ -1,13 +1,13 @@
 ---
 title: "毒菌蟾蜍帽毒雾吸收与释放（toadstool_cap_absorbfx、toadstool_cap_releasefx）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "毒菌蟾蜍帽变暗／复原的两段叠加演出：MakeFX 工厂一鱼两吃（吸收用蘑菇动画库、释放复用金丝雀爆炸动画），引擎父挂帽子并逐帧驱动宿主染色；触发链是中毒金丝雀爆毒与暗态计时器，不是 Boss 状态机。"
 aliases: ["toadstool_cap_absorbfx", "toadstool_cap_releasefx", "毒菌蟾蜍帽吸收", "毒菌蟾蜍帽释放", "毒菌蟾蜍帽变暗", "蛤蟆菇帽吸收", "蛤蟆菇帽释放", "帽子吸收毒雾"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/toadstool_cap.lua", "stategraphs/SGcanarypoisoned.lua", "prefabs/birds.lua", "prefabs/birdcage.lua", "components/toadstoolspawner.lua", "map/terrain.lua", "map/static_layouts/toadstool_arena.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -114,7 +114,7 @@ end
 - 源码审阅：2026-11-05，steam-buildid:26335394（实读 `raw/current/BUILD.txt`）。完整读取 `prefabs/toadstool_cap.lua`；按需读取 `stategraphs/SGcanarypoisoned.lua`（EXPLODE_MUST_TAGS 与 explode 状态）、`prefabs/birds.lua`（gas 吸呼与 TestGasLevel）、`prefabs/birdcage.lua`（OnBirdPoisoned）、`components/toadstoolspawner.lua`（重生定时与 IsEmittingGas）、`tuning.lua`（seg_time/total_day_time，TOTAL_DAY_TIME＝480）。全域反查（`grep -rn "toadstool_cap_absorbfx\|toadstool_cap_releasefx"`）：仅命中 toadstool_cap.lua（依赖 L26-L27、生成 L56／L78、注册 L378-L379）——生成点唯一且全在本文件；`poisonburst` 全域仅 SGcanarypoisoned.lua:269 推送、toadstool_cap.lua 监听；`absorbpoison` 标签仅 toadstool_cap.lua:285 持有（另见 SGcanarypoisoned.lua:3 的过滤表）。台账批 21 分诊结论复核属实（releasefx L56、absorbfx L78、MakeFX L340-L375、FX+NOCLICK、persists=false）；台账"触发链（Boss 状态机）"的预期与实际不符——见[触发链](#触发链金丝雀爆毒--帽子变暗--复原)，触发源是金丝雀 SG 与帽子计时器。
 - 名称核验：`languages/chinese_s.po` 定向检索——`TOADSTOOL`＝"毒菌蟾蜍"（[L350420-L350422](../../../raw/current/scripts/languages/chinese_s.po#L350420-L350422)）、`TOADSTOOL_CAP` 同名"毒菌蟾蜍"（[L350425-L350427](../../../raw/current/scripts/languages/chinese_s.po#L350425-L350427)）、`TOADSTOOL_CAP_DARK`／`TOADSTOOL_DARK`＝"悲惨的毒菌蟾蜍"（[L350430-L350432](../../../raw/current/scripts/languages/chinese_s.po#L350430-L350432)）、`TOADSTOOL_HOLE`＝"洞"（[L350440-L350442](../../../raw/current/scripts/languages/chinese_s.po#L350440-L350442)）、`CANARY`＝"金丝雀"（[L340085-L340087](../../../raw/current/scripts/languages/chinese_s.po#L340085-L340087)）、`CANARY_POISONED`＝"金丝雀（中毒）"（[L340090-L340092](../../../raw/current/scripts/languages/chinese_s.po#L340090-L340092)）；`TOADSTOOL_CAP_ABSORBFX`／`RELEASEFX` 无 `STRINGS.NAMES` 键。
 - 分档说明：`size_class: standard`——2 注册单工厂，但需承载跨 5 文件的触发链、各端本地染色协议与本体辨析；无多形态生命周期，未升 complex。
-- 未覆盖：toadstool／toadstool_dark Boss 战与 SG、`toadstoolspawner` 重生调时全貌（TOADSTOOL_RESPAWN_TIME/SPAWN_TIME）、sleepbomb 配方侧的中毒金丝雀用途、动画包实际内容与帧长、canary_poisoned 其余状态；未运行游戏。
+- 未覆盖：toadstool／toadstool_dark Boss 战与 SG、`toadstoolspawner` 重生调时全貌（TOADSTOOL_RESPAWN_TIME/SPAWN_TIME）、sleepbomb 配方侧的中毒金丝雀用途（鸟侧见 [[reference/prefabs/canary-poisoned]]）、动画包实际内容与帧长、canary_poisoned 其余状态；未运行游戏。
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 结果见交付记录（0 error 0 warning 后交付）。
 - 第 16 轮补正（2026-11-07）：正文引用的 `map/terrain.lua`、`map/static_layouts/toadstool_arena.lua` 补入 sources 并核验锚点。
 - 游戏运行：未运行；`validation` 保持 `source-reviewed`。
@@ -123,3 +123,4 @@ end
 
 - [[reference/prefabs/mushtree_tall_webbed_burntfx|生物残骸与植物／菌类次级表现]]（同为宿主文件内的次级表现注册）
 - 返回 [[reference/prefabs/fx-status-index|增益、受击、护盾与状态反馈]]（毒菌蟾蜍 Boss 帽子形态）
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

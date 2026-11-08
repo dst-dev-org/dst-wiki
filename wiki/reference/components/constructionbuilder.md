@@ -1,12 +1,12 @@
 ---
 title: "constructionbuilder"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "玩家侧的建造执行态：绑定站点、打开材料容器并驱动建造状态机。"
 aliases: ["玩家建造状态", "施工动作", "建造中断", "施工容器", "constructionbuilder"]
 tags: [component, lifecycle, state-machine, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/constructionbuilder.lua", "components/constructionsite.lua", "components/constructionbuilderuidata.lua", "components/builder.lua", "prefabs/player_common.lua", "stategraphs/SGwilson.lua", "actions.lua", "containers.lua", "prefabs/mermthrone.lua", "recipes.lua"]
 reliability: verified
 validation: source-reviewed
@@ -83,3 +83,4 @@ status: active
 
 相关：[[reference/components/constructionsite]]；[[reference/components/builder]]；[[reference/components/deployable]]；[[reference/components/container]]；[[reference/components/workable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

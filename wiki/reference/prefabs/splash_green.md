@@ -1,12 +1,12 @@
 ---
 title: "海面绿花与冲滩水洼（splash_green 族）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "通用表海面绿花三档（small/green/large）与冲滩地面水洼 washashore_puddle_fx：按体型选名、冲滩状态链伴生与主要生成者清单。"
 aliases: ["splash_green", "splash_green_small", "splash_green_large", "washashore_puddle_fx", "绿色水花", "海面绿花", "冲滩水洼", "水洼特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "stategraphs/commonstates.lua", "componentutil.lua", "stategraphs/SGwilson.lua", "stategraphs/SGmalbatross.lua", "stategraphs/SGeyeofterror.lua", "components/submersible.lua", "components/floater.lua", "prefabs/oceantree.lua", "prefabs/chum.lua", "prefabs/boat.lua", "prefabs/boatrace_common.lua", "prefabs/singingshell.lua", "prefabs/messagebottle.lua", "prefabs/icefishing_hole.lua", "prefabs/junkball.lua", "components/sharkboimanager.lua", "prefabs/crabking.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -79,3 +79,4 @@ fx.Transform:SetPosition(x, 0, z)
 - 游戏运行：未运行；水花视觉、声音与层级表现未实测。
 
 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

@@ -1,13 +1,13 @@
 ---
 title: "冬季盛宴增益粒子与烤炉火焰 FX（wintersfeastbuff_fx、wintersfeastoven_fire）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "冬季盛宴两个外围 FX：冬宴餐桌进食 debuff 链按剩余时长变频投放的随机变体发光粒子（独立落点、animover 自删加休眠即删），与砖砌烤炉烹饪期父挂炉体的联网火焰层（madsciencelab 两阶段回调驱动动画、出菜后由宿主移除）。含与 fire/campfirefire 火焰体系的辨析。"
 aliases: ["wintersfeastbuff_fx", "wintersfeastoven_fire", "冬季盛宴增益粒子", "冬宴buff特效", "节日精神增益", "烤炉火", "砖砌烤炉火层", "冬季盛宴烤炉"]
 tags: [prefab, fx, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wintersfeastbuff.lua", "prefabs/wintersfeastoven.lua", "components/feasts.lua", "components/madsciencelab.lua", "stategraphs/SGwilson.lua", "widgets/healthbadge.lua", "widgets/hungerbadge.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -107,3 +107,4 @@ end
 - [[reference/prefabs/collapse_big|建筑倒塌特效]]（烤炉锤毁生成的 `collapse_small`）
 - [[reference/prefabs/wortox_soulecho_buff_fx|沃拓克斯灵魂增益与装备跟随特效族]]（"buff 粒子父挂跟随"的对照模式）
 - 返回 [[reference/prefabs/fx-event-index|节庆、小游戏与事件模式]]（冬宴活动/装备 buff）
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

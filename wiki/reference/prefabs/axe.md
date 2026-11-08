@@ -1,12 +1,12 @@
 ---
 title: "斧头族（axe、goldenaxe、moonglassaxe）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "同文件 MakeAxe 工厂注册的三把手持斧：基础斧、黄金斧（消耗折算）与月光玻璃斧（对纯影目标低磨损），覆盖耐久消耗方向、伤害、获取途径与 Woodie 的 Lucy 替换交互。"
 aliases: ["axe", "goldenaxe", "moonglassaxe", "斧头", "斧子", "黄金斧头", "黄金斧", "月光玻璃斧", "Luxury Axe", "Moon Glass Axe", "斧头族", "砍树工具", "斧头耐久"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/axe.lua", "components/equippable.lua", "components/tool.lua", "components/weapon.lua", "components/finiteuses.lua", "components/damagetypebonus.lua", "components/possessedaxe.lua", "prefabs/woodie.lua", "componentutil.lua", "standardcomponents.lua", "tuning.lua", "constants.lua", "recipes.lua", "actions.lua", "bufferedaction.lua", "entityscript.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "prefabs/moon_altar.lua", "map/layouts.lua", "map/rooms/forest/terrain_moonisland.lua", "map/static_layouts/moontreehiddenaxe.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -132,3 +132,4 @@ end)
 - 结构检查：validate_page.py 与 strict 均通过。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

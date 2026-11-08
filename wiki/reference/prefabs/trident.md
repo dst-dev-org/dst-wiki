@@ -1,12 +1,12 @@
 ---
 title: "刺耳三叉戟（trident）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版海洋手持武器 trident：TECH.LOST 蓝图配方制作，近战伤害按攻击者位置分地面 51／海面 76.5，右键点海面触发水爆（伤害 85、可砸矿、掀鱼、拔海带、船漏水、照料农田），耐久 200 兼吃攻击磨损与水爆消耗；无 tool、无取水组件、不可作祟。"
 aliases: ["trident", "刺耳三叉戟", "三叉戟", "Strident Trident"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/trident.lua", "components/weapon.lua", "components/equippable.lua", "components/finiteuses.lua", "components/inspectable.lua", "components/inventoryitem.lua", "components/tradable.lua", "components/spellcaster.lua", "components/builder.lua", "components/klaussackloot.lua", "components/shard_mermkingwatcher.lua", "componentactions.lua", "actions.lua", "standardcomponents.lua", "constants.lua", "tuning.lua", "recipes.lua", "recipes_filter.lua", "prefabs/blueprint.lua", "prefabs/crabking.lua", "prefabs/mermking.lua", "prefabs/wurt.lua", "prefabs/merm.lua", "prefabs/mermking_gear_buffs.lua", "prefabs/skilltree_wurt.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "skin_strings.lua", "stategraphs/SGwilson.lua", "prefabs/boat.lua", "fx.lua", "screens/redux/scrapbookdata.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -39,7 +39,7 @@ status: active
 | 项 | 键 | 实际值 |
 |---|---|---|
 | 近战伤害（攻击者在地面上） | `TUNING.TRIDENT.DAMAGE`＝`wilson_attack`×1.5 | 51 生命值（源码推导，[tuning.lua#L5431](../../../raw/current/scripts/tuning.lua#L5431)） |
-| 近战伤害（攻击者在海面） | `TUNING.TRIDENT.OCEAN_DAMAGE`＝`wilson_attack`×2.25 | 76.5 生命值（[tuning.lua#L5432](../../../raw/current/scripts/tuning.lua#L5432)；图鉴显示"51-76"，[scrapbookdata](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1537)） |
+| 近战伤害（攻击者在海面） | `TUNING.TRIDENT.OCEAN_DAMAGE`＝`wilson_attack`×2.25 | 76.5 生命值（[tuning.lua#L5432](../../../raw/current/scripts/tuning.lua#L5432)；图鉴显示"51-76"，[scrapbookdata](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1541)） |
 | 耐久上限 | `TUNING.TRIDENT.USES` | 200（[tuning.lua#L5433](../../../raw/current/scripts/tuning.lua#L5433)） |
 | 每次攻击磨损 | weapon `attackwear`（从未赋值） | 1 耐久点/次（[OnAttack](../../../raw/current/scripts/components/weapon.lua#L105-L121)） |
 | 每次水爆消耗 | 加载期常量 `USES / SPELL.USE_COUNT`＝200/50 | 4 耐久点/次，全寿命 50 次水爆（[trident.lua#L139](../../../raw/current/scripts/prefabs/trident.lua#L139)、[L197](../../../raw/current/scripts/prefabs/trident.lua#L197)；`SPELL.USE_COUNT`＝50，[tuning.lua#L5436](../../../raw/current/scripts/tuning.lua#L5436)） |
@@ -87,7 +87,7 @@ status: active
 | 关联 Prefab：`crab_king_waterspout` | 四点采样中无平台的海面点生成，至多 4 个 | 声明于 `prefabs` 且实际 SpawnPrefab；纯 FX（fx.lua 注册表 bank `Bubble_fx`） | [生成](../../../raw/current/scripts/prefabs/trident.lua#L183-L185)、[FX 定义](../../../raw/current/scripts/fx.lua#L2177-L2183) |
 | 关联 Prefab：`bullkelp_plant`／`bullkelp_root` | 水爆将海带连根拔起：爆出 product（继承湿痕、按 numtoharvest 堆叠）＋生成 bullkelp_root，本体 Remove | 目标为海面海带时 | [分支](../../../raw/current/scripts/prefabs/trident.lua#L98-L123) |
 | 关联 Prefab：船（boat 系平台） | 四点采样命中平台时推 `spawnnewboatleak`（med_leak，向内偏移防滑出）＋ `boatphysics:ApplyForce` 推船；与实体伤害分派是两段 | boat.lua 监听该事件生成漏水 | [[reference/components/boatphysics#关键接口]]；[泄漏监听](../../../raw/current/scripts/prefabs/boat.lua#L779)、[施法侧](../../../raw/current/scripts/prefabs/trident.lua#L166-L181) |
-| 关联 Prefab：鱼人王（mermking）＋伍特 | 供奉链： giver 需激活 `wurt_mermkingtrident` 技能且王未持三叉戟；献上后 `get_trident` 状态＋推 `onmermkingtridentadded`（掉出推 removed）；Wurt 监听后给自己和鱼人随从挂 `mermkingtridentbuff`（debuff `mermking_buff_trident`：`externaldamagemultipliers` +1.05）；跨分片由 shard_mermkingwatcher 转 `_anywhere` 事件；鱼人卫兵带 debuff 时按 0.33 幸运掷点三连击 | 伍特技能树分支；供奉与 buff 均主模拟 | [[reference/components/skilltreeupdater#关键接口]]；[受礼](../../../raw/current/scripts/prefabs/mermking.lua#L204-L224)、[供奉](../../../raw/current/scripts/prefabs/mermking.lua#L254-L256)、[升格](../../../raw/current/scripts/prefabs/wurt.lua#L189-L204)、[buff](../../../raw/current/scripts/prefabs/mermking_gear_buffs.lua#L49-L64)、[跨分片](../../../raw/current/scripts/components/shard_mermkingwatcher.lua#L49-L64)、[三连击](../../../raw/current/scripts/prefabs/merm.lua#L1254-L1259)、[技能节点](../../../raw/current/scripts/prefabs/skilltree_wurt.lua#L341) |
+| 关联 Prefab：鱼人王（mermking）＋伍特 | 供奉链： giver 需激活 `wurt_mermkingtrident` 技能且王未持三叉戟；献上后 `get_trident` 状态＋推 `onmermkingtridentadded`（掉出推 removed）；Wurt 监听后给自己和鱼人随从挂 `mermkingtridentbuff`（debuff `mermking_buff_trident`：`externaldamagemultipliers` +1.05）；跨分片由 shard_mermkingwatcher 转 `_anywhere` 事件；鱼人卫兵带 debuff 时按 0.33 幸运掷点三连击 | 伍特技能树分支；供奉与 buff 均主模拟 | [[reference/components/skilltreeupdater#关键接口]]；[受礼](../../../raw/current/scripts/prefabs/mermking.lua#L204-L224)、[供奉](../../../raw/current/scripts/prefabs/mermking.lua#L254-L256)、[升格](../../../raw/current/scripts/prefabs/wurt.lua#L189-L204)、[buff](../../../raw/current/scripts/prefabs/mermking_gear_buffs.lua#L49-L64)、[跨分片](../../../raw/current/scripts/components/shard_mermkingwatcher.lua#L49-L64)、[三连击](../../../raw/current/scripts/prefabs/merm.lua#L1261-L1266)、[技能节点](../../../raw/current/scripts/prefabs/skilltree_wurt.lua#L341) |
 | 资源：anim／swap 动画包 | trident.zip（bank＋build）／swap_trident.zip（持握符号）；INV_IMAGE `trident` | 静态声明 | [声明](../../../raw/current/scripts/prefabs/trident.lua#L1-L6) |
 
 ## 典型接入
@@ -143,3 +143,4 @@ TUNING.TRIDENT.SPELL.RADIUS = 4
 - 结构检查：validate_page.py（0 error，145 行／24489 字节，standard 档）与 validate_source_links.py --strict（97 条源码引用、35 个源文件，0 error 0 warning）实际执行通过。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

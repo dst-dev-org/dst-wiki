@@ -1,12 +1,12 @@
 ---
 title: "mightydumbbell"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "哑铃锻炼负载组件：按使用者 mightiness 阶层选效率档驱动涨力与 finiteuses 消耗，锻炼期挂 lifting tag，投掷命中按攻击效率涨力。"
 aliases: ["哑铃锻炼", "举哑铃", "mightydumbbell"]
 tags: [component, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["components/mightydumbbell.lua", "prefabs/dumbbells.lua", "components/dumbbelllifter.lua", "componentactions.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
@@ -56,3 +56,4 @@ status: active
 ## 相关链接
 
 - 玩家侧驱动：[[reference/components/dumbbelllifter]]；耐久消耗：[[reference/components/finiteuses]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

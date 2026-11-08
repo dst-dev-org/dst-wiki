@@ -1,12 +1,12 @@
 ---
 title: "沃特位面增益与投泥带外围特效族（wurt_shadow_merm_planar_fx 等 5 注册）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "沃特技能外围的 5 个表现注册：暗影鱼人位面 buff 的持续跟随层与月影鱼人的一次性出入场动画（同一 debuff 实体按目标阵营二选一生成）、投泥带落点改泥的联网物理弹、投泥带充能期的手持符号跟随层（暗影/月影同工厂两变体）。"
 aliases: ["wurt_shadow_merm_planar_fx", "wurt_lunar_merm_planar_fx", "wurt_terraform_projectile", "wurt_swampitem_shadow_chargedfx", "wurt_swampitem_lunar_chargedfx", "wurt_merm_planar", "沃特位面增益特效", "鱼人位面buff特效", "暗影鱼人跟随层", "月影鱼人出场动画", "投泥带充能特效", "沼泽弹投射物", "绝望投泥带", "光芒投泥带"]
 tags: [prefab, fx, item, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wurt.lua", "prefabs/wurt_terraform_item.lua", "prefabs/wurt_swamp_terraformer.lua", "prefabs/horrorfuel.lua", "prefabs/purebrilliance.lua", "prefabs/skilltree_wurt.lua", "prefabs/merm.lua", "prefabs/merm_fx.lua", "stategraphs/SGwilson.lua", "components/complexprojectile.lua", "components/spellcaster.lua", "recipes.lua", "tuning.lua", "fx.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -49,16 +49,16 @@ status: active
 
 ### 附层生成与拆解（debuff 实体的两个分支）
 
-debuff 实体 `wurt_merm_planar`（master-only、`CLASSIFIED`、`persists=false`、`keepondespawn=true`，[工厂](../../../raw/current/scripts/prefabs/wurt.lua#L788-L814)）在 `OnAttached` 里父挂目标、起 `expire` 计时（`WURT_PLANAR_TIME_BUFF_LASTS`＝8×游戏段＝240 秒）、把目标 `planardamage` 基础伤害设 20 并 `UpdateDamageAndHealth`（[OnAttached](../../../raw/current/scripts/prefabs/wurt.lua#L712-L747)、[调值](../../../raw/current/scripts/tuning.lua#L8331-L8333)），然后按目标阵营二选一：
+debuff 实体 `wurt_merm_planar`（master-only、`CLASSIFIED`、`persists=false`、`keepondespawn=true`，[工厂](../../../raw/current/scripts/prefabs/wurt.lua#L788-L814)）在 `OnAttached` 里父挂目标、起 `expire` 计时（`WURT_PLANAR_TIME_BUFF_LASTS`＝8×游戏段＝240 秒）、把目标 `planardamage` 基础伤害设 20 并 `UpdateDamageAndHealth`（[OnAttached](../../../raw/current/scripts/prefabs/wurt.lua#L712-L747)、[调值](../../../raw/current/scripts/tuning.lua#L8332-L8334)），然后按目标阵营二选一：
 
 - **暗影分支**：生成 `wurt_shadow_merm_planar_fx`，播 `buff_pre`→`buff_idle`，FX 自身 SoundEmitter 起循环 `meta4/shadow_merm/buff_idle`，父挂目标，引用存 `inst.bufffx`（[L726-L734](../../../raw/current/scripts/prefabs/wurt.lua#L726-L734)）。拆解时 FX 播 `buff_pst`＋退场音、`animover` 自删（[OnDetached](../../../raw/current/scripts/prefabs/wurt.lua#L749-L779)）。
 - **月影分支**：生成 `wurt_lunar_merm_planar_fx` 播一次 `pre` 即自删（工厂已登记）；持久表现改写在目标本体上——`updateeyebuild()` 换眼睛 build、目标泛光、目标播 `meta4/lunar_merm/buff`（[L736-L745](../../../raw/current/scripts/prefabs/wurt.lua#L736-L745)）。拆解时目标还原，再**另生成**一个播 `pst` 的实例退场（[L767-L776](../../../raw/current/scripts/prefabs/wurt.lua#L767-L776)）。
 
-鱼人端消费：`updateeyebuild` 按 `HasDebuff("wurt_merm_planar")` 增删眼睛 override build（[merm.lua L943-L960](../../../raw/current/scripts/prefabs/merm.lua#L943-L960)）；净变量 `planarbuffed` 置位后客户端给鱼人双眼挂火焰跟随体（[planarbuffed_changed](../../../raw/current/scripts/prefabs/merm.lua#L1522-L1528)、[净变量](../../../raw/current/scripts/prefabs/merm.lua#L1561)）；月影鱼人荆棘 FX 也会读该 debuff 补泛光（[merm_fx.lua L72-L74](../../../raw/current/scripts/prefabs/merm_fx.lua#L72-L74)）。
+鱼人端消费：`updateeyebuild` 按 `HasDebuff("wurt_merm_planar")` 增删眼睛 override build（[merm.lua L943-L960](../../../raw/current/scripts/prefabs/merm.lua#L949-L966)）；净变量 `planarbuffed` 置位后客户端给鱼人双眼挂火焰跟随体（[planarbuffed_changed](../../../raw/current/scripts/prefabs/merm.lua#L1531-L1537)、[净变量](../../../raw/current/scripts/prefabs/merm.lua#L1570)）；月影鱼人荆棘 FX 也会读该 debuff 补泛光（[merm_fx.lua L72-L74](../../../raw/current/scripts/prefabs/merm_fx.lua#L72-L74)）。
 
 ### 投泥带施法与落地链
 
-`CastTerraformingSpell` 在目标点生成 `wurt_terraform_projectile`，把物品的 `_terraform_tile_type`／`_extra_onhit_fn`／`_landed_sound` 三个字段复制到弹上，再 `complexprojectile:Launch`（[L46-L77](../../../raw/current/scripts/prefabs/wurt_terraform_item.lua#L46-L77)）；随后物品进 rechargeable 放电、给持有者挂 `wurt_terraform_cast_debuff`（冷却＝一天，`CanCastTerraformingSpell` 拒绝续投）、扣理智并把背包里其余投泥带一齐放电（[L57-L76](../../../raw/current/scripts/prefabs/wurt_terraform_item.lua#L57-L76)、[冷却调值](../../../raw/current/scripts/tuning.lua#L8280-L8285)）。弹体命中 `OnHitTerraformer`：在落点生成**无动画代理** `wurt_swamp_terraformer`，`SetType(tile_type or "SHADOW")` 后 `DoTerraform()`，落地音播在代理身上，然后弹体自删（[OnHitTerraformer](../../../raw/current/scripts/prefabs/wurt_terraform_item.lua#L317-L332)）。代理在以落点为中心半径 3 格（偏移 -3..+3，7×7 格）的范围内把可改地块换成 `SHADOW_MARSH`／`LUNAR_MARSH`（跳过阻挡／海洋／临时地块），逐块延迟铺 `wurt_swamp_terraform_fx`，`undo_terraforming` 计时（120 秒）到点回滚原地块（undertile 记录）后自删（[DoTerraform](../../../raw/current/scripts/prefabs/wurt_swamp_terraformer.lua#L107-L155)、[回滚](../../../raw/current/scripts/prefabs/wurt_swamp_terraformer.lua#L157-L198)、[注册](../../../raw/current/scripts/prefabs/wurt_swamp_terraformer.lua#L268)）。月影弹额外跑 `OnHit_Lunar`（鱼人增益＋`groundpoundring_fx` 冲击环，[L264-L291](../../../raw/current/scripts/prefabs/wurt_terraform_item.lua#L264-L291)）；改泥期间逐块另播 `wurt_terraformer_fx_shadow`／`_lunar`（注册于 [fx.lua L3492/L3502](../../../raw/current/scripts/fx.lua#L3492-L3502)，由代理按类型查表生成，[L7-L11](../../../raw/current/scripts/prefabs/wurt_swamp_terraformer.lua#L7-L11)）。
+`CastTerraformingSpell` 在目标点生成 `wurt_terraform_projectile`，把物品的 `_terraform_tile_type`／`_extra_onhit_fn`／`_landed_sound` 三个字段复制到弹上，再 `complexprojectile:Launch`（[L46-L77](../../../raw/current/scripts/prefabs/wurt_terraform_item.lua#L46-L77)）；随后物品进 rechargeable 放电、给持有者挂 `wurt_terraform_cast_debuff`（冷却＝一天，`CanCastTerraformingSpell` 拒绝续投）、扣理智并把背包里其余投泥带一齐放电（[L57-L76](../../../raw/current/scripts/prefabs/wurt_terraform_item.lua#L57-L76)、[冷却调值](../../../raw/current/scripts/tuning.lua#L8281-L8286)）。弹体命中 `OnHitTerraformer`：在落点生成**无动画代理** `wurt_swamp_terraformer`，`SetType(tile_type or "SHADOW")` 后 `DoTerraform()`，落地音播在代理身上，然后弹体自删（[OnHitTerraformer](../../../raw/current/scripts/prefabs/wurt_terraform_item.lua#L317-L332)）。代理在以落点为中心半径 3 格（偏移 -3..+3，7×7 格）的范围内把可改地块换成 `SHADOW_MARSH`／`LUNAR_MARSH`（跳过阻挡／海洋／临时地块），逐块延迟铺 `wurt_swamp_terraform_fx`，`undo_terraforming` 计时（120 秒）到点回滚原地块（undertile 记录）后自删（[DoTerraform](../../../raw/current/scripts/prefabs/wurt_swamp_terraformer.lua#L107-L155)、[回滚](../../../raw/current/scripts/prefabs/wurt_swamp_terraformer.lua#L157-L198)、[注册](../../../raw/current/scripts/prefabs/wurt_swamp_terraformer.lua#L268)）。月影弹额外跑 `OnHit_Lunar`（鱼人增益＋`groundpoundring_fx` 冲击环，[L264-L291](../../../raw/current/scripts/prefabs/wurt_terraform_item.lua#L264-L291)）；改泥期间逐块另播 `wurt_terraformer_fx_shadow`／`_lunar`（注册于 [fx.lua L3492/L3502](../../../raw/current/scripts/fx.lua#L3492-L3502)，由代理按类型查表生成，[L7-L11](../../../raw/current/scripts/prefabs/wurt_swamp_terraformer.lua#L7-L11)）。
 
 ### 充能特效生命周期
 
@@ -98,7 +98,7 @@ end
 ## 常见陷阱与限制
 
 - **边界：位面加伤不在 FX 上。** 伤害写在 debuff 的 `OnAttached` 里对 `target.components.planardamage` 的赋值（20，[L721-L724](../../../raw/current/scripts/prefabs/wurt.lua#L721-L724)）；两个 planar FX 都只是表现层，删 FX 不掉 buff，拆 buff 才拆 FX。
-- **边界：月影 buff 的"持续层"在鱼人本体上。** `wurt_lunar_merm_planar_fx` 只在附身／退场瞬间各出现一次（`pre`／`pst`）；持续的眼睛 build、泛光与双眼火焰分别由 `updateeyebuild`、目标泛光与 `planarbuffed` 净变量承担（[updateeyebuild](../../../raw/current/scripts/prefabs/merm.lua#L943-L960)、[planarbuffed_changed](../../../raw/current/scripts/prefabs/merm.lua#L1522-L1528)）。别按暗影的"持续跟随层"模式去理解月影。
+- **边界：月影 buff 的"持续层"在鱼人本体上。** `wurt_lunar_merm_planar_fx` 只在附身／退场瞬间各出现一次（`pre`／`pst`）；持续的眼睛 build、泛光与双眼火焰分别由 `updateeyebuild`、目标泛光与 `planarbuffed` 净变量承担（[updateeyebuild](../../../raw/current/scripts/prefabs/merm.lua#L949-L966)、[planarbuffed_changed](../../../raw/current/scripts/prefabs/merm.lua#L1531-L1537)）。别按暗影的"持续跟随层"模式去理解月影。
 - **边界：buff 的"续期"路径是死代码。** `OnExtendedBuff` 引用的 `OnKillBuff` 在 `wurt.lua` 内无定义、`inst.bufftask` 也从未赋值（全域 grep 仅此一处引用），该函数实际是空操作，增益时长只能靠 `expire` 计时到点结束（[L781-L786](../../../raw/current/scripts/prefabs/wurt.lua#L781-L786)）。
 - **边界：充能层跟随的是 `swap_object` 符号。** 偏移 (0, -100) 按该符号设计；nodangle／骑乘等改变持握符号的表现会跟着换位置，`Follower` 是生成方运行时补挂的（[add_charged_fx](../../../raw/current/scripts/prefabs/wurt_terraform_item.lua#L88-L102)）。
 - **误区：投泥带是"扔出去的抛物线弹"。** 弹体生成在目标点并从其上空 20 落下（Launch 偏移沿朝向加 y=20，[Launch](../../../raw/current/scripts/components/complexprojectile.lua#L134-L159)），不是从玩家手上的抛掷弧线；真正的抛掷物链是鱼食袋 `chum` 那套。
@@ -117,3 +117,4 @@ end
 ## 相关链接
 
 - 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]（角色技能/沃特）
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 7 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

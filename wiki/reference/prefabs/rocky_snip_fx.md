@@ -1,12 +1,12 @@
 ---
 title: "岩甲 Boss 剪击冲刺特效与枯萎变体（rocky_snip_fx、rocky_dash_fx、rocky_boss_shadow、worm_boss_dirt_ground_fx）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "Boss 战表现的 4 个登记：石虾 Boss 的 SG 生成攻击 FX（snip 剪击弧与 dash 起跳残影，均为宿主驱动的纯视觉、伤害留在宿主状态机）、其枯萎变体本体（完整 Boss 实体，本页只记客户端火层与 netvar 淡入淡出层）与洞穴蠕虫 Boss 的地面裂纹贴片（宿主单槽引用管理清理）。"
 aliases: ["rocky_snip_fx", "rocky_dash_fx", "rocky_boss_shadow", "worm_boss_dirt_ground_fx", "剪击特效", "冲刺残影", "枯萎岩石大师", "地面裂纹", "Boss 战表现 FX"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/rocky_boss.lua", "stategraphs/SGrocky.lua", "stategraphs/commonstates.lua", "components/corruption.lua", "components/rockybossspawner.lua", "prefabs/worm_boss.lua", "prefabs/worm_boss_util.lua", "componentutil.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -113,3 +113,4 @@ end
 - [[reference/prefabs/deerclops_icespike_fx|独眼巨鹿冰刺]]（同为池化地面攻击 FX）
 - [[reference/prefabs/fossilized_break_fx|化石碎裂与化石化特效]]（同为本地代理＋联网壳的双层结构）
 - 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

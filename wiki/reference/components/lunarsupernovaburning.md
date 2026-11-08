@@ -1,12 +1,12 @@
 ---
 title: "lunarsupernovaburning"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "月耀超新星灼烧：目标被超新星点着后的 DOT 状态，多光源汇聚、按脉冲扣血并叠加眩晕与染色。"
 aliases: ["超新星灼烧", "lunarsupernovaburning", "月耀燃烧"]
 tags: [component, energy]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/lunarsupernovaburning.lua", "stategraphs/SGalterguardian_phase4_lunarrift.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -46,7 +46,7 @@ inst:AddComponent("lunarsupernovaburning")
 inst.components.lunarsupernovaburning:AddSource(lunarrift_guardian)
 ```
 
-- 调整与验证：DPS 取 `TUNING.ALTERGUARDIAN_LUNAR_SUPERNOVA_LUNAR_BURN_DPS`（[调参](../../../raw/current/scripts/tuning.lua#L8717)），实际扣血经 `CalcLunarBurnTickDamage` 按源数叠加（[结算](../../../raw/current/scripts/components/lunarsupernovaburning.lua#L120-L121)）。
+- 调整与验证：DPS 取 `TUNING.ALTERGUARDIAN_LUNAR_SUPERNOVA_LUNAR_BURN_DPS`（[调参](../../../raw/current/scripts/tuning.lua#L8718)），实际扣血经 `CalcLunarBurnTickDamage` 按源数叠加（[结算](../../../raw/current/scripts/components/lunarsupernovaburning.lua#L120-L121)）。
 
 ## 常见陷阱与限制
 
@@ -58,3 +58,4 @@ inst.components.lunarsupernovaburning:AddSource(lunarrift_guardian)
 - 源码审阅：2026-10-28，steam-buildid:26230496，覆盖组件全文、SGalterguardian_phase4_lunarrift 命中链与相关 tuning；未运行游戏。
 - 结构检查：validate_page.py、validate_source_links.py 与 Lua 语法探针通过。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

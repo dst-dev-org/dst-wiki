@@ -1,12 +1,12 @@
 ---
 title: "沉没与单点水花（splash_sink 族）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "实体沉没水花 splash_sink（SINKENTITY 选档协议）、海洋漩涡传送门水花 oceanwhirlportal_splash 与 pigshrine 泥花 mudpuddle_splash 三个单触发系统注册。"
 aliases: ["splash_sink", "oceanwhirlportal_splash", "mudpuddle_splash", "沉没水花", "下沉水花", "漩涡传送门水花", "泥坑水花"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "ocean_util.lua", "prefabs/world.lua", "prefabs/oceanwhirlbigportal.lua", "prefabs/oceanwhirlportal.lua", "prefabs/bootleg.lua", "stategraphs/SGwilson.lua", "prefabs/tumbleweed.lua", "prefabs/monkeyhut.lua", "prefabs/waterplant_seed.lua", "components/flotsamgenerator.lua", "components/floater.lua", "components/oceanwhirlportalphysics.lua", "components/wagpunk_arena_manager.lua", "prefabs/wagpunk_floor_kit.lua", "prefabs/pigshrine.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -92,3 +92,4 @@ end
 - 游戏运行：未运行；下沉视觉、传送门蓝花与泥花音效未实测。
 
 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

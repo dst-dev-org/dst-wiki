@@ -1,12 +1,12 @@
 ---
 title: "winch"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "绞盘起锚机的收放线状态机：按瓦片海洋深度换算目标深度，以可调速度增减 line_length 并在触底/收满时回调与推事件；供 winch prefab 的 SG、UNLOAD_WINCH 动作与打捞流程驱动。"
 aliases: ["winch", "绞盘", "起锚机", "收放线状态机"]
 tags: [component, state-machine, callback, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/winch.lua", "prefabs/winch.lua", "actions.lua", "stategraphs/SGwinch.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -73,3 +73,4 @@ inst.components.winch:StartRaising()
 
 相关链接：[[reference/components/winchtarget]]、[[reference/components/mast]]、[[reference/components/hull]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

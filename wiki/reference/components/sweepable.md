@@ -1,12 +1,12 @@
 ---
 title: "sweepable"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "可清扫目标组件；布尔字段经属性 setter 钩子同步为实体 sweepable 标签，SWEEP 动作据此放行并回调宿主结算。"
 aliases: ["可清扫目标", "清扫标签门禁", "sweepable"]
 tags: [component, actions, network-sync, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/sweepable.lua", "class.lua", "componentactions.lua", "components/playercontroller.lua", "actions.lua", "stategraphs/SGwilson.lua", "prefabs/leafpile.lua"]
 reliability: verified
 validation: source-reviewed
@@ -78,3 +78,4 @@ end
 
 - [[reference/components/sweeper]]：清扫工具端组件与音效接线。
 - [[reference/components/leafpilemanager]]：leafpile 的世界级限密生成与衰减调度。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

@@ -1,12 +1,12 @@
 ---
 title: "阴郁回旋镖（voidcloth_boomerang）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版虚布武器 voidcloth_boomerang：充能时 weapon:SetProjectile 发射代理投射物（本体不离手、不可接回），武器/位面伤害随飞行尺寸 5→27.2 缩放、对月相 ×1.25；在场弹体 3 枚（套装 4）即放电退化近战，耐久掷出与放电近战都磨、耗尽残破可修复。"
 aliases: ["voidcloth_boomerang", "阴郁回旋镖", "Gloomerang", "虚布回旋镖", "投掷武器"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/voidcloth_boomerang.lua", "prefabs/forge_repair_kits.lua", "prefabs/voidcloth.lua", "prefabs/shadow_forge.lua", "prefabs/walter.lua", "prefabs/wolfgang.lua", "components/weapon.lua", "components/projectile.lua", "components/equippable.lua", "components/finiteuses.lua", "components/planardamage.lua", "components/damagetypebonus.lua", "components/rechargeable.lua", "components/shadowlevel.lua", "components/forgerepairable.lua", "components/forgerepair.lua", "components/spdamageutil.lua", "components/combat.lua", "components/sanity.lua", "components/locomotor.lua", "componentactions.lua", "actions.lua", "standardcomponents.lua", "constants.lua", "tuning.lua", "recipes.lua", "recipes_filter.lua", "fx.lua", "widgets/itemtile.lua", "brains/wx78_possessedbodybrain.lua", "entityscript.lua", "mods.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -47,7 +47,7 @@ status: active
 | 武器射程 | `..._ATTACK_DIST`＝10/`..._ATTACK_DIST_MAX`＝14 | weapon `attackrange`/`hitrange`（[设置](../../../raw/current/scripts/prefabs/voidcloth_boomerang.lua#L311)） |
 | 弹体速度 | `..._PROJECTILE.LAUNCH_SPEED`/`RETURN_SPEED` | 15（去程）/7.5（回程起步，随时间 ×max(1, t/3) 加速） |
 | 在场弹体上限 | `..._PROJECTILE.MAX_ACTIVE`/`SETBONUS_MAX_ACTIVE` | 3/4（套装） |
-| 套装伤害 | `WEAPONS_VOIDCLOTH_SETBONUS_DAMAGE_MULT`/`..._PLANAR_DAMAGE` | 伤害 ×1.1、位面 +5（[调值](../../../raw/current/scripts/tuning.lua#L7818-L7819)） |
+| 套装伤害 | `WEAPONS_VOIDCLOTH_SETBONUS_DAMAGE_MULT`/`..._PLANAR_DAMAGE` | 伤害 ×1.1、位面 +5（[调值](../../../raw/current/scripts/tuning.lua#L7819-L7820)） |
 | 装备理智 | `dapperness`＝−`DAPPERNESS_MED`（[tuning.lua#L2215](../../../raw/current/scripts/tuning.lua#L2215)） | ≈−0.056/秒（约 −26.7/游戏天）；`is_magic_dapperness`＝true（Walter 也受影响） |
 | 移速倍率 | `TUNING.VOIDCLOTH_BOOMERANG_SPEEDMULT` | 1.1（equippable.walkspeedmult） |
 | 影子等级 | `TUNING.VOIDCLOTH_BOOMERANG_SHADOW_LEVEL` | 3（[调值](../../../raw/current/scripts/tuning.lua#L2884)） |
@@ -137,3 +137,4 @@ end)
 - 结构检查：validate_page.py 通过（139 行／24643 字节，standard 档内）；validate_source_links.py --strict 通过（0 error 0 warning）。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

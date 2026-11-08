@@ -1,12 +1,12 @@
 ---
 title: "aoeweapon_leap"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "落点圆形跳砸的命中、物品抛散与技能回调；人物起跳和落地位移由状态机执行。"
 aliases: ["aoeweapon_leap", "跳砸武器", "落点范围攻击", "雷神锤跳跃", "超级跳跃武器"]
 tags: [component, actions, callback, state-machine, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/aoeweapon_leap.lua, components/aoeweapon_base.lua, stategraphs/SGwilson.lua, stategraphs/SGwilson_client.lua, prefabs/hammer_mjolnir.lua, prefabs/spear_lance.lua]
 reliability: verified
 validation: source-reviewed
@@ -61,3 +61,4 @@ status: active
 - 结构检查：本页已执行页面格式／本地链接及严格源码引用检查；没有将不完整外置初始化拼成完整 Lua 示例。
 - 游戏运行：未运行；联机预测、异常中断、地图边缘、特殊物理目标与技能消耗待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

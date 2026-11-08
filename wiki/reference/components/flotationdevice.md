@@ -1,12 +1,12 @@
 ---
 title: "flotationdevice"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "物品侧的浮具标记与回调：只向溺水伤害筛选提供启用状态，不负责检测、下沉或传送。"
 aliases: ["浮具", "防溺水装备", "浮力装备", "flotationdevice"]
 tags: [component, equipment, item, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/flotationdevice.lua", "components/drownable.lua", "components/inventory.lua", "components/equippable.lua", "prefabs/balloonvest.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ end
 - 2026-10-28 build 26230496：SGwilson washed_ashore 态补 lyingdown 标签与时间线（SB-3），锚点 +66；沉没结算链未变。
 相关：[[reference/components/drownable]]、[[reference/components/inventoryitem]]、[[reference/components/equippable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

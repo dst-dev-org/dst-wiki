@@ -1,12 +1,12 @@
 ---
 title: "冰箱（icebox）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "原版冰箱的九格过滤、fridge 标签消费者、暖石冷却、锤击掉物、放置预览与皮肤 FX 生成接线入口。"
 aliases: ["icebox", "冰箱", "Ice Box", "冰箱保鲜", "冰箱放暖石", "暖石冷却", "冰箱收纳条件"]
 tags: [prefab, building, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/icebox.lua", "prefabs/heatrock.lua", "containers.lua", "components/container.lua", "components/container_replica.lua", "components/perishable.lua", "components/temperature.lua", "standardcomponents.lua", "prefabutil.lua", "tuning.lua", "entityscript.lua", "languages/chinese_s.po", "prefabskin.lua", "prefabs/skinprefabs.lua"]
 reliability: verified
 validation: source-reviewed
@@ -88,3 +88,4 @@ status: active
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

@@ -1,12 +1,12 @@
 ---
 title: "parryweapon"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "配置武器招架角度与成功回调，通过玩家施法状态图重定向符合条件的攻击。"
 aliases: ["parryweapon", "武器招架", "盾牌格挡角度", "combat_parry"]
 tags: [component, callback, state-machine, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/parryweapon.lua", "components/combat.lua", "prefabs/wathgrithr_shield.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "actions.lua", "componentactions.lua", "components/aoespell.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ end)
 
 相关：[[reference/components/combat]]、[[reference/components/aoespell]]、[[reference/components/aoetargeting]]、[[reference/components/rechargeable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

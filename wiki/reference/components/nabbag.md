@@ -1,12 +1,12 @@
 ---
 title: "nabbag"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "抓取袋（Wortox 技能物品）：对主目标执行 PICKUP/NET 后把成功复制到前方锥形范围内的同类目标，受数量与耐久上限约束。"
 aliases: ["抓取袋", "nabbag"]
 tags: [component, item, actions]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/nabbag.lua", "actions.lua", "tuning.lua", "prefabs/wortox_nabbag.lua"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 - 职责与适用：挂在可使用抓取动作的物品上（原版 [wortox_nabbag](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L203)）；`DoNabFromAct` 承接 NABBAG 动作（连抓范围内物品），`ReplicateNetFromAct` 在 NET（捕虫网）动作成功后复制捕网。
 - 优先使用：动作层已接好——`ACTIONS.NABBAG.fn` 调 [DoNabFromAct](../../../raw/current/scripts/actions.lua#L4558-L4563)，NET 命中后调 [ReplicateNetFromAct](../../../raw/current/scripts/actions.lua#L1872-L1875)；物品只需挂组件。
 - 重要副作用：临时替换 `inventory.HandleLeftoversFn` 做合堆，结束后恢复（[L58-L95](../../../raw/current/scripts/components/nabbag.lua#L58-L95)、[L130](../../../raw/current/scripts/components/nabbag.lua#L130)）；NET 复制会真实执行 `ACTIONS.NET.fn` 并消耗工具耐久（[L28-L34](../../../raw/current/scripts/components/nabbag.lua#L28-L34)）。
-- 修改边界：锥形范围与上限全由 `TUNING.SKILLS.WORTOX.*` 决定（CONEANGLE=150°、MAX_RADIUS=3、CIRCLE_RADIUS=1.25、MAX_ITEMS_PER_NAB=400、MAX_USES_PER_NAB_PERCENT=0.25，[tuning](../../../raw/current/scripts/tuning.lua#L7436-L7440)）。
+- 修改边界：锥形范围与上限全由 `TUNING.SKILLS.WORTOX.*` 决定（CONEANGLE=150°、MAX_RADIUS=3、CIRCLE_RADIUS=1.25、MAX_ITEMS_PER_NAB=400、MAX_USES_PER_NAB_PERCENT=0.25，[tuning](../../../raw/current/scripts/tuning.lua#L7437-L7441)）。
 
 ## 关键接口
 
@@ -59,3 +59,4 @@ finiteuses:SetConsumption(ACTIONS.NET, 4) -- 仿 wortox_nabbag：NET 路径的�
 - 源码审阅：2026-10-28，Steam buildid 26230496；组件全文、actions.lua 两个动作接入点、wortox_nabbag 挂载、tuning.lua 数值。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

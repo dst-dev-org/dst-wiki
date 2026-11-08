@@ -1,12 +1,12 @@
 ---
 title: shaver：剃须工具动作标记
 created: 2026-10-23
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 为物品接入原版剃须动作；剃取条件和产物由目标的 beard 或 shaveable 决定。
 aliases: [shaver, 剃刀, 剃须工具, 给物品增加剃毛功能]
 tags: [component, item, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/shaver.lua, componentactions.lua, actions.lua, stategraphs/SGwilson.lua, stategraphs/SGwilson_client.lua, prefabs/razor.lua, prefabs/flint.lua, entityscript.lua, modutil.lua]
 reliability: verified
 validation: source-reviewed
@@ -64,3 +64,4 @@ end)
 - 结构检查：本页格式、链接、源码锚点与示例 Lua 5.1 语法检查通过。
 - 游戏运行：未运行；燧石自剃／目标剃取、骑乘、堆叠、包裹菜单及多人预测效果待实测；不声称适用于所有自定义角色 SG。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

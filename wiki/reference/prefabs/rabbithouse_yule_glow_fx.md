@@ -1,13 +1,13 @@
 ---
 title: "倒挂树屋光晕特效（rabbithouse_yule_glow_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "兔屋“倒挂树屋”皮肤的光晕动画实体：打上皮肤时随宿主生成并父子跟随，AnimState 自发光渲染属性，无 Light 组件。"
 aliases: ["rabbithouse_yule_glow_fx", "倒挂树屋特效", "兔屋光晕", "yule glow fx"]
 tags: [prefab, fx, lifecycle, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/rabbithouse_yule_glow_fx.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -61,3 +61,4 @@ status: active
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

@@ -1,12 +1,12 @@
 ---
 title: "gelblobspawner：暗影裂隙软泥怪生成管理"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "洞穴世界组件：暗影裂隙激活后在 gelblobspawningground 周期为玩家生成 gelblob 软泥怪，管理总上限、点冷却与裂隙关闭回收。"
 aliases: [软泥怪生成器, gelblobspawner, 软泥怪管理, 裂隙软泥怪]
 tags: [component, lifecycle, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/gelblobspawner.lua", "prefabs/cave.lua", "prefabs/gelblob.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -18,7 +18,7 @@ status: active
 ## 快速判断
 
 - 职责与适用：`cave` 世界挂载的服务端组件（[cave.lua:557](../../../raw/current/scripts/prefabs/cave.lua#L557），载入一帧后 `AddCaveGelSpawns` 撒点生成 `gelblobspawningground` 标记实体（([cave.lua:555-558](../../../raw/current/scripts/prefabs/cave.lua#L555-L558)、[撒点](../../../raw/current/scripts/prefabs/cave.lua#L479)）。世界事件 `ms_registergelblobspawningground`（由 [gelblob.lua:959](../../../raw/current/scripts/prefabs/gelblob.lua#L959 推送）登记生成点；`riftspawner` 暗影门户激活时 `StartGelBlobs`，关闭时 `StopGelBlobs` 并逐只回收（[裂隙联动](../../../raw/current/scripts/components/gelblobspawner.lua#L32-L41)）。
-- 优先使用：调整数量与节奏 → 改调谐值（每点 5~10 只、全图上限 100、冷却 5 天，([tuning.lua:8362-8370](../../../raw/current/scripts/tuning.lua#L8362-L8370)）；模组要注入生成点 → `TryToRegisterSpawningPoint(spawnpoint)`（源内注明"为模组保留"）。
+- 优先使用：调整数量与节奏 → 改调谐值（每点 5~10 只、全图上限 100、冷却 5 天，([tuning.lua:8362-8370](../../../raw/current/scripts/tuning.lua#L8363-L8371)）；模组要注入生成点 → `TryToRegisterSpawningPoint(spawnpoint)`（源内注明"为模组保留"）。
 - 重要副作用：生成受 `shadowparasitemanager:OverrideBlobSpawn` 劫持——被劫持时不生成但消耗该点冷却（[劫持](../../../raw/current/scripts/components/gelblobspawner.lua#L121-L126)）。
 - 修改边界：整个组件在 `TUNING.SPAWN_GELBLOBS`（世界设置）为假时不注册任何事件（[总开关](../../../raw/current/scripts/components/gelblobspawner.lua#L27)）。
 
@@ -51,7 +51,7 @@ ground.Transform:SetPosition(x, 0, z)
 TheWorld.components.gelblobspawner:TryToRegisterSpawningPoint(ground)
 ```
 
-- 调整与验证：gelblob 落地后进 `spawndelay` 状态延迟 0.25~1.25s（[调谐](../../../raw/current/scripts/tuning.lua#L8368-L8369)）；裂隙关闭时每秒回收一只而非瞬间清场。
+- 调整与验证：gelblob 落地后进 `spawndelay` 状态延迟 0.25~1.25s（[调谐](../../../raw/current/scripts/tuning.lua#L8369-L8370)）；裂隙关闭时每秒回收一只而非瞬间清场。
 
 ## 常见陷阱与限制
 
@@ -66,3 +66,4 @@ TheWorld.components.gelblobspawner:TryToRegisterSpawningPoint(ground)
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

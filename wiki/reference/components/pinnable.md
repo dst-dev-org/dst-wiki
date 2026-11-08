@@ -1,12 +1,12 @@
 ---
 title: "pinnable"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "为玩家等已有受困状态图的宿主管理黏液受困、受击加速脱困和他人解救。"
 aliases: ["pinnable", "黏液受困", "唾液定身", "解救受困玩家", "pinned", "UNPIN"]
 tags: [component, lifecycle, state-machine, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/pinnable.lua", "prefabs/player_common.lua", "prefabs/spat.lua", "brains/spatbrain.lua", "stategraphs/SGwilson.lua", "componentactions.lua", "actions.lua", "components/rider.lua", "prefabs/woodie.lua", "entityscript.lua", "tuning.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -79,3 +79,4 @@ end)
 - 示例范围：仅配置原玩家宿主，不新增 SG 或控制协议；完整 `modmain.lua` 经 Lua 5.1 语法检查。页面元数据／大小／本地链接与源码行锚点检查通过。
 - 游戏运行：未运行。钢羊命中、他人解救、死亡、骑乘／变身交界、客户端预测、保存重载与其他模组冲突仍需实测；未穷举其他宿主 SG。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

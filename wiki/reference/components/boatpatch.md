@@ -1,12 +1,12 @@
 ---
 title: "boatpatch（船体补丁）"
 created: 2026-10-21
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "给修补道具标记 patch_type 与 boat_patch 标签，由船 leak 的 Repair 流程消耗并切换修补外观"
 aliases: ["船体补丁", "补漏", "boatpatch", "patch_type"]
 tags: [component]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/boatpatch.lua", "prefabs/boatpatch.lua", "prefabs/sewing_tape.lua", "prefabs/treegrowthsolution.lua", "components/boatleak.lua", "components/repairable.lua", "prefabs/boat.lua", "actions.lua", "componentactions.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -44,7 +44,7 @@ status: active
 - 注册名与资源：`boatpatch`（木补丁）与 `boatpatch_kelp`（海带补丁）；资源为 `anim/boat_repair_build.zip`、`anim/boat_repair.zip`、`anim/boat_repair_kelp.zip`。其他原版宿主：`sewing_tape`（`"tape"`）、`treegrowthsolution`（`"treegrowth"`）。[注册](../../../raw/current/scripts/prefabs/boatpatch.lua#L134-L136) [缝纫胶带](../../../raw/current/scripts/prefabs/sewing_tape.lua#L39-L40) [树果酱](../../../raw/current/scripts/prefabs/treegrowthsolution.lua#L72-L78)
 - 单位与消耗：木补丁 `repairer.healthrepairvalue = REPAIR_LOGS_HEALTH * 2`（默认 12.5 × 2 = 25 船体血）；海带补丁 `REPAIR_KELP_HEALTH * 配方海带数`（默认 10 × 3 = 30）；树果酱 20。三者都只消耗堆叠中的一个；海带补丁还有可腐烂、可食用、可燃等物品属性。[数值](../../../raw/current/scripts/prefabs/boatpatch.lua#L69-L77) [tuning](../../../raw/current/scripts/tuning.lua#L2118-L2122)
 - 生效：玩家拿补丁对船体 leak 执行 `REPAIR_LEAK`；`BoatLeak:Repair` 先尝试修船体血（仅当平台 `repairable` 材质匹配），再改 leak 外观。木补丁走永久 `"repaired"`，缝纫胶带永久 `"repaired_tape"`，海带 `"repaired_kelp"` 到时限后回到 `med_leak`，树果酱补完在动画结束后移除 leak 实体。[修补态](../../../raw/current/scripts/components/boatleak.lua#L234-L258)
-- 撤销：木/胶带补丁不可撤销；海带补丁的修补是临时的，时限为小漏 0.75 天、中漏 0.5 天。[海带时限](../../../raw/current/scripts/components/boatleak.lua#L251-L258) [tuning](../../../raw/current/scripts/tuning.lua#L8255-L8256)
+- 撤销：木/胶带补丁不可撤销；海带补丁的修补是临时的，时限为小漏 0.75 天、中漏 0.5 天。[海带时限](../../../raw/current/scripts/components/boatleak.lua#L251-L258) [tuning](../../../raw/current/scripts/tuning.lua#L8256-L8257)
 
 服务端最小挂接骨架（放在自定义补丁 prefab 内；不是完整 prefab，图标/动画/堆叠需另备）：
 
@@ -77,3 +77,4 @@ inst.components.boatpatch.patch_type = "kelp"
 
 相关页面：[[reference/components/boatphysics]]、[[reference/components/mast]]、[[reference/components/boatdrag]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

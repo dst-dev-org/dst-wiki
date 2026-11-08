@@ -1,12 +1,12 @@
 ---
 title: "aoediminishingreturns"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "为 WX-78 旋转等调用链提供有来源的副效果倍率，供吸血和工具热量显式读取。"
 aliases: ["旋转攻击副效果递减", "WX78范围吸血递减", "aoediminishingreturns"]
 tags: [component, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/aoediminishingreturns.lua", "util/sourcemodifierlist.lua", "wx78_moduledefs.lua", "stategraphs/SGwx78_common.lua", "stategraphs/SGwilson.lua", "prefabs/wx78.lua", "prefabs/shadow_battleaxe.lua", "components/fumaroletool.lua", "componentutil.lua", "tuning.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -37,7 +37,7 @@ status: active
 
 WX-78 主端创建 upgrademoduleowner；spin 定义的 activatefn 负责添加本组件，服务端 SGwilson 引入通用旋转状态。[主端宿主](../../../raw/current/scripts/prefabs/wx78.lua#L734-L774) [模块定义](../../../raw/current/scripts/wx78_moduledefs.lua#L1526-L1561) [状态接入](../../../raw/current/scripts/stategraphs/SGwilson.lua#L29040)
 
-`wx_spin` 的攻击分支先用已有 `statemem.dim` 设置来源 inst／键 `"wx78_spin"`，再 DoAttack，随后将 dim 更新为 `(dim or 1) * aoe_dim`。原值 `aoe_dim = 0.5`：首次尚无本键贡献，后续依次使用 0.5、0.25……；这是同一状态攻击序列的副效果倍率，其他来源仍会相乘。范围遍历结束后移除此键，并非永久写入角色。[键](../../../raw/current/scripts/stategraphs/SGwx78_common.lua#L185) [读取配置](../../../raw/current/scripts/stategraphs/SGwx78_common.lua#L401-L403) [设置／更新](../../../raw/current/scripts/stategraphs/SGwx78_common.lua#L504-L521) [结束清理](../../../raw/current/scripts/stategraphs/SGwx78_common.lua#L580-L588) [配置值](../../../raw/current/scripts/tuning.lua#L9437)
+`wx_spin` 的攻击分支先用已有 `statemem.dim` 设置来源 inst／键 `"wx78_spin"`，再 DoAttack，随后将 dim 更新为 `(dim or 1) * aoe_dim`。原值 `aoe_dim = 0.5`：首次尚无本键贡献，后续依次使用 0.5、0.25……；这是同一状态攻击序列的副效果倍率，其他来源仍会相乘。范围遍历结束后移除此键，并非永久写入角色。[键](../../../raw/current/scripts/stategraphs/SGwx78_common.lua#L185) [读取配置](../../../raw/current/scripts/stategraphs/SGwx78_common.lua#L401-L403) [设置／更新](../../../raw/current/scripts/stategraphs/SGwx78_common.lua#L504-L521) [结束清理](../../../raw/current/scripts/stategraphs/SGwx78_common.lua#L580-L588) [配置值](../../../raw/current/scripts/tuning.lua#L9438)
 
 - 暗影战斧：持有者受伤且目标可被吸取生命（26148036 起改用 `componentutil.IsLifeDrainable`：不在 NON_LIFEFORM_TARGET_TAGS、或带 `lifedrainable` 标签豁免，且无 `nolifedrainable` 拒绝，shadow_battleaxe.lua:298）时，生命恢复量 `_lifesteal * mult`；紧随其后的理智损耗没有乘 mult。没有该组件时倍率回退 1。[DoLifeSteal](../../../raw/current/scripts/prefabs/shadow_battleaxe.lua#L295-L306) [判定](../../../raw/current/scripts/componentutil.lua#L185-L188)
 - fumaroletool：配置 heatonuse 时，`heatonuse * mult` 同时用于物品增温和使用者降温；读取的是 doer 的组件。攻击事件／物品使用入口再调用 OnUsed，不是修改攻击伤害。[攻击事件](../../../raw/current/scripts/components/fumaroletool.lua#L33-L35) [热量处理](../../../raw/current/scripts/components/fumaroletool.lua#L121-L130) [物品使用](../../../raw/current/scripts/components/fumaroletool.lua#L149-L152)
@@ -87,3 +87,4 @@ end)
 
 相关：[[reference/components/efficientuser]]；[[reference/components/upgrademodule]]；[[reference/components/upgrademoduleowner]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

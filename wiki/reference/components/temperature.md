@@ -1,12 +1,12 @@
 ---
 title: "temperature"
 created: "2026-10-12"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "控制人物或物品自身温度、自然换热与温度锁定，区分暖石温度、热源输出和人物体温。"
 aliases: ["恒温35度", "物品恒温", "人物体温", "温度锁定", "暖石温度", "temperature"]
 tags: [component, lifecycle, mechanism, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/temperature.lua", "components/heater.lua", "components/inventory.lua", "components/temperatureoverrider.lua", "prefabs/heatrock.lua", "entityscript.lua", "modutil.lua", "mainfunctions.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -95,3 +95,4 @@ end)
 
 相关：[[reference/components/heater]]；[[reference/components/health]]；[[reference/components/inventoryitem#生命周期]]；[[reference/components/edible#关键接口]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

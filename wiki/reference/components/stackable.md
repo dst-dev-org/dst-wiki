@@ -1,12 +1,12 @@
 ---
 title: "stackable"
 created: "2026-10-11"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: "component"
 summary: "配置物品堆叠、按件拆分和消耗，处理自定义状态、数量同步及合并边界。"
 aliases: ["物品堆叠", "拆分一件", "堆叠上限", "无限堆叠", "stackable"]
 tags: ["component", "item", "lifecycle", "network-sync"]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/stackable.lua", "components/stackable_replica.lua", "modutil.lua", "prefabs/flint.lua", "prefabs/walls.lua", "tuning.lua"]
 reliability: "verified"
 validation: "source-reviewed"
@@ -76,3 +76,4 @@ Get 会继承部分腐败、冷却、湿度／温度状态，但不会复制任�
 
 相关：[[reference/components/inventoryitem#生命周期]]；[[reference/components/perishable]]；[[reference/components/container]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

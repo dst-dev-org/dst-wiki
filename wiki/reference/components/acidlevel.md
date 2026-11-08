@@ -1,12 +1,12 @@
 ---
 title: "acidlevel：酸雨侵蚀值与酸雨伤害"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "挂在玩家（或石虾等）身上的酸雨计量：酸雨时周期累积侵蚀值并对装备、背包食物与本体造成伤害，普通雨则反向消退。"
 aliases: [酸雨侵蚀, 酸雨计量, acidlevel, 酸雨伤害]
 tags: [component, lifecycle, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/acidlevel.lua", "prefabs/player_common.lua", "components/caveweather.lua", "prefabs/rocky.lua", "prefabs/bat_boss.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -53,13 +53,13 @@ acid:SetOnStartIsAcidRainingFn(function(inst)
 end)
 ```
 
-- 调整与验证：调谐值见 ([tuning.lua:7745-7755](../../../raw/current/scripts/tuning.lua#L7745-L7755)（1.5s 一跳、2.0/s、燃料系数 2、腐烂 0.007）；`acidleveldelta` 携带 `oldpercent`/`newpercent`。
+- 调整与验证：调谐值见 ([tuning.lua:7745-7755](../../../raw/current/scripts/tuning.lua#L7746-L7756)（1.5s 一跳、2.0/s、燃料系数 2、腐烂 0.007）；`acidleveldelta` 携带 `oldpercent`/`newpercent`。
 
 ## 常见陷阱与限制
 
 - **普通雨也在写这个值**：`DoRainTick` 以负率消退酸值；玩家在普通雨中浸泡越久酸值越低（[消退](../../../raw/current/scripts/components/acidlevel.lua#L207-L213)），不能把 `GetPercent()` 当"污染度"单向读。
 - **防水装备会被熔蚀**：吸收伤害的 waterproofer 装备自身按 armor/fueled 路径承受等量伤害并触发嘶嘶状态（[熔蚀](../../../raw/current/scripts/components/acidlevel.lua#L160-L183)），不是无代价防护。
-- **洞窟酸雨由世界开关**：caveweather 对每个玩家 `SetIgnoreAcidRainTicks(not canacidrain)`；地表世界默认 `ACIDRAIN_ENABLED` 由世界设置管理（[开关](../../../raw/current/scripts/components/caveweather.lua#L433-L436)、[调谐](../../../raw/current/scripts/tuning.lua#L7745)）。
+- **洞窟酸雨由世界开关**：caveweather 对每个玩家 `SetIgnoreAcidRainTicks(not canacidrain)`；地表世界默认 `ACIDRAIN_ENABLED` 由世界设置管理（[开关](../../../raw/current/scripts/components/caveweather.lua#L433-L436)、[调谐](../../../raw/current/scripts/tuning.lua#L7746)）。
 - **读档只恢复数值不恢复任务**：`OnSave` 只存 `current`；雨态任务由构造后一帧的 `OnIsAcidRaining/OnIsRaining` 重建（[重建](../../../raw/current/scripts/components/acidlevel.lua#L116-L119)）。
 
 ## 验证记录
@@ -68,3 +68,4 @@ end)
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

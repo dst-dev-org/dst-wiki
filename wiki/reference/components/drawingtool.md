@@ -1,12 +1,12 @@
 ---
 title: "drawingtool：把附近物品图标绘到目标上"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "用羽毛笔一类工具选取绘制目标附近的物品图标，并调用 drawable 和工具消费回调。"
 aliases: ["drawingtool", "羽毛笔", "绘制物品图标", "画小木牌", "无限羽毛笔"]
 tags: [component, item, actions, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/drawingtool.lua", "components/drawable.lua", "prefabs/featherpencil.lua", "prefabs/minisign.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua"]
 reliability: verified
 validation: source-reviewed
@@ -78,3 +78,4 @@ end)
 
 相关：[[reference/components/drawable]]、[[reference/components/inventoryitem]]、[[reference/components/stackable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

@@ -1,12 +1,12 @@
 ---
 title: "外围载体：眼弹、诱鱼区、黏着块与速爆弹（eye_charge 等四注册）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "四个外围玩法载体的原版实现：眼睛炮塔眼弹、鱼食诱鱼区、恶液小黏块与绝望螨速爆弹；逐注册核验生成点、父挂、端与清理，并分清伤害／减速／吸附结算与 FX 表现。"
 aliases: ["eye_charge", "chum_aoe", "gelblob_small_fx", "fused_shadeling_quickfuse_bomb", "眼弹", "眼睛炮塔弹体", "诱鱼区", "鱼食诱鱼区", "恶液小黏块", "黏着块", "绝望螨速爆弹", "速爆弹", "外围载体", "外围玩法载体"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/eye_charge.lua", "prefabs/eyeturret.lua", "prefabs/chum.lua", "prefabs/chum_aoe.lua", "prefabs/gelblob.lua", "prefabs/gelblob_attach_fx.lua", "prefabs/messagebottle.lua", "prefabs/slingshotammo.lua", "stategraphs/SGshrouden.lua", "prefabs/fused_shadeling_bomb.lua", "stategraphs/SGfused_shadeling.lua", "components/projectile.lua", "components/schoolspawner.lua", "components/timer.lua", "components/groundshadowhandler.lua", "components/entitytracker.lua", "components/weapon.lua", "components/combat.lua", "brains/oceanfishbrain.lua", "entityscript.lua", "tuning.lua", "prefablist.lua", "languages/chinese_s.po"]
 size_class: complex
 reliability: verified
@@ -29,7 +29,7 @@ status: active
 - `eye_charge`：伤害由眼睛炮塔 `combat` 读取隐藏武器伤害结算（`TUNING.EYETURRET_DAMAGE = 65`）；`projectile:Hit` 先 `combat:DoAttack`，弹体仍有效时之后才调 `OnHit` 生成命中音壳。弹体只负责飞行、命中位置与自删。[武器](../../../raw/current/scripts/prefabs/eyeturret.lua#L134-L152) [伤害值](../../../raw/current/scripts/tuning.lua#L2766-L2770) [Hit 顺序](../../../raw/current/scripts/components/projectile.lua#L236-L266)
 - `chum_aoe`：不结算伤害、定身或减速；工厂没有 combat／health／locomotor／rooted，只有 timer、动画、声效与生成任务，位置固定在落点。它挂 `chum` 标签吸引鱼，并周期生成可食用的 `chumpiece`。[工厂](../../../raw/current/scripts/prefabs/chum_aoe.lua#L130-L181)
 - `gelblob_small_fx`：自身不结算伤害或减速；接触判定在它的 `OnUpdateProximity`，吸附、`gelblobbed` 标签与减速由 `gelblob_attach_fx` 结算（普通玩家走 carefulwalker，骑乘／变形／生物走 locomotor 乘数）；小黏块只播挤压／装载／回吸或消退表现。[接触生成](../../../raw/current/scripts/prefabs/gelblob.lua#L146-L163) [吸附层](../../../raw/current/scripts/prefabs/gelblob_attach_fx.lua#L279-L308)
-- `fused_shadeling_quickfuse_bomb`：伤害由同文件 `do_explosion_effect` 的 AOE 结算（50 物理＋20 位面、半径 3、排除 `shadow_aligned` 等），速爆弹只负责投掷物理、固定引信与爆炸时机；`fused_shadeling_bomb_death_fx` 与 `fused_shadeling_bomb_scorch` 只负责表现。[AOE](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L93-L106) [数值](../../../raw/current/scripts/tuning.lua#L7682-L7684)
+- `fused_shadeling_quickfuse_bomb`：伤害由同文件 `do_explosion_effect` 的 AOE 结算（50 物理＋20 位面、半径 3、排除 `shadow_aligned` 等），速爆弹只负责投掷物理、固定引信与爆炸时机；`fused_shadeling_bomb_death_fx` 与 `fused_shadeling_bomb_scorch` 只负责表现。[AOE](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L93-L106) [数值](../../../raw/current/scripts/tuning.lua#L7683-L7685)
 
 表现分工：`eye_charge` 播 `idle` 飞行，命中处只生成有声音、无 AnimState 的壳；`chum_aoe` 播 `fish_chum` 系列、维持 `spore_loop` 与地面层，`chumpiece` 无可视动画；`gelblob_small_fx` 播 `blob_idle_med`、挤压、splash／erode，吸附覆盖层另由 `gelblob_attach_fx` 播；速爆弹播 `ball_grow` 与地面投影，爆炸动画与音效在 `death_fx`，焦痕是独立贴地贴片。[弹体动画](../../../raw/current/scripts/prefabs/eye_charge.lua#L31-L35) [诱鱼区动画](../../../raw/current/scripts/prefabs/chum_aoe.lua#L138-L153) [小黏块动画](../../../raw/current/scripts/prefabs/gelblob.lua#L856-L858) [速爆弹动画](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L350-L352)
 
@@ -79,7 +79,7 @@ status: active
 |---|---|---|---|
 | 生成者：`fused_shadeling_bomb` 本体 | `do_full_explode` 先在本体位置结算一次 AOE，再分 3 次投出速爆弹，立即 `RemoveFromScene`、0.2 秒后 `Remove`；速爆弹各自按固定引信结算自己的 AOE。 | 主模拟；本体由 timer `start_explosion` 触发，本体 Wiki 待建。 | [完整引爆](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L123-L140) [投掷](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L108-L119) |
 | 生成者：`SGfused_shadeling` teleport | teleport 第 14 帧按战斗目标朝向（无目标则随机）生成 1 个，`Physics:Teleport` 到自身位置后 `SetVel` 抛出，并在弹体上播 `bomb_spawn`。 | 主模拟；仅在 teleport 状态帧事件。 | [SG 帧事件](../../../raw/current/scripts/stategraphs/SGfused_shadeling.lua#L410-L424) |
-| 结算：`do_explosion_effect` | 以 `_combat` 为 must tag、排除 `shadow_aligned`／`DECOR`／`INLIMBO`／`NOCLICK`／`FX`／`playerghost`，半径 3 内逐个 `combat:GetAttacked(inst, 50, nil, nil, {planar=20})`；同函数先生成 death_fx、后生成焦痕。 | 主模拟；本体与速爆弹共用该函数，伤害来源是当前弹体实体。 | [AOE 与排除标签](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L93-L106) [数值](../../../raw/current/scripts/tuning.lua#L7682-L7684) |
+| 结算：`do_explosion_effect` | 以 `_combat` 为 must tag、排除 `shadow_aligned`／`DECOR`／`INLIMBO`／`NOCLICK`／`FX`／`playerghost`，半径 3 内逐个 `combat:GetAttacked(inst, 50, nil, nil, {planar=20})`；同函数先生成 death_fx、后生成焦痕。 | 主模拟；本体与速爆弹共用该函数，伤害来源是当前弹体实体。 | [AOE 与排除标签](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L93-L106) [数值](../../../raw/current/scripts/tuning.lua#L7683-L7685) |
 | 组件：`groundshadowhandler` | 工厂加 1.5×1.0 地面投影；投影实体是非联网、CLASSIFIED/NOCLICK、随高度缩放，纯表现。 | 双端工厂都会添加（在 `SetPristine`/master 早退之前）；生成的 shadow 实体非联网。 | [[reference/components/groundshadowhandler|groundshadowhandler]]；[添加](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L339-L340) |
 | 关联 Prefab：death_fx／焦痕 | `do_explosion_effect` 生成 `fused_shadeling_bomb_death_fx`（动画＋爆炸音）与 `fused_shadeling_bomb_scorch`（贴地淡出焦痕）；两者都不结算伤害。 | 主模拟生成；death_fx 走 `animover` 自删，焦痕按 netvar 帧淡出。 | [[reference/prefabs/groundpoundring_fx|death_fx]]、[[reference/prefabs/crabking_claw_shadow|焦痕]]；[生成](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L95-L106) [death_fx 音](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L290-L293) |
 | 资源 | `anim/fused_shadeling_bomb.zip`（bank／build 同名）；本体、death_fx 与速爆弹共用该资源，焦痕另用 `anim/burntground.zip`。 | 仅注册字段引用；未解包检查视觉。 | [资产](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L1-L6) [焦痕资产](../../../raw/current/scripts/prefabs/fused_shadeling_bomb.lua#L374-L377) |
@@ -127,3 +127,4 @@ end)
 - 结构检查：validate_page、validate_source_links --strict 与 Lua 探针结果见交付报告；`size_class: complex` 为 4 文件 4 注册与三种结算归属保留。
 
 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]、[[reference/prefabs/index|Prefab 索引]]；其他外围表现见 [[reference/prefabs/fx-index|FX 主题总索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处，tuning.lua 常量段 +1 行；CRLF 页按原字节格式宿主编辑），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-01）。

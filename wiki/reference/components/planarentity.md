@@ -1,12 +1,12 @@
 ---
 title: "planarentity"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "让受击实体在 combat 中压低普通伤害，并提供非位面抵抗和未防御攻击的特效入口。"
 aliases: ["位面实体普通伤害衰减", "非位面攻击抵抗特效", "planarentity"]
 tags: [component, mechanism, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/planarentity.lua", "components/combat.lua", "prefabs/shadowthrall_hands.lua", "prefabs/shadowthrall_centipede.lua"]
 reliability: verified
 validation: source-reviewed
@@ -30,7 +30,7 @@ status: active
 |---|---|
 | `AbsorbDamage(damage, attacker, weapon, spdmg)` | 返回变换后的普通伤害和原 `spdmg`：`(sqrt(damage * 4 + 64) - 8) * 4`。不使用 weapon，也不增删特殊伤害；例如传入普通伤害 100，返回约 54.16。[实现](../../../raw/current/scripts/components/planarentity.lua#L7-L13) |
 | `OnResistNonPlanarAttack(attacker)` | 在选定实体附近生成抵抗特效；有攻击者且位置不重合时参考攻击方向，无有效方向时随机。[实现](../../../raw/current/scripts/components/planarentity.lua#L15-L35) |
-| `spawn_effect_on` | 可选回调 `(self.inst, attacker) -> 实体或 nil`；返回实体作为抵抗特效的位置／半径参照，nil／false 回退自身。组件没有 setter，原版由蜈蚣控制器直接赋值。[消费](../../../raw/current/scripts/components/planarentity.lua#L16-L20) [配置](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L398-L399) |
+| `spawn_effect_on` | 可选回调 `(self.inst, attacker) -> 实体或 nil`；返回实体作为抵抗特效的位置／半径参照，nil／false 回退自身。组件没有 setter，原版由蜈蚣控制器直接赋值。[消费](../../../raw/current/scripts/components/planarentity.lua#L16-L20) [配置](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L395-L396) |
 | `OnPlanarAttackUndefended(target)` | 将 `planar_hit_fx` 设为 target 的子实体；只产生特效，不增加伤害或绕过防御。[实现](../../../raw/current/scripts/components/planarentity.lua#L38-L39) |
 
 combat 的顺序是：装备／鞍具处理、伤害类型与外部倍率、攻击者 bonusdamage，再对仍为正的普通伤害调用 `AbsorbDamage`；之后处理实体特殊防御、合计特殊伤害并调用 health。目标还需有 health、damage 非 nil、未重定向且非无敌，才能进入对应计算分支。[完整受击分支](../../../raw/current/scripts/components/combat.lua#L615-L678)
@@ -49,9 +49,9 @@ combat 的顺序是：装备／鞍具处理、伤害类型与外部倍率、攻�
 
 ### 蜈蚣控制器：把抵抗特效放在实际受击节段
 
-`shadowthrall_centipede_controller` 是非联网控制实体，拥有 health、combat、planarentity；其 `spawn_effect_on` 返回 `combat.redirected_from`。combat 重定向到控制器前临时设置这个字段，调用完成后清空，使抵抗特效参照被玩家击中的节段，而伤害仍由控制器结算。[回调](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L357-L359) [控制器构造](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L368-L399) [临时字段](../../../raw/current/scripts/components/combat.lua#L693-L699) [注册](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L489-L491)
+`shadowthrall_centipede_controller` 是非联网控制实体，拥有 health、combat、planarentity；其 `spawn_effect_on` 返回 `combat.redirected_from`。combat 重定向到控制器前临时设置这个字段，调用完成后清空，使抵抗特效参照被玩家击中的节段，而伤害仍由控制器结算。[回调](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L354-L356) [控制器构造](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L365-L396) [临时字段](../../../raw/current/scripts/components/combat.lua#L693-L699) [注册](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L486-L488)
 
-回调是即时选取参照实体，不转移伤害、不创建持久实体绑定；组件没有自行保存回调的协议，原宿主在构造时重建配置。[组件](../../../raw/current/scripts/components/planarentity.lua#L1-L42) [原宿主赋值](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L398-L399)
+回调是即时选取参照实体，不转移伤害、不创建持久实体绑定；组件没有自行保存回调的协议，原宿主在构造时重建配置。[组件](../../../raw/current/scripts/components/planarentity.lua#L1-L42) [原宿主赋值](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L395-L396)
 
 ## 常见陷阱与限制
 
@@ -71,3 +71,4 @@ combat 的顺序是：装备／鞍具处理、伤害类型与外部倍率、攻�
 - 版本沿用：2026-10-28 原始哈希等价批量沿用-70（26148036→26230496，本页 sources 所列文件原始字节全部未变），页内未决项零标记、符号反查无命中、严格链接通过；批次依据见 [[updates/build-26230496/index#wiki-沿用记录]]。
 相关：[[reference/components/combat]]；[[reference/components/planardamage]]；[[reference/components/planardefense]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 5 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

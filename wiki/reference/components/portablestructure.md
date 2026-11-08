@@ -1,12 +1,12 @@
 ---
 title: "portablestructure"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "给可搬走的建筑接入拆解回调，区分右键资格、服务端门禁与宿主打包／状态转移。"
 aliases: ["建筑打包", "收起便携建筑", "拆解便携帐篷", "便携锅收起", "portablestructure"]
 tags: [component, building, callback, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/portablestructure.lua", "componentactions.lua", "actions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "prefabs/portablecookpot.lua", "prefabs/portabletent.lua"]
 reliability: verified
 validation: source-reviewed
@@ -59,7 +59,7 @@ end)
 
 | 模式 | 宿主实际职责 | 证据 |
 |---|---|---|
-| 便携锅：立即生成物品并删除旧建筑 | `ChangeToItem` 处理成品／容器内容，再生成 `portablecookpot_item`；`OnDismantle` 随后删除锅。正常动作会先拦住非空／已做好的锅，不能据转换函数反推菜单允许它们 | [转换](../../../raw/current/scripts/prefabs/portablecookpot.lua#L37-L49) [拆解回调](../../../raw/current/scripts/prefabs/portablecookpot.lua#L211-L214) [挂载](../../../raw/current/scripts/prefabs/portablecookpot.lua#L271-L278) [注册](../../../raw/current/scripts/prefabs/portablecookpot.lua#L382-L384) |
+| 便携锅：立即生成物品并删除旧建筑 | `ChangeToItem` 处理成品／容器内容，再生成 `portablecookpot_item`；`OnDismantle` 随后删除锅。正常动作会先拦住非空／已做好的锅，不能据转换函数反推菜单允许它们 | [转换](../../../raw/current/scripts/prefabs/portablecookpot.lua#L37-L49) [拆解回调](../../../raw/current/scripts/prefabs/portablecookpot.lua#L211-L214) [挂载](../../../raw/current/scripts/prefabs/portablecookpot.lua#L271-L278) [注册](../../../raw/current/scripts/prefabs/portablecookpot.lua#L383-L385) |
 | 便携帐篷：动画结束替换并转移耐久 | 先关闭交互和睡眠组件；动画结束读取次数、替换物品、设置次数。不是组件自动保存状态 | [转换](../../../raw/current/scripts/prefabs/portabletent.lua#L19-L39) [次数配置](../../../raw/current/scripts/prefabs/portabletent.lua#L222-L225) |
 
 玩家双端 SG 均将 DISMANTLE 按建造速度标签路由到对应动作状态；这里只改资格，不另造动作或 SG。[服务端路由](../../../raw/current/scripts/stategraphs/SGwilson.lua#L1524-L1529) [客户端路由](../../../raw/current/scripts/stategraphs/SGwilson_client.lua#L782-L787)
@@ -78,3 +78,4 @@ end)
 - 游戏运行：未运行；需实测 Walter／其他角色菜单、占用拒绝、动画结束物品和次数、保存读档及其他模组包装冲突。
 - 结构检查：页面格式／本地链接、源码引用严格检查及完整 modmain 的 Lua 5.1 语法检查通过。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

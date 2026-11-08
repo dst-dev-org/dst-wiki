@@ -1,12 +1,12 @@
 ---
 title: "喷气孔陷阱贴身灼烧与藤蔓陷阱底座（trap_fumarole_burn_fx、trap_vines_base_fx）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "两个宿主驱动的联网地面/贴身 FX：喷气孔煤炭陷阱给受灼实体挂的贴身火焰层（端上由 trapfumaroleburning 组件管生灭、无自删），投石机暗影弹落点藤蔓陷阱的地面底座（复用 shadow_pillar_fx 的 bank/build，随宿主生成与收尾）。"
 aliases: ["trap_fumarole_burn_fx", "trap_vines_base_fx", "喷气孔陷阱灼烧特效", "煤炭陷阱火焰层", "藤蔓陷阱底座", "投石机藤蔓陷阱", "shadow_pillar_fx 复用底座", "trapfumaroleburning 表现层"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/trap_fumarole.lua", "prefabs/trap_fumarole_util.lua", "components/trapfumaroleburning.lua", "prefabs/trap_vines.lua", "prefabs/winona_catapult_projectile.lua", "stategraphs/SGwinona_catapult.lua", "entityscript.lua", "componentutil.lua", "fx.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -43,7 +43,7 @@ status: active
 | 显隐周期 | 离开有效区（`cleartime` 分支）只 `Hide`＋`_hidden=true`＋PopColour，不删除；回到有效区再 `Show` 复用同一实体 | 主模拟 | [隐藏分支](../../../raw/current/scripts/components/trapfumaroleburning.lua#L46-L50)、[OnUpdate](../../../raw/current/scripts/components/trapfumaroleburning.lua#L135-L146) |
 | FX 移除 | 宿主连续 1 秒不在有效区 → `RemoveComponent("trapfumaroleburning")` → 组件 `OnRemoveFromEntity` 里 `self.fx:Remove()`；宿主实体直接 `Remove` 调用的是组件 `OnRemoveEntity`，不经过该函数 | 主模拟 | [组件移除](../../../raw/current/scripts/components/trapfumaroleburning.lua#L143-L144)、[FX 移除](../../../raw/current/scripts/components/trapfumaroleburning.lua#L15-L22)、[RemoveComponent 回调](../../../raw/current/scripts/entityscript.lua#L670-L684)、[实体 Remove 的组件回调](../../../raw/current/scripts/entityscript.lua#L1748-L1757) |
 
-灼烧玩法链（辨析）：组件按陷阱温度档乘 `TRAP_FUMAROLE_IGNITE_MULTS`（0／0.5／1）累计点燃值，每隔至少 14 帧（`FIRE_DAMAGE_DT`）按 `TRAP_FUMAROLE_DAMAGE`(10/秒) × 温度倍率 × 实际间隔 `firedamagedt` 对宿主（或坐骑）结算火伤；点燃完成后 cookable 物品变熟并父挂 `fumarole_cook_fx`，可引燃 propagator 加热（[点燃与烤制](../../../raw/current/scripts/components/trapfumaroleburning.lua#L77-L130)、[调值](../../../raw/current/scripts/tuning.lua#L9501-L9512)）。陷阱本体在客户端也注册进瓦片登记表（用于脚步声等表现，[util.SetTrap](../../../raw/current/scripts/prefabs/trap_fumarole_util.lua#L51-L62)），激活陷阱期间空抽 5%／10% 概率落 `fumarole_ember` 火星（[落星](../../../raw/current/scripts/prefabs/trap_fumarole.lua#L75-L84)）。
+灼烧玩法链（辨析）：组件按陷阱温度档乘 `TRAP_FUMAROLE_IGNITE_MULTS`（0／0.5／1）累计点燃值，每隔至少 14 帧（`FIRE_DAMAGE_DT`）按 `TRAP_FUMAROLE_DAMAGE`(10/秒) × 温度倍率 × 实际间隔 `firedamagedt` 对宿主（或坐骑）结算火伤；点燃完成后 cookable 物品变熟并父挂 `fumarole_cook_fx`，可引燃 propagator 加热（[点燃与烤制](../../../raw/current/scripts/components/trapfumaroleburning.lua#L77-L130)、[调值](../../../raw/current/scripts/tuning.lua#L9502-L9513)）。陷阱本体在客户端也注册进瓦片登记表（用于脚步声等表现，[util.SetTrap](../../../raw/current/scripts/prefabs/trap_fumarole_util.lua#L51-L62)），激活陷阱期间空抽 5%／10% 概率落 `fumarole_ember` 火星（[落星](../../../raw/current/scripts/prefabs/trap_fumarole.lua#L75-L84)）。
 
 ### 藤蔓链：投石机弹落到藤蔓陷阱到底座
 
@@ -104,3 +104,4 @@ if self.fx then self.fx:Remove() end
 
 - [[reference/prefabs/shadow_pillar|暗影囚牢·影柱法术体系]]（底座复用其 `shadow_pillar_fx` bank／build；对照 `shadow_pillar_base_fx` 的涟漪与缩放差异）
 - 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

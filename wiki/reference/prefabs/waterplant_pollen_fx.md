@@ -1,12 +1,12 @@
 ---
 title: "海草花粉喷云与海面诱饵云（waterplant_pollen_fx 等 2 注册）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "海草（Sea Weed）喷粉玩法的 2 个表现注册：空中花粉云（35 帧后在其位置放出海面诱饵云并触发宿主放鱼）与海面诱饵云（挂 chum 标签吸引鱼群、每 1 秒维护最多 5 个 chumpiece，25 秒后 2 秒淡出自删）；含与鱼食袋 chum_aoe 的同源参数辨析。"
 aliases: ["waterplant_pollen_fx", "waterplant_pollen_fx_ocean", "海草花粉", "花粉喷云", "落海烟", "诱饵云", "鱼饵云", "chum 云", "海草喷粉"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/waterplant_pollen.lua", "prefabs/waterplant.lua", "prefabs/chum_aoe.lua", "prefabs/chum.lua", "brains/waterplantbrain.lua", "brains/oceanfishbrain.lua", "stategraphs/SGwaterplant.lua", "entityscript.lua", "tuning.lua", "constants.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -112,3 +112,4 @@ inst:DoPeriodicTask(1.0, inst._spawn_piece)
 - [[reference/prefabs/eye_charge|眼睛炮塔弹体、诱鱼区与速爆弹]]（`chum_aoe`／`chumpiece` 同源链的主要页）
 - [[reference/prefabs/oceantree_ripples_short|海树波纹、根须与落叶表现]]（贴地／水下分层渲染的另一组海面 FX）
 - 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

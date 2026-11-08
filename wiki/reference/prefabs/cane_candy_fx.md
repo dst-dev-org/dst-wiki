@@ -1,13 +1,13 @@
 ---
 title: "拐杖糖雪花特效（cane_candy_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "拐杖糖手杖的雪花跟随特效：雪花纹理、粒子寿命、移动增量发射及装备端创建／卸装清理。"
 aliases: ["cane_candy_fx", "拐杖糖雪花特效", "手杖雪花特效", "雪花粒子", "cane_candycane"]
 tags: [prefab, fx, lifecycle, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/cane_candy_fx.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "emitters.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -64,3 +64,4 @@ status: active
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

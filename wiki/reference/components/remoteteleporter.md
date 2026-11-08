@@ -1,12 +1,12 @@
 ---
 title: "remoteteleporter"
 created: "2026-10-20"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "薇诺娜传送伞的目的台选择、附近物品转移与回调；资格、隐藏恢复和耗能依赖动作／SG／宿主。"
 aliases: ["传送伞周边物品半径改为三", "薇诺娜传送台选择", "remoteteleporter"]
 tags: [component, item, callback, actions, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/remoteteleporter.lua", "prefabs/winona_telebrella.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua"]
 reliability: verified
 validation: source-reviewed
@@ -69,3 +69,4 @@ end)
 - 结构检查：本批格式、来源、源码引用／行号、大小和登记通过；完整半径配置例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；台选择、NODEST／中断、物品偏移／恢复、技能／供电、燃料变化和主机／远端待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

@@ -1,12 +1,12 @@
 ---
 title: "龙舟竞赛旗帜、烟花与起跑浮标（boatrace_start_flag、boatrace_fireworks、boatrace_checkpoint_flag、boatrace_start_bobber）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "龙舟竞赛（起点塔／检查点玩法）外围的 3 个联网 FX 与 1 个标记实体：终点名次旗与夺冠烟花（旗帜跟随起点塔符号，烟花在塔当时位置独立播放）、检查点缎带旗（跟随检查点符号）、起跑环 10 枚浮标（视觉环兼码头放置阻挡），以及起点塔／检查点两个竞赛控制器的触发链辨析。"
 aliases: ["boatrace_start_flag", "boatrace_fireworks", "boatrace_checkpoint_flag", "boatrace_start_bobber", "龙舟竞赛旗帜", "竞赛烟花", "检查点缎带", "起跑浮标", "起点塔旗帜", "龙年竞速特效"]
 tags: [prefab, fx, building, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/boatrace_start.lua", "prefabs/boatrace_checkpoint.lua", "prefabs/boatrace_common.lua", "stategraphs/SGboatrace_start.lua", "components/map.lua", "entityscript.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -36,7 +36,7 @@ status: active
 
 ### 起点塔链：名次旗与烟花什么时候挂
 
-起点塔激活（`activatable` → `OnActivated`）后收集 `MAX_BOATRACE_COMPONENT_DISTANCE`(30) 连通域内的检查点、进入 `fuse_on` 点火倒计时；倒计时结束 `do_event_start` 给每艘在 `BOATRACE_START_INCLUSION_PROXIMITY`(12) 内载有玩家的船 `AddChild` 一枚 `boatrace_checkpoint_indicator` 浮标指示器（[updateloop 收船](../../../raw/current/scripts/prefabs/boatrace_start.lua#L253-L330)、[开赛](../../../raw/current/scripts/prefabs/boatrace_start.lua#L398-L474)、[调值](../../../raw/current/scripts/tuning.lua#L8145-L8155)）。选手浮标经检查点时，检查点 `OnBeaconAtCheckpoint` 生成缎带旗并把 `beacon_reached_checkpoint` 推回起点塔（[检查点触及](../../../raw/current/scripts/prefabs/boatrace_checkpoint.lua#L98-L115)）；起点塔 `do_set_placing` 记名次后 `testforwinpresentation` 调 `setflag`——**仅在当前不在 win/prize 时生成一面名次旗并推进 `win`；处于 win/prize 会暂缓，`prizeOver` 再处理排队名次**（[记名次](../../../raw/current/scripts/prefabs/boatrace_start.lua#L657-L671)、[挂旗](../../../raw/current/scripts/prefabs/boatrace_start.lua#L634-L655)）。`win` 状态动画播完回调 `winOver`：生成 `boatrace_fireworks` 于塔位、按 `winid`（选手编号）override 火花符号，并往选手落点投掷奖品袋（[win 回调](../../../raw/current/scripts/stategraphs/SGboatrace_start.lua#L77-L95)、[烟花与奖品](../../../raw/current/scripts/prefabs/boatrace_start.lua#L573-L625)）。
+起点塔激活（`activatable` → `OnActivated`）后收集 `MAX_BOATRACE_COMPONENT_DISTANCE`(30) 连通域内的检查点、进入 `fuse_on` 点火倒计时；倒计时结束 `do_event_start` 给每艘在 `BOATRACE_START_INCLUSION_PROXIMITY`(12) 内载有玩家的船 `AddChild` 一枚 `boatrace_checkpoint_indicator` 浮标指示器（[updateloop 收船](../../../raw/current/scripts/prefabs/boatrace_start.lua#L253-L330)、[开赛](../../../raw/current/scripts/prefabs/boatrace_start.lua#L398-L474)、[调值](../../../raw/current/scripts/tuning.lua#L8146-L8156)）。选手浮标经检查点时，检查点 `OnBeaconAtCheckpoint` 生成缎带旗并把 `beacon_reached_checkpoint` 推回起点塔（[检查点触及](../../../raw/current/scripts/prefabs/boatrace_checkpoint.lua#L98-L115)）；起点塔 `do_set_placing` 记名次后 `testforwinpresentation` 调 `setflag`——**仅在当前不在 win/prize 时生成一面名次旗并推进 `win`；处于 win/prize 会暂缓，`prizeOver` 再处理排队名次**（[记名次](../../../raw/current/scripts/prefabs/boatrace_start.lua#L657-L671)、[挂旗](../../../raw/current/scripts/prefabs/boatrace_start.lua#L634-L655)）。`win` 状态动画播完回调 `winOver`：生成 `boatrace_fireworks` 于塔位、按 `winid`（选手编号）override 火花符号，并往选手落点投掷奖品袋（[win 回调](../../../raw/current/scripts/stategraphs/SGboatrace_start.lua#L77-L95)、[烟花与奖品](../../../raw/current/scripts/prefabs/boatrace_start.lua#L573-L625)）。
 
 缎带旗侧（检查点）：`setflag` 从 `flag_positions`（1..8）随机取一个未用挂点，OverrideSymbol 写缎带编号（=选手浮标 `_index`）、播 `ribbon_pre`＋`ribbon_loop`、`SetParent`＋`FollowSymbol("ribbon_marker"..position)`、`highlightchild` 认主（[检查点挂旗](../../../raw/current/scripts/prefabs/boatrace_checkpoint.lua#L75-L95)）。竞赛结束 `boatrace_finish` 事件 → `OnRaceOver` 延迟 1~2 秒 → `ResetCheckpoint` 给所有已挂缎带播 `ribbon_pst`（[重置](../../../raw/current/scripts/prefabs/boatrace_checkpoint.lua#L126-L143)、[比赛结束](../../../raw/current/scripts/prefabs/boatrace_checkpoint.lua#L146-L149)）。
 
@@ -99,3 +99,4 @@ flag.components.highlightchild:SetOwner(inst)
 ## 相关链接
 
 - 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

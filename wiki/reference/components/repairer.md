@@ -1,12 +1,12 @@
 ---
 title: "repairer"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "修复材料的类型、固定值与比例配置，区分材料标签、目标分支与一份材料的消费。"
 aliases: ["修复材料", "噩梦燃料修护符", "材料修复量", "repairer"]
 tags: [component, item, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/repairer.lua", "components/repairable.lua", "componentactions.lua", "actions.lua", "constants.lua", "entityscript.lua", "prefabs/nightmarefuel.lua", "prefabs/amulet.lua", "prefabs/gears.lua", "prefabs/boatpatch.lua"]
 reliability: verified
 validation: source-reviewed
@@ -78,3 +78,4 @@ end)
 
 相关：[[reference/components/repairable]]；[[reference/components/finiteuses]]；[[reference/components/fuel]]；[[reference/components/stackable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

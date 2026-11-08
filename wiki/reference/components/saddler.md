@@ -1,12 +1,12 @@
 ---
 title: "saddler"
 created: "2026-10-19"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "为鞍物品提供骑乘速度、攻击、防御及外观参数，区分人物装备和鞍丢弃耐久。"
 aliases: ["普通牛鞍速度倍率", "鞍附加伤害", "鞍减伤", "saddler"]
 tags: [component, equipment, network, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/saddler.lua", "prefabs/saddle.lua", "components/locomotor.lua", "components/combat.lua", "components/rideable.lua"]
 reliability: verified
 validation: source-reviewed
@@ -40,7 +40,7 @@ status: active
 
 ### 普通牛鞍骑乘速度倍率设为 1.4
 
-目标模组 `modmain.lua`，复用 saddle_basic 原资源与耐久，只改该实例组件，不修改共享 _data／TUNING 表。[工厂](../../../raw/current/scripts/prefabs/saddle.lua#L290-L308) [注册](../../../raw/current/scripts/prefabs/saddle.lua#L407-L411)
+目标模组 `modmain.lua`，复用 saddle_basic 原资源与耐久，只改该实例组件，不修改共享 _data／TUNING 表。[工厂](../../../raw/current/scripts/prefabs/saddle.lua#L291-L309) [注册](../../../raw/current/scripts/prefabs/saddle.lua#L408-L412)
 
 ```lua
 AddPrefabPostInit("saddle_basic", function(inst)
@@ -68,3 +68,4 @@ end)
 - 结构检查：本批格式、来源、链接／行号、大小与登记通过；完整例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；实际速度／预测、上下鞍、受击／丢弃、存读与其他模组参数覆盖待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

@@ -1,12 +1,12 @@
 ---
 title: "useabletargeteditem"
 created: "2026-10-19"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "物品对实体使用的回调与使用中标志，候选筛选、服务器授权、目标引用和结束清理由宿主分别实现。"
 aliases: ["命名牌服务端校验目标", "对实体使用物品", "useabletargeteditem"]
 tags: [component, item, actions, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/useabletargeteditem.lua", "componentactions.lua", "actions.lua", "prefabs/kitcoon_nametag.lua", "prefabs/beef_bell.lua"]
 reliability: verified
 validation: source-reviewed
@@ -34,7 +34,7 @@ status: active
 | `SetUseableMounted(enable)` | 联动 useabletargeteditem_mounted，控制上述候选骑乘门禁；不能由它推出所有 SG／宿主支持骑乘。[属性](../../../raw/current/scripts/components/useabletargeteditem.lua#L31-L37) [门禁](../../../raw/current/scripts/componentactions.lua#L1906-L1912) |
 | `SetUsingItemDoesNotToggleUseability(value)` | 为真时开始成功也不自动置使用中；若回调内部先 StopUsingItem 再返回 true，默认仍会被外层重新置 true。按一次性／持续模式选择，不用回调顺序猜状态。[设置](../../../raw/current/scripts/components/useabletargeteditem.lua#L105-L107) [开始后置状态](../../../raw/current/scripts/components/useabletargeteditem.lua#L113-L128) |
 
-组件没有存读，不自动保存绑定对象；原牛铃在 onuse／onstop 中维护实际绑定，存档恢复另走其宿主协议。移除组件仅清部分自身标签，不调用 StopUsingItem／宿主停止，也未清 canselftarget 对应标签，热移除不能当完整效果撤销。[移除](../../../raw/current/scripts/components/useabletargeteditem.lua#L63-L79) [牛铃配置](../../../raw/current/scripts/prefabs/beef_bell.lua#L350-L354) [绑定实现](../../../raw/current/scripts/prefabs/beef_bell.lua#L153-L204)
+组件没有存读，不自动保存绑定对象；原牛铃在 onuse／onstop 中维护实际绑定，存档恢复另走其宿主协议。移除组件仅清部分自身标签，不调用 StopUsingItem／宿主停止，也未清 canselftarget 对应标签，热移除不能当完整效果撤销。[移除](../../../raw/current/scripts/components/useabletargeteditem.lua#L63-L79) [牛铃配置](../../../raw/current/scripts/prefabs/beef_bell.lua#L351-L355) [绑定实现](../../../raw/current/scripts/prefabs/beef_bell.lua#L153-L204)
 
 ## 典型接入
 
@@ -78,3 +78,4 @@ end)
 - 结构检查：本批格式、来源、链接／行号、大小及登记通过；完整命名牌服务端包装例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；有效／伪目标、取消／完成命名、物品销毁、直接重复使用、骑乘与多模组覆盖待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

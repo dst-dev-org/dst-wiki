@@ -1,12 +1,12 @@
 ---
 title: "feasts"
 created: "2026-10-24"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "在服务端世界中管理冬季盛宴餐桌连通组与进餐者，周期扣桌上食物并追加盛宴Buff，实际动作与效果由宿主分工。"
 aliases: ["feasts", "冬季盛宴聚餐", "盛宴餐桌分组", "多人聚餐Buff", "feasterstarted"]
 tags: [component, building, food, event, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/feasts.lua", "components/wintersfeasttable.lua", "prefabs/forest.lua", "prefabs/cave.lua", "prefabs/table_winters_feast.lua", "prefabs/wintersfeastbuff.lua", "stategraphs/SGwilson.lua", "actions.lua", "componentactions.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -73,3 +73,4 @@ status: active
 - 结构检查：本页格式、来源、本地链接和源码锚点严格检查通过；无完整 Lua 示例，导航登记由本批统一检查。
 - 游戏运行：未运行；多人登记、连通桌链、动态移桌／跨平台、食物最后一份时序、台词和Buff实际表现未实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

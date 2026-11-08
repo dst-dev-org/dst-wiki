@@ -1,12 +1,12 @@
 ---
 title: "socketholder"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "管理实体的固定网络插槽，将镶嵌物品转换为存档数据，并在卸下、死亡和读档时协作重建实体与效果。"
 aliases: ["插槽接收方", "WX78暗影插槽", "镶嵌物品存档", "socketholder"]
 tags: [component, item, callback, lifecycle, network-sync, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/socketholder.lua", "componentutil.lua", "prefabs/wx78_common.lua", "prefabs/wx78_backupbody.lua", "prefabs/wx78_classified.lua", "prefabs/player_common.lua", "stategraphs/SGwilson.lua", "networkclientrpc.lua"]
 reliability: verified
 validation: source-reviewed
@@ -80,3 +80,4 @@ status: active
 
 相关：[[reference/components/socketable]]、[[reference/components/useabletargeteditem]]、[[reference/components/linkeditem]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

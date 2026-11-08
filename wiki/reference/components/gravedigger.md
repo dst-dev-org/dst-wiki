@@ -1,12 +1,12 @@
 ---
 title: gravedigger
 created: 2026-10-22
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 为整墓迁移工具提供使用回调，理解骨灰坛先保存墓碑、再由目标拆除的顺序。
 aliases: [gravedigger, 骨灰坛迁墓, 整墓搬迁工具, GRAVEDIG]
 tags: [component, item, callback, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/gravedigger.lua, components/gravediggable.lua, actions.lua, componentactions.lua, prefabs/graveurn.lua, prefabs/gravestone.lua, prefabs/skilltree_wendy.lua, stategraphs/SGwilson.lua, stategraphs/SGwilson_client.lua]
 reliability: verified
 validation: source-reviewed
@@ -59,3 +59,4 @@ status: active
 - 结构检查：本批定向检查元数据、大小、链接和源码锚点；本页只有原版接入说明，无新增完整 Lua。
 - 游戏运行：未运行；移墓中断、旧档恢复、联机和其他模组包装顺序待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

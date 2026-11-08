@@ -1,12 +1,12 @@
 ---
 title: "锤子（hammer）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版手持拆除工具 hammer：MakeHammer 工厂单注册的 HAMMER 工具兼 HANDS 槽武器，耐久 75、耗尽整个实体移除；可借鉴手持工具的组件组装与 HAMMER 动作接入。"
 aliases: ["hammer", "锤子", "Hammer", "拆除建筑的工具", "拆建筑"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/hammer.lua", "components/equippable.lua", "components/tool.lua", "components/weapon.lua", "components/finiteuses.lua", "actions.lua", "bufferedaction.lua", "entityscript.lua", "standardcomponents.lua", "tuning.lua", "constants.lua", "recipes.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "stategraphs/SGmole.lua", "componentactions.lua", "prefabs/pickaxe_lunarplant.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -98,3 +98,4 @@ end)
 - 结构检查：validate_page.py 与 strict 均通过。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

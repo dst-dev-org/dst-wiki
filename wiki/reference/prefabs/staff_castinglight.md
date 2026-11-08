@@ -1,13 +1,13 @@
 ---
 title: "施法光源（staff_castinglight、staff_castinglight_small）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "施法、复活护符与怀表状态使用的联网光效实体：按五次幂包络扩半径、降强度，结束时关灯并短期移除。"
 aliases: ["staff_castinglight", "staff_castinglight_small", "施法光源", "施法光效", "复活护符光"]
 tags: [prefab, fx, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/staff_castinglight.lua", "stategraphs/SGwilson.lua", "stategraphs/SGklaus.lua", "prefabs/player_common.lua", "prefabs/klaus.lua", "prefablist.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -56,3 +56,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

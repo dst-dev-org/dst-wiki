@@ -1,12 +1,12 @@
 ---
 title: "魔光剑攻击像素粒子特效（nightsword_lightsbane_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "暗夜剑魔光剑皮肤的挥击像素风粒子爆发：像素化 reveal 烟与 pixel 纹理火星，攻击动画 0.13 秒处一次性喷出，envelope 沿用 sharp 命名。"
 aliases: ["nightsword_lightsbane_fx", "魔光剑特效", "魔光剑", "Lightsbane", "暗夜剑皮肤特效"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/nightsword_lightsbane_fx.lua", "prefabs/nightsword_sharp_fx.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "constants.lua", "emitters.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -62,3 +62,4 @@ status: active
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

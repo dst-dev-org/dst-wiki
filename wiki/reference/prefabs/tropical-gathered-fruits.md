@@ -1,12 +1,12 @@
 ---
 title: "香蕉、无花果与仙人掌肉的六注册（cave_banana、fig、cactus_meat 及各自 _cooked）"
 created: "2026-11-08"
-updated: "2026-11-08"
+updated: "2026-11-09"
 type: prefab
 summary: "veggies.lua 的 6 个无种子采集类食物注册：香蕉的 monkeyqueenbribe 进贡标签、无花果的 BERRY 次级食性与海钓拟饵、仙人掌肉生熟的正负值与夏季开花，以及三种植株／藤的采摘链。"
 aliases: ["cave_banana", "cave_banana_cooked", "fig", "fig_cooked", "cactus_meat", "cactus_meat_cooked", "香蕉", "熟香蕉", "无花果", "熟无花果", "仙人掌肉", "熟仙人掌肉", "采集类水果"]
 tags: [prefab, item, food]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/veggies.lua", "prefabs/cave_banana_tree.lua", "prefabs/bananabush.lua", "prefabs/oceanvine.lua", "prefabs/oceantree_pillar.lua", "prefabs/cactus.lua", "prefabs/monkeyqueen.lua", "prefabs/monkeyisland_portal.lua", "prefabs/oceanfishingrod.lua", "brains/powdermonkeybrain.lua", "map/layouts.lua", "map/forest_map.lua", "actions.lua", "componentactions.lua", "cooking.lua", "standardcomponents.lua", "containers.lua", "components/pickable.lua", "components/edible.lua", "components/eater.lua", "components/perishable.lua", "components/stackable.lua", "components/cookable.lua", "components/bait.lua", "components/oceanfishingtackle.lua", "components/oceanfishingrod.lua", "components/regrowthmanager.lua", "stategraphs/SGBeefalo.lua", "tuning.lua", "constants.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 - 职责与适用：`prefabs/veggies.lua` 的 `MakeVeggie` 为 `VEGGIES` 每项生成生／熟两件物品；本页覆盖 `cave_banana`、`fig`、`cactus_meat` 及各自 `_cooked` 共 6 个可食物品注册。三键都在 `SEEDLESS` 名单内，没有种子、巨型与称重导出，只能靠采集获得。[表项](../../../raw/current/scripts/prefabs/veggies.lua#L41-L43)、[SEEDLESS](../../../raw/current/scripts/prefabs/veggies.lua#L160-L168)、[注册循环](../../../raw/current/scripts/prefabs/veggies.lua#L1102-L1108)
 - 优先使用：端分界、生熟公共组件集合、`cookable` 接线与堆叠／新鲜度通则见 [[reference/prefabs/farm-crops-staple#共用工厂与生熟两态]]；BERRY 次级食性的机制与消费端见 [[reference/prefabs/wild-berries#berry-次级食性]]。数值见[生熟两态数值](#生熟两态数值)。
 - 重要副作用：香蕉两态都带 `monkeyqueenbribe` 进贡标签；无花果写 `secondaryfoodtype = FOODTYPE.BERRY` 并可当一次性海钓拟饵；生仙人掌肉的负数让它带 `badfood`，熟后反转为 +1 生命／+15 理智；采摘仙人掌在满足门禁时会被刺 6 点基础伤害（需 `combat`，排除 `bramble_resistant` 装备者与 `shadowminion`）。[额外标签](../../../raw/current/scripts/prefabs/veggies.lua#L157-L158)、[拟饵](../../../raw/current/scripts/prefabs/veggies.lua#L103-L109)、[badfood](../../../raw/current/scripts/components/edible.lua#L1-L7)、[刺伤](../../../raw/current/scripts/prefabs/cactus.lua#L18-L27)
-- 修改边界：不含烹饪锅菜谱与配方消耗、`cactus_flower`（另一注册）、各种植株本体行为，以及 `_seeds`／巨型变体（三键都没有）。
+- 修改边界：不含烹饪锅菜谱与配方消耗、`cactus_flower`（另一注册，数值见 [[reference/prefabs/petals]]）、各种植株本体行为（香蕉丛见 [[reference/prefabs/berry-bushes]]、苔藓藤条见 [[reference/prefabs/oceanvine]]、仙人掌见 [[reference/prefabs/cactus]]），以及 `_seeds`／巨型变体（三键都没有）。
 
 ## 注册与构造
 
@@ -56,12 +56,12 @@ status: active
 |---|---|---|
 | `cave_banana` | ①`cave_banana_tree`（洞穴香蕉树）采摘 ②砍倒该树时若仍可采再掉 1 个 ③`bananabush`（香蕉丛）长到第 4 阶段后采摘 ④猴岛布局把 1 丛 `bananabush` 加入候选表（候选保证，非每次实际放置）；非自然传送门（`monkeyisland_portal`）的战利品含 `dug_bananabush` | ①`CAVE_BANANA_GROW_TIME`＝4 天 ②先掉 `log`＋2 `twigs` [采摘](../../../raw/current/scripts/prefabs/cave_banana_tree.lua#L146-L158)、[砍倒](../../../raw/current/scripts/prefabs/cave_banana_tree.lua#L56-L74)；③④见下 |
 | `fig` | `oceanvine`（苔藓藤条）采摘 | 每次 1 个，`OCEANVINE_REGROW_TIME`＝2.5 天；`max_cycles` 为空而 `cycles_left`＝1 [接线](../../../raw/current/scripts/prefabs/oceanvine.lua#L305-L314) |
-| `cactus_meat` | `cactus`／`oasis_cactus` 采摘 | `CACTUS_REGROW_TIME`＝4 天；采摘者满足门禁时被刺 `CACTUS_DAMAGE`＝6（需 `combat`，排除刺抗装备与 `shadowminion`）；夏季开花时另给 `cactus_flower` [接线](../../../raw/current/scripts/prefabs/cactus.lua#L104-L111)、[采摘](../../../raw/current/scripts/prefabs/cactus.lua#L18-L43) |
+| `cactus_meat` | `cactus`／`oasis_cactus` 采摘 | `CACTUS_REGROW_TIME`＝4 天；采摘者满足门禁时被刺 `CACTUS_DAMAGE`＝6（需 `combat`，排除刺抗装备与 `shadowminion`）；有采摘者且植株当前带花（`has_flower` 由夏季再生／唤醒置真）时另给 `cactus_flower` [接线](../../../raw/current/scripts/prefabs/cactus.lua#L104-L111)、[采摘](../../../raw/current/scripts/prefabs/cactus.lua#L18-L43) |
 
-- **香蕉丛**：`bananabush` 的 `pickable:SetUp("cave_banana")` 不带再生时长，再生靠 `growable` 的 4 段（每段 1 个 `TOTAL_DAY_TIME`）；`canbepicked` 初始为 false，只有长到 `tall` 时 `set_big` 里才 `Regen()`，采摘后回到第 1 段重长。轮次为 `BANANABUSH_CYCLES`＝4 加 `math.random(BANANABUSH_CYCLES_VAR)` 的 1～3，即 5～7 次，但 `cycles_left` 只在 `transplanted` 时扣，野生丛不消耗额度；移植会先 `MakeBarren`，施肥经 `OnRegen` 直接把 `growable` 阶段设为 4。野生丛从空到 `tall` 要过三个计时段，春季每段再乘 `SPRING_GROWTH_MODIFIER`＝0.75。[阶段表](../../../raw/current/scripts/prefabs/bananabush.lua#L51-L76)、[接线](../../../raw/current/scripts/prefabs/bananabush.lua#L177-L200)、[采摘](../../../raw/current/scripts/prefabs/bananabush.lua#L99-L114)、[常量](../../../raw/current/scripts/tuning.lua#L6740-L6741)
-- **猴岛布局与传送门**：`monkeyisland_prefabs_area` 把 1 丛 `bananabush` 加入候选表（候选保证，不等于每次实际放置），非自然传送门的战利品表另有 `dug_bananabush`（权重由 `MONKEYISLAND_PORTAL_BANANABUSHWEIGHT` 决定，默认 5.0）。[布局](../../../raw/current/scripts/map/layouts.lua#L72-L94)、[战利品表](../../../raw/current/scripts/prefabs/monkeyisland_portal.lua#L35-L46)、[权重](../../../raw/current/scripts/tuning.lua#L6690)
-- **苔藓藤条**：`oceanvine`（苔藓藤条）挂在海树柱 `oceantree_pillar` 周围；柱边不足 1 条藤时补生成 1～2 条并播落下动画（补藤由撞击后的调度触发，新藤先设为空株），藤被采摘后隐藏 `fig` 符号并移除 `inspectable`。掉落逻辑在烧毁／落地路径另有分支（本页不展开）。[补藤](../../../raw/current/scripts/prefabs/oceantree_pillar.lua#L248-L262)、[生成](../../../raw/current/scripts/prefabs/oceantree_pillar.lua#L234-L245)、[表现](../../../raw/current/scripts/prefabs/oceanvine.lua#L205-L237)
-- **仙人掌与开花**：`has_flower` 只在夏季的 `onregenfn` 与 `OnEntityWake` 中置真，采摘时满足门禁才结算 `CACTUS_DAMAGE`（需 `combat`，排除刺抗装备与 `shadowminion`），再把 `cactus_flower` 交给采摘者（无背包时落地）；`oasis_cactus` 共用同一工厂。[开花](../../../raw/current/scripts/prefabs/cactus.lua#L45-L56)、[唤醒](../../../raw/current/scripts/prefabs/cactus.lua#L64-L69)、[采摘](../../../raw/current/scripts/prefabs/cactus.lua#L18-L43)、[受伤门槛](../../../raw/current/scripts/prefabs/cactus.lua#L24-L27)
+- **香蕉丛**：`bananabush` 的 `pickable:SetUp("cave_banana")` 不带再生时长，再生靠 `growable` 的 4 段（每段 1 个 `TOTAL_DAY_TIME`）；`canbepicked` 初始为 false，只有长到 `tall` 时 `set_big` 里才 `Regen()`，采摘后回到第 1 段重长。轮次为 `BANANABUSH_CYCLES`＝4 加 `math.random(BANANABUSH_CYCLES_VAR)` 的 1～3，即 5～7 次，但 `cycles_left` 只在 `transplanted` 时扣，野生丛不消耗额度；移植会先 `MakeBarren`，施肥经 `OnRegen` 直接把 `growable` 阶段设为 4。野生丛从空到 `tall` 要过三个计时段，春季每段再乘 `SPRING_GROWTH_MODIFIER`＝0.75。[阶段表](../../../raw/current/scripts/prefabs/bananabush.lua#L51-L76)、[接线](../../../raw/current/scripts/prefabs/bananabush.lua#L177-L200)、[采摘](../../../raw/current/scripts/prefabs/bananabush.lua#L99-L114)、[常量](../../../raw/current/scripts/tuning.lua#L6741-L6742)
+- **猴岛布局与传送门**：`monkeyisland_prefabs_area` 把 1 丛 `bananabush` 加入候选表（候选保证，不等于每次实际放置），非自然传送门的战利品表另有 `dug_bananabush`（权重由 `MONKEYISLAND_PORTAL_BANANABUSHWEIGHT` 决定，默认 5.0）。[布局](../../../raw/current/scripts/map/layouts.lua#L72-L94)、[战利品表](../../../raw/current/scripts/prefabs/monkeyisland_portal.lua#L35-L46)、[权重](../../../raw/current/scripts/tuning.lua#L6691)
+- **苔藓藤条**：`oceanvine`（苔藓藤条）挂在海树柱 `oceantree_pillar` 周围；柱边不足 1 条藤时补生成 1～2 条并播落下动画（补藤由撞击后的调度触发，新藤先设为空株），藤被采摘后切到空株动画并移除 `inspectable`。掉落逻辑在烧毁／落地路径另有分支（本页不展开）。[补藤](../../../raw/current/scripts/prefabs/oceantree_pillar.lua#L248-L262)、[生成](../../../raw/current/scripts/prefabs/oceantree_pillar.lua#L234-L245)、[表现](../../../raw/current/scripts/prefabs/oceanvine.lua#L205-L237)
+- **仙人掌与开花**：`has_flower` 只在夏季的 `onregenfn` 与 `OnEntityWake` 中置真，采摘时满足门禁才结算 `CACTUS_DAMAGE`（需 `combat`，排除刺抗装备与 `shadowminion`）；`cactus_flower` 不受该门禁影响——有采摘者且植株带花时追加 1 朵交给采摘者（无背包时落地）；`oasis_cactus` 共用同一工厂。[开花](../../../raw/current/scripts/prefabs/cactus.lua#L45-L56)、[唤醒](../../../raw/current/scripts/prefabs/cactus.lua#L64-L69)、[采摘](../../../raw/current/scripts/prefabs/cactus.lua#L18-L43)、[受伤门槛](../../../raw/current/scripts/prefabs/cactus.lua#L24-L27)
 - **再生**：`cactus`／`oasis_cactus`／`cave_banana_tree` 都注册在世界再生管理器里（基础 20 天与 5 天，仙人掌另有夏季 ×2、冬季 ×0、下雨 ×1.2 倍率），被清掉后由该管理器补种；触发与落点细节见 [[reference/components/regrowthmanager#原版注册与其季节倍率]]。[注册](../../../raw/current/scripts/components/regrowthmanager.lua#L182-L195)
 
 ### 香蕉的 monkeyqueenbribe 标签
@@ -99,7 +99,7 @@ status: active
 | 关联 Prefab：`cave_banana_tree` | 树形态来源：采摘 1 个；砍倒时若仍可采再掉 1 个，随后变树桩 | 洞穴房间与世界生成表 | [采摘](../../../raw/current/scripts/prefabs/cave_banana_tree.lua#L146-L158)、[导出](../../../raw/current/scripts/prefabs/cave_banana_tree.lua#L313-L315)、[资源展开](../../../raw/current/scripts/map/forest_map.lua#L219) |
 | 关联 Prefab：`bananabush` | 丛形态来源：`growable` 4 段后采摘 | 猴岛布局与移植 | [接线](../../../raw/current/scripts/prefabs/bananabush.lua#L177-L200) |
 | 关联 Prefab：`oceanvine` | 唯一可采到 `fig` 的实体 | 海树柱周围 | [接线](../../../raw/current/scripts/prefabs/oceanvine.lua#L305-L314)、[导出](../../../raw/current/scripts/prefabs/oceanvine.lua#L334-L335) |
-| 关联 Prefab：`cactus`／`oasis_cactus` | 仙人掌肉来源；夏季额外给 `cactus_flower` | 地面世界资源表 | [工厂](../../../raw/current/scripts/prefabs/cactus.lua#L74-L127)、[导出](../../../raw/current/scripts/prefabs/cactus.lua#L177-L179)、[资源展开](../../../raw/current/scripts/map/forest_map.lua#L193) |
+| 关联 Prefab：`cactus`／`oasis_cactus` | 仙人掌肉来源；有采摘者且植株当前带花时追加 `cactus_flower`（[[reference/prefabs/petals]]） | 地面世界资源表 | [工厂](../../../raw/current/scripts/prefabs/cactus.lua#L74-L127)、[导出](../../../raw/current/scripts/prefabs/cactus.lua#L177-L179)、[资源展开](../../../raw/current/scripts/map/forest_map.lua#L193) |
 
 ## 典型接入
 
@@ -129,7 +129,7 @@ end)
 - **边界：熟制不一定更耐放**：`cactus_meat` 生熟同为 10 天，`cave_banana` 由 10 天降到 6 天，`fig` 由 6 天降到 3 天；按「烤过更耐放」配货会算错。[表项](../../../raw/current/scripts/prefabs/veggies.lua#L41-L43)
 - **边界：香蕉丛不是计时再生**：`pickable` 侧没有再生时长，靠 `growable` 逐段生长；工厂把 `canbepicked` 显式置 false，只有长到 `tall` 时 `set_big` 里的 `Regen()` 才放开采摘。[接线](../../../raw/current/scripts/prefabs/bananabush.lua#L177-L200)
 - **边界：无花果只有一个来源且不会耗尽**：`oceanvine` 用 `max_cycles = nil`＋`cycles_left = 1` 的写法，采摘后按 `OCEANVINE_REGROW_TIME` 重新结果；它没有 `dug_oceanvine` 移植形态（`scripts/` 内检索不到该注册），`cycles_left` 也不因采摘递减，因此不会枯死。[接线](../../../raw/current/scripts/prefabs/oceanvine.lua#L305-L314)
-- **未核验**：非自然传送门的出现条件与战利品权重分布、`cactus_flower` 的食用数值、`bananabush` 的火烧／枯萎分支；生成点检索只覆盖上述植株与布局、战利品表，未穷举动态选名与模组注入。
+- **未核验**：非自然传送门的出现条件与战利品权重分布、`bananabush` 的火烧／枯萎分支；生成点检索只覆盖上述植株与布局、战利品表，未穷举动态选名与模组注入。
 
 ## 验证记录
 
@@ -147,3 +147,4 @@ end)
 - 世界再生：[[reference/components/regrowthmanager]]
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

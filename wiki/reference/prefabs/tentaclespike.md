@@ -1,12 +1,12 @@
 ---
 title: "触手尖刺（tentaclespike）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版掉落型手持武器 tentaclespike：无配方，击杀触手（0.5）与大触手（0.50）掉落；伤害 51、耐久 100 仅攻击磨损，耗尽整个实体移除；无 onattack、无皮肤，可借鉴最小武器组装与掉落获取。"
 aliases: ["tentaclespike", "触手尖刺", "Tentacle Spike", "触手掉落武器"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["prefabs/tentaclespike.lua", "prefabs/tentacle.lua", "prefabs/tentacle_pillar.lua", "scenarios/chest_random_good.lua", "scenarios/chestfunctions.lua", "components/weapon.lua", "components/equippable.lua", "components/finiteuses.lua", "components/inspectable.lua", "components/inventoryitem.lua", "components/floater.lua", "components/combat.lua", "standardcomponents.lua", "tuning.lua", "constants.lua", "screens/redux/scrapbookdata.lua", "languages/chinese_s.po"]
 reliability: verified
@@ -40,7 +40,7 @@ status: active
 | 项 | 键 | 实际值 |
 |---|---|---|
 | 耐久上限 | `TUNING.SPIKE_USES` | 100（[tuning.lua#L169](../../../raw/current/scripts/tuning.lua#L169)） |
-| 武器伤害 | `TUNING.SPIKE_DAMAGE`＝`wilson_attack`×1.5 | 51 生命值（源码推导，[tuning.lua#L352](../../../raw/current/scripts/tuning.lua#L352)；图鉴数据同值佐证，[scrapbookdata.lua#L1503](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1503)） |
+| 武器伤害 | `TUNING.SPIKE_DAMAGE`＝`wilson_attack`×1.5 | 51 生命值（源码推导，[tuning.lua#L352](../../../raw/current/scripts/tuning.lua#L352)；图鉴数据同值佐证，[scrapbookdata.lua#L1503](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1507)） |
 | 每次攻击磨损 | weapon `attackwear`（从未赋值） | 1 耐久点/次，且为唯一消耗路径（无 tool、无 `SetConsumption`；[OnAttack 结算](../../../raw/current/scripts/components/weapon.lua#L111-L120)） |
 
 获取途径（全 scripts `grep tentaclespike` 复核；`SpawnPrefab("tentaclespike")` 无直接命中，仅下表 scenario 经 chestfunctions 间接生成）：
@@ -101,3 +101,4 @@ end)
 - 结构检查：validate_page.py 与 validate_source_links.py --strict 实际执行通过（实测 104 行／12075 字节）。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

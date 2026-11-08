@@ -1,13 +1,13 @@
 ---
 title: "瘴气（miasma_cloud）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "洞穴瘴气雾块主实体：周期扫描给玩家挂瘴气源（减速＋持续掉血 debuff）、可被蜈蚣食用、遇火消退；同文件另有 4 个粒子子体与 2 个联网视觉变体，客户端用相机驱动的双半圆粒子系统渲染。"
 aliases: ["miasma_cloud", "瘴气", "瘴气云", "miasma", "miasma_cloud_visual", "miasma_cloud_fx", "miasma_ember_fx", "miasma_cloud_fx_thin", "miasma_cloud_fx_border", "miasma_cloud_arenabordervisual"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/miasma_cloud_fx.lua", "prefabs/miasmadebuff.lua", "components/miasmamanager.lua", "components/shadowthrallmanager.lua", "stategraphs/SGcaveventmite.lua", "prefabs/cave_vents.lua", "prefabs/willow_ember.lua", "prefabs/shadowthrall_centipede.lua", "brains/shadowthrall_centipede_brain.lua", "prefabs/charlie_boss_trial.lua", "prefabs/atrium_markers.lua", "constants.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 
 - 职责与适用：洞穴瘴气场的**主模拟实体**：每 0.5 秒扫描周围，把范围内带 miasmawatcher 的实体（玩家）登记为瘴气源——进而挂减速与持续掉血 debuff（机制在 [[reference/components/miasmawatcher]]，不在本页复制）；本体带 edible，是暗影蜈蚣的食物；附近有火则转入消退并自毁。名称字符串 "Miasma" 的官方译名是"瘴气"（[NAMES](../../../raw/current/scripts/languages/chinese_s.po#L344800-L344802)）。[周期扫描](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L437-L488)
 - 优先使用：查"瘴气生成／驱散／免疫边界"选本页；世界侧网格排程（生成资格、扩散、强度）在 [[reference/components/miasmamanager]]；玩家侧减速与豁免在 [[reference/components/miasmawatcher]]。
-- 重要副作用：**不是纯视觉**：范围作用半径 `MIASMA_RADIUS=3` 世界单位（由 `SQRT2×MIASMA_SPACING(1 瓦)×TILE_SCALE(4)/2` 取整，[推导](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L37-L42)、[TILE_SCALE](../../../raw/current/scripts/constants.lua#L17)）；瘴气源退出有约两个扫描周期的滞后；遇火（火/热源标签，3+1=4 单位）标记消退并安排约 2 秒自毁。[源登记](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L443-L455)、[火反应](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L459-L485)、[数值](../../../raw/current/scripts/tuning.lua#L7730-L7743)
+- 重要副作用：**不是纯视觉**：范围作用半径 `MIASMA_RADIUS=3` 世界单位（由 `SQRT2×MIASMA_SPACING(1 瓦)×TILE_SCALE(4)/2` 取整，[推导](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L37-L42)、[TILE_SCALE](../../../raw/current/scripts/constants.lua#L17)）；瘴气源退出有约两个扫描周期的滞后；遇火（火/热源标签，3+1=4 单位）标记消退并安排约 2 秒自毁。[源登记](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L443-L455)、[火反应](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L459-L485)、[数值](../../../raw/current/scripts/tuning.lua#L7731-L7744)
 - 修改边界：客户端另有整套相机驱动的粒子系统（本体只发 net_bool，粒子在非联网子实体上，专用服务器不装）；实体云计数经 `miasmacloudexists` 世界事件联动所有玩家的 miasmawatcher 开关。[客户端分界](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L602-L623)、[计数事件](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L649-L655)
 
 ## 注册与构造
@@ -41,11 +41,11 @@ status: active
 
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
-| 组件：edible | 食物类型 FOODTYPE.MIASMA，healthvalue 0／hungervalue CALORIES_LARGE／sanityvalue -SANITY_LARGE | 主模拟；食用者是暗影蜈蚣（DIET 仅 MIASMA，[Diet](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L187)、[挂 eater](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L257-L258)） | [edible](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L631-L635) |
-| 消费者：shadowthrall_centipede_brain | 蜈蚣 10 单位内找可食云，构造 `ACTIONS.EAT` 食用；每成功吃 5 次（EAT_MIASMA_MAX）长一节身体并进入进食冷却 | 主模拟；FindEntity 按 eater 可食标签过滤 | [找云](../../../raw/current/scripts/brains/shadowthrall_centipede_brain.lua#L55-L61)、[食用动作](../../../raw/current/scripts/brains/shadowthrall_centipede_brain.lua#L63-L82)、[数值](../../../raw/current/scripts/tuning.lua#L8887-L8891) |
+| 组件：edible | 食物类型 FOODTYPE.MIASMA，healthvalue 0／hungervalue CALORIES_LARGE／sanityvalue -SANITY_LARGE | 主模拟；食用者是暗影蜈蚣（DIET 仅 MIASMA，[Diet](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L187)、[挂 eater](../../../raw/current/scripts/prefabs/shadowthrall_centipede.lua#L254-L255)） | [edible](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L631-L635) |
+| 消费者：shadowthrall_centipede_brain | 蜈蚣 10 单位内找可食云，构造 `ACTIONS.EAT` 食用；每成功吃 5 次（EAT_MIASMA_MAX）长一节身体并进入进食冷却 | 主模拟；FindEntity 按 eater 可食标签过滤 | [找云](../../../raw/current/scripts/brains/shadowthrall_centipede_brain.lua#L55-L61)、[食用动作](../../../raw/current/scripts/brains/shadowthrall_centipede_brain.lua#L63-L82)、[数值](../../../raw/current/scripts/tuning.lua#L8888-L8892) |
 | 玩法作用：周期源登记 | OnUpdate 每 0.5 秒（PERIOD，[定义](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L398-L399)）FindEntities(MIASMA_RADIUS=3, 排除 ghost/shadow/FX 等 [NO_TAGS](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L401))，对带 miasmawatcher 的可见实体 AddMiasmaSource；三队列表轮转让退出晚约两拍（注释：跨云过渡平滑），ClearWatcherTable 逐个 RemoveMiasmaSource | 主模拟；实体睡眠（OnEntitySleep）停扫，唤醒重启（[L515-L521](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L515-L521)） | [OnUpdate](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L437-L488)、[三队列](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L438-L454)、[清理](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L403-L410)、[[reference/components/miasmawatcher#关键接口]] |
-| 玩法作用：debuff 与减速 | 玩家首次获得源时由 miasmawatcher 挂 `miasmadebuff`（每 2 秒 -2 血，miasmaimmune 装备免疫）并按 MIASMA_SPEED_MOD=0.4 挂 locomotor 外部减速 | 主模拟 debuff（客户端经 classified 读 isInMiasma）；具体在组件页 | [[reference/components/miasmawatcher]]、[debuff tick](../../../raw/current/scripts/prefabs/miasmadebuff.lua#L1-L20)、[数值](../../../raw/current/scripts/tuning.lua#L7742-L7743) |
-| 火反应与消退 | OnUpdate 找 FIRE_RADIUS（MIASMA_RADIUS+1）内 fire/heatstar（排 shadow_fire/blueflame；[TestFireFn](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L412-L421) 排除非点火物的装备栏物品）：有火→`SetMiasmaDiminishingAtPoint(true)`（受管云）或 2 秒假消退自毁任务（无管理网格的云）；同时 `_diminishing:set(true)` 让客户端挂火烬。无火且非强杀则反向恢复 | 主模拟；假消退时长＝MIASMA_DIMINISH_INTERVAL_SECONDS×MIASMA_MAXSTRENGTH=2 秒 | [火反应](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L459-L485)、[ForceKillMiasma](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L423-L434)、[数值](../../../raw/current/scripts/tuning.lua#L7731-L7734) |
+| 玩法作用：debuff 与减速 | 玩家首次获得源时由 miasmawatcher 挂 `miasmadebuff`（每 2 秒 -2 血，miasmaimmune 装备免疫）并按 MIASMA_SPEED_MOD=0.4 挂 locomotor 外部减速 | 主模拟 debuff（客户端经 classified 读 isInMiasma）；具体在组件页 | [[reference/components/miasmawatcher]]、[debuff tick](../../../raw/current/scripts/prefabs/miasmadebuff.lua#L1-L20)、[数值](../../../raw/current/scripts/tuning.lua#L7743-L7744) |
+| 火反应与消退 | OnUpdate 找 FIRE_RADIUS（MIASMA_RADIUS+1）内 fire/heatstar（排 shadow_fire/blueflame；[TestFireFn](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L412-L421) 排除非点火物的装备栏物品）：有火→`SetMiasmaDiminishingAtPoint(true)`（受管云）或 2 秒假消退自毁任务（无管理网格的云）；同时 `_diminishing:set(true)` 让客户端挂火烬。无火且非强杀则反向恢复 | 主模拟；假消退时长＝MIASMA_DIMINISH_INTERVAL_SECONDS×MIASMA_MAXSTRENGTH=2 秒 | [火反应](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L459-L485)、[ForceKillMiasma](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L423-L434)、[数值](../../../raw/current/scripts/tuning.lua#L7732-L7735) |
 | API：ForceKillMiasma | 薇洛火焰投掷／爆燃命中 `miasma` 标签实体时调用（本工厂暴露），走同一消退路径并置 force_killed | 主模拟；对两个视觉变体不可用（未暴露该方法） | [调用](../../../raw/current/scripts/prefabs/willow_ember.lua#L211-L213)、[调用](../../../raw/current/scripts/prefabs/willow_ember.lua#L277-L279) |
 | 计数与事件 | 主实体增减维护 `_MiasmaCloudCount`，0↔1 时推世界事件 `miasmacloudexists`；`TheWorld.GetMiasmaCloudCount` 首个实体时装上（不覆盖） | 主模拟；miasmawatcher 以此开关监听组 | [计数](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L649-L655)、[递减](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L507-L513)、[[reference/components/miasmawatcher#关键接口]] |
 | 生成者：miasmamanager（受管） | CreateMiasmaAtTile 在陆地瓦片中心生成主实体并激活管理排程；气孔/阴影裂隙 portal 经其接口批量造雾 | 主模拟；云随管理网格存读 | [生成](../../../raw/current/scripts/components/miasmamanager.lua#L217-L223)、[[reference/components/miasmamanager]]、[气孔](../../../raw/current/scripts/prefabs/cave_vents.lua#L217-L231) |
@@ -82,7 +82,7 @@ cloud.Transform:SetPosition(x, 0, z)
 -- 驱散：cloud:ForceKillMiasma()（约 2 秒后自毁，客户端同步火烬）
 ```
 
-- 调整与验证：作用半径 3、扫描周期 0.5、退出滞后两拍均写死在工厂（半径推导见 [L37-L42](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L37-L42)）；改 TUNING.MIASMA_* 只影响管理侧与假消退时长（[数值](../../../raw/current/scripts/tuning.lua#L7730-L7743)）。
+- 调整与验证：作用半径 3、扫描周期 0.5、退出滞后两拍均写死在工厂（半径推导见 [L37-L42](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L37-L42)）；改 TUNING.MIASMA_* 只影响管理侧与假消退时长（[数值](../../../raw/current/scripts/tuning.lua#L7731-L7744)）。
 
 ## 常见陷阱与限制
 
@@ -101,3 +101,4 @@ cloud.Transform:SetPosition(x, 0, z)
 
 返回 [[reference/prefabs/fx-world-index|天气、地形与生态痕迹]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 6 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

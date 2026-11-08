@@ -1,12 +1,12 @@
 ---
 title: "sleepingbaguser"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "人物侧床具使用任务、三维恢复倍率与可睡回调；由床具建立关系并统一唤醒，不能单独替代睡眠状态图。"
 aliases: ["人物睡眠收益","睡眠回血倍率","睡眠饥饿消耗","睡袋使用者","睡眠门禁","sleepingbaguser"]
 tags: [component, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/sleepingbaguser.lua","components/sleepingbag.lua","prefabs/player_common.lua","stategraphs/SGwilson.lua","entityscript.lua","scheduler.lua","modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -85,3 +85,4 @@ end)
 
 相关：[[reference/components/sleepingbag]]；[[reference/components/health]]；[[reference/components/hunger]]；[[reference/components/sanity]]；[[reference/components/grogginess]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

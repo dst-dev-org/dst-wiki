@@ -1,12 +1,12 @@
 ---
 title: "yotc_racecompetitor：卡拉特赛跑选手逻辑"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "挂在卡拉特身上的赛跑选手组件：按检查点链寻路计圈、体力与遗忘特质、到点/超时判负，冲线后经奖品管理器领奖。"
 aliases: [赛跑选手, 卡拉特赛跑, yotc_racecompetitor, 鼠鼠赛跑]
 tags: [component, state-machine, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/yotc_racecompetitor.lua", "prefabs/carrat.lua", "prefabs/carrat_ghostracer.lua", "components/yotc_raceprizemanager.lua", "brains/carratbrain.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -69,3 +69,4 @@ end
 - 结构检查：`validate_page.py` 与 `validate_source_links.py --strict` 通过；lua 示例通过 parser_probe 语法检查。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

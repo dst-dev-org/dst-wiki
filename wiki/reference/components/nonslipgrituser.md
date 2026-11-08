@@ -1,12 +1,12 @@
 ---
 title: "nonslipgrituser"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "记录持有者是否带着防滑砂，并把 slipperyfeet 的跑动更新转交给背包中的一个 nonslipgritsource 消耗。"
 aliases: ["nonslipgrituser", "防滑砂持有者", "防滑来源集合", "防滑状态"]
 tags: [component, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/nonslipgrituser.lua", "components/nonslipgritsource.lua", "components/slipperyfeet.lua", "componentutil.lua", "prefabs/player_common.lua", "prefabs/player_common_extensions.lua", "prefabs/wx78_possessedbody.lua", "stategraphs/SGwilson.lua", "util/sourcemodifierlist.lua", "components/inventory.lua"]
 reliability: verified
 validation: source-reviewed
@@ -83,3 +83,4 @@ status: active
 
 相关：[[reference/components/nonslipgritsource]]；[[reference/components/locomotor]]；[[reference/components/inventoryitem]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

@@ -1,12 +1,12 @@
 ---
 title: 强抢袋（wortox_nabbag）
 created: 2026-11-07
-updated: 2026-11-07
+updated: 2026-11-08
 type: prefab
 summary: 沃拓克斯技能授予的手持装备原版参照：右键强抢锥形范围物品、左键当捕网并复制捕捉，伤害随背包满度三档并受灵魂加成，可借鉴技能门禁＋受限装备＋NAB/NET 双动作组装。
 aliases: ["wortox_nabbag", "强抢袋", "Knabsack", "强抢贼"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wortox_nabbag.lua", "components/nabbag.lua", "prefabs/skilltree_wortox.lua", "prefabs/wortox.lua", "prefabs/wortox_souljar.lua", "recipes.lua", "tuning.lua", "constants.lua", "components/equippable.lua", "components/equippable_replica.lua", "prefabs/inventoryitem_classified.lua", "components/inventory.lua", "components/weapon.lua", "components/finiteuses.lua", "components/tool.lua", "entityscript.lua", "components/builder.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "prefabs/butterfly.lua", "screens/redux/scrapbookdata.lua", "prefabskins.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -18,7 +18,7 @@ status: active
 ## 快速判断
 
 - 职责与适用：`wortox_nabbag`（官方名"强抢袋"，英文 Knabsack）是沃拓克斯技能树 `wortox_nabbag` 节点授予的 HANDS 槽手持装备，不是容器袋：nabbag（锥形连抓）＋weapon（伤害随背包满度分档）＋tool(NET)（可当捕网）＋finiteuses(200) 的组合体。锥形拾取组件机制见 [[reference/components/nabbag]]，装备期三层表现实体见 [[reference/prefabs/wortox_soulecho_buff_fx]]。
-- 优先使用：给角色技能做专属手持装备 → 抄本页"技能配方门禁＋equippable.restrictedtag 装备门禁"双层组装（[配方](../../../raw/current/scripts/recipes.lua#L357)、[门禁](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L223-L226)）；给物品做范围拾取或捕网复制 → 组件页接入；调数值 → `TUNING.SKILLS.WORTOX` 表（[tuning.lua L7432-L7448](../../../raw/current/scripts/tuning.lua#L7432-L7448)）。
+- 优先使用：给角色技能做专属手持装备 → 抄本页"技能配方门禁＋equippable.restrictedtag 装备门禁"双层组装（[配方](../../../raw/current/scripts/recipes.lua#L357)、[门禁](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L223-L226)）；给物品做范围拾取或捕网复制 → 组件页接入；调数值 → `TUNING.SKILLS.WORTOX` 表（[tuning.lua L7432-L7448](../../../raw/current/scripts/tuning.lua#L7433-L7449)）。
 - 重要副作用：右键 NABBAG 连抓锥内物品（主目标免费、锥内每处理一个候选目标扣 1 耐久，无论拾取是否成功；扣满单次上限后仍会继续尝试拾取，只有耐久耗尽、袋子销毁才提前中断）；左键 NET 捕捉 NET 类生物并复制到锥内同类目标（每次 10 耐久）；伤害 13.6→34 随主物品栏满度三档，`wortox_souljar_3` 技能下最高 ×2；耐久耗尽自毁（[OnUsesFinished](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L168-L174)）。
 - 修改边界：本页覆盖物品注册、数值、双动作供给与技能门禁；nabbag 组件的锥形复制细节与上限偏移归 [[reference/components/nabbag]]，body 三注册的表现归 FX 页；解构流程、数据驱动生成点、多人逐帧预测未核验。
 
@@ -47,7 +47,7 @@ status: active
 | Replica／同步：bodysize_netvar／bodyvfx_souls | UpdateStats 把满度桶位（0–2）与灵魂数档位（0–3）写给 body 载体净变量 | 双端；netvar 定义在 bodyfn（[L359-L360](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L352-L384)），表现归 FX 页 | [[reference/prefabs/wortox_soulecho_buff_fx]] |
 | SG：SGwilson "nabbag" 状态 | NABBAG 动作执行：14/15 帧挥击音、16 帧 PerformBufferedAction、38 帧回 idle；状态含 `nodangle` 标签 | 服务端状态（[SGwilson.lua L25102-L25133](../../../raw/current/scripts/stategraphs/SGwilson.lua#L25102-L25133)、[动作绑定 L1201](../../../raw/current/scripts/stategraphs/SGwilson.lua#L1201)）；客户端预测同名状态（[SGwilson_client.lua L7427-L7455](../../../raw/current/scripts/stategraphs/SGwilson_client.lua#L7427-L7455)）；`nodangle`／骑乘切换持握外观（[ToggleOverrideSymbols](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L99-L111)） | Wiki 待建（玩家 SG 机制页未落地） |
 | API／数据：ACTIONS.NABBAG／NET | NABBAG：rmb、distance 1.8（[actions.lua L681](../../../raw/current/scripts/actions.lua#L681)），fn 调组件（[L4557-L4567](../../../raw/current/scripts/actions.lua#L4557-L4567)）；动作供给条件：右键目标可拾取且非 _container/heavy/fire（[componentactions.lua L2406-L2410](../../../raw/current/scripts/componentactions.lua#L2406-L2410)）；NET：fn 内对 nabbag 物品触发复制（[actions.lua L1872-L1875](../../../raw/current/scripts/actions.lua#L1872-L1875)）；工具工作同样受 IsRestricted 拦截（[DoToolWork](../../../raw/current/scripts/actions.lua#L1693-L1698)） | 双端（供给在 replica、执行在服务端） | [[reference/components/topics/item-actions]] |
-| API／数据：TUNING.SKILLS.WORTOX | 全部数值来源：伤害 13.6/34（wilson_attack=34，[tuning.lua L31-L37](../../../raw/current/scripts/tuning.lua#L31-L37)）、耐久 200、NET 折算 20、单次抓取耐久上限 0.25、单次物件上限 400、锥角 150、半径 3、近距圆 1.25（[L7432-L7440](../../../raw/current/scripts/tuning.lua#L7432-L7440)）；灵魂加成 ×2、上限 100 灵魂（[L7446-L7448](../../../raw/current/scripts/tuning.lua#L7446-L7448)） | 伤害在每次 UpdateStats 现读 TUNING；耐久 200 与 NET 10 点/次在构造时写入组件，改表只影响新实例 | 见下文"伤害与耐久" |
+| API／数据：TUNING.SKILLS.WORTOX | 全部数值来源：伤害 13.6/34（wilson_attack=34，[tuning.lua L31-L37](../../../raw/current/scripts/tuning.lua#L31-L37)）、耐久 200、NET 折算 20、单次抓取耐久上限 0.25、单次物件上限 400、锥角 150、半径 3、近距圆 1.25（[L7432-L7440](../../../raw/current/scripts/tuning.lua#L7433-L7441)）；灵魂加成 ×2、上限 100 灵魂（[L7446-L7448](../../../raw/current/scripts/tuning.lua#L7447-L7449)） | 伤害在每次 UpdateStats 现读 TUNING；耐久 200 与 NET 10 点/次在构造时写入组件，改表只影响新实例 | 见下文"伤害与耐久" |
 | API／数据：技能树 | `wortox_nabbag` 节点（顽皮根节点）激活加 `nabbaguser`、遗忘移除（[skilltree_wortox.lua L639-L656](../../../raw/current/scripts/prefabs/skilltree_wortox.lua#L639-L656)）；`wortox_souljar_3` 激活/遗忘经 `UpdateNabBags` 重算已装备袋（[L87-L92](../../../raw/current/scripts/prefabs/skilltree_wortox.lua#L87-L92)、[L695-L703](../../../raw/current/scripts/prefabs/skilltree_wortox.lua#L695-L703)）；读档豁免映射 `nabbaguser→wortox`（[constants.lua L2159](../../../raw/current/scripts/constants.lua#L2153-L2160)） | 技能节点激活即挂标签；配方与装备两层门禁共用该节点 | Wiki 待建（技能树机制页未落地） |
 | 关联 Prefab：wortox_soul／wortox_souljar／silk | wortox_soul×4＋silk×2 为配方原料；装备期扫描主物品栏内 wortox_soul 堆叠与 wortox_souljar.soulcount 计入伤害加成（另补算手持 active item）（[L76-L93](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L70-L97)） | 灵魂计数含手持 active item；`ms_souljar_count_changed` 事件触发重算（[L137](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L133-L137)、[wortox_souljar.lua L84](../../../raw/current/scripts/prefabs/wortox_souljar.lua#L84)） | 两 Prefab 页未建，源码即入口 |
 | 资源：动画 | bank/build `wortox_nabbag`、待机 `idle_empty`；swap 数据 `swap_wortox_nabbag_empty`；挥击动画包 `wortox_actions_nabbag.zip` 随角色载入 | 图标 INV_IMAGE `wortox_nabbag_medium/full`；未验证压缩包内容 | [assets](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L1-L6)、[wortox.lua L14](../../../raw/current/scripts/prefabs/wortox.lua#L14) |
@@ -102,7 +102,7 @@ TUNING.SKILLS.WORTOX.NABBAG_DAMAGE_MAX = 51 -- 三档变 13.6/32.3/51
 - **边界：单次连抓按“尝试次数”扣耐久**：主目标不耗；锥内每处理一个候选目标就扣 1 点（`PICKUP.fn` 的返回值不参与判断），单次最多耗 `total×0.25`（满耐久时 50 点，与当前剩余耐久无关），物件上限 400−1；扣到上限后仍会继续尝试拾取，直到物件上限或耐久耗尽中断（[nabbag.lua L102-L107](../../../raw/current/scripts/components/nabbag.lua#L102-L107)）；上限偏移与两套黑名单差异见 [[reference/components/nabbag#常见陷阱与限制]]。
 - **边界：NET 复制真实执行且用尽即毁**：复制路径对锥内目标逐个执行 `ACTIONS.NET.fn`＋`OnUsedAsItem`（10 点/次），中途耐久耗尽会触发 OnUsesFinished 自毁并中断复制（[nabbag.lua L28-L34](../../../raw/current/scripts/components/nabbag.lua#L28-L34)、[L168-L174](../../../raw/current/scripts/prefabs/wortox_nabbag.lua#L168-L174)）。
 - **边界：遗忘技能不没收装备**：`wortox_nabbag` 遗忘只移除 `nabbaguser` 标签（[L653-L655](../../../raw/current/scripts/prefabs/skilltree_wortox.lua#L650-L655)），已装备的袋子保留在手上直到主动卸下，再装备才被 `IsRestricted` 拦截；读档时按 `SKILLTREE_EQUIPPABLE_RESTRICTED_TAGS` 映射豁免（[constants.lua L2159](../../../raw/current/scripts/constants.lua#L2153-L2160)）。
-- **边界：图鉴展示值 ≠ 实际耐久**：scrapbookdata 记 `finiteuses=20`（[scrapbookdata.lua L1870](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1870)）是"20 次 NET 工作"（200 点÷10 点/次）的展示口径，实际耐久总量 200（[tuning.lua L7434](../../../raw/current/scripts/tuning.lua#L7432-L7440)）。
+- **边界：图鉴展示值 ≠ 实际耐久**：scrapbookdata 记 `finiteuses=20`（[scrapbookdata.lua L1870](../../../raw/current/scripts/screens/redux/scrapbookdata.lua#L1875)）是"20 次 NET 工作"（200 点÷10 点/次）的展示口径，实际耐久总量 200（[tuning.lua L7434](../../../raw/current/scripts/tuning.lua#L7433-L7441)）。
 
 ## 验证记录
 
@@ -114,3 +114,4 @@ TUNING.SKILLS.WORTOX.NABBAG_DAMAGE_MAX = 51 -- 三档变 13.6/32.3/51
 相关：[[reference/components/nabbag]]；[[reference/prefabs/wortox_soulecho_buff_fx]]；[[reference/prefabs/pouch-bags]]；[[reference/components/equippable]]；[[reference/components/finiteuses]]；[[reference/components/weapon]]；[[reference/components/topics/item-actions]]。
 
 返回 [[reference/prefabs/staffs-character-index|法杖与角色道具]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 5 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

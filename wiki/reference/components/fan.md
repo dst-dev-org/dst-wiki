@@ -1,12 +1,12 @@
 ---
 title: fan：扇子回调与动作接入
 created: 2026-10-22
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: 为扇子动作配置使用和吟唱回调，区分原版降温灭火、自定义干燥与耐久消费。
 aliases: [fan, 羽毛扇, 降温扇, 扇子干燥, 吟唱扇]
 tags: [component, item, callback, actions, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/fan.lua, prefabs/fans.lua, actions.lua, componentactions.lua, stategraphs/SGwilson.lua, stategraphs/SGwilson_client.lua, bufferedaction.lua, entityscript.lua, components/finiteuses.lua, components/moisture.lua, tuning.lua]
 reliability: verified
 validation: source-reviewed
@@ -86,3 +86,4 @@ end)
 - 游戏运行：未运行；未实测玩家/物品范围降温、动画中断、多人预测或模组间回调覆盖。
 - 结构与语法：本页通过页面格式和严格源码链接检查；完整 `modmain.lua` 通过 Lua 5.1 语法检查。检查不验证游戏效果。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

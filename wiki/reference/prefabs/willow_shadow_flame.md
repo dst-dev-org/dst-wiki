@@ -1,12 +1,12 @@
 ---
 title: "薇洛暗焰（willow_shadow_flame）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "薇洛余烬技能暗焰的会攻击火焰实体：weapon／planardamage 等组件由 DoAttack 结算伤害并按角度链生，同文件另有 willow_throw_flame（落点火）与 willow_frenzy（狂热焚烧 buff 光环壳）两个注册。"
 aliases: ["willow_shadow_flame", "willow_throw_flame", "willow_frenzy", "薇洛暗焰", "暗焰", "Shadow Fire", "火焰投掷", "狂热焚烧", "Burning Frenzy"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/willow_flame_fx.lua", "components/firefx.lua", "prefabs/willow_ember.lua", "prefabs/willow.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -19,7 +19,7 @@ status: active
 
 - 职责与适用：薇洛（官方译名"薇洛"，[NAMES](../../../raw/current/scripts/languages/chinese_s.po#L351390-L351392)）余烬技能"暗焰"（Shadow Fire）生成的**会攻击的火焰实体**：联网 FX 壳＋主模拟 weapon／planardamage／damagetypebonus／deflectable／firefx 组件，由施放者的 `combat:DoAttack` 以本焰为武器结算伤害，并按角度追踪目标链生下一跳；不是纯视觉。同文件还注册 willow_throw_flame（火焰投掷的落点火）与 willow_frenzy（狂热焚烧 buff 的旋转光环壳，纯视觉）。[注册](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L378-L380)
 - 优先使用：查"暗焰／Shadow Fire／薇洛火焰特效"选本页；技能入口与余烬消耗见下文生成者条目，生成代码见 [TryShadowFire](../../../raw/current/scripts/prefabs/willow_ember.lua#L367-L388)。
-- 重要副作用：暗焰命中造成 `WILLOW_LUNAR_FIRE_DAMAGE×3`（60）武器伤害＋`WILLOW_LUNAR_FIRE_PLANAR_DAMAGE×3`（90）位面伤害＋lunar_aligned 加成 1.1 倍，命中点另生成 willow_shadow_fire_explode 爆炸表现。[组件与伤害](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L221-L228)、[tuning](../../../raw/current/scripts/tuning.lua#L8113-L8114)
+- 重要副作用：暗焰命中造成 `WILLOW_LUNAR_FIRE_DAMAGE×3`（60）武器伤害＋`WILLOW_LUNAR_FIRE_PLANAR_DAMAGE×3`（90）位面伤害＋lunar_aligned 加成 1.1 倍，命中点另生成 willow_shadow_fire_explode 爆炸表现。[组件与伤害](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L221-L228)、[tuning](../../../raw/current/scripts/tuning.lua#L8114-L8115)
 - 修改边界：暗焰／投掷焰在所有端有联网壳，伤害组件在主模拟；willow_frenzy 的光环子实体只存在于非专服端。[端分界](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L355-L360)
 
 ## 注册与构造
@@ -40,7 +40,7 @@ status: active
 
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
-| 生成者：willow_ember TryShadowFire | 暗焰技能一次性以施放者为中心环形布 5 焰（半径 2、随机 0-0.2 秒延迟），每焰 `settarget(nil, 50, doer)`；重启 spellbook 冷却 8 秒 | 消耗 WILLOW_EMBER_SHADOW＝5 余烬（SPELLCOSTS） | [TryShadowFire](../../../raw/current/scripts/prefabs/willow_ember.lua#L367-L388)、[布火](../../../raw/current/scripts/prefabs/willow_ember.lua#L360-L365)、[消耗](../../../raw/current/scripts/prefabs/willow_ember.lua#L30-L37)、[tuning](../../../raw/current/scripts/tuning.lua#L8104-L8130) |
+| 生成者：willow_ember TryShadowFire | 暗焰技能一次性以施放者为中心环形布 5 焰（半径 2、随机 0-0.2 秒延迟），每焰 `settarget(nil, 50, doer)`；重启 spellbook 冷却 8 秒 | 消耗 WILLOW_EMBER_SHADOW＝5 余烬（SPELLCOSTS） | [TryShadowFire](../../../raw/current/scripts/prefabs/willow_ember.lua#L367-L388)、[布火](../../../raw/current/scripts/prefabs/willow_ember.lua#L360-L365)、[消耗](../../../raw/current/scripts/prefabs/willow_ember.lua#L30-L37)、[tuning](../../../raw/current/scripts/tuning.lua#L8105-L8131) |
 | 追踪与伤害：settarget | 0.1 秒后检索 20 距离内 `_health`+`_combat` 实体（排除 INLIMBO／invisible／noattack／notarget／flight），过滤友军／非敌对／玩家随从，取与焰朝向夹角最小者；近于 CLOSERANGE 时 `source.combat:DoAttack(target, 本焰)`（ignorehitrange＋ignoredamagereflect；本 build 起近距判定为手工 2D 平面距离，不受高度差影响），命中生成 willow_shadow_fire_explode（新旧版都在目标位置，无版本差异）；远则每跳把朝向转向目标（偏转角 `ReduceAngle` 归一，±30° 上限；本 build 起近距 dsq<9 时按距离放宽上限——近距离允许更大的追踪转角）并在半径 1 处链生新焰（life 递减）；无目标随机偏转 | 检索注释"mimic playercontroller attack targeting"；deflectable owner 设为施放者 | [检索与过滤](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L63-L96)、[选角](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L98-L118)、[攻击与爆炸](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L121-L141)、[转向与链生](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L143-L174) |
 | 组件：weapon／planardamage／damagetypebonus | 暗焰作为武器被 DoAttack 使用：伤害 60＋位面 90＋lunar_aligned 加成 1.1 | 仅暗焰注册；投掷焰与 frenzy 无 | [组件](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L221-L228)、[[reference/components/weapon#关键接口]]、[[reference/components/planardamage#关键接口]]、[[reference/components/damagetypebonus#关键接口]] |
 | 组件：deflectable | 暗焰可被偏转；settarget 时把 owner 设为施放者 | pristine 阶段先加标签优化 | [标签](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L197-L198)、[组件](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L227)、[[reference/components/deflectable#关键接口]] |
@@ -56,7 +56,7 @@ status: active
 | 类型／对象 | 本 Prefab 如何使用 | 变体、端与生效条件 | Wiki／源码入口及证据 |
 |---|---|---|---|
 | 生成者：buff_firefrenzy debuff | buff 挂上时给目标加 `firefrenzy` 标签并生成 willow_frenzy 挂到目标身上；detached 时 `fx:Kill()`（推 `_kill` 事件、子实体播 post、16 帧后删除） | buff 由 TryFireFrenzy 加给施放者，持续 TUNING.WILLOW_FIREFRENZY_DURATION（seg_time×2） | [attach/detach](../../../raw/current/scripts/prefabs/willow_ember.lua#L1016-L1047)、[施放](../../../raw/current/scripts/prefabs/willow_ember.lua#L390-L398)、[Kill](../../../raw/current/scripts/prefabs/willow_flame_fx.lua#L326-L339)、[[reference/components/debuff#关键接口]] |
-| buff 效果 | 与 FX 无读写关系：薇洛 CustomCombatDamage 对燃烧目标在 `firefrenzy` 标签下乘 1.25 | 仅薇洛本体；目标燃烧时才生效 | [CustomCombatDamage](../../../raw/current/scripts/prefabs/willow.lua#L152-L156)、[tuning](../../../raw/current/scripts/tuning.lua#L8109-L8110) |
+| buff 效果 | 与 FX 无读写关系：薇洛 CustomCombatDamage 对燃烧目标在 `firefrenzy` 标签下乘 1.25 | 仅薇洛本体；目标燃烧时才生效 | [CustomCombatDamage](../../../raw/current/scripts/prefabs/willow.lua#L152-L156)、[tuning](../../../raw/current/scripts/tuning.lua#L8110-L8111) |
 
 ### 共享火光与资源
 
@@ -95,3 +95,4 @@ status: active
 
 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

@@ -1,12 +1,12 @@
 ---
 title: "reticule"
 created: "2026-10-17"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "本地瞄准指示器的目标位置、颜色、输入与生命周期，不承担服务端授权或伤害判定。"
 aliases: ["reticule","瞄准指示器","技能范围圈","手柄选点","瞄准颜色"]
 tags: ["component","ui","callback","server-client"]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/reticule.lua","prefabs/slingshot.lua","components/playercontroller.lua","components/aoetargeting.lua","components/map.lua"]
 reliability: verified
 validation: source-reviewed
@@ -72,3 +72,4 @@ end)
 
 相关：[[reference/components/aoetargeting]]；[[reference/components/aoespell]]；[[reference/components/aoecharging]]。
 - 2026-11-01 build 26335394：本页 sources 所引文件原始字节本轮全部未变（哈希等价批量沿用，无语义修订），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-3）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

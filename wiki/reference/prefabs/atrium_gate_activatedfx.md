@@ -1,12 +1,12 @@
 ---
 title: "远古大门充能光层与距离化警示声（atrium_gate_activatedfx 等 4 注册）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "远古大门（atrium_gate）的激活态光效层与三个同工厂警示声注册：activatedfx 随大门状态在 idle/overload 间切换动画与标签（SetFX/KillFX 协议）；pulsesfx/explodesfx/grotto_war_sfx 由同一 makesfx 工厂生成的联网声效代理——各端在焦点附近建本地声源、1 秒自毁，按玩家所在区域决定可闻性。"
 aliases: ["atrium_gate_activatedfx", "atrium_gate_pulsesfx", "atrium_gate_explodesfx", "grotto_war_sfx", "远古大门充能光效", "大门过载特效", "地穴警示声", "档案开战音", "atrium gate fx", "梦魇区脉冲声"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/atrium_gate_activatedfx.lua", "prefabs/atrium_gate_pulsesfx.lua", "prefabs/atrium_gate.lua", "components/grottowarmanager.lua", "prefabs/archive_props.lua", "components/highlight.lua", "components/playercontroller.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -121,3 +121,4 @@ end
 - [[reference/prefabs/archive_ambient_sfx|远古档案机关声画实体]]（同为档案区设施声画；`grotto_war_sfx` 的开战事件源自华丽基座）
 - [[reference/components/grottowarmanager|地穴战争管理器]]（`grotto_war_sfx` 生成所在的战线铺设组件页）
 - 返回 [[reference/prefabs/fx-structure-index|建筑、装置与遗迹演出]]
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

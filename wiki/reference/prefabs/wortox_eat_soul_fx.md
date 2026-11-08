@@ -1,12 +1,12 @@
 ---
 title: "进食灵魂特效（wortox_eat_soul_fx）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "进食灵魂物品时挂在进食者身上的进食动画：纯动画实体，骑乘换 mounted_eat 六面向，动画播完或进食状态退出时删除。"
 aliases: ["wortox_eat_soul_fx", "进食灵魂特效", "吃灵魂特效", "灵魂进食动画"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wortox_eat_soul_fx.lua", "stategraphs/SGwilson.lua", "stategraphs/SGhermitcrab.lua", "prefabs/wortox_soul.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -73,3 +73,4 @@ end
 
 返回 [[reference/prefabs/fx-character-index|角色技能、施法与读书]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

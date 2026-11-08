@@ -1,12 +1,12 @@
 ---
 title: "schoolspawner"
 created: 2026-10-26
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "按玩家附近海域、鱼数和阻挡标记尝试自然鱼群，并提供鱼书等直接生成鱼群与按季节地皮选鱼接口。"
 aliases: ["schoolspawner", "海鱼群生成", "自然刷海鱼", "鱼书直接生鱼", "鱼群生成阻挡"]
 tags: [component, lifecycle, callback, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/schoolspawner.lua", "prefabs/forest.lua", "prefabs/world.lua", "prefabs/oceanfishdef.lua", "prefabs/fishschoolspawnblocker.lua", "prefabs/books.lua", "prefabs/chum_aoe.lua", "components/oceantrawler.lua", "tuning.lua", "componentutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -44,7 +44,7 @@ status: active
 
 ### 选鱼、鱼群中心与逐鱼生成
 
-`PickSchool` 读取 `FISH_DATA.school[当前季节][落点地皮]` 加权选类型，再取鱼定义。定义表为其他季节复制秋季基础表并追加季节鱼；无对应表、空候选或无对应鱼定义就无结果。鱼种、`schoolmin/max` 和 `schoolrange` 来自鱼定义；例如 `oceanfish_small_1` 的群大小为6～10、散布范围2，不能把这一例当所有鱼固定大小。[schoolspawner.lua:120-126](../../../raw/current/scripts/components/schoolspawner.lua#L120-L126) [oceanfishdef.lua:65-77](../../../raw/current/scripts/prefabs/oceanfishdef.lua#L65-L77) [oceanfishdef.lua:188-210](../../../raw/current/scripts/prefabs/oceanfishdef.lua#L188-L210) [oceanfishdef.lua:1030-1084](../../../raw/current/scripts/prefabs/oceanfishdef.lua#L1030-L1084)
+`PickSchool` 读取 `FISH_DATA.school[当前季节][落点地皮]` 加权选类型，再取鱼定义。定义表为其他季节复制秋季基础表并追加季节鱼；无对应表、空候选或无对应鱼定义就无结果。鱼种、`schoolmin/max` 和 `schoolrange` 来自鱼定义；例如 `oceanfish_small_1` 的群大小为6～10、散布范围2，不能把这一例当所有鱼固定大小；鱼侧参数与产出见 [[reference/prefabs/ocean-fish]]。[schoolspawner.lua:120-126](../../../raw/current/scripts/components/schoolspawner.lua#L120-L126) [oceanfishdef.lua:65-77](../../../raw/current/scripts/prefabs/oceanfishdef.lua#L65-L77) [oceanfishdef.lua:188-210](../../../raw/current/scripts/prefabs/oceanfishdef.lua#L188-L210) [oceanfishdef.lua:1030-1084](../../../raw/current/scripts/prefabs/oceanfishdef.lua#L1030-L1084)
 
 SpawnSchool 重新选鱼，先在传入中心创建 `schoolherd_<鱼prefab>`。鱼群实际中心使用 override 偏移；未提供时依次尝试半径20、13、7的可游泳偏移，均失败回退零偏移。然后随机群大小与朝向，每条鱼再在 `schoolrange` 内找可游泳偏移：第一条立即生成，后续延迟0.1～1.1秒。[schoolspawner.lua:206-239](../../../raw/current/scripts/components/schoolspawner.lua#L206-L239)
 
@@ -80,3 +80,4 @@ blocker 是非联网实体，带 `fishschoolspawnblocker` 标签和 timer，默�
 
 相关：[[reference/components/herd]] · [[reference/components/herdmember]] · [[reference/components/luckuser]] · [[reference/components/oceanfishable]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 0 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09）。

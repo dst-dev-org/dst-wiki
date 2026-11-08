@@ -6,7 +6,7 @@ type: prefab
 summary: "原版催眠乐器参照：panflute 经 PLAY 动作触发 instrument 组件半径 15 的听觉广播，按目标组件分流——sleeper 加困倦、grogginess 加昏沉、farmplanttendable 直接记一次照料；10 次耐久每吹一次耗 1；沃拓克斯技能树接入免费吹奏、吹奏招魂与目标遗忘仇恨。"
 aliases: ["panflute", "排箫", "潘笛", "催眠乐器", "Pan Flute"]
 tags: [prefab, item]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/panflute.lua", "components/instrument.lua", "components/sleeper.lua", "components/grogginess.lua", "components/farmplanttendable.lua", "components/finiteuses.lua", "components/tool.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua", "componentactions.lua", "bufferedaction.lua", "prefabs/skilltree_wortox.lua", "prefabs/wortox.lua", "prefabs/player_common.lua", "mainfunctions.lua", "actions.lua", "recipes.lua", "constants.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -20,7 +20,7 @@ status: active
 - 职责与适用：`prefabs/panflute.lua` 单注册的可拾取乐器（物品，不可装备）：吹奏以音乐家为中心半径 15 广播，对带 `sleeper`／`player`／`tendable_farmplant` 任一标签的听众按组件分流——sleeper 加困倦入睡、grogginess 加昏沉、farmplanttendable 记一次照料；无新鲜度、不可堆叠的耐用品（10 次，每次 PLAY 耗 1；整文件无 perishable／stackable 挂载，见[验证记录](#验证记录)）。（[工厂](../../../raw/current/scripts/prefabs/panflute.lua#L101-L152)、[听觉分流](../../../raw/current/scripts/prefabs/panflute.lua#L29-L56)）
 - 优先使用：做群体催眠／范围无伤效果参照 `instrument`＋`HearPanFlute` 模式，回调接线见 [[reference/components/instrument]]；改时长／半径读[典型接入](#典型接入)；沃拓克斯联动读[沃拓克斯技能联动](#沃拓克斯技能联动)。
 - 重要副作用：吹奏不消耗资源、不产生冷却，效果即时结算；耐久耗尽 `inst.Remove` 整体移除（[finiteuses](../../../raw/current/scripts/prefabs/panflute.lua#L137-L142)）；骑乘听众在把 `ridersleep` 推给坐骑之外，自身组件分支照常结算——骑乘玩家仍会被吹出昏沉（[mount 与分流](../../../raw/current/scripts/prefabs/panflute.lua#L37-L55)）。
-- 修改边界：本页覆盖注册、动作链、听觉分流与沃拓克斯三技能接线；`wortox_soul_spawn`／`wortox_forget_debuff`／`wortox_panflute_buff` 各自的完整机制只给入口；客户预测只在 `SGwilson_client` 的 `play_flute` 处理器层提及，不展开预测实现。
+- 修改边界：本页覆盖注册、动作链、听觉分流与沃拓克斯三技能接线；配方里的芦苇（`cutreeds`）见 [[reference/prefabs/basic-gathered-materials]]；`wortox_soul_spawn`／`wortox_forget_debuff`／`wortox_panflute_buff` 各自的完整机制只给入口；客户预测只在 `SGwilson_client` 的 `play_flute` 处理器层提及，不展开预测实现。
 
 ## 注册与构造
 
@@ -68,9 +68,9 @@ status: active
 
 | 技能（skilltree_wortox） | 对吹奏的影响 | 证据 |
 |---|---|---|
-| `wortox_panflute_playing`（根技能） | 激活后启动计时器（1 游戏日±10%），到点授予 `wortox_panflute_buff`；带 buff 吹奏：buff 移除＋理智 +5（`SANITY_TINY`）＋本次 0 耗 | [计时](../../../raw/current/scripts/prefabs/skilltree_wortox.lua#L165-L193)、[授予](../../../raw/current/scripts/prefabs/skilltree_wortox.lua#L31-L37)、[tuning](../../../raw/current/scripts/tuning.lua#L7407-L7412) |
+| `wortox_panflute_playing`（根技能） | 激活后启动计时器（1 游戏日±10%），到点授予 `wortox_panflute_buff`；带 buff 吹奏：buff 移除＋理智 +5（`SANITY_TINY`）＋本次 0 耗 | [计时](../../../raw/current/scripts/prefabs/skilltree_wortox.lua#L165-L193)、[授予](../../../raw/current/scripts/prefabs/skilltree_wortox.lua#L31-L37)、[tuning](../../../raw/current/scripts/tuning.lua#L7408-L7413) |
 | `wortox_panflute_soulcaller` | 吹奏完成回调延迟 52 帧在周身环形带召唤 6 个 `wortox_soul_spawn`（半径 3.95–7.9：外圈＝`WORTOX_SOULSTEALER_RANGE`−0.1、内圈为外圈一半；TUNING 的 8 本身是"沃拓克斯走近时灵魂飞向其"的吸引范围调参基值，不是召唤半径，[tuning.lua#L4542](../../../raw/current/scripts/tuning.lua#L4542)） | [OnFinishedPlaying](../../../raw/current/scripts/prefabs/panflute.lua#L83-L90)、[DoSoulSummon](../../../raw/current/scripts/prefabs/panflute.lua#L66-L85) |
-| `wortox_panflute_forget` | 吹奏时标记本次入睡的 sleeper 听众，挂遗忘 debuff（醒后 5 秒回避仇恨音乐家） | [OnPlayed](../../../raw/current/scripts/prefabs/panflute.lua#L21-L26)、[FORGET_DURATION](../../../raw/current/scripts/tuning.lua#L7412) |
+| `wortox_panflute_forget` | 吹奏时标记本次入睡的 sleeper 听众，挂遗忘 debuff（醒后 5 秒回避仇恨音乐家） | [OnPlayed](../../../raw/current/scripts/prefabs/panflute.lua#L21-L26)、[FORGET_DURATION](../../../raw/current/scripts/tuning.lua#L7413) |
 
 ## 典型接入
 
@@ -111,3 +111,4 @@ end)
 - 外部复检修订：2026-11-08（docs/reports/w05/prefab-inventory-review-b01-20261108，主代理逐项回源码核实采纳）：入睡条件改准——sleepiness 大于抗性立即入睡、等于抗性走等长延迟任务，实际入睡还要求实体可见／未死亡并乘 `GetSleepTimeMultiplier`（最低 0.2 倍，sleeper.lua:248-307）；forget debuff 补"此刻 IsAsleep 且带 combat 组件"前置（panflute.lua:44-49）；召唤环带半径改为 3.95–7.9，`TUNING.WORTOX_SOULSTEALER_RANGE`＝8 标注为灵魂吸引范围的调参基值而非召唤半径（tuning.lua:4542）；"postinit 对新旧实例都生效"收窄为新构造与读档重建实例（SpawnSaveRecord 先 SpawnPrefab 跑 postinit，mainfunctions.lua:464-466），并区分 tuning 全局即时生效与实例 postinit 的不同生效面。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

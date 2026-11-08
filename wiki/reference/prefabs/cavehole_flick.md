@@ -1,12 +1,12 @@
 ---
 title: "洞穴弹飞、重置烟与表情效果（cavehole_flick 等）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "洞穴弹飞预警、宝箱重置、鼹鼠地表、表情和海洋迁移等八个通用表注册。"
 aliases: ["slurper_respawn", "pandorachest_reset", "cavehole_flick_warn", "cavehole_flick", "mole_move_fx", "emote_fx", "tears", "spawn_fx_ocean_static", "洞穴弹飞特效", "宝箱重置烟", "隆起的土堆", "表情特效", "海洋迁移水花"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "prefabs/saddle.lua", "prefabs/slurper.lua", "prefabs/waxwell.lua", "prefabs/treasurechest.lua", "prefabs/chest_mimic.lua", "prefabs/cave_hole.lua", "stategraphs/SGmole.lua", "stategraphs/SGwilson.lua", "stategraphs/SGhermitcrab.lua", "stategraphs/SGwx78_possessedbody.lua", "play_commonfn.lua", "play_the_vault.lua", "emotes.lua", "components/worldmigrator.lua", "components/playerspawner.lua", "prefabs/player_common.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -55,3 +55,4 @@ status: active
 - 游戏运行：未运行。
 
 返回 [[reference/prefabs/fx-world-index|天气、地形与生态痕迹]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

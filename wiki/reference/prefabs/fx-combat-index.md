@@ -27,7 +27,7 @@ tags: [overview]
 | [[reference/prefabs/abigail_attack_fx|阿比盖尔攻击环特效]] | 阿比盖尔双层攻击环；宿主播放与 kill_fx 收尾 | `abigail_attack_fx_ground` / active |
 | [[reference/prefabs/spear_gungnir_lungefx|长矛突刺表现]] | 3 注册：奔雷矛八向突刺光与装备跟随层（换绑与皮肤偏移）、冈尼尔突刺（事件包缺口） | `spear_gungnir_lungefx`、`spear_wathgrithr_lightning_lunge_fx`、`spear_wathgrithr_lightning_fx` / active |
 | [[reference/prefabs/voidcloth_boomerang_launch_fx|虚布回旋镖与皮弗娄牛复活雷光]] | 3 注册：回旋镖发射与命中、牛复活雷 | voidcloth_boomerang_impact_fx、beefalo_reviving_lightning_fx / active |
-| [[reference/prefabs/voidcloth_boomerang_fx|虚布装备持握层与弹体]] | 5 注册：回旋镖两层持握帧层（本体仅 ClearOverride 的新发现）、魔镰、暗影伞；proj 混合载体伤害在弹体 | `voidcloth_boomerang_fx`、`voidcloth_boomerang_proj`、`voidcloth_scythe_fx`、`voidcloth_umbrella_fx` / active |
+| [[reference/prefabs/voidcloth_boomerang_fx|虚布装备持握层与弹体]] | 4 注册：回旋镖两层持握帧层（本体仅 ClearOverride 的新发现）、魔镰持握层、暗影伞持握层；proj 混合载体伤害在弹体，魔镰本体归专页（`voidcloth_scythe`） | `voidcloth_boomerang_fx`、`voidcloth_boomerang_proj`、`voidcloth_scythe_fx`、`voidcloth_umbrella_fx` / active |
 | [[reference/prefabs/brilliance_projectile_fx|亮茄魔杖辉光弹]] | 亮茄弹跳投射物；命中额度、闪爆与武器伤害 | `brilliance_projectile_blast_fx` / active |
 | [[reference/prefabs/shadowthrall_projectile_fx|墨荒弹幕投射物]] | 墨荒弹幕真实伤害；落地 AOE 与共享去重 | — / active |
 | [[reference/prefabs/eye_charge|有表现的玩法载体（眼弹、诱鱼区、黏块、速爆弹）]] | 4 注册：炮塔眼弹、落海诱鱼区、可装瓶小黏块与速爆弹；伤害/定身/吸附归属分清 | `chum_aoe`、`gelblob_small_fx`、`fused_shadeling_quickfuse_bomb` / active |

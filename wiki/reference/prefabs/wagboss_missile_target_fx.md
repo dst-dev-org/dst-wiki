@@ -1,13 +1,13 @@
 ---
 title: "WAGboss 导弹落点与无人机电束电球（5 注册）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "WAGboss 阵营外围五注册：热追踪导弹的客户端落点环、黄莺／动能场扩展器的电束、黄莺与电刑机的电球弹体；两类混合载体自带 combat，伤害归属与选取规则各不相同。"
 aliases: ["wagboss_missile_target_fx", "wagdrone_laserwire_fx", "wagpunk_cagewall_fx", "wagdrone_projectile_fx", "wx78_drone_zap_projectile_fx", "热追踪导弹落点", "黄莺电束", "电刑机电球", "动能场扩展器电束"]
 tags: [prefab, fx, server-client]
 size_class: complex
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/wagboss_missile.lua", "prefabs/wagdrone_laserwire.lua", "prefabs/wagdrone_projectile.lua", "prefabs/wagdrone_rolling.lua", "prefabs/wagdrone_common.lua", "components/combat.lua", "stategraphs/SGwagdrone_flying.lua", "stategraphs/SGwx78_drone_zap.lua", "components/wagpunk_arena_manager.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -109,7 +109,7 @@ inst.ring:StartTweenFromXZ(x + 3 * math.cos(theta), z - 3 * math.sin(theta))
 | 目标分享／仇恨 | 无 | 20 范围内把 `ATTACK` 放进 `_actiondata` 给 caster；15 范围内给目标推 0 伤害 `attacked` 事件 |
 | 名称覆写 | `wagdrone_flying`（黄莺） | `wx78_drone_zap`（电刑机） |
 
-（[调值](../../../raw/current/scripts/tuning.lua#L8671-L8676)、[WX78 调值](../../../raw/current/scripts/tuning.lua#L7541-L7544)、[筛选](../../../raw/current/scripts/prefabs/wagdrone_projectile.lua#L262-L283)）
+（[调值](../../../raw/current/scripts/tuning.lua#L8672-L8677)、[WX78 调值](../../../raw/current/scripts/tuning.lua#L7542-L7545)、[筛选](../../../raw/current/scripts/prefabs/wagdrone_projectile.lua#L262-L283)）
 
 ## 伤害归属与数值
 
@@ -176,3 +176,4 @@ fx:SetBeam(length, angle) -- 主模拟；客户端经 beamdirty 重建分段
 
 - [[reference/prefabs/shadow_despawn|暗影消散、舞台影手与暗影憎恶光束]]（混合 FX 自带 combat 的对照页）
 - 返回 [[reference/prefabs/fx-combat-index|攻击、弹道与落点]]（WAGboss／无人机）
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处，tuning.lua 常量段 +1 行；CRLF 页按原字节格式宿主编辑），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-01）。

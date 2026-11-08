@@ -1,12 +1,12 @@
 ---
 title: "tackler"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "为伍迪鹿形冲撞提供前方碰撞、践踏和悬崖探测；位移与中断清理由人物状态机负责。"
 aliases: ["tackler", "鹿形冲撞", "伍迪冲锋", "冲撞砍树采矿", "冲锋边缘检测"]
 tags: [component, actions, state-machine, callback]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: [components/tackler.lua, prefabs/woodie.lua, actions.lua, stategraphs/SGwilson.lua, stategraphs/SGwilson_client.lua]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ end)
 - 结构检查：本页元数据、链接、大小与源码引用定向检查通过；完整 modmain 示例通过现有 Full Moon／Lua 5.1 语法检查。
 - 游戏运行：未运行；冲撞建筑／工作对象差异、PVP、落水与联机中断清理仍需实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

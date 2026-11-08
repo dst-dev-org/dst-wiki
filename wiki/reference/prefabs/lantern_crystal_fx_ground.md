@@ -1,13 +1,13 @@
 ---
 title: "盐灯持续光点特效（lantern_crystal_fx_ground）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "盐灯皮肤提灯的持续光点动画特效：同一工厂用共同函数注册 ground 与 held 两个实体，显式循环播放 idle 动画，无粒子；KillFX 立即 Remove，无 pst 动画。"
 aliases: ["lantern_crystal_fx_ground", "lantern_crystal_fx_held", "盐灯特效", "盐灯光点", "提灯光尘特效"]
 tags: [prefab, fx, lifecycle, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/lantern_crystal_fx.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "prefabs/mininglantern.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -60,3 +60,4 @@ status: active
 
 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

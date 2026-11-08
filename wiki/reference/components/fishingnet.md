@@ -1,12 +1,12 @@
 ---
 title: fishingnet
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "渔网物品的薄逻辑入口：只按目标点生成渔网表现实体并移交投网流程，动作、耐久与捕获都在别处。"
 aliases: ["渔网", "渔网组件", "投网", "撒网", "fishingnet"]
 tags: [component, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/fishingnet.lua", "components/fishingnetvisualizer.lua", "prefabs/fishingnet.lua", "prefabs/forest.lua", "prefablist.lua", "recipes.lua", "scrapbook_prefabs.lua", "prefabs/player_common.lua", "debugcommands.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua", "stategraphs/SGfishingnetvisualizer.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ end
 - 游戏运行：未运行；未覆盖多人客户端表现、存档往返与耐久耗尽时的移除时序。
 - 结构检查：`validate_page.py`（`--format` 指向页面格式、`--source-root` 指向源码根）通过，0 error；`validate_source_links.py --strict` 通过，本文 32 处行锚点、28 个唯一目标、14 个源文件，0 error／0 warning。文中 Lua 片段为节选，单独写过临时文件做 `parser_probe --syntax-only`，解析通过（exit 0），临时文件已删除。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

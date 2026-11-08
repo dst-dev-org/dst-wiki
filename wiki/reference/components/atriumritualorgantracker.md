@@ -1,12 +1,12 @@
 ---
 title: "atriumritualorgantracker"
 created: "2026-10-26"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: "component"
 summary: "洞穴世界宿主组件：登记中庭仪式已掉落器官 prefab 表；激活且蠕虫器官仍缺时保底 worm_boss 波，shrouden 被击败后整表重置。"
 aliases: ["中庭仪式器官追踪", "仪式器官表", "atriumritualorgantracker"]
 tags: ["component", "lifecycle"]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/atriumritualorgantracker.lua", "prefabs/cave.lua", "prefabs/atrium_gate.lua", "prefabs/atrium_ritual_organs.lua", "components/charliecutscene.lua", "prefabs/charlie_boss_trial.lua", "components/hounded.lua", "prefabs/rocky_boss.lua", "tuning.lua"]
 reliability: "verified"
 validation: "source-reviewed"
@@ -79,3 +79,4 @@ end)
 - 结构检查：2026-10-26 validate_page（simple 档）与源码链接 --strict 通过；Lua 示例语法检查通过；本批依据见[[updates/build-26335394/index#wiki-沿用记录]]（批次-2）。
 
 相关：[[reference/components/rockybossspawner]]、[[reference/components/charlie_tracker]]、[[reference/components/shard_charlieinfo]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

@@ -1,12 +1,12 @@
 ---
 title: "containerinstallableitem"
 created: "2026-10-22"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "让库存物品进入指定容器时安装到目标实体，并处理退出、替换顺序与弹弓配件通知。"
 aliases: ["containerinstallableitem", "容器安装物品", "弹弓配件安装卸载", "延后卸载"]
 tags: [component, item, callback, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/containerinstallableitem.lua", "components/slingshotmods.lua", "prefabs/slingshotparts.lua", "prefabs/slingshotpart_defs.lua", "prefabs/slingshotmodscontainer.lua", "prefabs/slingshot.lua", "componentactions.lua", "actions.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -81,3 +81,4 @@ end)
 - 结构检查：本页元数据、链接、源码行号与大小通过；完整 modmain 示例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；槽位替换、满库存去向、读档恢复、主机／远端和模组回调兼容仍待游戏验证。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

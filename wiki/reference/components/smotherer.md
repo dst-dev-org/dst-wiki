@@ -1,12 +1,12 @@
 ---
 title: "smotherer"
 created: "2026-10-21"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "空标记组件：让持有它的物品注册 SMOTHER（以及带 frozen 标签时的 MANUALEXTINGUISH）动作；实际消耗与灭火状态在 actions 与 burnable。"
 aliases: ["扑灭阴燃", "闷熄", "手动灭火", "SMOTHER", "smotherer"]
 tags: [component, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/smotherer.lua", "componentactions.lua", "actions.lua", "components/burnable.lua", "components/playeractionpicker.lua", "components/playercontroller.lua", "entityscript.lua", "tuning.lua", "prefabs/fertilizer.lua", "prefabs/poop.lua", "prefabs/guano.lua", "prefabs/compost.lua", "prefabs/compostwrap.lua", "prefabs/mosquitofertalizer.lua", "prefabs/spoiledfood.lua", "prefabs/inv_rocks_ice.lua", "prefabs/snowball_item.lua"]
 reliability: verified
 validation: source-reviewed
@@ -87,3 +87,4 @@ status: active
 
 相关：[[reference/components/burnable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

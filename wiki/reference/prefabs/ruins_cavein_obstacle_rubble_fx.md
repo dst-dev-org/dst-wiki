@@ -1,12 +1,12 @@
 ---
 title: "废墟落石碎屑与炼金打印舱皮肤 FX（ruins_cavein_obstacle_rubble_fx、researchlab2_pod_fx）"
 created: "2026-11-04"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "两个宿主专属的纯表现注册：遗迹落石障碍采完后在原地生成的碎屑（联网、以自身为声源播碎裂声、animover 自删），以及炼金引擎「炼金打印舱」皮肤挂在宿主下的待机装饰层（DECOR/NOCLICK、0 组件、由皮肤清除函数移除）。"
 aliases: ["ruins_cavein_obstacle_rubble_fx", "researchlab2_pod_fx", "废墟落石碎屑", "落石碎屑特效", "炼金打印舱特效", "实验室吊舱皮肤特效", "遗迹落石碎屑"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/ruins_cavein_obstacle.lua", "prefabs/minotaur.lua", "prefabs/scienceprototyper.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "components/highlight.lua", "skin_assets.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -88,3 +88,4 @@ end
 - 第 17 轮补正（2026-11-07）：四符号覆写锚点改到 `prefabskin.lua` 的 init_fn 与 placer／客户端门禁；碎屑改为“工厂无外部参数与 assets，但注册沿用同文件 `prefabs` 预载表”；`startobstacledrop` 补 spawnlocation／25² 距离门禁、3～4 次尝试与每次最多 8 个候选，不保证最终数量。
 
 返回 [[reference/prefabs/fx-structure-index|建筑、装置与遗迹演出]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

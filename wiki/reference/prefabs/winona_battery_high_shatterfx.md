@@ -1,12 +1,12 @@
 ---
 title: "薇诺娜宝石发电机设备特效族（winona_battery_high_shatterfx 等 5 注册）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "薇诺娜工程设备外围的 5 个 FX 注册：宝石发电机的碎宝石动画与纯粹辉煌宝石槽跟随层（由电池结构／便携物品的同一组宝石函数生成）、电线火花（4 台带电路设备的连线/拆除共用、不走通用代理工厂）、聚光灯灯头（本体隐藏发光层由独立联网实体承载）与传送伞持握层（装备时按帧区间分工的两层换装覆盖）。"
 aliases: ["winona_battery_high_shatterfx", "winona_battery_sparks", "winona_spotlight_head", "winona_telebrella_swap_fx", "purebrilliance_symbol_fx", "宝石发电机碎裂特效", "薇诺娜电线火花", "聚光灯灯头", "传送伞持握层", "纯粹辉煌符号特效", "薇诺娜的宝石发电机", "薇诺娜的聚光灯", "传送伞"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/winona_battery_high.lua", "prefabs/winona_battery_sparks.lua", "prefabs/winona_spotlight.lua", "prefabs/winona_telebrella.lua", "prefabs/purebrilliance.lua", "prefabs/winona_teleport_pad.lua", "prefabs/winona_catapult.lua", "prefabs/winona_remote.lua", "prefabs/winona_storage_robot.lua", "prefabs/alterguardianhatshard.lua", "mainfunctions.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -29,7 +29,7 @@ status: active
 |---|---|---|
 | `winona_battery_high_shatterfx` | Transform／AnimState／Network；bank／build `gems`、默认播 `redgem_shatter`；标签 `FX`＋`NOCLICK`；主模拟 `persists=false`＋`animover` 自删 | 无 SoundEmitter（碎裂音由宿主播）；生成后 `LoseGem` 按 `gemname.."_shatter"` 重播对应动画（如 `bluegem_shatter`），并二选一定位：跟随宝石槽符号或落到世界坐标。[工厂](../../../raw/current/scripts/prefabs/winona_battery_high.lua#L1439-L1463)、[LoseGem](../../../raw/current/scripts/prefabs/winona_battery_high.lua#L149-L162)、[注册](../../../raw/current/scripts/prefabs/winona_battery_high.lua#L1578-L1581) |
 | `purebrilliance_symbol_fx` | Transform／AnimState／Follower／Network；bank／build `purebrilliance`、`idle_sparkle` 循环、泛光 shader＋符号提亮；标签 `FX`＋`NOCLICK`；主模拟随机起始帧、`persists=false` | 纯粹辉煌物品文件内的**符号跟随专用工厂**（[注释](../../../raw/current/scripts/prefabs/purebrilliance.lua#L101)"Used as symbol follower by winona_battery_high"）；无自删，由电池 `UnsetGem` 显式移除。同文件另有物品本体 `purebrilliance`（本页不覆盖）。[工厂](../../../raw/current/scripts/prefabs/purebrilliance.lua#L102-L126)、[注册](../../../raw/current/scripts/prefabs/purebrilliance.lua#L128-L129) |
-| `winona_spotlight_head` | Transform／AnimState／Network；`EightFaced`；bank／build `winona_spotlight`、播 `idle`、Hide `leg`／`ground_shadow`／`wire`、`FinalOffset(1)`、初始 `SetHeadTilt(1,false)`；非专用端自建本地光柱子体（`light_shimmer` 循环、泛光、LightOverride 0.7、跟随自身 `light_shaft_follow` 符号）；主模拟加 `colouradder` | 灯罩／光柱层独立成实体：本体 `fn` 把自己的 `light`／`light_tilt*`／`light_shaft*` 层全部 Hide，发光部分都由灯头承载；`SetHeated` 方法热浪换 `light_shimmer_heat`。`persists` 未置 false（随本体存档语义，见清理）。[工厂](../../../raw/current/scripts/prefabs/winona_spotlight.lua#L1228-L1269)、[光柱子体](../../../raw/current/scripts/prefabs/winona_spotlight.lua#L1184-L1204)、[本体藏层](../../../raw/current/scripts/prefabs/winona_spotlight.lua#L1056-L1061)、[注册](../../../raw/current/scripts/prefabs/winona_spotlight.lua#L1374-L1377) |
+| `winona_spotlight_head` | Transform／AnimState／Network；`EightFaced`；bank／build `winona_spotlight`、播 `idle`、Hide `leg`／`ground_shadow`／`wire`、`FinalOffset(1)`、初始 `SetHeadTilt(1,false)`；非专用端自建本地光柱子体（`light_shimmer` 循环、泛光、LightOverride 0.7、跟随自身 `light_shaft_follow` 符号）；主模拟加 `colouradder` | 灯罩／光柱层独立成实体：本体 `fn` 把自己的 `light`／`light_tilt*`／`light_shaft*` 层全部 Hide，发光部分都由灯头承载；`SetHeated` 方法热浪换 `light_shimmer_heat`。`persists` 未置 false（随本体存档语义，见清理）。[工厂](../../../raw/current/scripts/prefabs/winona_spotlight.lua#L1228-L1269)、[光柱子体](../../../raw/current/scripts/prefabs/winona_spotlight.lua#L1184-L1204)、[本体藏层](../../../raw/current/scripts/prefabs/winona_spotlight.lua#L1056-L1061)、[注册](../../../raw/current/scripts/prefabs/winona_spotlight.lua#L1375-L1378) |
 | `winona_telebrella_swap_fx` | Transform／AnimState／Follower／Network；bank／build `winona_telebrella`、播 `swap1`；`led_on` 泛光＋提亮；标签 `FX`；Pristine 前挂 `highlightchild`；主模拟加 `colouradder`＋`SetLedEnabled` 方法（`led_on`/`led_off` 符号互换＋泛光开关）；`persists=false` | 持握层不是贴图而是**动画覆盖**：两层实例按帧区间分工跟随 `swap_object` 符号（见生成点）；LED 亮灭由技能 `winona_wagstaff_2` 门控。[工厂](../../../raw/current/scripts/prefabs/winona_telebrella.lua#L490-L523)、[FX_SetLedEnabled](../../../raw/current/scripts/prefabs/winona_telebrella.lua#L474-L488)、[注册](../../../raw/current/scripts/prefabs/winona_telebrella.lua#L525-L526) |
 | `winona_battery_sparks` | Transform／AnimState／Network；bank／build `sparks`、Pristine 前播 `sparks_1`、`SetAddColour(1,1,0,0)` 黄色加色、LightOverride 0.3；标签 `FX`＋`NOCLICK`；主模拟随机 1–3 重选 `sparks_2/3`＋`animover` 自删＋`persists=false` | 无 SoundEmitter（电音由宿主播）；单实体直挂 `Follower`，不需要代理＋本地双层结构。[工厂](../../../raw/current/scripts/prefabs/winona_battery_sparks.lua#L7-L38)、[注册](../../../raw/current/scripts/prefabs/winona_battery_sparks.lua#L40) |
 
@@ -127,3 +127,4 @@ end
 - [[reference/prefabs/sparks|电击命中火花（sparks 族）]]（同名 bank 的另一独立工厂；对照代理 vs 直挂两种联网方案）
 - [[reference/prefabs/slingshotammo_purebrilliance_debuff_fx|弹弓弹药减益表现]]（`purebrilliance` 主题的另一条表现链：命中标记双层）
 - 返回 [[reference/prefabs/fx-structure-index|建筑、装置与遗迹演出]]（装备／薇诺娜设备）
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-12）。

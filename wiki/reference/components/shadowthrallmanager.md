@@ -1,12 +1,12 @@
 ---
 title: "shadowthrallmanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级影牢组件：月之暗裂开启后占用梦魇裂缝，在玩家附近布置瘴气环并按裂缝类型生成三随从或巨口影怪，战斗脱战或全灭后释放裂缝进入冷却。"
 aliases: ["影怪三随从管理", "梦魇裂缝控制", "shadowthrallmanager"]
 tags: [component, creature, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/shadowthrallmanager.lua", "prefabs/nightmarefissure.lua", "components/corruption.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -32,8 +32,8 @@ status: active
 | `thralltype` | `THRALL_TYPES.SHADOW.TRIO or .MOUTH` | 来自裂缝池事件的 `riftthralltype`；王之杖强制腐化时为 nil，刷怪时随机五五开（[L160-L168](../../../raw/current/scripts/components/shadowthrallmanager.lua#L160-L168)、[L228-L231](../../../raw/current/scripts/components/shadowthrallmanager.lua#L228-L231)、[constants](../../../raw/current/scripts/constants.lua#L2802)）。 |
 | `RegisterFissure(inst)` / `UnregisterFissure(inst)` / `IsRegisteredFissure(inst)` | — | 裂缝实体唤醒／睡眠时由 prefab 维护候选池（带 onremove 监听）；只有 `fissure`/`fissure_lower` prefab 参与（[L189-L205](../../../raw/current/scripts/components/shadowthrallmanager.lua#L189-L205)、[注册钩子](../../../raw/current/scripts/prefabs/nightmarefissure.lua#L311-L325)、[允许表](../../../raw/current/scripts/prefabs/nightmarefissure.lua#L299-L302)）。 |
 | `ReleaseFissure(cooldown)` | 秒 | 释放控制：清刷怪任务、设内部冷却（下限 5s）、`OnReleasedFromControl`、清瘴气、无掉落击杀残存影怪（[L405-L443](../../../raw/current/scripts/components/shadowthrallmanager.lua#L405-L443)、[KillThrall](../../../raw/current/scripts/components/shadowthrallmanager.lua#L390-L403)）。 |
-| `SafeToReleaseFissure()` | → bool | 加载宽限 5s 内不许释放；任一影怪在战斗（有目标或 15s 内受过攻击，[TUNING](../../../raw/current/scripts/tuning.lua#L7771)）则不放（[L284-L306](../../../raw/current/scripts/components/shadowthrallmanager.lua#L284-L306)、[L270-L282](../../../raw/current/scripts/components/shadowthrallmanager.lua#L270-L282)）。 |
-| `OnDreadstoneMineCooldown(fromload)` / `OnFissureMinedFinished(fissure)` | — | 挖恐石冷却转发给裂缝；挖完后 1 日再恢复可挖（[L470-L490](../../../raw/current/scripts/components/shadowthrallmanager.lua#L470-L490)、[TUNING](../../../raw/current/scripts/tuning.lua#L7773)）。 |
+| `SafeToReleaseFissure()` | → bool | 加载宽限 5s 内不许释放；任一影怪在战斗（有目标或 15s 内受过攻击，[TUNING](../../../raw/current/scripts/tuning.lua#L7772)）则不放（[L284-L306](../../../raw/current/scripts/components/shadowthrallmanager.lua#L284-L306)、[L270-L282](../../../raw/current/scripts/components/shadowthrallmanager.lua#L270-L282)）。 |
+| `OnDreadstoneMineCooldown(fromload)` / `OnFissureMinedFinished(fissure)` | — | 挖恐石冷却转发给裂缝；挖完后 1 日再恢复可挖（[L470-L490](../../../raw/current/scripts/components/shadowthrallmanager.lua#L470-L490)、[TUNING](../../../raw/current/scripts/tuning.lua#L7774)）。 |
 | `FindGoodFissureLocation()` | → x, y, z 或 nil | 世界设置 `fissure ~= "never"` 时复用现有裂缝，否则在处于 `Nightmare` 区域的玩家 30 距离外找无建筑点生成临时 `fissure`（[L87-L124](../../../raw/current/scripts/components/shadowthrallmanager.lua#L87-L124)、[L42-L58](../../../raw/current/scripts/components/shadowthrallmanager.lua#L42-L58)）。 |
 
 ## 关键流程
@@ -42,7 +42,7 @@ status: active
 
 1. 触发：影裂裂缝入池 → 记录 thralltype，1.13s 周期 `TickFindingGoodFissures`（内部冷却期间跳过）选最近裂缝或生成临时裂缝并 `ControlFissure`（[L87-L141](../../../raw/current/scripts/components/shadowthrallmanager.lua#L87-L141)）。
 2. 展开：裂缝动画完成 → 瘴气环 + 刷怪任务；玩家靠近到 14 内才实际生成三只影怪并互相用 entitytracker 结伴（[L207-L250](../../../raw/current/scripts/components/shadowthrallmanager.lua#L207-L250)）。
-3. 释放路径：裂缝被移除（战斗打掉）或所有玩家远离（`UnregisterFissure`）→ 若不安全则起战斗检查任务轮询；任一随从被灭走 `FISSURE_COOLDOWN_DEFEATED_ANY_THRALLS`（3 日），否则 `FISSURE_COOLDOWN_WALKED_AWAY`（1/8 日）（[L170-L187](../../../raw/current/scripts/components/shadowthrallmanager.lua#L170-L187)、[L318-L332](../../../raw/current/scripts/components/shadowthrallmanager.lua#L318-L332)、[tuning](../../../raw/current/scripts/tuning.lua#L7769-L7770)）。
+3. 释放路径：裂缝被移除（战斗打掉）或所有玩家远离（`UnregisterFissure`）→ 若不安全则起战斗检查任务轮询；任一随从被灭走 `FISSURE_COOLDOWN_DEFEATED_ANY_THRALLS`（3 日），否则 `FISSURE_COOLDOWN_WALKED_AWAY`（1/8 日）（[L170-L187](../../../raw/current/scripts/components/shadowthrallmanager.lua#L170-L187)、[L318-L332](../../../raw/current/scripts/components/shadowthrallmanager.lua#L318-L332)、[tuning](../../../raw/current/scripts/tuning.lua#L7770-L7771)）。
 4. 全灭兜底：影怪 onremove 计数到 0 也触发释放（[L353-L388](../../../raw/current/scripts/components/shadowthrallmanager.lua#L353-L388)）。
 5. 存档：保存冷却、恐石/刷怪计时余量与裂缝／瘴气／影怪 GUID；未完成展开动画的裂缝不存（[L557-L605](../../../raw/current/scripts/components/shadowthrallmanager.lua#L557-L605)）；LoadPostPass 重绑并按需补 `CheckForNoThralls`（[L625-L659](../../../raw/current/scripts/components/shadowthrallmanager.lua#L625-L659)）。
 
@@ -58,3 +58,4 @@ status: active
 - 游戏运行：未运行。
 - 结构检查：validate_page、validate_source_links --strict、Lua 语法探测通过（见批级记录）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 3 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

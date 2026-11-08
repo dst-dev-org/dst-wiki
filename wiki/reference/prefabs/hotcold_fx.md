@@ -1,13 +1,13 @@
 ---
 title: "小惊吓的冷热寻物指示（hotcold_fx）"
 created: "2026-11-05"
-updated: "2026-11-05"
+updated: "2026-11-08"
 type: prefab
 summary: "小惊吓寻物任务中挂在它头发上的冷热提示：按玩家到最近失落玩具的距离缩放，越近越大；随任务开始生成、完成时移除（放弃路径不清理）。"
 aliases: ["hotcold_fx", "冷热指示", "寻物冷热特效", "小惊吓头顶指示", "热冷提示"]
 tags: [prefab, fx, server-client]
 size_class: simple
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/smallghost.lua", "stategraphs/SGsmallghost.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -86,3 +86,4 @@ inst._hotcold_fx.entity:AddFollower():FollowSymbol(inst.GUID, "smallghost_hair",
 ## 相关链接
 
 - 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]（小惊吓）
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

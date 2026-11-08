@@ -1,12 +1,12 @@
 ---
 title: 地陷尘爆与落石预警族（sinkhole_spawn_fx 等三族）
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-08
 type: prefab
 summary: "蚁狮地陷袭击链上的 7 个纯表现 FX：地陷尘爆三名（陷坑塌陷/修复、巨兽落坑、翻地补尘）、地面预警小尘三名（表面端袭击倒计时）、洞穴落石碎屑（洞穴端同链警告）；玩法作用全部在生成者。"
 aliases: ["sinkhole_spawn_fx_1", "sinkhole_spawn_fx_2", "sinkhole_spawn_fx_3", "sinkhole_warn_fx_1", "sinkhole_warn_fx_2", "sinkhole_warn_fx_3", "cavein_debris", "地陷尘爆", "落石预警", "洞穴落石碎屑", "蚁狮地陷特效", "塌陷尘土"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "prefabs/antlion_sinkhole.lua", "prefabs/eyeofterror_sinkhole.lua", "stategraphs/SGeyeofterror.lua", "components/sinkholespawner.lua", "components/caveins.lua", "components/quaker.lua", "stategraphs/SGdaywalker.lua", "stategraphs/SGbearger.lua", "components/autoterraformer.lua", "prefabs/hats.lua", "prefabs/cave.lua", "componentutil.lua", "components/terraformer.lua", "prefabs/pitchfork.lua", "prefabs/farm_plow.lua", "prefabs/fossilized_fx.lua", "prefabs/lavaarena_fossilizing.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ end
 - 结构检查：validate_page.py（--format --check-indexes）与 validate_source_links.py --strict 已执行，结果见交付报告。
 
 返回 [[reference/prefabs/fx-world-index|天气、地形与生态痕迹]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

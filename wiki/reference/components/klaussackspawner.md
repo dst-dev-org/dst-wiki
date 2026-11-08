@@ -1,12 +1,12 @@
 ---
 title: "klaussackspawner"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "Klaus 袋冬季生成器：在鹿群繁殖点择优埋 klaus_sack，受 worldsettingstimer 冬季重生成计时与冬日盛宴事件分支控制。"
 aliases: ["克劳斯袋子生成", "Klaus袋生成器", "klaussackspawner"]
 tags: [component, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/klaussackspawner.lua", "prefabs/forest.lua", "prefabs/world.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -53,3 +53,4 @@ status: active
 
 相关：[[reference/components/klaussackloot]]（袋子掉落）、[[reference/components/klaussacklock]]（袋锁链）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-05）。

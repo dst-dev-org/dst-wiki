@@ -1,12 +1,12 @@
 ---
 title: "铲子与黄金铲子（shovel／goldenshovel）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "MakeShovel 工厂两注册的基础挖掘工具族：DIG 工具与弱武器、耐久消耗（金铲折算）、HANDS 装备持握与皮肤接线、耗尽即移除的组装入口。"
 aliases: ["shovel", "goldenshovel", "铲子", "黄金铲子", "Shovel", "Regal Shovel", "金铲", "挖掘工具", "铲子挖坑"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/shovel.lua", "components/equippable.lua", "components/tool.lua", "components/weapon.lua", "components/finiteuses.lua", "actions.lua", "componentactions.lua", "bufferedaction.lua", "entityscript.lua", "standardcomponents.lua", "modutil.lua", "mainfunctions.lua", "constants.lua", "tuning.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -92,3 +92,4 @@ end)
 - 结构检查：validate_page.py 与 validate_source_links.py 已实际运行，无 error（详见交付说明）。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

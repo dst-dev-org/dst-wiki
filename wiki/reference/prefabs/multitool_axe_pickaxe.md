@@ -1,12 +1,12 @@
 ---
 title: "多用斧镐（multitool_axe_pickaxe）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版双功能手持工具单注册：一个 tool 登记 CHOP+MINE 双动作并按动作分档扣次数、默认 tough work 门禁豁免反弹、影子等级接入，可作一工具多动作的组装参照。"
 aliases: ["multitool_axe_pickaxe", "多用斧镐", "Pick/Axe", "多功能工具斧镐", "斧镐"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["actions.lua", "bufferedaction.lua", "components/builder.lua", "components/equippable.lua", "components/finiteuses.lua", "components/playercontroller.lua", "components/shadowlevel.lua", "components/tool.lua", "components/weapon.lua", "components/workable.lua", "constants.lua", "languages/chinese_s.po", "map/static_layouts/oceanmonument.lua", "messagebottletreasures.lua", "prefabs/altar_prototyper.lua", "prefabs/axe_pickaxe.lua", "prefabs/chest_mimic.lua", "prefabs/charliearena_spike.lua", "prefabs/daywalker_pillar.lua", "prefabs/lunarrift_crystals.lua", "prefabs/nightmarefissure.lua", "prefabs/skinprefabs.lua", "prefabs/support_pillar.lua", "prefabs/waxwell.lua", "prefabskin.lua", "prefabskins.lua", "recipes.lua", "recipes_filter.lua", "scenarios/chest_labyrinth.lua", "scenarios/chest_labyrinth_mimic.lua", "scenarios/sunkenchest_oceanmonument.lua", "standardcomponents.lua", "stategraphs/SGshadowwaxwell.lua", "stringutil.lua", "tuning.lua", "widgets/itemtile.lua"]
 reliability: verified
 validation: source-reviewed
@@ -92,3 +92,4 @@ end)
 相关：[[reference/prefabs/axe|斧头族（配方原料黄金斧）]]、[[reference/prefabs/pickaxe|鹤嘴锄（配方原料黄金鹤嘴锄）]]、[[reference/components/tool|工作动作与效率]]、[[reference/components/workable#关键接口|目标侧工作顺序]]、[[reference/components/finiteuses|按动作分档扣次]]。
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

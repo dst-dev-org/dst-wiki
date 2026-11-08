@@ -1,12 +1,12 @@
 ---
 title: "miasmawatcher"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "玩家侧瘴气检测与减速：进出瘴气源时同步 classified、挂 debuff，并按护目镜／鬼魂视觉与骑乘豁免给 locomotor 挂减速。"
 aliases: ["瘴气检测", "瘴气减速", "miasmawatcher"]
 tags: [component, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/miasmawatcher.lua", "prefabs/miasma_cloud_fx.lua", "prefabs/player_common.lua", "prefabs/player_classified.lua", "simutil.lua", "prefabs/woodie.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -30,7 +30,7 @@ status: active
 | `AddMiasmaSource(src)` | 无返回 | 记录源 `src`；从无到有时写 classified、调 `UpdateMiasmaWalkSpeed`、挂 `miasmadebuff`。瘴气云在 `MIASMA_RADIUS` 内对可见实体调用。[云侧调用](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L443-L453) （[[reference/prefabs/miasma_cloud|瘴气云]]） |
 | `RemoveMiasmaSource(src)` | 无返回 | 移除源；归零时反向写 classified、解除减速与 debuff。[L31-L40](../../../raw/current/scripts/components/miasmawatcher.lua#L31-L40) |
 | `IsInMiasma()` | 布尔 | 返回 `hasmiasmasource:Get()`；simutil 在非玩家实体上作服务端判定回退。[IsInMiasma](../../../raw/current/scripts/components/miasmawatcher.lua#L42-L44)、[simutil](../../../raw/current/scripts/simutil.lua#L536-L538) |
-| `SetMiasmaSpeedMultiplier(mult)` | 数值，clamp 到 0..1 | 默认 `TUNING.MIASMA_SPEED_MOD = .4`；设 ≥1 时卸掉监听等于免疫。[L85-L100](../../../raw/current/scripts/components/miasmawatcher.lua#L85-L100)、[tuning](../../../raw/current/scripts/tuning.lua#L7730) |
+| `SetMiasmaSpeedMultiplier(mult)` | 数值，clamp 到 0..1 | 默认 `TUNING.MIASMA_SPEED_MOD = .4`；设 ≥1 时卸掉监听等于免疫。[L85-L100](../../../raw/current/scripts/components/miasmawatcher.lua#L85-L100)、[tuning](../../../raw/current/scripts/tuning.lua#L7731) |
 | `ToggleMiasma(active)` | 无返回 | 世界事件 `miasmacloudexists`（true/false）驱动；控制减速监听组的增删，不直接判"在瘴气里"。[L71-L83](../../../raw/current/scripts/components/miasmawatcher.lua#L71-L83)、[推送](../../../raw/current/scripts/prefabs/miasma_cloud_fx.lua#L651) |
 | `UpdateMiasmaWalkSpeed()` | 无返回 | 无源、护目镜视觉、鬼魂视觉或骑乘时不减速；否则 `locomotor:SetExternalSpeedMultiplier(inst,"miasma",mult)`。[L102-L113](../../../raw/current/scripts/components/miasmawatcher.lua#L102-L113) |
 | `enabled` | 布尔，默认 false | 世界里存在瘴气云才为 true；仅决定监听组是否挂载。[ToggleMiasma](../../../raw/current/scripts/components/miasmawatcher.lua#L74-L82) |
@@ -88,3 +88,4 @@ end)
 
 相关：[[reference/components/sandstormwatcher]]、[[reference/components/moonstormwatcher]]、[[reference/components/locomotor]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

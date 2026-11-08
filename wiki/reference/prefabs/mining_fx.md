@@ -1,12 +1,12 @@
 ---
 title: "采石碎屑（mining_fx）"
 created: "2026-10-30"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "共享采矿表现的普通与冰色两注册：commonstates 的 PlayMiningFX 按目标标签选名（frozen→冰、月晶与水晶→组外注册、其余→普通），玩家啃咬、猎犬与月兔直落点、蚁狮陷坑等十余处调用。"
 aliases: ["mining_fx", "mining_ice_fx", "采矿碎屑", "挖矿石特效", "冰屑特效"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/fx.lua", "fx.lua", "stategraphs/commonstates.lua", "stategraphs/SGwilson.lua", "stategraphs/SGhound.lua", "stategraphs/SGmoonpig.lua", "prefabs/antlion_sinkhole.lua", "prefabs/eyeofterror_sinkhole.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -75,3 +75,4 @@ fx.Transform:SetPosition(target.Transform:GetWorldPosition())
 
 返回 [[reference/prefabs/fx-material-index|采集、制作、碎裂与生成烟]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

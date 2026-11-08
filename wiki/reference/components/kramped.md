@@ -1,12 +1,12 @@
 ---
 title: "kramped"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "淘气值（naughtiness）与坎普斯惩罚的世界宿主组件：按 NAUGHTY_VALUE 记录每名玩家击杀的淘气度，衰减到阈值即在其 30 距离外生成坎普斯，阈值前播放分级警告音。"
 aliases: ["kramped", "淘气值管理器", "坎普斯生成器", "Krampus 惩罚"]
 tags: [component, callback, event]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/kramped.lua", "constants.lua", "tuning.lua", "prefabs/forest.lua", "prefabs/cave.lua"]
 reliability: verified
 validation: source-reviewed
@@ -28,7 +28,7 @@ status: active
 |---|---|---|
 | 玩家登记 | `ms_playerjoined`／`ms_playerleft` | 每人一份 `{player, actions=0, threshold=nil, timetodecay=60s}`；threshold 首次入账时才掷 `KRAMPUS_THRESHOLD(30) + random(VARIANCE 20)`。([kramped.lua:115-129](../../../raw/current/scripts/components/kramped.lua#L115-L129) |
 | `killed` 监听 | 实体事件 | `NAUGHTY_VALUE[data.victim.prefab]` 命中才计；本 build 起猪人／兔人键为函数值——狼猪态或科学怪猪、吸血兔受害者返回 0 不入账；影怪寄生宿主（`shadowthrall_parasite_hosted` 标签或 `was_shadowthrall_parasited`）不计；`FunctionOrValue` 支持表值为函数——函数返回 0 跳过入账，**返回 nil 会在 `naughty_val > 0` 比较处报错**（须保证返回数值）；旧版 0 值入账仍走 `OnNaughtyAction(0)`（首次掷阈值、重置衰减并播警告音），本 build 起被 >0 门完全跳过；`stackmult` 乘算批量击杀。([kramped.lua:87-99](../../../raw/current/scripts/components/kramped.lua#L87-L99) [值表](../../../raw/current/scripts/constants.lua#L2273-L2296) |
-| 阈值结算 | 私有闭包 `OnNaughtyAction` | `actions >= threshold` 时重置并生成 `1`（50 天前）／`1+random(RAMP 2)`（50-100 天）／`2+random(RAMP)`（100 天后）只坎普斯；`KRAMPUS_INCREASE_RAMP < 1`（即 never 档）直接返回。([kramped.lua:58-85](../../../raw/current/scripts/components/kramped.lua#L58-L85) [难度档](../../../raw/current/scripts/worldsettings_overrides.lua#L3492-L3531) |
+| 阈值结算 | 私有闭包 `OnNaughtyAction` | `actions >= threshold` 时重置并生成 `1`（50 天前）／`1+random(RAMP 2)`（50-100 天）／`2+random(RAMP)`（100 天后）只坎普斯；`KRAMPUS_INCREASE_RAMP < 1`（即 never 档）直接返回。([kramped.lua:58-85](../../../raw/current/scripts/components/kramped.lua#L58-L85) [难度档](../../../raw/current/scripts/worldsettings_overrides.lua#L3497-L3536) |
 | `MakeAKrampusForPlayer` | 私有闭包 | 距玩家 `SPAWN_DIST = 30` 找可行走点（洞内回退 `FindNearbyLand`），生成 `krampus`、面向玩家并挂 `spawnedforplayer`（玩家移除时清空）。([kramped.lua:45-56](../../../raw/current/scripts/components/kramped.lua#L45-L56) |
 | `DoWarningSound(player)` | 公开方法 | 差值 <20 时按 <5／<15 分级延迟 1-3 秒播 `krampuswarning_lvl3/2/1`；接近阈值警告更急。([kramped.lua:189-191](../../../raw/current/scripts/components/kramped.lua#L189-L191) [_DoWarningSound](../../../raw/current/scripts/components/kramped.lua#L174-L186) |
 | `OnUpdate(dt)` | 组件更新 | 有欠账的玩家每 `KRAMPUS_NAUGHTINESS_DECAY_PERIOD`（60s）减 1 点淘气度；构造即 `StartUpdatingComponent` 常驻。([kramped.lua:192-203](../../../raw/current/scripts/components/kramped.lua#L192-L203) |
@@ -67,3 +67,4 @@ TheWorld:PushEvent("ms_forcenaughtiness", { player = ThePlayer, numspawns = 1 })
 
 相关链接：[[reference/components/combat]]、[[reference/components/health]]
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

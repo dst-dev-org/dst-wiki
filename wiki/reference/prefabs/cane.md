@@ -1,12 +1,12 @@
 ---
 title: "步行手杖（cane）"
 created: "2026-10-29"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "手杖／加速手杖的装备移速、持握与七种皮肤映射：雪花、花瓣、彩纸、紫烟、闪光、影子和棋子拖尾的生成清理及 FX 页面入口。"
 aliases: ["cane", "步行手杖", "手杖", "加速手杖", "Walking Cane", "手杖皮肤特效", "远古手杖", "拐杖糖", "城堡手杖", "愚人手杖", "玫瑰红手杖", "腐败手杖", "山羊头手杖"]
 tags: [prefab, item, equipment, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/cane.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "standardcomponents.lua", "tuning.lua", "entityscript.lua", "languages/chinese_s.po", "prefabs/cane_ancient_fx.lua", "prefabs/cane_candy_fx.lua", "prefabs/cane_chess_fx.lua", "prefabs/cane_harlequin_fx.lua", "prefabs/cane_rose_fx.lua", "prefabs/cane_sharp_fx.lua", "prefabs/cane_victorian_fx.lua"]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ status: active
 
 返回 [[reference/prefabs/tools-field-index|工具与野外实用]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

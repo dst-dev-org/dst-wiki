@@ -1,0 +1,8 @@
+# 明细：组件（C）
+
+build 26335394 → 26474873。条目按五字段契约，编号 C-序号 在本报告内唯一。
+
+| 编号 | 变化 | 影响接入／条件 | 证据位置 | 核验状态 |
+|---|---|---|---|---|
+| C-1 | `hounded.lua` `PlanNextAttack` 存档恢复早退路径（`_timetoattack > 0 and not force`）补 `_attackplanned = true`（+1 行）。读档时 `OnLoad` 已按存档字段恢复 `_attackplanned`（`data.attackplanned or false`）；旧版问题只在存档标记为 false／缺失、倒计时仍 >0 时：`OnLoad` 调 `PlanNextAttack()` 走早退分支，旧代码不补记标记，`GetAttacking()`（`= _timetoattack <= 0 and _attackplanned`）保持 false、攻击处理循环（`#_activeplayers == 0 or not _attackplanned` 早退）不推进。 | 消费 `hounded` 组件查询（`GetAttacking`／`OnSave` 的 `attackplanned` 字段）的模组：仅上述分支的读档结果改变（此前不推进，现在推进）；存档带 `attackplanned=true` 的波次表现不变。`PlanNextAttack(force=true)` 主动重排路径不变；新世界首次规划路径（:199 置 true）不变。 | 旧:scripts/components/hounded.lua:162-166（无标记）；新:scripts/components/hounded.lua:162-167（:165 置 true）；消费:GetAttacking :746、循环门 :1052、OnSave :1137 | 已核验 |
+| C-2 | `squidspawner.lua` 鱿鱼群生成判相改读 `_worldstate.phase` 字符串：① `testforsquid` 白天跳过条件 `isday`→`phase == "day"`；② 夜晚翻倍 `isnight`→`phase == "night"`；③ `spawntask` 触发条件 `isnight or isdusk`→`phase == "night" or phase == "dusk"`。官方注释说明原因：该逻辑在 phase 变更事件内运行，此时派生布尔（isday 等）尚未更新（moonphase 同理，官方注明暂不修）。另 ④ 单群投放的抽样次数 `math.random(2, moonphase_max)`→`math.random(TUNING.SQUID_MIN_COUNT, moonphase_max)`（循环内每次尝试找到可游泳落点才排生成任务，是尝试次数而非生成数量）。 | 在 phase 变更监听内自建判相的模组有同样时序问题，可参考此写法改读 `phase` 字段；其他时机读派生布尔不受影响。投放尝试次数下限改由世界设置键控制（[R-1](detail-root.md)／[R-2](detail-root.md)），default 档数值不变（2）；`SQUID_MAX_NUMBERS[moonphase] < SQUID_MIN_COUNT` 时抽样为空区间（默认档满月 0<2），自然路径不进入，强制入口会触发。 | 旧:scripts/components/squidspawner.lua:48-56、:74-79、:89-94、:144-149；新:scripts/components/squidspawner.lua:48-59、:77-82、:92-97、:147-153 | 已核验 |

@@ -1,13 +1,13 @@
 ---
 title: "Boss 与狂欢节装备（恐怖盾牌／派对气球／防腐喷雾／推杆）"
 created: "2026-11-07"
-updated: "2026-11-07"
+updated: "2026-11-09"
 type: prefab
 size_class: standard
 summary: "四件 HANDS 事件/Boss/狂欢节装备：恐怖盾牌（armor 315/0.8、进食修复、攻击自损 2）、派对气球（装备生成随行气球、被打掉落、彩带云 buff）、防腐喷雾（waxspray 只对 needswaxspray 目标、75 用）、推杆（golfclub＋reticule、17 伤、tee 生成不可制作）。"
-aliases: ["shieldofterror", "balloonparty", "balloonparty_confetti_cloud", "beeswax_spray", "carnivalgame_golfclub", "恐怖盾牌", "派对气球", "防腐喷雾", "推杆", "高尔夫球杆", "Shield of Terror", "Party Balloon", "Embalming Spritz", "Putter"]
+aliases: ["shieldofterror", "balloonparty", "beeswax_spray", "carnivalgame_golfclub", "恐怖盾牌", "派对气球", "防腐喷雾", "推杆", "高尔夫球杆", "Shield of Terror", "Party Balloon", "Embalming Spritz", "Putter"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/shieldofterror.lua", "prefabs/eyeofterror.lua", "prefabs/balloonparty.lua", "prefabs/balloons_common.lua", "prefabs/beeswax_spray.lua", "prefabs/carnival_golfclub.lua", "prefabs/carnivalgame_golf_tee.lua", "prefabs/wes.lua", "components/equippable.lua", "components/weapon.lua", "components/armor.lua", "components/eater.lua", "components/shadowlevel.lua", "components/wax.lua", "components/waxable.lua", "components/finiteuses.lua", "components/golfclub.lua", "componentactions.lua", "recipes.lua", "tuning.lua", "constants.lua", "strings.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -29,7 +29,7 @@ status: active
 |---|---|---|
 | `shieldofterror` | fn：公共端 handfed/fedbyall/toolpunch/weapon/shadowlevel 标签＋漂浮 → 主模拟 eater(OMNI+HORRIBLE)、weapon、armor、equippable(HANDS)、shadowlevel(2) | HANDS 盾牌；眼魔双子 EXTRA_LOOT；进食修复护甲，攻击自损 2；护甲 315、吸收 0.8。[工厂](../../../raw/current/scripts/prefabs/shieldofterror.lua#L53-L124)、[掉落](../../../raw/current/scripts/prefabs/eyeofterror.lua#L688-L688) |
 | `balloonparty` | fn：漂浮气球物理＋balloon 标签 → 主模拟 BALLOONS.MakeBalloonMasterInit＋equippable（复用 balloons_common 的 OnEquip_Hand／OnUnequip_Hand） | Wes 派对气球机：装备生成 `balloon_held_child` 随行体，pop 落彩带云；被攻击即 DropItem。[工厂](../../../raw/current/scripts/prefabs/balloonparty.lua#L62-L119)、[装备](../../../raw/current/scripts/prefabs/balloons_common.lua#L93-L115) |
-| `balloonparty_confetti_cloud`／`_confetti_balloon`／`_buff` | confetti_fn：联网动画 FX＋每秒 ApplyBuff；confettiballoon_fn：非联网 FX 飞升；buff_fn：服务端隐藏 debuff（非主模拟自删） | cloud 每秒给 2.6 格内玩家挂 buff；小气球四颗升起；buff 按“派对规模”加理智。[cloud](../../../raw/current/scripts/prefabs/balloonparty.lua#L136-L188)、[buff](../../../raw/current/scripts/prefabs/balloonparty.lua#L193-L253) |
+| `balloonparty_confetti_cloud`／`_confetti_balloon`／`_buff` | confetti_fn：联网动画 FX＋每秒 ApplyBuff；confettiballoon_fn：非联网 FX 飞升；buff_fn：服务端隐藏 debuff（非主模拟自删） | cloud 每秒给 2.6 格内玩家挂 buff；小气球四颗升起；buff 按“派对规模”加理智。[cloud](../../../raw/current/scripts/prefabs/balloonparty.lua#L136-L188)、[buff](../../../raw/current/scripts/prefabs/balloonparty.lua#L193-L253)；云体生成、逐秒 AddDebuff 与清理归 [[reference/prefabs/balloon_held_child#彩带云的-debuff-链混合辨析]] |
 | `beeswax_spray` | fn：公共端动画＋漂浮 → 主模拟 inventoryitem、equippable(HANDS)、wax(`SetIsSpray`)、finiteuses(75) | 喷蜡罐：挂 `waxspray` 标签，只对 `needswaxspray` 目标给 WAX 动作；耗尽 Remove。[工厂](../../../raw/current/scripts/prefabs/beeswax_spray.lua#L102-L143)、[wax 标签](../../../raw/current/scripts/components/wax.lua#L19-L21)、[动作匹配](../../../raw/current/scripts/componentactions.lua#L1932-L1936) |
 | `carnivalgame_golfclub` | fn：公共端 weapon 标签＋漂浮＋golfclub_reticule → 主模拟 equippable(HANDS)、weapon(CANE_DAMAGE)、golfclub | 注册名与文件名不同（`carnival_golfclub.lua`）；由高尔夫 tee 生成，`persists=false`＋irreplaceable，不可制作。[工厂](../../../raw/current/scripts/prefabs/carnival_golfclub.lua#L37-L80)、[生成](../../../raw/current/scripts/prefabs/carnivalgame_golf_tee.lua#L103-L108) |
 
@@ -39,7 +39,7 @@ status: active
 
 `shieldofterror` 同时带 weapon 与 armor：weapon 伤害 `wilson_attack×1.5=51`；armor 为 `150×3×0.7=315` 耐久、吸收 0.8。owner 的 `onattackother` 监听里，若 `data.weapon==inst` 就 `TakeDamage(2)`；进食是唯一常规修复路径——`eater` 吃 OMNI＋HORRIBLE（可生肉），`Repair(|health|×4.0＋|hunger|×1.75)`。自损监听的是 `onattackother`（在实际伤害结算前触发），因此扣 2 与“这一击是否真的扣到目标”无关；装备时 onequip 覆盖 owner 的 `lantern_overlay` 符号并隐藏 swap_object，`shadowlevel` 默认 2；获取仅双子魔眼 EXTRA_LOOT，无配方，拆解返齿轮 2＋噩梦燃料 3。
 
-[配置](../../../raw/current/scripts/prefabs/shieldofterror.lua#L95-L108)、[自损](../../../raw/current/scripts/prefabs/shieldofterror.lua#L89-L93)、[进食修复](../../../raw/current/scripts/prefabs/shieldofterror.lua#L39-L50)、[常量](../../../raw/current/scripts/tuning.lua#L6445-L6448)、[拆解](../../../raw/current/scripts/recipes.lua#L1679-L1679)
+[配置](../../../raw/current/scripts/prefabs/shieldofterror.lua#L95-L108)、[自损](../../../raw/current/scripts/prefabs/shieldofterror.lua#L89-L93)、[进食修复](../../../raw/current/scripts/prefabs/shieldofterror.lua#L39-L50)、[常量](../../../raw/current/scripts/tuning.lua#L6446-L6449)、[拆解](../../../raw/current/scripts/recipes.lua#L1679-L1679)
 
 ### 派对气球：随行体、掉落与彩带 buff
 
@@ -74,3 +74,4 @@ status: active
 - 结构检查：validate_page 实测 76 行 / 11245 字节（standard 档 240 行／32 KiB 内）通过；strict 36 引用 0 错 0 警、30 唯一目标、12 源文件；record 后 23 组来源 unchanged。
 
 返回 [[reference/prefabs/staffs-character-index|法杖与角色道具]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

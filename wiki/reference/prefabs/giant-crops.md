@@ -1,13 +1,13 @@
 ---
 title: "巨型作物 heavy 持握（oversized／waxed／rotten 三变体工厂）"
 created: "2026-11-07"
-updated: "2026-11-08"
+updated: "2026-11-09"
 type: prefab
 size_class: standard
 summary: "veggies.lua 的 14 种有种子蔬菜×3 变体共 42 个 BODY heavy 注册：oversized／oversized_waxed／oversized_rotten 的工厂、0.15 减速与不可入容器、常温×4 腐烂三分支、蜂蜡无缝换手、gymweight 与 HAMMER 1 掉落；无种子 6 种不注册。"
 aliases: ["oversized", "waxed", "rotten", "veggies 巨型作物", "巨型作物", "超大作物", "打蜡巨型作物", "腐烂巨型作物", "carrot_oversized", "carrot_oversized_waxed", "carrot_oversized_rotten", "巨型胡萝卜", "巨型腐烂胡萝卜", "Trophy Scale 巨型作物"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/veggies.lua", "components/equippable.lua", "components/inventoryitem.lua", "components/heavyobstaclephysics.lua", "components/perishable.lua", "components/waxable.lua", "components/wax.lua", "components/weighable.lua", "components/mightygym.lua", "components/symbolswapdata.lua", "components/workable.lua", "components/lootdropper.lua", "standardcomponents.lua", "constants.lua", "tuning.lua", "strings.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -21,7 +21,7 @@ status: active
 - 职责与适用：`veggies.lua` 在 `MakeVeggie` 工厂内为**有种子**蔬菜追加三件 BODY heavy 变体——`<base>_oversized`、`<base>_oversized_waxed`、`<base>_oversized_rotten`。20 种蔬菜中 14 种有种子，故 42 个注册；`SEEDLESS` 的 6 种（浆果、香蕉、仙人掌肉、多汁浆果、无花果、海带叶）不注册。
 - 优先使用：BODY heavy 的通用物理与装备链查 [[reference/prefabs/heavy-items]] 与 [[reference/components/heavyobstaclephysics]]；腐烂／打蜡／称重分别查 [[reference/components/perishable]]、[[reference/components/waxable]]、[[reference/components/weighable]]。
 - 重要副作用：占 BODY 槽、`walkspeedmult=0.15`、不可入容器、沉水；普通 oversized 常温保鲜期×4；腐烂时按持有者/地面/健身架三分支处理；打蜡时若正被 heavy 持握会**卸下并直接装备蜡制版**，不是原地替换。蜡制版**没有 perishable**，不会腐坏；腐烂版带 `pickable`，锤或采摘均可取出。
-- 修改边界：本页只覆盖三件 oversized 变体；普通蔬菜、种子、农田与 `wurt_swamp_terraformer` 地形主体不展开（普通物品形态见 [[reference/prefabs/farm-crops-staple]]、[[reference/prefabs/farm-crops-fruit]]、[[reference/prefabs/farm-crops-spice]]）。蜡制版只掉 spoiled_food，腐烂版掉 `loot_oversized_rot`，都不是原作物。
+- 修改边界：本页只覆盖三件 oversized 变体；普通蔬菜、种子、农田与 `wurt_swamp_terraformer` 地形主体不展开（植株侧见 [[reference/prefabs/farm-plants]]；种子与敲碎掉种见 [[reference/prefabs/farm-crop-seeds]]；普通物品形态见 [[reference/prefabs/farm-crops-staple]]、[[reference/prefabs/farm-crops-fruit]]、[[reference/prefabs/farm-crops-spice]]）。蜡制版只掉 spoiled_food，腐烂版掉 `loot_oversized_rot`，都不是原作物。
 
 ## 注册与构造
 
@@ -78,3 +78,4 @@ status: active
 - 结构检查：`validate_page.py`（含 `--check-indexes`）通过；standard 档上限 240 行／32768 字节；`validate_source_links.py --strict` 0 error 0 warning。
 
 返回 [[reference/prefabs/storage-heavy-index|背包收纳与重物搬运]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

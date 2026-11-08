@@ -1,12 +1,12 @@
 ---
 title: "farming_manager"
 created: "2026-10-18"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "读写世界农田地块的三养分与水分，区分坐标、资格检查、增量限幅和作物压力结算。"
 aliases: ["土壤养分", "地块浇水", "锄地补水施肥", "farming_manager"]
 tags: [component, lifecycle, data, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/farming_manager.lua", "prefabs/world.lua", "components/map.lua", "components/farmtiller.lua", "prefabs/farm_hoe.lua", "standardcomponents.lua", "components/wateryprotection.lua", "prefabs/wateringcan.lua", "prefabs/farm_plants.lua", "prefabs/farm_plant_defs.lua", "tuning.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -94,3 +94,4 @@ end)
 - 结构检查：格式、来源、链接／行号、大小与登记通过；完整 modmain 示例通过已有 Full Moon Lua 5.1 syntax-only，不证明实际养分、水量或耗损效果。
 - 游戏运行：未运行；重复锄地、上限与世界湿度下限、同格多植物、存读／地形切换、分片及其他模组包装顺序待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

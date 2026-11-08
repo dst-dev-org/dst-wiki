@@ -1,12 +1,12 @@
 ---
 title: "dockmanager"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级码头瓦片管理器：在地图网格上登记 MONKEY_DOCK 瓦片的根连接、耐久与破损实体，处理建造、损伤修复、断裂队列与沉没清算。"
 aliases: ["dockmanager", "码头管理器", "monkey dock", "码头瓦片", "码头破坏"]
 tags: [component, building, data]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/dockmanager.lua", "prefabs/world.lua", "tuning.lua", "prefabs/dock_kit.lua", "prefabs/dock_damage.lua"]
 reliability: verified
 validation: source-reviewed
@@ -82,3 +82,4 @@ end
 ## 相关链接
 
 - [[reference/components/undertile]]：码头底瓦的保存与还原依赖。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-04）。

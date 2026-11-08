@@ -1,12 +1,12 @@
 ---
 title: "shadowthrall_mimics"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界级影子裂隙物品拟态生成器：暗影裂隙开启后按玩家周期性把黑暗中的可拟态物品克隆为 itemmimic，并供宝箱/拟态箱判定启用。"
 aliases: ["影子拟态生成", "shadowthrall_mimics", "物品拟态", "宝箱拟态"]
 tags: [component]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/shadowthrall_mimics.lua", "prefabs/itemmimic_data.lua", "prefabs/treasurechest.lua", "stategraphs/SGitemmimic_revealed.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -36,8 +36,8 @@ status: active
 ### 洞穴夜晚自动生成拟态
 
 - 前提与选择：原版在 `cave.lua` 挂载（[cave](../../../raw/current/scripts/prefabs/cave.lua#L572)）；`forest.lua` 也挂载但只承接从洞穴带回的拟态重新躲藏，不自动生成（[forest](../../../raw/current/scripts/prefabs/forest.lua#L720-L726)）。生成需同时满足：`ms_riftaddedtopool` 推入暗影亲和裂隙（[监听](../../../raw/current/scripts/components/shadowthrall_mimics.lua#L191)）且 `iscavenight` 为真（[开关](../../../raw/current/scripts/components/shadowthrall_mimics.lua#L109-L120)）。
-- 生效与撤销：每玩家 `DoPeriodicTask(10*(1+math.random()))` 尝试一次（[调度](../../../raw/current/scripts/components/shadowthrall_mimics.lua#L103-L107)）；活跃拟态数达 `TUNING.ITEMMIMIC_CAP`（=10，[数值](../../../raw/current/scripts/tuning.lua#L8520)）即停；搜索半径 15，候选须处于黑暗中或已休眠（[条件](../../../raw/current/scripts/components/shadowthrall_mimics.lua#L76-L92)）；裂隙移出池或白天到来时取消任务。
-- 原版依据：宝箱在 `resetruins`／`ms_riftaddedtopool` 时按 `TUNING.CHEST_MIMIC_CHANCE`（=0.33，[数值](../../../raw/current/scripts/tuning.lua#L8529)）变成 `chest_mimic`，仅要求组件存在且 `IsEnabled()`（[宝箱](../../../raw/current/scripts/prefabs/treasurechest.lua#L444-L447)）；拟态物现形失败时经 `SpawnMimicFor` 复制新目标（[SG](../../../raw/current/scripts/stategraphs/SGitemmimic_revealed.lua#L142-L143)）。
+- 生效与撤销：每玩家 `DoPeriodicTask(10*(1+math.random()))` 尝试一次（[调度](../../../raw/current/scripts/components/shadowthrall_mimics.lua#L103-L107)）；活跃拟态数达 `TUNING.ITEMMIMIC_CAP`（=10，[数值](../../../raw/current/scripts/tuning.lua#L8521)）即停；搜索半径 15，候选须处于黑暗中或已休眠（[条件](../../../raw/current/scripts/components/shadowthrall_mimics.lua#L76-L92)）；裂隙移出池或白天到来时取消任务。
+- 原版依据：宝箱在 `resetruins`／`ms_riftaddedtopool` 时按 `TUNING.CHEST_MIMIC_CHANCE`（=0.33，[数值](../../../raw/current/scripts/tuning.lua#L8530)）变成 `chest_mimic`，仅要求组件存在且 `IsEnabled()`（[宝箱](../../../raw/current/scripts/prefabs/treasurechest.lua#L444-L447)）；拟态物现形失败时经 `SpawnMimicFor` 复制新目标（[SG](../../../raw/current/scripts/stategraphs/SGitemmimic_revealed.lua#L142-L143)）。
 
 ```lua
 -- 服务端，TheWorld 上已有组件；强制对一个物品做拟态克隆
@@ -59,3 +59,4 @@ end
 - 源码审阅：2026-10-28，steam-buildid:26230496，覆盖组件全文、itemmimic_data 标签、cave/forest 挂载、treasurechest/chest_mimic/SGitemmimic_revealed 消费链与 TUNING 两常量；未运行游戏。
 - 结构检查：validate_page.py、validate_source_links.py 与 Lua 语法探针通过。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 2 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09-rest）。

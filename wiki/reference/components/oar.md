@@ -1,12 +1,12 @@
 ---
 title: oar
 created: 2026-10-21
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "手部船桨的划船入口：校验平台与 boatphysics、按朝向施加划船力并触发划船事件，时机失败时加湿并返回台词键。"
 aliases: ["船桨组件", "划船组件", "划桨", "划船失败", "Row", "RowFail", "BAD_TIMING", "oar"]
 tags: [component, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/oar.lua", "prefabs/oar.lua", "actions.lua", "componentactions.lua", "components/boatphysics.lua", "components/expertsailor.lua", "components/mightiness.lua", "tuning.lua", "stategraphs/commonstates.lua", "prefabs/wolfgang.lua", "prefabs/wx78_possessedbody.lua", "speech_wilson.lua", "components/crewmember.lua"]
 reliability: verified
 validation: source-reviewed
@@ -127,3 +127,4 @@ return Prefab("my_oar", fn, assets)
 - 游戏运行：未运行。
 - 结构检查：见本页交付报告（validate_page、validate_source_links、示例 `--syntax-only` 的实际结果）。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 0 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-09）。

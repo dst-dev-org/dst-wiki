@@ -1,12 +1,12 @@
 ---
 title: "murderable"
 created: "2026-10-22"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "让物品接入 MURDER 动作，理解音效、堆叠消费、施作者事件与直接生成掉落的边界。"
 aliases: ["物品杀死动作", "宰杀鱼", "MURDER", "murderable"]
 tags: [component, actions, loot, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/murderable.lua", "componentactions.lua", "actions.lua", "prefabs/pondfish.lua", "components/inventoryitem.lua", "components/inventory.lua", "components/container.lua", "components/health_replica.lua", "components/incinerator.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua"]
 reliability: verified
 validation: source-reviewed
@@ -62,3 +62,4 @@ status: active
 
 相关：[[reference/components/inventoryitem#关键接口]]；[[reference/components/health#常见陷阱与限制]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

@@ -1,12 +1,12 @@
 ---
 title: "bedazzlement"
 created: "2026-10-19"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "原蜘蛛巢装饰状态、成长暂停与周期 Buff 投放；停止不立即移除蜘蛛 Buff，资源和清理由宿主协作。"
 aliases: ["服务端解除蜘蛛巢装饰", "装饰蜘蛛巢停止成长", "bedazzlement"]
 tags: [component, building, creature, lifecycle, callback, event]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/bedazzlement.lua", "prefabs/spiderden.lua", "prefabs/spider_buffs.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -29,7 +29,7 @@ status: active
 | `Start()` | 已有 bedazzled 标签直接返回；否则写标签、符号、anims 动画／声音，停成长、换图标，陆地排零延迟网半径更新，再开周期。不自动做工具燃烧／冻结测试。[实现](../../../raw/current/scripts/components/bedazzlement.lua#L5-L36) |
 | `Stop()` | 未装饰直接返回；装饰中去标签／符号、还原图标；陆地恢复成长和半径，清 shaving 标志，取消周期。不是恢复原成长剩余时间或撤销全部蜘蛛效果的保证。[实现](../../../raw/current/scripts/components/bedazzlement.lua#L38-L63) |
 | `PacifySpiders()` | 按 growable 阶段选 BEDAZZLEMENT_RADIUS，阶段只截上界到 3；FindEntities 要 spider、排除 spiderqueen／creaturecorpse／NOCLICK，对结果 AddDebuff。不要由名字推断立即清仇恨或永久中立。[筛选](../../../raw/current/scripts/components/bedazzlement.lua#L65-L80) |
-| 当前周期／范围 | BEDAZZLEMENT_RATE=1 秒，半径 {12,16,20}，Buff duration=2 秒；改全局 TUNING 可能影响全部实例，已创建周期任务不会因字段赋值自动重排。[参数](../../../raw/current/scripts/tuning.lua#L6281-L6284) [任务创建](../../../raw/current/scripts/components/bedazzlement.lua#L30-L35) |
+| 当前周期／范围 | BEDAZZLEMENT_RATE=1 秒，半径 {12,16,20}，Buff duration=2 秒；改全局 TUNING 可能影响全部实例，已创建周期任务不会因字段赋值自动重排。[参数](../../../raw/current/scripts/tuning.lua#L6282-L6285) [任务创建](../../../raw/current/scripts/components/bedazzlement.lua#L30-L35) |
 | `OnSave`／`OnLoad` | 只存装饰布尔；恢复零延迟 Start，实际周期重新创建，不存原周期相位。组件无专用移除钩子恢复成长／外观。[存读](../../../raw/current/scripts/components/bedazzlement.lua#L82-L95) |
 
 Buff 实际使用 `target.bedazzled` 字段，非目标巢的 bedazzled 标签；续期重排定时，首次且无 leader 时切 hit／笑脸，退出在目标有效且未死时恢复对应字段／表情。完整战斗选目标行为不在此推断；Buff 基础生命周期复用 [[reference/components/debuff]]／[[reference/components/debuffable]]。[Buff 实现](../../../raw/current/scripts/prefabs/spider_buffs.lua#L73-L118) [注册名](../../../raw/current/scripts/prefabs/spider_buffs.lua#L156-L158)
@@ -72,3 +72,4 @@ end
 - 结构检查：本批格式、来源、链接／行号、大小及登记通过；完整三巢停止事件例通过已有 Full Moon Lua 5.1 syntax-only。
 - 游戏运行：未运行；周期／Buff 到期、陆地／平台、剃取／受击、Start 同帧 Stop、存读和多模组重排待实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-08）。

@@ -1,12 +1,12 @@
 ---
 title: "attunable"
 created: "2026-10-23"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "为场景实体建立与玩家的调谐关系，处理同类替换、专属网络代理和离线恢复。"
 aliases: ["attunable", "物品调谐", "建筑绑定玩家", "复活雕像绑定", "调谐成本", "离线绑定恢复"]
 tags: [component, building, network-sync, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/attunable.lua", "components/attuner.lua", "prefabs/attunable_classified.lua", "prefabs/resurrectionstatue.lua", "prefabs/wendy_resurrectiongrave.lua", "prefabs/player_common.lua", "componentactions.lua", "actions.lua", "constants.lua", "stategraphs/SGwilson.lua", "stategraphs/SGwilson_client.lua"]
 reliability: verified
 validation: source-reviewed
@@ -72,3 +72,4 @@ status: active
 - 游戏运行：未运行；未验证同类建筑并发调谐、断线重连和复活效果。
 - 结构检查：本次定向页面格式／链接与源码引用 strict 检查通过；本页无独立 Lua demo。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

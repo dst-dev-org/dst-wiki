@@ -1,12 +1,12 @@
 ---
 title: "落水水花（splash 族）"
 created: "2026-10-30"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "通用表五种水花：基础落水 splash、热物落水 hot_splash（二段蒸汽声）、青蛙入池 frogsplash、旧海洋面 splash_ocean 与灭火撞击 splash_snow_fx 的变体差异与生成者。"
 aliases: ["splash", "hot_splash", "frogsplash", "splash_ocean", "splash_snow_fx", "水花", "落水水花", "热水花", "蒸汽水花", "青蛙水花", "海面水花", "雪花溅"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/fx.lua", "fx.lua", "components/floater.lua", "prefabs/frog.lua", "components/boatleak.lua", "prefabs/wave.lua", "prefabs/oceanfish.lua", "prefabs/wobster.lua", "stategraphs/SGwilson.lua", "prefabs/books.lua", "prefabs/oceanfishingbobber.lua", "prefabs/shadowmeteor.lua", "prefabs/monkeyprojectile.lua", "ocean_util.lua", "prefabs/snowball_item.lua", "prefabs/waterprojectiles.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -76,3 +76,4 @@ fx.Transform:SetPosition(x, y, z)
 
 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]、[[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

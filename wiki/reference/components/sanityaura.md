@@ -1,12 +1,12 @@
 ---
 title: "sanityaura"
 created: "2026-10-12"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "为附近人物提供精神光环，配置速率、距离衰减与同名去重，区分携带者专属效果。"
 aliases: ["精神光环", "附近回精神", "光环衰减", "光环不叠加", "sanityaura"]
 tags: [component, aura, mechanism, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/sanityaura.lua", "components/sanity.lua", "prefabs/glommer.lua", "prefabs/vault_sanity_adjuster.lua", "modutil.lua", "tuning.lua"]
 reliability: verified
 validation: source-reviewed
@@ -79,3 +79,4 @@ end)
 
 相关：[[reference/components/sanity]]；[[reference/components/inventoryitem#生命周期]]；[[reference/components/equippable]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

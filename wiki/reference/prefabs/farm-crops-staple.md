@@ -6,11 +6,12 @@ type: prefab
 summary: "veggies.lua 同一工厂产出的基础粮菜八注册：MakeVegStats 的 16 位参数、MakeVeggie 的导出集合与主模拟端分界，四键生熟两态的三维／新鲜度／堆叠／漂浮差异，以及农田收获、野生胡萝卜、巨型作物与活动掉落等获得路径。"
 aliases: ["carrot", "carrot_cooked", "corn", "corn_cooked", "pumpkin", "pumpkin_cooked", "potato", "potato_cooked", "胡萝卜", "烤胡萝卜", "玉米", "爆米花", "南瓜", "烤南瓜", "土豆", "烤土豆", "基础粮菜", "农田作物"]
 tags: [prefab, item, food]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/veggies.lua", "prefabs/farm_plants.lua", "prefabs/farm_plant_defs.lua", "prefabs/carrot.lua", "prefabs/seeds.lua", "prefabs/pigking.lua", "prefabs/armor_carrotlure.lua", "prefabs/carrat.lua", "prefabs/halloweenpotion_moon.lua", "prefabs/wormwood_carrat.lua", "brains/cozy_bunnymanbrain.lua", "prefabs/bunnyman.lua", "components/perishable.lua", "components/edible.lua", "components/cookable.lua", "components/stackable.lua", "components/bait.lua", "components/tradable.lua", "components/weighable.lua", "components/repairer.lua", "components/repairable.lua", "components/activatable.lua", "components/halloweenmoonmutable.lua", "components/halloweenpotionmoon.lua", "components/pickable.lua", "components/snowmandecor.lua", "components/regrowthmanager.lua", "entityscript.lua", "standardcomponents.lua", "tuning.lua", "constants.lua", "actions.lua", "componentactions.lua", "simutil.lua", "gamelogic.lua", "map/layouts.lua", "map/forest_map.lua", "map/rooms/forest/blockers.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
 status: active
+size_class: complex
 ---
 
 # 基础粮菜四作物的生熟两态（carrot、corn、pumpkin、potato 与各自 _cooked）
@@ -175,6 +176,7 @@ retune("pumpkin_cooked", GLOBAL.TUNING.STACK_SIZE_SMALLITEM, GLOBAL.TUNING.PERIS
   名称核验：`NAMES.CARROT`=胡萝卜、`CARROT_COOKED`=烤胡萝卜、`CORN`=玉米、`CORN_COOKED`=爆米花、`PUMPKIN`=南瓜、`PUMPKIN_COOKED`=烤南瓜、`POTATO`=土豆、`POTATO_COOKED`=烤土豆。[CARROT](../../../raw/current/scripts/languages/chinese_s.po#L340655-L340657)、[CARROT_COOKED](../../../raw/current/scripts/languages/chinese_s.po#L340660-L340662)、[CORN](../../../raw/current/scripts/languages/chinese_s.po#L341690-L341692)、[CORN_COOKED](../../../raw/current/scripts/languages/chinese_s.po#L341695-L341697)、[PUMPKIN](../../../raw/current/scripts/languages/chinese_s.po#L347300-L347302)、[PUMPKIN_COOKED](../../../raw/current/scripts/languages/chinese_s.po#L347345-L347347)、[POTATO](../../../raw/current/scripts/languages/chinese_s.po#L347225-L347227)、[POTATO_COOKED](../../../raw/current/scripts/languages/chinese_s.po#L347245-L347247)
   未覆盖：`corn`／`potato`／`pumpkin` 的生成点检索只覆盖 `SpawnPrefab("<name>")`、`SetLoot`／`SetChanceLootTable` 直接引用、世界生成布局与房间表，未穷举动态选名、模组注入与活动脚本；`carrot_spinner` 表现、quagmire 节日数据、`_seeds` 与三件巨型变体不在本页。
 - 游戏运行：未运行。三维、天数与秒数均为 tuning 推导（`CALORIES_SMALL`=12.5、`PERISH_MED`=10×480 秒），非运行测量。
+- 分档：8 注册（4 键生熟）且承载 `MakeVegStats` 16 位参数、导出集合与南瓜／胡萝卜分支等跨文件协作，需按族整体说明，取 `complex` 档（480 行／64 KiB）。
 - 结构检查：`validate_page.py` 通过（186 行／32,694 字节，standard 档内）；`validate_source_links.py --strict` 0 错 0 警（125 处锚点）。
 
 ## 相关链接
@@ -184,3 +186,4 @@ retune("pumpkin_cooked", GLOBAL.TUNING.STACK_SIZE_SMALLITEM, GLOBAL.TUNING.PERIS
 - 种植与生长：[[reference/components/crop]]、[[reference/components/farmplantable]]、[[reference/components/farming-manager]]
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

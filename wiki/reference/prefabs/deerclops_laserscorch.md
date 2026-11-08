@@ -1,12 +1,12 @@
 ---
 title: "独眼巨鹿激光族：焦痕、烟尾与命中闪光（deerclops_laserscorch 等 5 注册）"
 created: "2026-11-04"
-updated: "2026-11-04"
+updated: "2026-11-08"
 type: prefab
 summary: "独眼巨鹿冬季盛宴激光攻击的五个注册：三个纯 FX（地面焦痕、命中点红色烟团、目标加色闪光）与两个带 combat／Trigger 的混合载体，按生成、端、淡出与伤害归属核验边界。"
 aliases: ["deerclops_laserscorch", "deerclops_lasertrail", "deerclops_laserhit", "deerclops_laser", "deerclops_laserempty", "独眼巨鹿激光", "独眼巨鹿激光族", "巨鹿激光", "激光焦痕", "冬季盛宴巨鹿激光"]
 tags: [prefab, fx, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/deerclops_laser.lua", "prefabs/deerclops.lua", "stategraphs/SGdeerclops.lua", "prefabs/willow_ember.lua", "prefabs/willow_flame_fx.lua", "components/combat.lua", "componentutil.lua", "tuning.lua", "netvars.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -88,3 +88,4 @@ trail:FastForward(GetRandomMinMax(.3, .7)) -- 仅主模拟有该方法
 同族冰系技能见 [[reference/prefabs/deerclops_icespike_fx|独眼巨鹿冰刺]] 与 [[reference/prefabs/deerclops_icelance_ping_fx|晶体独眼巨鹿冰圈特效组]]。
 
 返回 [[reference/prefabs/fx-creature-index|生物、Boss 与遭遇演出]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

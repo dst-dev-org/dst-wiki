@@ -1,12 +1,12 @@
 ---
 title: "极光（staffcoldlight）"
 created: "2026-10-29"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "冷星／极光这一召唤实体的制冷、精神光环和存续时间，并区分月台附属 staffcoldlightfx 与唤月法杖物品。"
 aliases: ["staffcoldlight", "极光", "冷星", "Polar Light", "极光持续时间", "冷星降温", "staffcoldlightfx", "月台冷星特效"]
 tags: [prefab, aura, lifecycle, server-client]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/stafflight.lua", "prefabs/staff_common.lua", "prefabs/moonbase.lua", "tuning.lua", "entityscript.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -70,3 +70,4 @@ ShowColdStar 创建且仅保留一个 _staffstar，并设为 moonbase 子实体�
 
 返回 [[reference/prefabs/index|Prefab 索引]]。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-1）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-07）。

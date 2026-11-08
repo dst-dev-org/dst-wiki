@@ -1,12 +1,12 @@
 ---
 title: "鱼人水花（merm_splash 族）"
 created: "2026-11-01"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: prefab
 summary: "鱼人系统的落点式水花：王诞生 buff 态内的生成语句（当前快照未找到世界事件转发链）、月变异变时鱼人自身位置 merm_splash，鱼人王诞生 merm_king_splash，召唤与召回守卫出退场 merm_spawn_fx；音效由生成方播放，条目无 sound。"
 aliases: ["merm_splash", "merm_king_splash", "merm_spawn_fx", "鱼人水花", "鱼人王水花", "鱼人生成水花", "鱼人变异水花"]
 tags: [prefab, fx]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["fx.lua", "prefabs/fx.lua", "stategraphs/SGmerm.lua", "stategraphs/SGmermking.lua", "prefabs/merm.lua", "prefabs/mermking.lua", "brains/mermguardbrain.lua", "components/mermkingmanager.lua", "components/shard_mermkingwatcher.lua", "entityscript.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -38,16 +38,16 @@ status: active
 
 | 生成点 | 触发链与条件 | 伴随音效 | 证据 |
 |---|---|---|---|
-| `merm_splash`（王诞生 buff 态，当前快照未找到转发链） | SGmerm `buff` 态 onenter 生成；设计意图由 `onmermkingcreated_anywhere` 进入，但 shard_mermkingwatcher 只把该事件推给 TheWorld，鱼人的世界监听只向自身推 `onmermkingcreated`，SGmerm 仅监听 `_anywhere`——当前快照没有从世界事件到 buff 态的完整转发链 | `dontstarve/characters/wurt/merm/buff` | [事件处理](../../../raw/current/scripts/stategraphs/SGmerm.lua#L160-L162)、[buff 态](../../../raw/current/scripts/stategraphs/SGmerm.lua#L431-L458)、[推送](../../../raw/current/scripts/components/shard_mermkingwatcher.lua#L17-L24)、[鱼人转发](../../../raw/current/scripts/prefabs/merm.lua#L1214-L1220) |
-| `merm_splash`（月变） | SGmerm `lunar_transform` 态 onenter——`DoLunarMutation` 生成 `merm_lunar`／`mermguard_lunar` 后向新体推 `mutated` | 同上 buff 声＋`meta4/lunar_merm/transform` | [态](../../../raw/current/scripts/stategraphs/SGmerm.lua#L917-L953)、[推送](../../../raw/current/scripts/prefabs/merm.lua#L798-L833) |
-| `merm_splash`（月返） | SGmerm `lunar_revert` 态 onenter——`DoLunarRevert` 变回 `merm`／`mermguard` 后向新体推 `demutated` | 同上 | [态](../../../raw/current/scripts/stategraphs/SGmerm.lua#L955-L990)、[推送](../../../raw/current/scripts/prefabs/merm.lua#L835-L864) |
+| `merm_splash`（王诞生 buff 态，当前快照未找到转发链） | SGmerm `buff` 态 onenter 生成；设计意图由 `onmermkingcreated_anywhere` 进入，但 shard_mermkingwatcher 只把该事件推给 TheWorld，鱼人的世界监听只向自身推 `onmermkingcreated`，SGmerm 仅监听 `_anywhere`——当前快照没有从世界事件到 buff 态的完整转发链 | `dontstarve/characters/wurt/merm/buff` | [事件处理](../../../raw/current/scripts/stategraphs/SGmerm.lua#L160-L162)、[buff 态](../../../raw/current/scripts/stategraphs/SGmerm.lua#L431-L458)、[推送](../../../raw/current/scripts/components/shard_mermkingwatcher.lua#L17-L24)、[鱼人转发](../../../raw/current/scripts/prefabs/merm.lua#L1221-L1227) |
+| `merm_splash`（月变） | SGmerm `lunar_transform` 态 onenter——`DoLunarMutation` 生成 `merm_lunar`／`mermguard_lunar` 后向新体推 `mutated` | 同上 buff 声＋`meta4/lunar_merm/transform` | [态](../../../raw/current/scripts/stategraphs/SGmerm.lua#L917-L953)、[推送](../../../raw/current/scripts/prefabs/merm.lua#L804-L839) |
+| `merm_splash`（月返） | SGmerm `lunar_revert` 态 onenter——`DoLunarRevert` 变回 `merm`／`mermguard` 后向新体推 `demutated` | 同上 | [态](../../../raw/current/scripts/stategraphs/SGmerm.lua#L955-L990)、[推送](../../../raw/current/scripts/prefabs/merm.lua#L841-L870) |
 | `merm_king_splash`（王诞生） | SGmermking `oncreated` 态 onenter——mermkingmanager `CreateMermKing` 把候选鱼人 `ReplacePrefab` 成 mermking 后向新王推 `oncreated`（宿主为 forest／cave 世界的 mermkingmanager 组件） | `dontstarve/characters/wurt/merm/throne/spawn` | [态](../../../raw/current/scripts/stategraphs/SGmermking.lua#L86-L102)、[CreateMermKing](../../../raw/current/scripts/components/mermkingmanager.lua#L123-L129) |
 | `merm_spawn_fx`（召唤守卫） | 王的 `HealthDelta`：血量跌破 75% 且下降、有目标、尚有 guards_available 且无在场守卫（另需未在召唤中、未死亡）→ 推 `call_guards` → SGmermking `call_guards` 态 30 帧处 `CallGuards`：召唤至多 guards_available 名 `mermguard`，每名落点一枚 | `dontstarve/characters/wurt/merm/throne/spawn` | [HealthDelta](../../../raw/current/scripts/prefabs/mermking.lua#L324-L338)、[call_guards 态](../../../raw/current/scripts/stategraphs/SGmermking.lua#L126-L148)、[CallGuards](../../../raw/current/scripts/prefabs/mermking.lua#L406-L438) |
 | `merm_spawn_fx`（守卫回巢退场） | mermguardbrain `ShouldGoToThrone`：`return_to_king` 为真（`ReturnMerms` 在王失去目标时置真，读档也恢复）的守卫走到王座旁 ActionNode：落点一枚后守卫 `Remove` | `dontstarve/characters/wurt/merm/buff` | [Brain 节点](../../../raw/current/scripts/brains/mermguardbrain.lua#L366-L388)、[ReturnMerms](../../../raw/current/scripts/prefabs/mermking.lua#L440-L449) |
 
 补充关系：
 
-- SG 宿主：merm.lua 以 `MakeMerm` 批量返回六种鱼人 prefab，全部经 common／guard master 挂 `SetStateGraph("SGmerm")`。[宿主装配](../../../raw/current/scripts/prefabs/merm.lua#L1773-L1778)、[guard](../../../raw/current/scripts/prefabs/merm.lua#L1303-L1304)、[common](../../../raw/current/scripts/prefabs/merm.lua#L1467-L1468)
+- SG 宿主：merm.lua 以 `MakeMerm` 批量返回六种鱼人 prefab，全部经 common／guard master 挂 `SetStateGraph("SGmerm")`。[宿主装配](../../../raw/current/scripts/prefabs/merm.lua#L1782-L1787)、[guard](../../../raw/current/scripts/prefabs/merm.lua#L1310-L1311)、[common](../../../raw/current/scripts/prefabs/merm.lua#L1476-L1477)
 - 依赖声明：merm.lua 六 prefab 共表声明 `merm_splash`／`merm_spawn_fx`（[表](../../../raw/current/scripts/prefabs/merm.lua#L43-L45)）；mermking.lua 声明 `merm_king_splash`（[表](../../../raw/current/scripts/prefabs/mermking.lua#L10-L14)）。仅声明，生成点如上表。
 - 资源：三名各用同 build 动画族（`merm_splash`／`merm_king_splash`／`merm_spawn_fx`）；`oceanwhirlportal_splash` 复用 `merm_king_splash` 的 bank/build/anim 但为独立注册、与鱼人无关，见 [[reference/prefabs/splash_sink|沉没与单点水花页]]。[辨析](../../../raw/current/scripts/fx.lua#L2030-L2038)
 
@@ -71,8 +71,8 @@ inst:Remove()
 ## 常见陷阱与限制
 
 - **边界：条目不出声**：三名均无 `sound` 字段，所有水花声（buff／transform／throne spawn）由生成方在触发处播放；只 `SpawnPrefab` 不发声。[条目](../../../raw/current/scripts/fx.lua#L2055-L2073)
-- **边界：王诞生水花不是已核验的全体广播**：`onmermkingcreated_anywhere` 由 shard_mermkingwatcher 推给 TheWorld（含跨分片 dirty）；鱼人监听该世界事件后只向自身推 `onmermkingcreated` 并升级属性，而 SGmerm 的 handler 监听 `onmermkingcreated_anywhere`，`PushEvent` 也只把事件送入 source 自己的 SG。当前快照因此找不到“世界出现王→所有鱼人 buff 出水花”的完整链；buff 态内的生成语句仍在。[推送](../../../raw/current/scripts/components/shard_mermkingwatcher.lua#L17-L24)、[鱼人转发](../../../raw/current/scripts/prefabs/merm.lua#L1214-L1220)、[SG 分派](../../../raw/current/scripts/entityscript.lua#L1312-L1335)、[事件处理](../../../raw/current/scripts/stategraphs/SGmerm.lua#L160-L162)
-- **边界：`merm_splash` 不只属于普通鱼人**：月变／月返路径在新体（`merm_lunar`／`mermguard_lunar` 或变回的 `merm`／`mermguard`）位置播放，且这些体共用 SGmerm。[变异](../../../raw/current/scripts/prefabs/merm.lua#L828-L830)
+- **边界：王诞生水花不是已核验的全体广播**：`onmermkingcreated_anywhere` 由 shard_mermkingwatcher 推给 TheWorld（含跨分片 dirty）；鱼人监听该世界事件后只向自身推 `onmermkingcreated` 并升级属性，而 SGmerm 的 handler 监听 `onmermkingcreated_anywhere`，`PushEvent` 也只把事件送入 source 自己的 SG。当前快照因此找不到“世界出现王→所有鱼人 buff 出水花”的完整链；buff 态内的生成语句仍在。[推送](../../../raw/current/scripts/components/shard_mermkingwatcher.lua#L17-L24)、[鱼人转发](../../../raw/current/scripts/prefabs/merm.lua#L1221-L1227)、[SG 分派](../../../raw/current/scripts/entityscript.lua#L1312-L1335)、[事件处理](../../../raw/current/scripts/stategraphs/SGmerm.lua#L160-L162)
+- **边界：`merm_splash` 不只属于普通鱼人**：月变／月返路径在新体（`merm_lunar`／`mermguard_lunar` 或变回的 `merm`／`mermguard`）位置播放，且这些体共用 SGmerm。[变异](../../../raw/current/scripts/prefabs/merm.lua#L834-L836)
 - **边界：同名资源不同注册**：`oceanwhirlportal_splash` 用 `merm_king_splash` 的 bank/build/anim 做漩涡传送门表现，按注册名检索时勿混。[辨析](../../../raw/current/scripts/fx.lua#L2030-L2038)
 - **边界：`merm_spawn_fx` 的 anim 是 `splash`**：按注册名找动画名会落空。[条目](../../../raw/current/scripts/fx.lua#L2069-L2073)
 - **边界：动画是否重复未核验**：工厂只 `PlayAnimation` 一次，是否循环由动画数据决定。[播放](../../../raw/current/scripts/prefabs/fx.lua#L63-L65)
@@ -84,3 +84,4 @@ inst:Remove()
 - 结构检查：`validate_page.py` 通过（0 issue；86 行、11482 字节，低于 200 行／16 KiB 标准档）；`validate_source_links.py --strict` 通过（errors 0、warnings 0；37 处源码引用，初版 9 处锚点起于 fx.lua 条目 `{` 行，已按 name 行起点约定修正清零）。正文 Lua 示例另存临时文件经 `parser_probe --syntax-only` 通过（只查 Lua 5.1 语法，未执行）。
 
 返回 [[reference/prefabs/fx-water-index|水面、航海与船件]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 8 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-11）。

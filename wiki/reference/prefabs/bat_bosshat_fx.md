@@ -1,13 +1,13 @@
 ---
 title: "猎犬蝙蝠帽层、影分身演出、蝙蝠棒皮肤扇翅与惊树蝠群（bat_bosshat_fx 等 5 注册）"
 created: "2026-11-05"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "蝙蝠系 5 个外围 FX：猎犬蝙蝠被戴到头上时的联网咀嚼层（酸浸/暗影换装、三只本地栖立小蝠）、枯萎猎犬蝙蝠血量告急的分身影演出、蝙蝠棒两款皮肤的命中扇翅（net_tinybyte 代理＋本地动画）与万圣惊夜砍树惊出的单玩家可见蝠群（SetClassifiedTarget）。"
 aliases: ["bat_bosshat_fx", "bat_boss_shadow_split_fx", "batbat_bats", "batbat_fantasy_fx", "battreefx", "猎犬蝙蝠帽特效", "蝙蝠帽咀嚼特效", "蝙蝠影分身特效", "蝙蝠棒皮肤特效", "蝙蝠棒命中扇翅", "惊树蝠群", "万圣惊夜蝙蝠"]
 tags: [prefab, fx, creature, server-client]
 size_class: standard
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/bat_boss.lua", "prefabs/batbat.lua", "prefabs/battreefx.lua", "stategraphs/SGbat.lua", "brains/bat_bossbrain.lua", "components/spooked.lua", "prefabs/skinprefabs.lua", "prefabskin.lua", "prefabs/batbosscave.lua", "widgets/batover.lua", "prefabs/player_common.lua", "prefabs/player_common_extensions.lua", "actions.lua", "prefabs/hats.lua", "netvars.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -144,3 +144,4 @@ end
 - [[reference/prefabs/spooked_spider_rock_fx|惊吓蜘蛛虫群特效]]（同一 spooked 组件的 `TryCustomSpook` 分支——挖堆/敲石惊吓）
 - [[reference/prefabs/woby_dash_shadow_fx|沃比暗影冲刺特效]]（本地残影代理的另一次实现）
 - 返回 [[reference/prefabs/fx-skin-index|皮肤与装备挂件]]（蝙蝠 Boss 系）
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-03）。

@@ -1,12 +1,12 @@
 ---
 title: "skeletonsweeper"
 created: "2026-10-28"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "世界玩家骷髅上限管理组件：监听 ms_skeletonspawn 收集骷髅，超过 TUNING.MAX_PLAYER_SKELETONS 时按生成时间从旧到新清除或腐坏。"
 aliases: ["玩家骷髅上限", "骷髅清理", "skeletonsweeper"]
 tags: [component, lifecycle]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 size_class: simple
 sources: ["components/skeletonsweeper.lua", "prefabs/world.lua", "prefabs/skeleton.lua", "prefabs/shallow_grave.lua", "tuning.lua"]
 reliability: verified
@@ -49,3 +49,4 @@ status: active
 - 源码审阅：2026-10-28，steam-buildid:26230496，通读组件全部 110 行，核验挂载（world.lua:602）、两个 ms_skeletonspawn 推送点与 `ms_enableskeletonsweeper` 全库无推送者的事实；上限取值经 tuning.lua:3224 核对。
 - 游戏运行：未运行。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-06）。

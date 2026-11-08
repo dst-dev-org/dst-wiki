@@ -1,12 +1,12 @@
 ---
 title: "firebug"
 created: "2026-10-22"
-updated: "2026-11-01"
+updated: "2026-11-08"
 type: component
 summary: "核对定时脚下生成 Prefab 的 firebug 计时、理智门禁与睡眠启停，避免误作点火目标 AI。"
 aliases: ["定时生火", "低理智生火", "脚下生成火源", "主动引燃 AI", "firebug"]
 tags: [component, lifecycle, state-machine]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["components/firebug.lua", "stategraphs/SGwilson.lua", "entityscript.lua", "modutil.lua"]
 reliability: verified
 validation: source-reviewed
@@ -71,3 +71,4 @@ SGwilson 的 SetSleeperSleepState 在存在 firebug 时 Disable，SetSleeperAwak
 - 结构检查：本页元数据、大小、本地链接与源码锚点经定向检查；完整 modmain 示例经 Lua 5.1 语法检查。
 - 游戏运行：未运行；自定义宿主、理智模式切换、睡眠恢复、读档及生成物生命周期需按实际宿主实测。
 - 2026-11-01 build 26335394：本页随版本迁移升版（机械沿用／锚点迁移；语义修订如有所见上文），批次与共享依据见 [沿用记录](../../updates/build-26335394/index.md#wiki-沿用记录)（批次-2）。
+- 2026-11-08 build 26474873：本页随版本迁移升版（机械沿用；引用区间未受本次源码行号位移影响），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-02）。

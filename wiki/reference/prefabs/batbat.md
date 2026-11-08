@@ -1,12 +1,12 @@
 ---
 title: "蝙蝠棒（batbat）"
 created: "2026-11-06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 type: prefab
 summary: "原版吸血手持武器 batbat：命中给未满血的攻击者回血 6.8 并扣理智（蝙蝠帽减半），伤害 42.5、耐久 75 仅攻击磨损、影子等级 2 供 Maxwell 影像随从增伤；同文件另注册两个皮肤命中 FX 代理。"
 aliases: ["batbat", "蝙蝠棒", "Bat Bat", "吸血武器", "武器吸血"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/batbat.lua", "components/weapon.lua", "components/equippable.lua", "components/finiteuses.lua", "components/health.lua", "components/shadowlevel.lua", "components/combat.lua", "componentutil.lua", "tuning.lua", "constants.lua", "recipes.lua", "recipes_filter.lua", "standardcomponents.lua", "prefabskin.lua", "prefabs/skinprefabs.lua", "skin_strings.lua", "prefabs/hats.lua", "prefabs/waxwell.lua", "stategraphs/SGshadowwaxwell.lua", "prefabs/magicprototyper.lua", "map/layouts.lua", "map/pointsofinterest.lua", "worldgen_main.lua", "map/static_layouts/ruins_camp.lua", "map/static_layouts/skeleton_batfight.lua", "prefabs/treasurechest.lua", "scenarios/chest_cavesupplies.lua", "scenarios/chest_labyrinth.lua", "scenarios/chest_labyrinth_mimic.lua", "widgets/bloodover.lua", "widgets/healthbadge.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -44,7 +44,7 @@ status: active
 | 武器伤害 | `TUNING.BATBAT_DAMAGE`＝`wilson_attack`×1.25 | 42.5 生命值（源码推导，[tuning.lua#L349](../../../raw/current/scripts/tuning.lua#L349)） |
 | 每次攻击磨损 | weapon `attackwear`（从未赋值） | 1 耐久点/次，且为唯一消耗路径（无 tool、无 `SetConsumption`；[OnAttack 结算](../../../raw/current/scripts/components/weapon.lua#L111-L120)） |
 | 命中吸血 | `TUNING.BATBAT_DRAIN`＝`wilson_attack`×0.2 | 6.8 生命值/击，正 `DoDelta` 治疗攻击者（[tuning.lua#L350](../../../raw/current/scripts/tuning.lua#L350)） |
-| 命中理智消耗 | `TUNING.BATBAT_SANITY_DRAIN_MULT`＝0.5；蝙蝠帽套装 `BATBAT_SETBONUS_SANITY_DRAIN_MULT`＝0.25 | −3.4／−1.7 理智/击（`−mult × BATBAT_DRAIN`，[tuning.lua#L9657-L9658](../../../raw/current/scripts/tuning.lua#L9657-L9658)） |
+| 命中理智消耗 | `TUNING.BATBAT_SANITY_DRAIN_MULT`＝0.5；蝙蝠帽套装 `BATBAT_SETBONUS_SANITY_DRAIN_MULT`＝0.25 | −3.4／−1.7 理智/击（`−mult × BATBAT_DRAIN`，[tuning.lua#L9657-L9658](../../../raw/current/scripts/tuning.lua#L9658-L9659)） |
 | 影子等级 | `TUNING.BATBAT_SHADOW_LEVEL` | 2（[tuning.lua#L2865](../../../raw/current/scripts/tuning.lua#L2865)） |
 
 ### 命中吸血与理智消耗
@@ -151,3 +151,4 @@ end)
 - 结构检查：validate_page.py（0 error，153 行／21802 字节，standard 档）与 validate_source_links.py --strict（81 条源码引用、29 个源文件，0 error 0 warning）实际执行通过；lua 围栏经括号／块配对粗检。
 
 返回 [[reference/prefabs/weapons-combat-index|武器与战斗]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 1 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。

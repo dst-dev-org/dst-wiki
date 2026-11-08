@@ -1,12 +1,12 @@
 ---
 title: "哑铃族（dumbbell）"
 created: "2026-11-06"
-updated: "2026-11-06"
+updated: "2026-11-08"
 type: prefab
 summary: "原版沃尔夫冈专属哑铃族 7 注册：武器伤害＋finiteuses 耐久＋mightydumbbell 举铁涨体格；mighty 态运行时动态挂 complexprojectile 右键投掷（AOE＋技能树加成），wimpy 态挂 punch 标签换拳击动画；热铃复用暖石五档温差并可投喂蚁狮。"
 aliases: ["dumbbell", "dumbbell_golden", "dumbbell_marble", "dumbbell_gem", "dumbbell_heat", "dumbbell_redgem", "dumbbell_bluegem", "哑铃", "黄金哑铃", "大理石哑铃", "宝石哑铃", "热铃", "火铃", "冰铃", "举重", "举铁", "投掷哑铃", "沃尔夫冈肌肉"]
 tags: [prefab, item, equipment]
-dst_build: "steam-buildid:26335394"
+dst_build: "steam-buildid:26474873"
 sources: ["prefabs/dumbbells.lua", "components/mightydumbbell.lua", "components/dumbbelllifter.lua", "components/mightiness.lua", "components/weapon.lua", "components/equippable.lua", "components/finiteuses.lua", "components/complexprojectile.lua", "components/combat.lua", "components/inventory.lua", "components/inspectable.lua", "standardcomponents.lua", "actions.lua", "componentactions.lua", "stategraphs/SGwilson.lua", "prefabs/wolfgang.lua", "prefabs/antlion.lua", "prefabs/skilltree_wolfgang.lua", "tuning.lua", "constants.lua", "recipes.lua", "recipes_filter.lua", "mods.lua", "languages/chinese_s.po"]
 reliability: verified
 validation: source-reviewed
@@ -38,19 +38,19 @@ status: active
 
 名称键经简中 .po `msgctxt` 核验（[.po](../../../raw/current/scripts/languages/chinese_s.po#L342359-L342392)）：`STRINGS.NAMES.DUMBBELL`＝哑铃、`DUMBBELL_GOLDEN`＝黄金哑铃、`DUMBBELL_MARBLE`＝大理石哑铃、`DUMBBELL_GEM`＝宝石哑铃、`DUMBBELL_HEAT`＝热铃、`DUMBBELL_REDGEM`＝火铃、`DUMBBELL_BLUEGEM`＝冰铃；动作 `LIFT_DUMBBELL`＝举起（[.po](../../../raw/current/scripts/languages/chinese_s.po#L1209-L1211)）、`STOP_LIFT_DUMBBELL`＝停止举重（[.po](../../../raw/current/scripts/languages/chinese_s.po#L2024-L2026)）。
 
-数值（tuning 键＋实际值；`wilson_attack`＝34×倍率 1，[tuning.lua#L31-L38](../../../raw/current/scripts/tuning.lua#L31-L38)；效率三档 LOW/MED/HIGH＝1.5/3.0/5.0，[tuning.lua#L6487-L6489](../../../raw/current/scripts/tuning.lua#L6487-L6489)）：
+数值（tuning 键＋实际值；`wilson_attack`＝34×倍率 1，[tuning.lua#L31-L38](../../../raw/current/scripts/tuning.lua#L31-L38)；效率三档 LOW/MED/HIGH＝1.5/3.0/5.0，[tuning.lua#L6487-L6489](../../../raw/current/scripts/tuning.lua#L6488-L6490)）：
 
 | 项 | 键／来源 | 实际值 |
 |---|---|---|
-| 伤害 | `DUMBBELL_DAMAGE_ROCK/GOLD/MARBLE/GEM/HEAT/REDGEM/BLUEGEM`＝`wilson_attack×(0.5/0.8/1/1.25/0.5/1.25/1.25)` | 17/27.2/34/42.5/17/42.5/42.5 生命值/击（源码推导，[tuning.lua#L6472-L6479](../../../raw/current/scripts/tuning.lua#L6472-L6479)） |
-| 举重消耗（每次举起） | `DUMBBELL_CONSUMPTION_ROCK/GOLD/MARBLE/GEM/BLUEGEM/REDEM/HEAT` | 0.8/0.5/0.3/0.2/0.3/0.3/0.8 耐久点（[tuning.lua#L6463-L6470](../../../raw/current/scripts/tuning.lua#L6463-L6470)、[消费](../../../raw/current/scripts/components/mightydumbbell.lua#L92-L108)） |
-| 耐久上限 | finiteuses 默认；heat 用 `DUMBBELL_HEAT_MAX_USES` | 六档 100、热铃 150（[默认](../../../raw/current/scripts/components/finiteuses.lua#L12-L13)、[heat 上限](../../../raw/current/scripts/prefabs/dumbbells.lua#L577-L578)、[键值](../../../raw/current/scripts/tuning.lua#L7880)） |
-| 近战磨损/击 | `attackwear`＝consumption×`DUMBBELL_ATTACK_CONSUMPTION_MULT`（默认值，另受 `attackwearmultipliers` 与 efficientuser 修正） | 默认消耗×2（[设置](../../../raw/current/scripts/prefabs/dumbbells.lua#L561)、[倍率 2](../../../raw/current/scripts/tuning.lua#L6482)、[消费](../../../raw/current/scripts/components/weapon.lua#L111-L120)） |
-| 投掷落地磨损 | `thrown_consumption`＝consumption×`DUMBBELL_THROWN_CONSUMPTION_MULT` | 消耗×10，落地结算一次（[设置](../../../raw/current/scripts/prefabs/dumbbells.lua#L625)、[消费](../../../raw/current/scripts/prefabs/dumbbells.lua#L185)、[倍率 10](../../../raw/current/scripts/tuning.lua#L6483)） |
-| 攻击涨体格 | `DUMBBELL_EFFICIENCY_ATTCK_SCALE` | 效率值×0.5 体格/击或/次投掷（[tuning.lua#L6490](../../../raw/current/scripts/tuning.lua#L6490)、[DoAttackWorkout](../../../raw/current/scripts/components/mightydumbbell.lua#L84-L90)） |
+| 伤害 | `DUMBBELL_DAMAGE_ROCK/GOLD/MARBLE/GEM/HEAT/REDGEM/BLUEGEM`＝`wilson_attack×(0.5/0.8/1/1.25/0.5/1.25/1.25)` | 17/27.2/34/42.5/17/42.5/42.5 生命值/击（源码推导，[tuning.lua#L6472-L6479](../../../raw/current/scripts/tuning.lua#L6473-L6480)） |
+| 举重消耗（每次举起） | `DUMBBELL_CONSUMPTION_ROCK/GOLD/MARBLE/GEM/BLUEGEM/REDEM/HEAT` | 0.8/0.5/0.3/0.2/0.3/0.3/0.8 耐久点（[tuning.lua#L6463-L6470](../../../raw/current/scripts/tuning.lua#L6464-L6471)、[消费](../../../raw/current/scripts/components/mightydumbbell.lua#L92-L108)） |
+| 耐久上限 | finiteuses 默认；heat 用 `DUMBBELL_HEAT_MAX_USES` | 六档 100、热铃 150（[默认](../../../raw/current/scripts/components/finiteuses.lua#L12-L13)、[heat 上限](../../../raw/current/scripts/prefabs/dumbbells.lua#L577-L578)、[键值](../../../raw/current/scripts/tuning.lua#L7881)） |
+| 近战磨损/击 | `attackwear`＝consumption×`DUMBBELL_ATTACK_CONSUMPTION_MULT`（默认值，另受 `attackwearmultipliers` 与 efficientuser 修正） | 默认消耗×2（[设置](../../../raw/current/scripts/prefabs/dumbbells.lua#L561)、[倍率 2](../../../raw/current/scripts/tuning.lua#L6483)、[消费](../../../raw/current/scripts/components/weapon.lua#L111-L120)） |
+| 投掷落地磨损 | `thrown_consumption`＝consumption×`DUMBBELL_THROWN_CONSUMPTION_MULT` | 消耗×10，落地结算一次（[设置](../../../raw/current/scripts/prefabs/dumbbells.lua#L625)、[消费](../../../raw/current/scripts/prefabs/dumbbells.lua#L185)、[倍率 10](../../../raw/current/scripts/tuning.lua#L6484)） |
+| 攻击涨体格 | `DUMBBELL_EFFICIENCY_ATTCK_SCALE` | 效率值×0.5 体格/击或/次投掷（[tuning.lua#L6490](../../../raw/current/scripts/tuning.lua#L6491)、[DoAttackWorkout](../../../raw/current/scripts/components/mightydumbbell.lua#L84-L90)） |
 | 投掷 AOE | `OnThrownHit` FindEntities 半径 2，须 `_combat`＋`_health` | 对每个可伤目标走攻击者 `combat:DoAttack`（[实现](../../../raw/current/scripts/prefabs/dumbbells.lua#L124-L170)） |
-| 投掷技能加成 | `SKILLS.WOLFGANG_DUMBELL_TOSS_1/2`（键名拼写 DUMBELL） | ×1.5／×2，仅 AOE 路径（[tuning.lua#L7139-L7140](../../../raw/current/scripts/tuning.lua#L7139-L7140)、[damage 函数替换](../../../raw/current/scripts/prefabs/dumbbells.lua#L139-L149)） |
-| 大理石移速 | `DUMBBELL_SLOW_MARBEL` | ×0.9（[tuning.lua#L6485](../../../raw/current/scripts/tuning.lua#L6485)、[walkspeedmult 消费](../../../raw/current/scripts/components/equippable.lua#L126-L144)） |
+| 投掷技能加成 | `SKILLS.WOLFGANG_DUMBELL_TOSS_1/2`（键名拼写 DUMBELL） | ×1.5／×2，仅 AOE 路径（[tuning.lua#L7139-L7140](../../../raw/current/scripts/tuning.lua#L7140-L7141)、[damage 函数替换](../../../raw/current/scripts/prefabs/dumbbells.lua#L139-L149)） |
+| 大理石移速 | `DUMBBELL_SLOW_MARBEL` | ×0.9（[tuning.lua#L6485](../../../raw/current/scripts/tuning.lua#L6486)、[walkspeedmult 消费](../../../raw/current/scripts/components/equippable.lua#L126-L144)） |
 | 飞行参数 | complexprojectile 硬编码 | 水平速度 15、重力 −35、高弧线、发射偏移 (1,1,0)（[MakeTossable](../../../raw/current/scripts/prefabs/dumbbells.lua#L211-L223)） |
 
 获取途径（全 scripts 字面 `SpawnPrefab("dumbbell…")` 零命中，未检索到直接生成；该检索不覆盖数据表与拼名调用，世界生成／掉落仍按未穷尽处理。七条配方可覆盖正常获取，debugcommands／scrapbook 数据非生成点）：
@@ -133,3 +133,4 @@ end)
 - 结构检查：validate_page.py 通过（135 行／24711 字节，standard 档 240/24576 内）；validate_source_links.py --strict 通过（104 处源码行锚点，0 error 0 warning）。
 
 返回 [[reference/prefabs/staffs-character-index|法杖与角色道具]]、[[reference/prefabs/index|Prefab 索引]]。
+- 2026-11-08 build 26474873：本页随版本迁移升版（锚点迁移 9 处），批次与共享依据见 [沿用记录](../../updates/build-26474873/index.md#wiki-沿用记录)（批V-10）。
